@@ -7,7 +7,7 @@
           <div class="container-fluid pt-5 mt-5">
             <div class="row p-5">
               <div class="col-md-6">
-                <h1 class="display-2 pt-3">Top Company<br>need a Toptalent.</h1>
+                <h1 class="display-2 pt-3">Top Company<br>needs a Toptalent.</h1>
                  <img class="line" src="../assets/line-main.png" alt="">
                 <p class="main-text">The most important asset to a company is not the<br>
                   product they sell or processes they've<br>implemented, it's their people!</p>

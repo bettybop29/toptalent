@@ -46,6 +46,9 @@ export default {
 </script>
 
 <style scoped>
+nav{
+  margin-top: -5px;
+}
   .btn {
       width: 110px;
       height: auto;
