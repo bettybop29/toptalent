@@ -37,25 +37,59 @@
                 
                 <p><router-link class="forgot" to="/resetpassword">Forgot Password?</router-link></p>
                  <input type="submit" class="btn btn-primary" :disabled="searchDisabled" value="Login">
-                <p class="sign-up mt-4">Don’t have any account?
+                <p class="sign-up mt-4">Don't have any account?
                     <router-link class="forgot" to="/signup">Sign Up For Free!</router-link>
                     </p>
+                    <input type="tel" id="phone">
                  
               </form>
               </div>
               </div>
+              
     </b-col>
   </b-row>
 </b-container>
 </template>
 
 <script>
+import axios from 'axios'
+import intlTelInput from 'intl-tel-input';
+
 export default {
-    name:'LoginView'
+    name:'LoginView',
+    
+    data(){
+      return{
+        email:"",
+        password:""
+      }
+    },
+    methods:{
+      async login(){
+        let response = '';
+        try {
+          response = await axios.post(`http://54.255.4.75:9091/api/v1/auth/recruiter/login?recruiterEmail=${this.email}&recruiterPassword=${this.password}`)
+        } catch(err) {
+          this.err = err.response.data.message
+          console.log(err.response.data.message)
+        }
+        if(response.status == 200){
+          console.log(response)
+          localStorage.setItem("user-info", JSON.stringify(response.data.data.registerDTO));
+        }
+      }
+    },
+    mounted(){
+      const input = document.querySelector("#phone");
+      intlTelInput(input,{
+        preferredCountries:["in","id"]
+      })
+    }
 }
 </script>
 
 <style scoped>
+
 *{
     padding-left: 0;
     padding-right: 0;

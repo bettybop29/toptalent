@@ -122,7 +122,7 @@
         <div class="container">
         
         <div class="row">
-            <div class="col">
+            <div class="col pt-2">
                 <h2>CariinKerja</h2>
                 <span>Jl. Sudirman<br>
                 Jakarta Pusat</span>
