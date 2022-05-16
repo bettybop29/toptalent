@@ -12,6 +12,9 @@
             <b-card-text>
               “I’ve been using this incredible job portal. They have comprehensive features that can help me build people in my company. 
               Now, I’m building my business much better than before. Thanks toptalent!”
+              <br>
+              Jane Doe <br>
+              Founder, PT Karya Bangsa Nasional
             </b-card-text>
 
           </b-card>

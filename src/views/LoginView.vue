@@ -22,8 +22,8 @@
         
         <div class="container">
           
-        <h1 class="animate__animated animate__fadeInDown">Welcome back!</h1>
-        <div class="form-login animate__animated animate__fadeInDown">
+        <h1 class="animate_animated animate_fadeInDown">Welcome back!</h1>
+        <div class="form-login animate_animated animate_fadeInDown">
         <form action="" @submit.prevent="login">
                 <label for="validationDefault01" class="form-label mt-4"
                   >Email</label
@@ -134,7 +134,7 @@ export default {
 }
 .image-login{
     position: relative;
-    height: 730px;
+    height: 750px;
     width: 760px;
     
 }
