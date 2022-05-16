@@ -3,11 +3,27 @@
   <b-row>
     <b-col>
         <img class="image-login" src="../assets/login-image.png" alt="">
+        <div class="card">
+          <div class="card-title">
+            <p>“I was freshgraduate until I found toptalent and I find a suitable job here. 
+              I can’t imagine what happened to my career without toptalent.”</p>
+            <div class="footer">
+              <p class="title-footer">Stephen Wibisono</p>
+              <small>Lead Programmer,<br>Intermedia</small>
+            </div>
+          </div>
+        </div>
+        
+
     </b-col>
+
+  <!-- right panel -->
     <b-col>
+        
         <div class="container">
-        <h1>Welcome back!</h1>
-        <div class="form-login">
+          
+        <h1 class="animate__animated animate__fadeInDown">Welcome back!</h1>
+        <div class="form-login animate__animated animate__fadeInDown">
         <form action="" @submit.prevent="login">
                 <label for="validationDefault01" class="form-label mt-4"
                   >Email</label
@@ -35,15 +51,18 @@
                   
                 />
                 
-                <p><router-link class="forgot" to="/resetpassword">Forgot Password?</router-link></p>
-                 <input type="submit" class="btn btn-primary" :disabled="searchDisabled" value="Login">
-                <p class="sign-up mt-4">Don't have any account?
+                  <p>
+                    
+                    <router-link class="forgot" to="/resetpassword">Forgot Password?</router-link></p>
+                    <!-- <input class="form-control" type="tel" id="phone" v-model="phone" > -->
+                    <input type="submit" class="btn btn-primary" :disabled="searchDisabled" value="Login">
+                    <p class="sign-up mt-4">Don't have any account?
                     <router-link class="forgot" to="/signup">Sign Up For Free!</router-link>
                     </p>
-                    <input type="tel" id="phone">
-                 
-              </form>
-              </div>
+                    
+                  </form>
+                  
+                </div>
               </div>
               
     </b-col>
@@ -53,7 +72,11 @@
 
 <script>
 import axios from 'axios'
-import intlTelInput from 'intl-tel-input';
+// import intlTelInput from 'intl-tel-input';
+import 'intl-tel-input/build/css/intlTelInput.css';
+import 'intl-tel-input/build/js/intlTelInput.js';
+// import "mosha-vue-toastify/dist/style.css";
+// import { createToast } from "mosha-vue-toastify";
 
 export default {
     name:'LoginView',
@@ -61,10 +84,14 @@ export default {
     data(){
       return{
         email:"",
-        password:""
+        password:"",
+        show:false
       }
     },
     methods:{
+      showThis(){
+        this.show = true
+      },
       async login(){
         let response = '';
         try {
@@ -72,18 +99,25 @@ export default {
         } catch(err) {
           this.err = err.response.data.message
           console.log(err.response.data.message)
+          // createToast(`${err.response.data.message}`, { type: "danger" });
         }
         if(response.status == 200){
           console.log(response)
           localStorage.setItem("user-info", JSON.stringify(response.data.data.registerDTO));
+          this.$router.push('/dashboard')
+          // createToast(`Welcome back!! ${response.data.data.registerDTO.recruiterCompany}`, { type: "success" });
         }
       }
     },
     mounted(){
-      const input = document.querySelector("#phone");
-      intlTelInput(input,{
-        preferredCountries:["in","id"]
-      })
+      // const input = document.querySelector("#phone");
+      // intlTelInput(input,{
+      //       customPlaceholder: function(selectedCountryPlaceholder, selectedCountryData) {
+      //       return "e.g. " + selectedCountryPlaceholder,selectedCountryData;
+      // },
+      //   preferredCountries:["id"],
+      // })
+      // console.log(input)
     }
 }
 </script>
@@ -99,7 +133,10 @@ export default {
     width: 500px;
 }
 .image-login{
-    height: 1024px;
+    position: relative;
+    height: 730px;
+    width: 760px;
+    
 }
 .form-control{
     padding: 10px;
@@ -111,6 +148,38 @@ export default {
 }
 .sign-up{
     text-align: center;
+}
+.card{
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  padding: 30px;
+  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 40px 50px 4px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(11px);
+  position: absolute;
+  width: 500px;
+  height: 320px;
+  top: 390px;
+  right: 170px;
+}
+.card-image{
+  width: 50px;
+  height: auto;
+}
+.footer{
+  margin-top: 60px;
+}
+.title-footer{
+  position: relative;
+  font-weight: bolder;
+}
+small{
+  position: absolute;
+  top: 250px;
+  width: max-content;
+  font-weight: 500;
 }
 
 </style>
