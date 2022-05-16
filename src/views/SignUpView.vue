@@ -132,6 +132,7 @@ export default {
     padding-left: 0;
     padding-right: 0;
     font-family: 'Montserrat';
+    font-weight: 500;
 }
 .container{
     margin: 100px;
