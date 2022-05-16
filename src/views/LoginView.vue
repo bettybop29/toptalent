@@ -134,7 +134,7 @@ export default {
 }
 .image-login{
     position: relative;
-    height: 730px;
+    height: 750px;
     width: 760px;
     
 }
