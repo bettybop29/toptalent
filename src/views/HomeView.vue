@@ -7,15 +7,15 @@
           <div class="container-fluid pt-5 mt-5">
             <div class="row p-5">
               <div class="col-md-6">
-                <h1 class="display-2 pt-3">Top Company<br>needs a Toptalent.</h1>
-                 <img class="line" src="../assets/line-main.png" alt="">
-                <p class="main-text">The most important asset to a company is not the<br>
+                <h1 class="display-2 pt-3 animate__animated animate__backInLeft">Top Company<br>need a Toptalent.</h1>
+                 <img class="line animate__animated animate__rollIn animate__delay-1s" src="../assets/line-main.png" alt="">
+                <p class="main-text animate__animated animate__fadeInLeft">The most important asset to a company is not the<br>
                   product they sell or processes they've<br>implemented, it's their people!</p>
                  
-                  <button class="btn pop">Start with us</button>
+                  <button class="btn pop animate__animated animate__fadeInUp">Start with us</button>
                 </div>                
                 <div class="col-md-6">
-                <img class="img-fluid" src="../assets/banner.png" alt="">
+                <img class="img-fluid animate__animated animate__backInRight" src="../assets/banner.png" alt="">
                 </div>
           </div>              
         </div>            
@@ -27,19 +27,21 @@
         <h2>How we can help your Business</h2>
       </div>
   </div>
-
+ 
+ <transition appear-active-class="animate__animated animate__fadeInLeft">
   <div class="main-card">
+    
     <div class="container">
       <div class="row">
         <div class="col">
           <div class="p-3">
-          <div class="card">
-            <div class="card-body">
-              <img class="card-image" src="../assets/icon/CREDIT.svg" alt="">
-              <h4 class="card-title">Credits</h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. 
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda aliquid numquam dignissimos.</p>
-            </div>
+            <div class="card">
+              <div class="card-body">
+                <img class="card-image" src="../assets/icon/CREDIT.svg" alt="">
+                <h4 class="card-title">Credits</h4>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. 
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda aliquid numquam dignissimos.</p>
+              </div>
           </div>
         </div>
         
@@ -69,10 +71,11 @@
         </div>
         
         </div>
+        
       </div>
     </div>
   </div>
-
+</transition>
  <div class="main" style="background-color: #101419; padding:90px">
     <div class="d-flex justify-content-center" style="padding: 20px; color: white; text-align: center;"><h2>Our Satisfied Partner</h2></div> 
    
