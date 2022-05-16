@@ -3,11 +3,11 @@
   <b-row>
     <b-col>
         <img class="image-login" src="../assets/signup-image.png" alt="">
-        <div class="card-testimony">
+        <div>
           <b-card            
             tag="article"
             style="max-width: 20rem;"
-            class="mb-2"
+            class="mb-2 card-testimony"
           >
             <b-card-text>
               “I’ve been using this incredible job portal. They have comprehensive features that can help me build people in my company. 
@@ -162,8 +162,20 @@ h1{
 }
 
 .card-testimony{
-  margin-top: -500px;
-  margin-left: 50px;
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 570px;
+  height: 402px;
+  left: 46px;
+  top: 600px;
+
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 40px 50px 4px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(50px);
+  /* Note: backdrop-filter has minimal browser support */
+
+  border-radius: 32px;
 }
 
 </style>

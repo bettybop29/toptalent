@@ -133,9 +133,11 @@ export default {
     width: 500px;
 }
 .image-login{
-    position: relative;
-    height: 750px;
-    width: 760px;
+    /* position: relative; */
+    /* height: 750px; */
+    height: 100vh;
+    /* width: 760px; */
+    /* width: 50vw; */
     
 }
 .form-control{
