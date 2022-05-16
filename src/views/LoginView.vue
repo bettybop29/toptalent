@@ -6,7 +6,7 @@
         <div class="card">
           <div class="card-title">
             <p>“I was freshgraduate until I found toptalent and I find a suitable job here. 
-              I can’t imagine what happened to my career without toptalent.”</p>
+              I can’t imagine what happened to my career without toptalent.oke”</p>
             <div class="footer">
               <p class="title-footer">Stephen Wibisono</p>
               <small>Lead Programmer,<br>Intermedia</small>
