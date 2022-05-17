@@ -19,7 +19,7 @@
     </b-col>
     <b-col>
         <div class="container">
-        <h1>Start building your Top Company!</h1>
+        <h1 class="animate__animated animate__fadeInLeft">Start building your Top Company!</h1>
         <div class="form-login">
         <form action="" @submit.prevent="login">
                 <label for="validationDefault01" class="form-label mt-4"
