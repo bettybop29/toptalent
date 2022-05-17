@@ -23,8 +23,7 @@
     </b-col>
     <b-col md="6">
         <div class="container">
-        <h1>Start building your Top Company!</h1>
-        <div class="animate_animated animatebounce animate_delay-2s">Example</div>
+        <h1 class="animate__animated animate__fadeInLeft">Start building your Top Company!</h1>
         <div class="form-login">
         <form action="" @submit.prevent="signUp">
                 <label for="email" class="form-label mt-4"
