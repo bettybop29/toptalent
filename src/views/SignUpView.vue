@@ -24,82 +24,85 @@
     <b-col md="6">
         <div class="container">
         <h1 class="animate__animated animate__fadeInLeft">Start building your Top Company!</h1>
+        
+
         <div class="form-login">
-        <form action="" @submit.prevent="signUp">
-                <label for="email" class="form-label mt-4"
-                  >Email</label
-                >
-                <input
-                  type="email"
-                  v-model="recruiterEmail"
-                  class="form-control"
-                  id="email"
-                  aria-describedby="emailHelp"
-                  placeholder="yourcompany@mail.com"
-                  required
-                />
-                <div v-if="this.err == 'User already exists'">
-                      <span class="badge bg-danger">{{err}}</span>
-                    </div>
-                
-                <label for="password" class="form-label mt-3"
-                  >Password</label
-                >
-                <input
-                  type="password"
-                  v-model="recruiterPassword"
-                  class="form-control"
-                  id="password"
-                  placeholder="Password123@"
-                  required
-                  
-                />
-                <div v-if="this.err == 'Password must be at least 8 characters'">
-                      <span class="badge bg-danger">{{err}}</span>
-                    </div>
-                    <div v-if="this.err == 'Password must contain at least one number, one capital letter and one special character'">
-                      <span class="badge bg-danger">{{err}}</span>
-                    </div>
-                <div class="password-required">
-                  <p>Password required:</p>
-                  <ul>
-                    <li>8 characters</li>
-                    <li>1 upper-case [A-Z]</li>
-                    <li>1 lower-case [a-z]</li>
-                    <li>1 symbol/special character</li>
-                  </ul>
-                </div>
+        <form action="" @submit.prevent="signUp" class="row">
+          <div class="col-12">
+              <label for="email" class="form-label mt-4">Email</label>
+              <input
+                type="email"
+                v-model="recruiterEmail"
+                class="form-control"
+                id="email"
+                aria-describedby="emailHelp"
+                placeholder="yourcompany@mail.com"
+                required
+              />
+              
+          </div>
+          <div v-if="this.err == 'User already exists'">
+                <b-badge variant="danger">{{err}}</b-badge>
+              </div>
+          
+          <label for="password" class="form-label mt-3"
+            >Password</label
+          >
+          <input
+            type="password"
+            v-model="recruiterPassword"
+            class="form-control"
+            id="password"
+            placeholder="Password123@"
+            required
+            
+          />
+          <div v-if="this.err == 'Password must be at least 8 characters'">
+                <span class="badge bg-danger">{{err}}</span>
+              </div>
+              <div v-if="this.err == 'Password must contain at least one number, one capital letter and one special character'">
+                <span class="badge bg-danger">{{err}}</span>
+              </div>
+          <div class="password-required">
+            <p>Password required:</p>
+            <ul>
+              <li>8 characters</li>
+              <li>1 upper-case [A-Z]</li>
+              <li>1 lower-case [a-z]</li>
+              <li>1 symbol/special character</li>
+            </ul>
+          </div>
 
-                <!-- company field -->
-                <label for="company" class="form-label mt-3">Company</label>
-                <input
-                  type="text"
-                  v-model="recruiterCompany"
-                  class="form-control"
-                  id="company"
-                  placeholder="Your Company Name"
-                  required
-                  
-                />
+          <!-- company field -->
+          <label for="company" class="form-label mt-3">Company</label>
+          <input
+            type="text"
+            v-model="recruiterCompany"
+            class="form-control"
+            id="company"
+            placeholder="Your Company Name"
+            required
+            
+          />
 
-                <!-- Industry field -->
-                <label for="industry" class="form-label mt-3">Industry</label>
-                <input
-                  type="text"
-                  v-model="recruiterIndustry"
-                  class="form-control"
-                  id="industry"
-                  placeholder="eg: Technology, Financial"
-                  required
-                  
-                />
-                <button type="submit" class="btn btn-primary btn-signup" disabled="disabled">Create Account</button>
-                 <!-- <input type="submit" class="btn btn-primary btn-signup" :disabled="searchDisabled" value="Create Account"> -->
-                <p class="sign-up mt-4">Already have an account? 
-                    <router-link class="btn-login" to="/login">Log In</router-link>
-                    </p>
-                 
-              </form>
+          <!-- Industry field -->
+          <label for="industry" class="form-label mt-3">Industry</label>
+          <input
+            type="text"
+            v-model="recruiterIndustry"
+            class="form-control"
+            id="industry"
+            placeholder="eg: Technology, Financial"
+            required
+            
+          />
+          <button type="submit" class="btn btn-primary btn-signup" :disabled="searchDisabled">Create Account</button>
+            <!-- <input type="submit" class="btn btn-primary btn-signup" :disabled="searchDisabled" value="Create Account"> -->
+          <p class="sign-up mt-4">Already have an account? 
+              <router-link class="btn-login" to="/login">Log In</router-link>
+              </p>
+            
+        </form>
               
               </div>
               </div>
@@ -262,6 +265,13 @@ font-size: 20px;
   display: inline-block; 
   width: 1em;
   margin-left: -1em;
+}
+
+/* breakpoints */
+@media only screen and (max-width:820px){
+  .image-login{
+    width: 100vw;
+}
 }
 
 

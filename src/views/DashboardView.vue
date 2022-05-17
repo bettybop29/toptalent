@@ -38,7 +38,7 @@
       
     </b-container>
     
-    <div>
+    <!-- <div>
     <b-table sticky-header :items="list" head-variant="light" 
     style="width:840px; margin-left:308px; margin-top:30px; border-radius:30px;">
      <template #cell(index)="list">
@@ -49,7 +49,39 @@
       </template>
     </b-table>
     
-  </div>
+  </div> -->
+
+  <table class="table">
+  <thead>
+      <h3>Resume</h3>
+    <tr>
+      <th scope="col">No.</th>
+      <th scope="col">Name</th>
+      <th scope="col">Contact</th>
+      <th scope="col">Status</th>
+      <th scope="col">Job Name</th>
+      <th scope="col">Position</th>
+      <th scope="col">action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr v-for="(resume, index) in list" :key="resume.id">
+      <td scope="row">{{index + 1}}</td>
+      <td>{{resume.jobseekerName}}</td>
+      <td>{{resume.jobseekerEmail}}</td>
+      <td>
+        <p v-if="resume.applicationStatus != 'sent'">{{resume.applicationStatus}}</p>
+        <p v-else>review</p></td>
+      <td>{{resume.jobName}}</td>
+      <td>
+        <p v-if="resume.jobPosition != 'Internship'" class="position">{{resume.jobPosition}}</p>
+        <p v-else class="position2">{{resume.jobPosition}}</p>
+      </td>
+      <td><button class="btn-primary" @click="getView(resume.applicationId)">view</button></td>
+      
+    </tr>
+  </tbody>  
+</table>
 
  </div>
 </template>

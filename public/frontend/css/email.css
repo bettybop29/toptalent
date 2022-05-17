@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+nav a img {
+  width: 100px;
+}
+
+.section-verify {
+  height: 90vh;
+}
+
+.section-verify h1 {
+  font-weight: 600;
+  font-size: 26px;
+  color: #1f1d52;
+}
+
+.section-verify img {
+  width: 500px;
+  height: 300px;
+}
+
+.section-verify .btn-home {
+  border-radius: 4px;
+  background-color: #282569;
+  color: #fff;
+}
+
+.section-verify .btn-home:hover {
+  background-color: #433da8;
+  color: #fff;
+}
+
+main .section-verify .forgot {
+  width: 400px;
+  height: 400px;
+}
+/*# sourceMappingURL=email.css.map */
