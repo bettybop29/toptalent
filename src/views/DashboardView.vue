@@ -3,18 +3,18 @@
 <div>
     <sidebar-component></sidebar-component>
     <b-container class="bv-example-row">
-      <img src="http://54.255.4.75:9091/resources/qnry9dzt9q8lym8.png" alt="">
+      <img class="animate__animated animate__jackInTheBox" src="http://54.255.4.75:9091/resources/qnry9dzt9q8lym8.png" alt="">
       <b-row style="width:max-content;">
         <b-col>
           <div class="card">
-            <div class="card-title">              
+            <div class="card-title animate__animated animate__fadeIn">              
               <h2>Hi, {{recruiters.recruiterCompany}}!</h2>
-              <div class="card-text">
+              <div class="card-text animate__animated animate__fadeIn">
                 <h5>Welcome</h5>
                 <h5>you have <span class="decor">{{edit.data}}</span> new
                 <br>resume.</h5>  
               </div>
-              <button class="btn">See all</button>    
+              <button class="btn animate__animated animate__fadeIn">See all</button>    
             </div>    
         </div>
         </b-col>
@@ -41,8 +41,8 @@
     <div>
     <b-table sticky-header :items="list" head-variant="light" 
     style="width:840px; margin-left:308px; margin-top:30px; border-radius:30px;">
-     <template #cell(index)="data">
-        {{ data.index + 1 }}
+     <template #cell(index)="list">
+        {{ list.index + 1 }}
       </template>
       <template #cell(name)="data">
         <b class="text-info">{{ data.value.last.toUpperCase() }}</b>, <b>{{ data.value.first }}</b>
