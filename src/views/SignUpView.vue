@@ -16,7 +16,7 @@
               
               <h5>Jane Doe</h5> 
               <h6>Founder, PT Karya Bangsa Nasional</h6>
-              <font-awesome-icon icon="fa-solid fa-chevron-right" />
+              
             </b-card-text>
           </b-card>
         </div>
@@ -24,33 +24,43 @@
     <b-col md="6">
         <div class="container">
         <h1>Start building your Top Company!</h1>
+        <div class="animate_animated animatebounce animate_delay-2s">Example</div>
         <div class="form-login">
-        <form action="" @submit.prevent="login">
+        <form action="" @submit.prevent="signUp">
                 <label for="email" class="form-label mt-4"
                   >Email</label
                 >
                 <input
                   type="email"
-                  v-model="email"
+                  v-model="recruiterEmail"
                   class="form-control"
                   id="email"
                   aria-describedby="emailHelp"
                   placeholder="yourcompany@mail.com"
                   required
                 />
+                <div v-if="this.err == 'User already exists'">
+                      <span class="badge bg-danger">{{err}}</span>
+                    </div>
                 
                 <label for="password" class="form-label mt-3"
                   >Password</label
                 >
                 <input
                   type="password"
-                  v-model="password"
+                  v-model="recruiterPassword"
                   class="form-control"
                   id="password"
                   placeholder="Password123@"
                   required
                   
                 />
+                <div v-if="this.err == 'Password must be at least 8 characters'">
+                      <span class="badge bg-danger">{{err}}</span>
+                    </div>
+                    <div v-if="this.err == 'Password must contain at least one number, one capital letter and one special character'">
+                      <span class="badge bg-danger">{{err}}</span>
+                    </div>
                 <div class="password-required">
                   <p>Password required:</p>
                   <ul>
@@ -65,7 +75,7 @@
                 <label for="company" class="form-label mt-3">Company</label>
                 <input
                   type="text"
-                  v-model="company"
+                  v-model="recruiterCompany"
                   class="form-control"
                   id="company"
                   placeholder="Your Company Name"
@@ -77,20 +87,21 @@
                 <label for="industry" class="form-label mt-3">Industry</label>
                 <input
                   type="text"
-                  v-model="industry"
+                  v-model="recruiterIndustry"
                   class="form-control"
                   id="industry"
                   placeholder="eg: Technology, Financial"
                   required
                   
                 />
-                
-                 <input type="submit" class="btn btn-primary btn-signup" :disabled="searchDisabled" value="Create Account">
+                <button type="submit" class="btn btn-primary btn-signup" disabled="disabled">Create Account</button>
+                 <!-- <input type="submit" class="btn btn-primary btn-signup" :disabled="searchDisabled" value="Create Account"> -->
                 <p class="sign-up mt-4">Already have an account? 
                     <router-link class="btn-login" to="/login">Log In</router-link>
                     </p>
                  
               </form>
+              
               </div>
               </div>
               
@@ -101,16 +112,22 @@
 
 <script>
 import axios from 'axios';
-import "mosha-vue-toastify/dist/style.css";
-import { createToast } from "mosha-vue-toastify";
+// import "mosha-vue-toastify/dist/style.css";
+import 'animate.css';
+
 
 export default {
     name:'SignUpView',
     
     data(){
       return{
-        email:"",
-        password:""
+        recruiterEmail: "",
+        recruiterPassword: "",
+        recruiterCompany: "",
+        recruiterIndustry: "",
+        searchDisabled:false,
+        err:"",
+        ress:""
       }
     },
     methods:{
@@ -140,11 +157,11 @@ export default {
 
       }
       if(response.status == 200){
-        this.searchDisabled = true;
-        console.log(this.searchDisabled)
+        // this.searchDisabled = true;
+        // console.log(this.searchDisabled)
         this.ress = response.status
         console.log(this.ress)
-        createToast(`Signup Sukses`, { type: "success" });
+        // createToast(`Signup Sukses`, { type: "success" });
         localStorage.setItem("sign-info", JSON.stringify(response.data));
         this.$router.push('/activation')
       }

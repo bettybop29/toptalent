@@ -180,7 +180,7 @@
 <script>
 // @ is an alias to /src
 import navbasic from '../components/NavBasic.vue'
-
+import 'animate.css';
 export default {
   name: 'HomeView',
   components: {
