@@ -7,7 +7,7 @@ import SignUpView from '@/views/SignUpView.vue'
 import DasboardView from  '@/views/DashboardView.vue'
 import PostjobView from '@/views/PostjobView.vue'
 import ActivationView from '@/views/ActivationView.vue'
-import ExpiredSignupView from '@/views/ExpiredSignupView.vue'
+import ExpiredSignup from '@/views/ExpiredSignup.vue'
 
 Vue.use(VueRouter)
 
@@ -49,8 +49,8 @@ const routes = [
   },
   {
     path: '/expiredsignup',
-    name: 'ExpiredSignupView',
-    component: ExpiredSignupView
+    name: 'ExpiredSignup',
+    component: ExpiredSignup
   },
 ]
 
