@@ -8,6 +8,9 @@ import DasboardView from  '@/views/DashboardView.vue'
 import PostjobView from '@/views/PostjobView.vue'
 import ActivationView from '@/views/ActivationView.vue'
 import ExpiredSignup from '@/views/ExpiredSignup.vue'
+import ResetPassword from '@/views/ResetPassword.vue'
+import VerificationPassword from '@/views/VerificationPassword.vue'
+import ChangePassword from '@/views/ChangePassword.vue'
 
 Vue.use(VueRouter)
 
@@ -51,6 +54,21 @@ const routes = [
     path: '/expiredsignup',
     name: 'ExpiredSignup',
     component: ExpiredSignup
+  },
+  {
+    path: '/resetpassword',
+    name: 'ResetPassword',
+    component: ResetPassword
+  },
+  {
+    path: '/verificationpassword',
+    name: 'VerificationPassword',
+    component: VerificationPassword
+  },
+  {
+    path: '/changepassword/:token',
+    name: 'ChangePassword',
+    component: ChangePassword
   },
 ]
 
