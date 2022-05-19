@@ -38,8 +38,8 @@
       
     </b-container>
     
-    <!-- <div>
-    <b-table sticky-header :items="list" head-variant="light" 
+    <div>
+    <b-table sticky-header :items="item" :lists="list" head-variant="light" 
     style="width:840px; margin-left:308px; margin-top:30px; border-radius:30px;">
      <template #cell(index)="list">
         {{ list.index + 1 }}
@@ -100,8 +100,9 @@ export default {
   },
   data(){
     return{
-      list: [
-          { heading1: 'table cell', 
+      list:[],
+      item: [
+          { Judul: 'table cell', 
           heading2: 'table cell', 
           heading3: 'table cell', 
           heading4: 'table cell', 
