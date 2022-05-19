@@ -1,0 +1,54 @@
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+
+//page verify.html
+nav {
+    a {
+        img {
+            width: 100px;
+            
+        }
+    }
+
+}
+
+.section-verify {
+    height: 90vh;
+
+    
+
+    h1 {
+        font-weight: 600;
+        font-size: 26px;
+        color: #1f1d52;
+    }
+
+    img {
+        width: 500px;
+        height: 300px;
+    }
+
+    .btn-home {
+        border-radius: 4px;
+        background-color: #282569;
+        color: #fff;
+
+        &:hover {
+            background-color: #433da8;
+            color: #fff;
+        }
+    }
+}
+
+//page forgot password
+main{
+    .section-verify{
+        .forgot{
+            width: 400px;
+            height: 400px;
+        }
+    }
+}

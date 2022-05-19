@@ -6,7 +6,7 @@
         <div class="card">
           <div class="card-title">
             <p>“I was freshgraduate until I found toptalent and I find a suitable job here. 
-              I can’t imagine what happened to my career without toptalent.”</p>
+              I can’t imagine what happened to my career without toptalent.oke”</p>
             <div class="footer">
               <p class="title-footer">Stephen Wibisono</p>
               <small>Lead Programmer,<br>Intermedia</small>
@@ -22,8 +22,8 @@
         
         <div class="container">
           
-        <h1 class="animate__animated animate__fadeInDown">Welcome back!</h1>
-        <div class="form-login animate__animated animate__fadeInDown">
+        <h1 class="animate_animated animate_fadeInDown">Welcome back!</h1>
+        <div class="form-login animate_animated animate_fadeInDown">
         <form action="" @submit.prevent="login">
                 <label for="validationDefault01" class="form-label mt-4"
                   >Email</label
@@ -47,13 +47,12 @@
                   class="form-control"
                   id="myInput"
                   placeholder="Password123@"
-                  required
-                  
+                  required 
                 />
-                
+                  
                   <p>
                     
-                    <router-link class="forgot" to="/resetpassword">Forgot Password?</router-link></p>
+                    <router-link class="forgot" to="/resetpass">Forgot Password?</router-link></p>
                     <!-- <input class="form-control" type="tel" id="phone" v-model="phone" > -->
                     <input type="submit" class="btn btn-primary" :disabled="searchDisabled" value="Login">
                     <p class="sign-up mt-4">Don't have any account?
@@ -133,9 +132,11 @@ export default {
     width: 500px;
 }
 .image-login{
-    position: relative;
-    height: 730px;
-    width: 760px;
+    /* position: relative; */
+    /* height: 750px; */
+    height: 100vh;
+    /* width: 760px; */
+    /* width: 50vw; */
     
 }
 .form-control{
