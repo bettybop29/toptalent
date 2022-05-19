@@ -12,54 +12,42 @@
           </div>
         </div>
       </div>
-      
-
   </div>
 
 <!-- right panel -->
-  <div class="col-md-6">
-      <h1 class="animate_animated animate_fadeInDown">Welcome back!</h1>
-      <div class="form-login animate_animated animate_fadeInDown">
-        <form action="" @submit.prevent="login">
-            <label for="validationDefault01" class="form-label mt-4"
-              >Email</label
-            >
-            <input
-              type="email"
-              v-model="email"
-              class="form-control"
-              id="floatingInput"
-              aria-describedby="emailHelp"
-              placeholder="yourcompany@mail.com"
-              required
-            />
-            
-            <label for="floatingInput" class="form-label mt-3"
-              >Password</label
-            >
-            <input
-              type="password"
-              v-model="password"
-              class="form-control"
-              id="myInput"
-              placeholder="Password123@"
-              required 
-            />
-              
-              <p>
-                
-                <router-link class="forgot" to="/resetpass">Forgot Password?</router-link></p>
-                <!-- <input class="form-control" type="tel" id="phone" v-model="phone" > -->
-                <input type="submit" class="btn btn-primary" :disabled="searchDisabled" value="Login">
-                <p class="sign-up mt-4">Don't have any account?
-                <router-link class="forgot" to="/signup">Sign Up For Free!</router-link>
-                </p>
-                
-              </form>
-                
-            </div>
-            
-            
+  <div class="col-md-6 section-right">
+    <h1 class="animate_animated animate_fadeInDown">Welcome Back!</h1>
+    <div class="form-login animate_animated animate_fadeInDown">
+      <form action="" @submit.prevent="login">
+        <label for="validationDefault01" class="form-label mt-4">Email</label>
+        <input
+          type="email"
+          v-model="email"
+          class="form-control"
+          id="floatingInput"
+          aria-describedby="emailHelp"
+          placeholder="yourcompany@mail.com"
+          required
+        />
+        
+        <label for="floatingInput" class="form-label mt-3">Password</label>
+        <input
+          type="password"
+          v-model="password"
+          class="form-control mb-3"
+          id="myInput"
+          placeholder="Password123@"
+          required 
+        />
+          <p>
+            <router-link class="btn-forgot" to="/resetpass">Forgot Password?</router-link></p>
+            <!-- <input class="form-control" type="tel" id="phone" v-model="phone" > -->
+            <input type="submit" class="btn btn-primary" :disabled="searchDisabled" value="Login">
+            <p class="sign-up mt-4">Don't have any account?
+            <router-link class="btn-signup" to="/signup">Sign Up For Free!</router-link>
+            </p>              
+      </form>
+    </div>            
   </div>
 </div>
 </template>
@@ -117,11 +105,21 @@ export default {
 </script>
 
 <style scoped>
+*{
+    padding-left: 0;
+    padding-right: 0;
+    font-family: 'Montserrat';
+    font-weight: 500;
+}
 
+h1{
+    font-size: 32px;
+    font-weight: 900;
+    margin-top: 50px;
+}
 
-.container{
-    margin: 100px;
-    width: 500px;
+.section-right{
+  padding: 50px;
 }
 .image-login{
     /* position: relative; */
@@ -142,37 +140,59 @@ export default {
 .sign-up{
     text-align: center;
 }
-.card{
-  font-size: 20px;
-  font-weight: 700;
-  color: white;
+
+.card-testimony{
+  box-sizing: border-box;
   padding: 30px;
-  border-radius: 32px;
+
+  position: absolute;
+  width: 550px;
+  max-height: 500px;
+  left: 46px;
+  top: 400px;
+
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 40px 50px 4px rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(11px);
-  position: absolute;
-  width: 500px;
-  height: 320px;
-  top: 390px;
-  right: 170px;
-}
-.card-image{
-  width: 50px;
-  height: auto;
-}
-.footer{
-  margin-top: 60px;
-}
-.title-footer{
-  position: relative;
-  font-weight: bolder;
-}
-small{
-  position: absolute;
-  top: 250px;
-  width: max-content;
-  font-weight: 500;
+  backdrop-filter: blur(50px);
+  /* Note: backdrop-filter has minimal browser support */
+
+  border-radius: 32px;
 }
 
+.text-testimony{
+  color: #fff;
+}
+
+.text-testimony p{
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 32px;
+}
+
+.text-testimony .title-footer{
+margin-top: 50px;
+font-weight: 900;
+font-size: 20px;
+}
+
+.text-testimony h6{
+  font-weight: 700;
+  line-height: 28px;
+}
+
+.btn-forgot{
+  text-decoration: none;
+  color: #51AEFE;
+}
+
+.btn-forgot:hover{
+  text-decoration: underline;
+}
+
+.btn-signup{
+  text-decoration: none;
+}
+.btn-signup:hover{
+  text-decoration: underline;
+}
 </style>

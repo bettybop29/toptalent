@@ -14,7 +14,7 @@
         </div>
     </div>
     <div class="col-md-6 section-right"> 
-      <h1 class="animate__animated animate__fadeInLeft">Start building your Top Company!</h1>
+      <h1 class="animate__animated animate__fadeInLeft">Start Building Your Top Company!</h1>
       <div class="form-login">
       <form action="" @submit.prevent="signUp" class="row">
         <div class="col-12">
@@ -84,8 +84,8 @@
         <button type="submit" class="btn btn-primary btn-signup" :disabled="searchDisabled">Create Account</button>
           <!-- <input type="submit" class="btn btn-primary btn-signup" :disabled="searchDisabled" value="Create Account"> -->
         <p class="sign-up mt-4">Already have an account? 
-            <router-link class="btn-login" to="/login">Log In</router-link>
-            </p>
+          <router-link class="btn-login" to="/login">Log In</router-link>
+        </p>
       </form>
       </div>
     </div>
@@ -248,6 +248,14 @@ font-size: 20px;
   display: inline-block; 
   width: 1em;
   margin-left: -1em;
+}
+
+.btn-login{
+  text-decoration: none;
+}
+
+.btn-login:hover{
+  text-decoration: underline;
 }
 
 
