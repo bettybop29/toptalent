@@ -53,7 +53,7 @@
                 
                   <p>
                     
-                    <router-link class="forgot" to="/resetpassword">Forgot Password?</router-link></p>
+                    <router-link class="forgot" to="/resetpass">Forgot Password?</router-link></p>
                     <!-- <input class="form-control" type="tel" id="phone" v-model="phone" > -->
                     <input type="submit" class="btn btn-primary" :disabled="searchDisabled" value="Login">
                     <p class="sign-up mt-4">Don't have any account?

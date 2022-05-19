@@ -4,29 +4,19 @@
     <div class="container-fluid">
         
         <nav class="row navbar navbar-expand-lg navbar-light bg-white">
-            <div class="d-flex justify-content-center">
-            <!-- <div class="navbar-nav ms-auto me-auto ms-sm-auto ms-lg-0 ms-md-auto"> -->
-            <ul class="navbar-nav ms-auto me-auto d-none d-lg-block">
-                <!-- <div class="collapse navbar-collapse" id="navbarNavDropdown"> -->
-                    
-                        
-                    
-                    
-                    
-                        <li class="nav-item">
-                            <a class="navbar-brand me-auto" href="#" style="text-align: right;">
-                            <img class="logo" src="frontend/images/logo-main.png" width="30" alt="logo" />
-                        </a>
-                            <span class="text-muted">
-                                | &nbsp; Find The Best Fit
-                            </span>
-
-                            
-                        </li>
-                        
-                    </ul>
-                <!-- </div> -->
-            <!-- </div> -->
+            <div class="container">
+            <ul class="navbar-nav ms-auto me-auto d-none d-lg-block ">
+                <li class="nav-item d-flex justify-content-center">
+                    <a class="navbar-brand " href="/" >
+                        <img class="logo" src="../assets/logo/logo-main.png" width="30" alt="logo" />
+                    </a>
+                    <span class="text-muted text-logo">
+                        | &nbsp; Find The Best Fit
+                    </span>
+                </li>     
+                                  
+            </ul>
+                
             </div>
         </nav>
         
@@ -53,5 +43,10 @@ export default {
 <style scoped>
 *{
     background-color: #fff;
+}
+
+.text-logo{
+    margin-left: -450px;
+    margin-top: 10px;
 }
 </style>

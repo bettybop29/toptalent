@@ -22,7 +22,7 @@
                 <!-- </div> -->
             <!-- </div> -->
             </div>
-        </nav>
+      </nav>
     <h1>Create New Password</h1>
   <div class="position-absolute top-50 start-50 translate-middle shadow p-3 mb-5 bg-body rounded-3" style="width:500px;">
   <form @submit.prevent="resetPass">
@@ -58,7 +58,7 @@
 
 <script>
 import axios from 'axios'
-// import jwt_decode from "jwt-decode";
+import jwt_decode from "jwt-decode";
 // import "mosha-vue-toastify/dist/style.css";
 // import { createToast } from "mosha-vue-toastify";
 export default {
@@ -92,11 +92,11 @@ export default {
             }
         }
     },
-    // mounted(){
-    //   var token = this.$route.params.token;
-    //   var decoded = jwt_decode(token);
-    //   this.decoded = decoded
-    // }
+    mounted(){
+      var token = this.$route.params.token;
+      var decoded = jwt_decode(token);
+      this.decoded = decoded
+    }
   
 } 
 </script>

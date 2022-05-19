@@ -267,6 +267,7 @@ font-size: 20px;
   margin-left: -1em;
 }
 
+
 /* breakpoints */
 @media only screen and (max-width:820px){
   .image-login{
