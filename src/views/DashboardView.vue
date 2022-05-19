@@ -1,8 +1,11 @@
 <template>
 
 <div>
+  
     <sidebar-component></sidebar-component>
+    
     <b-container class="bv-example-row">
+      
       <img class="animate__animated animate__jackInTheBox" src="http://54.255.4.75:9091/resources/qnry9dzt9q8lym8.png" alt="">
       <b-row style="width:max-content;">
         <b-col>
@@ -50,22 +53,23 @@
     </b-table>
     
   </div>
-
+  <sidebar-right-review/>
+  <sidebar-right-empty/>
  </div>
+
 </template>
 
 <script>
 import axios from 'axios'
 import SidebarComponent from '@/components/SidebarComponent.vue'
+import SidebarRightEmpty from '@/components/SidebarRightEmpty.vue'
+import SidebarRightReview from '@/components/SidebarRightReview.vue'
 
 
 
 export default {
-  components: { SidebarComponent },
+  components: { SidebarComponent, SidebarRightEmpty, SidebarRightReview },
   name:'DashboardView',
-  component:{
-    SidebarComponent,
-  },
   data(){
     return{
       list:[],
