@@ -53,4 +53,12 @@ export default {
 .navbar-nav img{
     margin-left: 450px;
 }
+
+/* breakpoints */
+/* for large screen desktop */
+@media only screen and (min-width: 1200px) {
+    .navbar-nav img{
+    margin-left: 520px;
+}
+}
 </style>

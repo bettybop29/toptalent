@@ -5,14 +5,9 @@
             <!-- <div class="navbar-nav ms-auto me-auto ms-sm-auto ms-lg-0 ms-md-auto"> -->
             <ul class="navbar-nav ms-auto me-auto d-none d-lg-block">
                 <!-- <div class="collapse navbar-collapse" id="navbarNavDropdown"> -->
-                    
-                        
-                    
-                    
-                    
                         <li class="nav-item">
                             <a class="navbar-brand me-auto" href="#" style="text-align: right;">
-                            <img class="logo" src="frontend/images/logo.png" width="30" alt="logo" />
+                            <img class="logo" src="../assets/logo/logo-main.png" width="30" alt="logo" />
                         </a>
                             <span class="text-muted">
                                 | &nbsp; Find The Best Fit

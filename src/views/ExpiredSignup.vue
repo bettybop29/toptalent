@@ -56,4 +56,6 @@ export default {
     margin-left: 400px;
 }
 
+
+
 </style>
