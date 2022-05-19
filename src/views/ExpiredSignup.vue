@@ -48,8 +48,12 @@ export default {
 }
 
 .text-logo{
-    margin-left: -400px;
+    /* margin-left: -400px; */
     margin-top: 10px;
+}
+
+.navbar-nav img{
+    margin-left: 400px;
 }
 
 </style>
