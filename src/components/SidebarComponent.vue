@@ -22,11 +22,16 @@
                 <!-- <li>
                    <router-link class="" to="/credit"><i class="bi bi-newspaper"></i>Credit</router-link>
                 </li> -->
+                
             </ul>
+             
+            <img class="mobile-image" src="../assets/mobile.svg" alt="">
+            
             <button class="icon-link">
+               
             <li class="image">
                 
-                <img src="../assets/mobile.svg" alt="">
+                
                <h4>Get Mobile<br> App</h4>
             </li>
             </button>
@@ -102,11 +107,20 @@ a:focus {
     margin: 40px 0;
 }
 .image{
+    position: relative;
     background: #f3f3f3;
     text-align: center;
     list-style: none;
     outline: none;
     padding-top: 20px;
+    margin-top: 30px;
+}
+.mobile-image{
+    margin-top: 80px;
+    margin-left: 30px;
+    width: 140px;
+    z-index: 1;
+   position:absolute; 
 }
 
 .icon-link{
@@ -118,7 +132,7 @@ a:focus {
     width: 80%;
     height: 26%;
     border-radius: 30px;
-    margin-top: 40px;
+    margin-top: 140px;
     transition: box-shadow 1s;
 }
 .icon-link:hover{
@@ -140,6 +154,7 @@ i {
 }
 
 #sidebar {
+    font-weight: 700;
     min-width: 250px;
     max-width: 250px;
     background: #ffffff;

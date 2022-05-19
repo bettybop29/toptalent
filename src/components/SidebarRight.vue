@@ -132,12 +132,14 @@ export default {
 
 <style scoped>
     .sidebar-right{
+        
         float: right;
         display: flex;
         margin-top: 20px;
         
     }
     .side-content{
+      
         padding: 20px;
         background: white;
         border-radius: 20px 0 0 20px;
