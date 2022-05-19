@@ -12,7 +12,7 @@
                 <p class="main-text animate__animated animate__fadeInLeft">The most important asset to a company is not the<br>
                   product they sell or processes they've<br>implemented, it's their people!</p>
                  
-                  <button class="btn pop animate__animated animate__fadeInUp">Start with us</button>
+                  <a href="/signup" class="btn pop animate__animated animate__fadeInUp">Start with us</a>
                 </div>                
                 <div class="col-md-6">
                 <img class="img-fluid animate__animated animate__backInRight" src="../assets/banner.png" alt="">

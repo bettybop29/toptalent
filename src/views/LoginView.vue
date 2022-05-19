@@ -1,72 +1,67 @@
 <template>
-<b-container fluid class="bv-example-row">
-  <b-row>
-    <b-col>
-        <img class="image-login" src="../assets/login-image.png" alt="">
-        <div class="card">
-          <div class="card-title">
-            <p>“I was freshgraduate until I found toptalent and I find a suitable job here. 
-              I can’t imagine what happened to my career without toptalent.oke”</p>
-            <div class="footer">
-              <p class="title-footer">Stephen Wibisono</p>
-              <small>Lead Programmer,<br>Intermedia</small>
-            </div>
+<div class="row">
+  <div class="col-md-6">
+      <img class="image-login" src="../assets/login-image.png" alt="">
+      <div class="card mb-2 card-testimony">
+        <div class="text-testimony">
+          <p>“I was freshgraduate until I found toptalent and I find a suitable job here. 
+            I can’t imagine what happened to my career without toptalent.oke”</p>
+          <div class="footer">
+            <p class="title-footer">Stephen Wibisono</p>
+            <small>Lead Programmer,<br>Intermedia</small>
           </div>
         </div>
-        
+      </div>
+      
 
-    </b-col>
+  </div>
 
-  <!-- right panel -->
-    <b-col>
-        
-        <div class="container">
-          
-        <h1 class="animate_animated animate_fadeInDown">Welcome back!</h1>
-        <div class="form-login animate_animated animate_fadeInDown">
+<!-- right panel -->
+  <div class="col-md-6">
+      <h1 class="animate_animated animate_fadeInDown">Welcome back!</h1>
+      <div class="form-login animate_animated animate_fadeInDown">
         <form action="" @submit.prevent="login">
-                <label for="validationDefault01" class="form-label mt-4"
-                  >Email</label
-                >
-                <input
-                  type="email"
-                  v-model="email"
-                  class="form-control"
-                  id="floatingInput"
-                  aria-describedby="emailHelp"
-                  placeholder="yourcompany@mail.com"
-                  required
-                />
-                
-                <label for="floatingInput" class="form-label mt-3"
-                  >Password</label
-                >
-                <input
-                  type="password"
-                  v-model="password"
-                  class="form-control"
-                  id="myInput"
-                  placeholder="Password123@"
-                  required 
-                />
-                  
-                  <p>
-                    
-                    <router-link class="forgot" to="/resetpass">Forgot Password?</router-link></p>
-                    <!-- <input class="form-control" type="tel" id="phone" v-model="phone" > -->
-                    <input type="submit" class="btn btn-primary" :disabled="searchDisabled" value="Login">
-                    <p class="sign-up mt-4">Don't have any account?
-                    <router-link class="forgot" to="/signup">Sign Up For Free!</router-link>
-                    </p>
-                    
-                  </form>
-                  
-                </div>
-              </div>
+            <label for="validationDefault01" class="form-label mt-4"
+              >Email</label
+            >
+            <input
+              type="email"
+              v-model="email"
+              class="form-control"
+              id="floatingInput"
+              aria-describedby="emailHelp"
+              placeholder="yourcompany@mail.com"
+              required
+            />
+            
+            <label for="floatingInput" class="form-label mt-3"
+              >Password</label
+            >
+            <input
+              type="password"
+              v-model="password"
+              class="form-control"
+              id="myInput"
+              placeholder="Password123@"
+              required 
+            />
               
-    </b-col>
-  </b-row>
-</b-container>
+              <p>
+                
+                <router-link class="forgot" to="/resetpass">Forgot Password?</router-link></p>
+                <!-- <input class="form-control" type="tel" id="phone" v-model="phone" > -->
+                <input type="submit" class="btn btn-primary" :disabled="searchDisabled" value="Login">
+                <p class="sign-up mt-4">Don't have any account?
+                <router-link class="forgot" to="/signup">Sign Up For Free!</router-link>
+                </p>
+                
+              </form>
+                
+            </div>
+            
+            
+  </div>
+</div>
 </template>
 
 <script>
@@ -123,10 +118,7 @@ export default {
 
 <style scoped>
 
-*{
-    padding-left: 0;
-    padding-right: 0;
-}
+
 .container{
     margin: 100px;
     width: 500px;
