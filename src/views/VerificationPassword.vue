@@ -2,7 +2,6 @@
     <div class="reset">
         <!-- navbar -->
     <div class="container-fluid">
-        
         <nav class="row navbar navbar-expand-lg navbar-light bg-white">
             <div class="container">
             <ul class="navbar-nav ms-auto me-auto d-none d-lg-block ">
