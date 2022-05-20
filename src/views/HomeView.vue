@@ -180,7 +180,7 @@
 <script>
 // @ is an alias to /src
 import navbasic from '../components/NavBasic.vue'
-
+import 'animate.css';
 export default {
   name: 'HomeView',
   components: {
@@ -230,7 +230,9 @@ export default {
   .container-fluid{
     padding-right: 0;
     padding-left: 0;
+    
   }
+
  .card {
    width: 19rem;
    height: 300px;

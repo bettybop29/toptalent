@@ -6,6 +6,12 @@ import LoginView from '@/views/LoginView.vue'
 import SignUpView from '@/views/SignUpView.vue'
 import DasboardView from  '@/views/DashboardView.vue'
 import PostjobView from '@/views/PostjobView.vue'
+import ActivationView from '@/views/ActivationView.vue'
+import ExpiredSignup from '@/views/ExpiredSignup.vue'
+import VerificationPassword from '@/views/VerificationPassword.vue'
+import ChangePassword from '@/views/ChangePassword.vue'
+import ResetPass from '@/views/ResetPass.vue'
+import UpdateProfile from '@/components/UpdateProfile.vue'
 
 Vue.use(VueRouter)
 
@@ -26,6 +32,11 @@ const routes = [
     component: DasboardView
   },
   {
+    path: '/updateprofile:id',
+    name: 'updateprofile',
+    component: UpdateProfile
+  },
+  {
     path: '/login',
     name: 'login',
     component: LoginView
@@ -39,7 +50,33 @@ const routes = [
     path: '/signup',
     name: 'signup',
     component: SignUpView
+  },
+  {
+    path: '/activation',
+    name: 'activation',
+    component: ActivationView
+  },
+  {
+    path: '/expiredsignup',
+    name: 'ExpiredSignup',
+    component: ExpiredSignup
+  },
+  {
+    path: '/verificationpassword',
+    name: 'VerificationPassword',
+    component: VerificationPassword
+  },
+  {
+    path: '/changepassword/:token',
+    name: 'ChangePassword',
+    component: ChangePassword
+  },
+  {
+    path: '/resetpass',
+    name: 'ResetPass',
+    component: ResetPass
   }
+  
 ]
 
 const router = new VueRouter({

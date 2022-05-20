@@ -1,9 +1,9 @@
 <template>
-<b-container fluid class="bv-example-row">
-  <b-row>
-    <b-col>
-        <img class="image-login" src="../assets/login-image.png" alt="">
-        <div class="card">
+
+<div class="d-flex justify-content-center">
+  <div class="align-content-center">
+    <img class="image-login" src="../assets/login-image.png" alt="">
+        <div class="card animate__animated animate__bounceIn">
           <div class="card-title">
             <p>“I was freshgraduate until I found toptalent and I find a suitable job here. 
               I can’t imagine what happened to my career without toptalent.oke”</p>
@@ -13,17 +13,12 @@
             </div>
           </div>
         </div>
-        
-
-    </b-col>
-
-  <!-- right panel -->
-    <b-col>
-        
-        <div class="container">
+  </div>
+  <div class="p-2 align-content-center">
+        <div class="container animate__animated animate__fadeInDown">
           
-        <h1 class="animate__animated animate__fadeInDown">Welcome back!</h1>
-        <div class="form-login animate__animated animate__fadeInDown">
+        <h1>Welcome back!</h1>
+        <div class="form-login animate_animated animate_fadeInDown">
         <form action="" @submit.prevent="login">
                 <label for="validationDefault01" class="form-label mt-4"
                   >Email</label
@@ -47,13 +42,12 @@
                   class="form-control"
                   id="myInput"
                   placeholder="Password123@"
-                  required
-                  
+                  required 
                 />
-                
+                  
                   <p>
                     
-                    <router-link class="forgot" to="/resetpassword">Forgot Password?</router-link></p>
+                    <router-link class="forgot" to="/resetpass">Forgot Password?</router-link></p>
                     <!-- <input class="form-control" type="tel" id="phone" v-model="phone" > -->
                     <input type="submit" class="btn btn-primary" :disabled="searchDisabled" value="Login">
                     <p class="sign-up mt-4">Don't have any account?
@@ -64,10 +58,8 @@
                   
                 </div>
               </div>
-              
-    </b-col>
-  </b-row>
-</b-container>
+  </div>
+</div>
 </template>
 
 <script>
@@ -105,6 +97,12 @@ export default {
           console.log(response)
           localStorage.setItem("user-info", JSON.stringify(response.data.data.registerDTO));
           this.$router.push('/dashboard')
+          this.$toast.success(`Welcome back!${response.data.data.registerDTO.recruiterCompany}`, {
+          // optional options Object
+           position: 'top-right',
+           pauseOnHover: true
+      })
+          
           // createToast(`Welcome back!! ${response.data.data.registerDTO.recruiterCompany}`, { type: "success" });
         }
       }
@@ -133,9 +131,11 @@ export default {
     width: 500px;
 }
 .image-login{
-    position: relative;
-    height: 750px;
-    width: 760px;
+    /* position: relative; */
+    /* height: 750px; */
+    height: 100vh;
+    /* width: 760px; */
+    /* width: 50vw; */
     
 }
 .form-control{
@@ -145,6 +145,7 @@ export default {
 }
 .btn{
     margin-top: 100px;
+    width: 100%;
 }
 .sign-up{
     text-align: center;
@@ -162,7 +163,8 @@ export default {
   width: 500px;
   height: 320px;
   top: 390px;
-  right: 170px;
+  left: 120px;
+  /* right: 10px; */
 }
 .card-image{
   width: 50px;
