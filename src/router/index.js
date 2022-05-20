@@ -11,6 +11,7 @@ import ExpiredSignup from '@/views/ExpiredSignup.vue'
 import VerificationPassword from '@/views/VerificationPassword.vue'
 import ChangePassword from '@/views/ChangePassword.vue'
 import ResetPass from '@/views/ResetPass.vue'
+import UpdateProfile from '@/components/UpdateProfile.vue'
 
 Vue.use(VueRouter)
 
@@ -29,6 +30,11 @@ const routes = [
     path: '/dashboard',
     name: 'dashboard',
     component: DasboardView
+  },
+  {
+    path: '/updateprofile:id',
+    name: 'updateprofile',
+    component: UpdateProfile
   },
   {
     path: '/login',
@@ -69,7 +75,8 @@ const routes = [
     path: '/resetpass',
     name: 'ResetPass',
     component: ResetPass
-  },
+  }
+  
 ]
 
 const router = new VueRouter({

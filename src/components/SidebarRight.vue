@@ -94,8 +94,8 @@
 
 <script>
 import axios from "axios";
-import "mosha-vue-toastify/dist/style.css";
-import { createToast } from "mosha-vue-toastify";
+// import "mosha-vue-toastify/dist/style.css";
+// import { createToast } from "mosha-vue-toastify";
 export default {
     name:"SidebarRight",
     props:['view','id'],
@@ -103,12 +103,12 @@ export default {
       
       async accepted(id) {
         await axios.post(`http://54.255.4.75:9091/api/v1/application/status/accepted/?applicationId=${id}`)
-        createToast(`Accepted`, { type: "success" });
+        // createToast(`Accepted`, { type: "success" });
         location.reload(true)
       },
       async rejected(id) {
         await axios.post(`http://54.255.4.75:9091/api/v1/application/status/rejected/?applicationId=${id}`)
-         createToast(`Reject`, { type: "danger" });
+        //  createToast(`Reject`, { type: "danger" });
         location.reload(true)
       },
      async getResume(jobseekerResume){
@@ -139,14 +139,16 @@ export default {
         
     }
     .side-content{
-      
+        width: min-content;
+        position: absolute;
+        right: 0;
         padding: 20px;
         background: white;
         border-radius: 20px 0 0 20px;
         text-decoration: none;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         height: 97vh;
-        width: 100%;
+        /* width: 100%; */
         transition: ease-in-out 1s;
         /* padding-right: 250px; */
 

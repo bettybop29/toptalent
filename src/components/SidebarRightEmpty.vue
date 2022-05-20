@@ -50,13 +50,16 @@ ul{
         
     }
     .side-content{
+       width: fit-content;
+        position: absolute;
+        right: 0;
         padding: 40px;
         background: white;
         border-radius: 20px 0 0 20px;
         text-decoration: none;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         height: 97vh;
-        width: 100%;
+        /* width: 100%; */
         transition: ease-in-out 1s;
         /* padding-right: 250px; */
 

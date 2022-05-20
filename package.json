@@ -24,6 +24,7 @@
     "portal-vue": "^2.1.7",
     "vue-axios": "^3.4.1",
     "vue-router": "^3.5.1",
+    "vue-toast-notification": "^0.6.2",
     "vue2-animate": "^2.1.4"
   },
   "devDependencies": {

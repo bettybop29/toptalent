@@ -9,17 +9,24 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 // animate
 import 'animate.css';
-// mosha toast
+import VueToast from 'vue-toast-notification';
+// Import one of the available themes
+//import 'vue-toast-notification/dist/theme-default.css';
+import 'vue-toast-notification/dist/theme-sugar.css';
 
-
+Vue.use(VueToast);
 
 Vue.config.productionTip = false
+
+
 
 
 new Vue({
   router,
   axios,
   VueAxios,
+  
+  
 
    
   

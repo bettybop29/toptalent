@@ -3,10 +3,15 @@
     <router-view></router-view>
    
 </template>
+<script>
+
+
+
+</script>
 
 <style>
 #app {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #f3f3f3;

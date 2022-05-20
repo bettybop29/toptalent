@@ -152,6 +152,9 @@
   };
 </script>
 <style scoped>
+span{
+  width: auto;
+}
 .btn-success{
   width: 100%;
 }
@@ -230,6 +233,8 @@
  }
  .new:hover{
    padding: auto;
+   width: 125px;
+   height: 121px;
    color: white;
    background: rgba(0, 0, 0, 0.285);
  }
