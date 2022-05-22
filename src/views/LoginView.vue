@@ -1,7 +1,7 @@
 <template>
 <div class="row">
   <div class="col-md-6">
-      <img class="image-login" src="../assets/login-image.png" alt="">
+      <img class="image-login" src="../assets/login-img.png" alt="">
       <div class="card mb-2 card-testimony">
         <div class="text-testimony">
           <p>“I was freshgraduate until I found toptalent and I find a suitable job here. 

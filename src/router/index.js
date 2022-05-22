@@ -70,6 +70,7 @@ const routes = [
     name: 'ResetPass',
     component: ResetPass
   },
+  
 ]
 
 const router = new VueRouter({
