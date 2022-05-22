@@ -51,10 +51,10 @@ ul{
         
     }
     .side-content{
-        
+        width: 320px;
         position: absolute;
         right: 0;
-        padding: 40px;
+        padding: 20px;
         background: white;
         border-radius: 20px 0 0 20px;
         text-decoration: none;

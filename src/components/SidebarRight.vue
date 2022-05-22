@@ -37,13 +37,14 @@
             </tbody>
           </table>
           
-          <li><button class="btn-resume" v-on:click="getResume(view.jobseekerResume)">Resume <i class="bi bi-cloud-arrow-down-fill"></i></button></li>
-          <li><button class="btn-portofolio">Portofolio <i class="bi bi-box-arrow-up-right"></i></button></li>
-          <li> 
+          <li><button class="btn-resume act" v-on:click="getResume(view.jobseekerResume)">Resume <font-awesome-icon :icon="['fas','download']"/></button></li>
+          <li><button class="btn-portofolio act">Portofolio <font-awesome-icon :icon="['fas','link']"/></button></li>
+
+          <li>
             <div class="action">
               <!-- <button class="acc" v-on:click="accepted(view.applicationId)"><i class="bi bi-check2"></i>accept</button> -->
                <button type="button" class="acc" data-bs-toggle="modal" data-bs-target="#popUp1">
-                <i class="bi bi-check2"></i>accept
+                <font-awesome-icon class="icn" :icon="['fas','check']"/>accept
               </button>
 
               <!-- Modal -->
@@ -67,7 +68,7 @@
 
               <!-- <button class="rej" v-on:click="rejected(view.applicationId)"><i class="bi bi-x-lg"></i>reject</button> -->
                <button type="button" class="rej" data-bs-toggle="modal" data-bs-target="#popUp2">
-                <i class="bi bi-x-lg"></i>reject
+                <font-awesome-icon class="icn" :icon="['fas','xmark']"/>reject
               </button>
 
               <!-- Modal -->
@@ -131,6 +132,12 @@ export default {
 </script>
 
 <style scoped>
+.icn{
+  width: 20px;
+}
+.act{
+  justify-content: space-between;
+}
     .sidebar-right{
         
         float: right;
@@ -139,7 +146,7 @@ export default {
         
     }
     .side-content{
-        width: min-content;
+        width: 320px;
         position: absolute;
         right: 0;
         padding: 20px;

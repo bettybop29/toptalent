@@ -92,6 +92,7 @@ a:focus {
     border-radius: 20px;
     margin-bottom: 40px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    font-weight: 400;
 }
 
 .navbar-btn {
@@ -195,7 +196,7 @@ i {
 
 #sidebar ul li a {
     padding: 10px;
-    font-weight: 200;
+    font-weight: 500;
     display: block;
     text-decoration: none;
 }

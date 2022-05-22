@@ -3,8 +3,8 @@
 <div>
   
     <sidebar-component/>
-    <sidebar-right  v-if="this.sidepop == true" :view="views"></sidebar-right>
-    <sidebar-right-review v-if="this.sidepop == false & this.err == '200'"></sidebar-right-review>
+    <sidebar-right class="animate__animated animate__fadeIn"  v-if="this.sidepop == true" :view="views"></sidebar-right>
+    <sidebar-right-review  v-if="this.sidepop == false & this.err == '200'"></sidebar-right-review>
     <sidebar-right-empty  v-if="this.err =='400'"></sidebar-right-empty>
 
    <div class="container">
@@ -15,7 +15,7 @@
               <div class="card-text">
                 <h5>Welcome Back</h5>
                 <h5>you have <span class="decor">{{edit.data}}</span> new
-                <br>resume.</h5>  
+                <br>resume.</h5> 
               </div>
               <button class="btn" v-on:click="test">See all</button>    
             </div>    
@@ -216,6 +216,7 @@ export default {
 }; 
 </script>  
 <style scoped>
+
   .table{
   border-radius: 20px;
   padding: 10%;

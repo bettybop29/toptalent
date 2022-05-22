@@ -50,7 +50,7 @@ ul{
         
     }
     .side-content{
-       width: fit-content;
+        width: 320px;
         position: absolute;
         right: 0;
         padding: 40px;
