@@ -13,7 +13,14 @@ import VueToast from 'vue-toast-notification';
 // Import one of the available themes
 //import 'vue-toast-notification/dist/theme-default.css';
 import 'vue-toast-notification/dist/theme-sugar.css';
+import { library } from '@fortawesome/fontawesome-svg-core'
 
+import { fas } from '@fortawesome/free-solid-svg-icons'
+
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+library.add(fas)
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.use(VueToast);
 
 Vue.config.productionTip = false
