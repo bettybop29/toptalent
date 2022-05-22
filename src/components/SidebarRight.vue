@@ -38,7 +38,7 @@
           </table>
           
           <li><button class="btn-resume act" v-on:click="getResume(view.jobseekerResume)">Resume <font-awesome-icon :icon="['fas','download']"/></button></li>
-          <li><button class="btn-portofolio act">Portofolio <font-awesome-icon :icon="['fas','link']"/></button></li>
+          <li><button class="btn-portofolio act" v-on:click="getLink(view.jobseekerPortofolio)">Portofolio <font-awesome-icon :icon="['fas','link']"/></button></li>
 
           <li>
             <div class="action">
@@ -87,7 +87,7 @@
               </div>
             </div>
           </li>
-
+        
       </ul>
     </div>
   </div>

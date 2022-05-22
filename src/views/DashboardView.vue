@@ -3,7 +3,7 @@
 <div>
   
     <sidebar-component/>
-    <sidebar-right class="animate__animated animate__fadeIn"  v-if="this.sidepop == true" :view="views"></sidebar-right>
+    <sidebar-right v-if="this.sidepop == true" :view="views"></sidebar-right>
     <sidebar-right-review  v-if="this.sidepop == false & this.err == '200'"></sidebar-right-review>
     <sidebar-right-empty  v-if="this.err =='400'"></sidebar-right-empty>
 

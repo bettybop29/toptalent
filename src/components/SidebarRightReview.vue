@@ -32,10 +32,12 @@ export default {
 <style scoped>
 ul{
   padding-top: 80px;
+  font-weight: 500;
 }
     img{
       width: 180px;
       height: 180px;
+      margin-left: 29px;
     }
     
     .hide{
