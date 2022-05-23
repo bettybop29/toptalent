@@ -101,7 +101,7 @@ export default {
           console.log(response)
           localStorage.setItem("user-info", JSON.stringify(response.data.data.registerDTO));
           this.$router.push('/dashboard')
-          this.$toast.success(`Welcome back!${response.data.data.registerDTO.recruiterCompany}`, {
+          this.$toast.success(`Welcome back! ${response.data.data.registerDTO.recruiterCompany}`, {
           // optional options Object
            position: 'top-right',
            pauseOnHover: true

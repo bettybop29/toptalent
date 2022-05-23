@@ -6,7 +6,7 @@
             <img v-if="view.jobseekerImage == null" src="http://54.255.4.75:9091/resources/pfekimaggdc7k9r.png" alt="">
             <img v-else :src="'http://54.255.4.75:9091/resources/'+ view.jobseekerImage" alt="">
           </li>
-          <li class="li-header fw-bold">
+          <li class="li-header fw-bold fw-normal">
             <p v-if="view.jobseekerImage == null">---</p>
             <p v-else>{{view.jobseekerName}}</p>
             <p v-if="view.jobseekerImage == null" class="fw-normal">---</p>
@@ -15,7 +15,7 @@
           
           <li class="li-title">Basic Information</li>
           <!-- tabel untuk data jobseeker -->
-          <table class="jobseeker-informations ">
+          <table class="jobseeker-informations">
             <tbody>
               
               <tr>
@@ -38,7 +38,7 @@
           </table>
           
           <li><button class="btn-resume act" v-on:click="getResume(view.jobseekerResume)">Resume <font-awesome-icon :icon="['fas','download']"/></button></li>
-          <li><button class="btn-portofolio act" v-on:click="getLink(view.jobseekerPortofolio)">Portofolio <font-awesome-icon :icon="['fas','link']"/></button></li>
+          <li><button class="btn-portofolio act" v-on:click="getLink(view.jobseekerPortfolio)">Portofolio <font-awesome-icon :icon="['fas','link']"/></button></li>
 
           <li>
             <div class="action">
@@ -76,11 +76,12 @@
                 <div class="modal-dialog">
                   <div class="modal-content" style="border-radius:20px; margin:auto; width:300px; margin-top:200px; padding-bottom:20px;">
                     <div class="modal-body">
-                      <h4>Are you sure want to reject {{view.jobseekerName}}?</h4>
+                      <h5>Are you sure want to reject {{view.jobseekerName}}?</h5>
                     </div>
                     <div class="select-button">
-                      <button type="button" class="btn btn-danger pop" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
-                      <button type="button" class="btn btn-primary pop" v-on:click="rejected(view.applicationId)"><i class="bi bi-check2"></i></button>
+                      <button type="button" class="pop" v-on:click="rejected(view.applicationId)">Yes, accept</button>
+                      <button type="button" class="pop" data-bs-dismiss="modal">Cancel</button>
+                      
                     </div>
                   </div>
                 </div>
@@ -112,6 +113,10 @@ export default {
         //  createToast(`Reject`, { type: "danger" });
         location.reload(true)
       },
+      async getLink(jobseekerPortofolio) {
+        window.open(`${jobseekerPortofolio}`);
+        console.log(jobseekerPortofolio)
+      },
      async getResume(jobseekerResume){
          await axios({
           url: `http://54.255.4.75:9091/resources/${jobseekerResume}`,
@@ -132,6 +137,9 @@ export default {
 </script>
 
 <style scoped>
+.fw-normal{
+  font-weight: 500;
+}
 .icn{
   width: 20px;
 }
@@ -262,9 +270,6 @@ export default {
       border: 3px solid #f3f3f3;
     }
     .pop{
-     
-     
-      
       text-align: center;
       margin: 0;
     }
@@ -275,13 +280,16 @@ export default {
     }
     .modal-body{
       text-align: center;
+      width:410px; 
+      padding: 32px;
     }
     .modal-content{
       border-radius:20px;  
       margin:auto; 
-      width:300px; 
+      
       margin-top:200px; 
       padding-bottom:20px;
+      
     }
     .jobseeker-informations{
       margin-left: -20px;
@@ -289,9 +297,13 @@ export default {
     .jobseeker-informations td{
       height: 40px;
       padding: 15px;
+      right: 0;
     }
     .jobseeker-informations th{
       height: 40px;
       padding: 15px;
+      font-weight: 500;
+    }.jobseeker-informations tr{
+      font-weight: 500;
     }
 </style>

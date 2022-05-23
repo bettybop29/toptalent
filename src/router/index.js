@@ -5,14 +5,16 @@ import AboutView from '@/views/AboutView.vue'
 import LoginView from '@/views/LoginView.vue'
 import SignUpView from '@/views/SignUpView.vue'
 import DasboardView from  '@/views/DashboardView.vue'
-import PostjobView from '@/views/PostjobView.vue'
+
 import ActivationView from '@/views/ActivationView.vue'
 import ExpiredSignup from '@/views/ExpiredSignup.vue'
 import VerificationPassword from '@/views/VerificationPassword.vue'
 import ChangePassword from '@/views/ChangePassword.vue'
 import ResetPass from '@/views/ResetPass.vue'
 import UpdateProfile from '@/components/UpdateProfile.vue'
-
+import PostJobView from "@/views/PostjobView.vue"
+import PostjobNew from '@/views/PostjobNew.vue'
+import JobDetail from '../components/JobDetail.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -42,9 +44,9 @@ const routes = [
     component: LoginView
   },
   {
-    path: '/postjob',
-    name: 'postjob',
-    component: PostjobView
+    path: '/postjobnew',
+    name: 'postjobnew',
+    component: PostjobNew
   },
   {
     path: '/signup',
@@ -75,6 +77,16 @@ const routes = [
     path: '/resetpass',
     name: 'ResetPass',
     component: ResetPass
+  },
+  {
+    path: '/postjobview',
+    name: 'postjobview',
+    component: PostJobView
+  },
+  {
+    path: '/jobdetail/:id',
+    name: 'jobdetail',
+    component: JobDetail, 
   }
   
 ]

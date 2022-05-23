@@ -11,13 +11,13 @@
             <ul class="list-unstyled components">
                 
                 <li>
-                    <router-link class="" to="/dashboard"><i class="bi bi-house-fill"></i>Dashboard</router-link>
+                    <router-link class="" to="/dashboard"><font-awesome-icon icon="fa-solid fa-house" class="icn" />Dashboard</router-link>
                 </li>
                 <li>
-                   <router-link class="" to="/postjob"><i class="bi bi-sticky-fill"></i>Post Job</router-link>
+                   <router-link class="" to="/postjobview"><font-awesome-icon icon="fa-solid fa-list" class="icn"/>Post Job</router-link>
                 </li>
                 <li>
-                   <router-link class="" to="/about"><i class="bi bi-person-fill"></i>Company Profile</router-link>
+                   <router-link class="" to="/about"><font-awesome-icon icon="fa-solid fa-user" class="icn"/>Company Profile</router-link>
                 </li>
                 <!-- <li>
                    <router-link class="" to="/credit"><i class="bi bi-newspaper"></i>Credit</router-link>
@@ -39,7 +39,7 @@
                
                
                 <li>
-                   <button v-on:click="logout" class="btn btn-danger mt-5"><i class="bi bi-arrow-left-circle-fill"></i>Logout</button>
+                   <button v-on:click="logout" class="btn btn-danger mt-5"><font-awesome-icon icon="fa-solid fa-arrow-right-from-bracket"/> Logout</button>
                         
                 </li>
             </ul>
@@ -140,6 +140,9 @@ a:focus {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     
     
+}
+.icn{
+    padding-right: 16px;
 }
 
 /* ---------------------------------------------------

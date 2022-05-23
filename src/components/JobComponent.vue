@@ -53,12 +53,14 @@
                 </div>
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">Job Requirement: </label>
-                  <input type="text" class="form-control" id="recipient-name" v-model="edit.jobRequirement">
+                  <!-- <input type="text" class="form-control" id="recipient-name" v-model="edit.jobRequirement"> -->
+                  <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="edit.jobRequirement" :config="editorConfig"></ckeditor>
                 </div>
 
                 <div class="mb-3">
                   <label for="message-text" class="col-form-label">Job Description:</label>
-                  <textarea class="form-control" id="message-text" v-model="edit.jobDesc" />
+                  <!-- <textarea class="form-control" id="message-text" v-model="edit.jobDesc" /> -->
+                  <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="edit.jobDesc" :config="editorConfig"></ckeditor>
                 </div>
                 <div class="modal-footer">
                   <button class="btn btn-success" v-on:click="updateJobData(edit.jobId)">Update</button>
@@ -133,9 +135,9 @@
 <script>
 
 import axios from 'axios'
-import "mosha-vue-toastify/dist/style.css";
-import { createToast } from "mosha-vue-toastify";
-import { warn } from '@vue/runtime-core';
+// import "mosha-vue-toastify/dist/style.css";
+// import { createToast } from "mosha-vue-toastify";
+// import { warn } from '@vue/runtime-core';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 
@@ -171,7 +173,7 @@ export default {
        async active(id){
         try{
         await axios.patch(`http://54.255.4.75:9091/api/v1/job/status/${id}?jobStatus=hidden`)
-        createToast("Job Updated", { type: "success" });
+        // createToast("Job Updated", { type: "success" });
         location.reload(true)
         } catch {
           console.log(Error);
@@ -181,7 +183,7 @@ export default {
       async visible(id){
         try{
         await axios.patch(`http://54.255.4.75:9091/api/v1/job/status/${id}?jobStatus=visible`)
-        createToast("Job Updated", { type: "success" });
+        // createToast("Job Updated", { type: "success" });
         location.reload(true)
         } catch {
           console.log(Error);
@@ -204,10 +206,10 @@ export default {
         try{
           
           await axios.patch(`http://54.255.4.75:9091/api/v1/job/${id}?jobName=${this.edit.jobName}&jobStatus=active&jobSalary=${this.edit.jobSalary}&jobPosition=${this.edit.jobPosition}&jobAddress=${this.edit.jobAddress}&jobDesc=${this.edit.jobDesc}&jobRequirement=${this.edit.jobRequirement}`)
-          createToast("Job Updated", { type: "success" });
+          // createToast("Job Updated", { type: "success" });
           location.reload(true)
         } catch {
-          console.log(warn)
+          // console.log(warn)
         }
        },
       async deleteJob(id){
@@ -215,7 +217,7 @@ export default {
        let result = await axios.put(`http://54.255.4.75:9091/api/v1/job/delete/`+id);
         console.warn(result)
         
-           createToast("Job Deleted!", { type: "danger" });
+          //  createToast("Job Deleted!", { type: "danger" });
            location.reload(true)
       
       }catch{

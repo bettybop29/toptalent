@@ -11,7 +11,7 @@
         <div class="card">
           <img class="animate__animated animate__tada" src="@/assets/saly.png" alt="">
             <div class="card-title">              
-              <h2>Hi, {{recruiters.recruiterCompany}}!</h2>
+              <h2 class="main-head">Hi, {{recruiters.recruiterCompany}}!</h2>
               <div class="card-text">
                 <h5>Welcome Back</h5>
                 <h5>you have <span class="decor">{{edit.data}}</span> new
@@ -216,7 +216,9 @@ export default {
 }; 
 </script>  
 <style scoped>
-
+  .main-head{
+    font-weight: 600;
+  }
   .table{
   border-radius: 20px;
   padding: 10%;
@@ -226,8 +228,9 @@ export default {
   width: 30px;
   
 }
+
 .table td{
-  
+  font-weight: 500;
   overflow: auto;
 }
 .btn-primary{
@@ -340,7 +343,6 @@ span{
 }
 .table{
   margin-left: 310px;
-  margin-top: 60px;
   width: 52.5%;
   background: rgb(249, 249, 249)
 }
