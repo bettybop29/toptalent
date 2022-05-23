@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex justify-content-center">
+  <div class="d-flex">
     <div class="align-content-center">
       <img class="image-login" src="../assets/login-image.png" alt="" />
       <div class="card animate__animated animate__bounceIn">

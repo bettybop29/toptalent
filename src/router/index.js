@@ -11,10 +11,11 @@ import ExpiredSignup from '@/views/ExpiredSignup.vue'
 import VerificationPassword from '@/views/VerificationPassword.vue'
 import ChangePassword from '@/views/ChangePassword.vue'
 import ResetPass from '@/views/ResetPass.vue'
-import UpdateProfile from '@/components/UpdateProfile.vue'
+import UpdateProfile from '../components/UpdateProfile.vue'
 import PostJobView from "@/views/PostjobView.vue"
 import PostjobNew from '@/views/PostjobNew.vue'
 import JobDetail from '../components/JobDetail.vue'
+import AplicantDetail from '@/components/AplicantDetail.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -34,9 +35,14 @@ const routes = [
     component: DasboardView
   },
   {
-    path: '/updateprofile:id',
+    path: '/updateprofile/:id',
     name: 'updateprofile',
-    component: UpdateProfile
+    component: UpdateProfile, 
+  },
+  {
+    path: '/aplicantdetail/:id',
+    name: 'aplicantdetail',
+    component: AplicantDetail, 
   },
   {
     path: '/login',

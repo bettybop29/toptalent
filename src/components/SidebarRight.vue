@@ -114,7 +114,7 @@ export default {
         location.reload(true)
       },
       async getLink(jobseekerPortofolio) {
-        window.open(`${jobseekerPortofolio}`);
+        window.open(`https://${jobseekerPortofolio}`);
         console.log(jobseekerPortofolio)
       },
      async getResume(jobseekerResume){
