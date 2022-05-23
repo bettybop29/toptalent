@@ -15,6 +15,7 @@ import UpdateProfile from '@/components/UpdateProfile.vue'
 import PostJobView from "@/views/PostjobView.vue"
 import PostjobNew from '@/views/PostjobNew.vue'
 import JobDetail from '../components/JobDetail.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
