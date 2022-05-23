@@ -50,7 +50,8 @@ nav{
   margin-top: -5px;
 }
   .btn {
-      width: 110px;
+      width: 120px;
+      padding: 12px;
       height: auto;
       border-radius: 30px;
       margin-left: 30px;
