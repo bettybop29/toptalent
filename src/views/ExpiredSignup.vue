@@ -1,9 +1,10 @@
 <template>
     <div class="reset">
         <!-- navbar -->
-    <div class="container">
+    <div class="container-fluid">
         
-        <nav class="row navbar navbar-expand-lg navbar-light bg-white">
+        <!-- <nav class="row navbar navbar-expand-lg navbar-light bg-white"> -->
+        <nav class="row navbar navbar-expand-lg ">
             <div class="container">
             <ul class="navbar-nav ms-auto me-auto d-none d-lg-block ">
                 <li class="nav-item d-flex justify-content-center">
@@ -52,10 +53,9 @@ export default {
     margin-top: 10px;
 }
 
-.navbar-nav img{
-    margin-left: 400px;
+nav{
+    background-color: red;
 }
-
 
 
 </style>

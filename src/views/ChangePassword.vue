@@ -33,25 +33,24 @@
     <input type="text" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" v-model="decoded.email" required disabled hidden>
     
   </div>
-  <div class="mb-3">
+  <div class="mb-1">
     <label for="password1" class="form-label">New Password</label>
     <input type="password" class="form-control" id="password1" aria-describedby="emailHelp" v-model="password" required placeholder="Password123@">
   </div>
 
   <div class="mb-3">
-    <input class="mt-2" type="checkbox" v-on:click="myFunction1" id="show">
-    <label for="show" class="form-label"><small class="text-muted">show Password</small></label>
+    <input class="show" type="checkbox" v-on:click="myFunction1" id="show"> <small class="text-muted label-show">show Password</small>
       <br>
   </div>  
     
-  <div class="mb-3">
+  <div class="mb-1">
     <label for="password2" class="form-label" >Confirm Password</label>
     <input type="password" class="form-control" id="password2" v-model="password_Confirm" required placeholder="Password123@">
   </div>
 
   <div class="mb-3">
-    <input class="mt-2" type="checkbox" v-on:click="myFunction2" id="show">
-    <label for="show" class="form-label"><small class="text-muted">show Password</small></label>
+    <input class="show" type="checkbox" v-on:click="myFunction2" id="show2"> <small class="text-muted label-show">show Password</small>
+    <!-- <label for="show2" class="form-label"><small class="text-muted">show Password</small></label> -->
       <br>
   </div>  
   <div class="password-required">
@@ -129,7 +128,7 @@ export default {
 
 <style scoped>
     .container-fluid{
-      min-height: 100vh;
+      min-height: 120vh;
       background: rgb(238,238,249);
       background: linear-gradient(138deg, rgba(238,238,249,1) 0%, rgba(73,186,224,1) 54%, rgba(0,212,255,1) 100%);
     }
@@ -174,7 +173,7 @@ export default {
     .section-form{
         margin: 0 auto;
         float: none;
-        margin-bottom: 20px;
+        margin-bottom: 50px;
         width: 40vw;
         padding: 30px;
         border-radius: 10px;
@@ -186,9 +185,11 @@ export default {
     }
 
     nav{
-        width: 100vw !important;
+        /* width: 100% !important; */
+        width: 1349px !important;
+
     }
 
-    
+      
 
 </style>
