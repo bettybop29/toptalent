@@ -49,7 +49,9 @@
                     
                     <router-link class="forgot" to="/resetpass">Forgot Password?</router-link></p>
                     <!-- <input class="form-control" type="tel" id="phone" v-model="phone" > -->
-                    <input type="submit" class="btn btn-primary" :disabled="searchDisabled" value="Login">
+                    <button v-if="this.searchDisabled == true" type="submit" class="btn btn-primary" :disabled="searchDisabled" value="Login">Login</button>
+                    <button v-else type="submit" class="btn btn-primary" :disabled="searchDisabled" value="Login">Login</button>
+  
                     <p class="sign-up mt-4">Don't have any account?
                     <router-link class="forgot" to="/signup">Sign Up For Free!</router-link>
                     </p>
@@ -78,7 +80,8 @@ export default {
       return{
         email:"",
         password:"",
-        show:false
+        show:false,
+        searchDisabled:false,
       }
     },
     methods:{
@@ -88,8 +91,10 @@ export default {
       async login(){
         let response = '';
         try {
+          this.searchDisabled = true;
           response = await axios.post(`http://54.255.4.75:9091/api/v1/auth/recruiter/login?recruiterEmail=${this.email}&recruiterPassword=${this.password}`)
         } catch(err) {
+          this.searchDisabled = false;
           this.err = err.response.data.message
           console.log(err.response.data.message)
           this.$toast.error(err.response.data.message, {
@@ -100,6 +105,7 @@ export default {
         if(response.status == 200){
           console.log(response)
           localStorage.setItem("user-info", JSON.stringify(response.data.data.registerDTO));
+          
           this.$router.push('/dashboard')
           this.$toast.success(`Welcome back! ${response.data.data.registerDTO.recruiterCompany}`, {
           // optional options Object

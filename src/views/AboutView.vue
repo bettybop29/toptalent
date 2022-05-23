@@ -77,7 +77,7 @@
               <h5 class="card-title">Contact</h5>
               <hr>
               <a class="card-text"><font-awesome-icon icon="fa-solid fa-envelope" class="icn"/> {{profile.recruiterEmail}}</a>
-              <a class="card-text"><font-awesome-icon icon="fa-brands fa-twitter" class="icn"/>{{profile.recruiterFb}}</a>
+              <a class="card-text"><font-awesome-icon icon="fa-brands fa-twitter" class="icn"/> {{profile.recruiterFb}}</a>
               <a class="card-text"><font-awesome-icon icon="fa-brands fa-instagram" class="icn"/> {{profile.recruiterIg}}</a>
               <a class="card-text"><font-awesome-icon icon="fa-brands fa-linkedin" class="icn"/> {{profile.recruiterLinkedin}}</a>
               <a class="card-text"><font-awesome-icon icon="fa-solid fa-phone" class="icn"/> {{profile.recruiterPhone}}</a>

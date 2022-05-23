@@ -17,7 +17,7 @@
                 <h5>you have <span class="decor">{{edit.data}}</span> new
                 <br>resume.</h5> 
               </div>
-              <button class="btn" v-on:click="test">See all</button>    
+              <button class="btn">See all</button>    
             </div>    
         </div>
      
@@ -71,7 +71,7 @@
         <p v-if="resume.jobPosition != 'Internship'" class="position">{{resume.jobPosition}}</p>
         <p v-else class="position2">{{resume.jobPosition}}</p>
       </td>
-      <td><button class="btn-primary" @click="getView(resume.applicationId)">view</button></td>
+      <td><button class="btn-primary" @click="getView(resume.applicationId)">View</button></td>
       
     </tr>
   </tbody>  
