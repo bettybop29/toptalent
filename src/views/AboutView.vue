@@ -53,7 +53,7 @@
 
               <span class="mb-4 badge bg-info text-dark category">{{profile.recruiterIndustry}}</span>
               <p class="card-span">Staff: </p>
-              <p class="card-text"><i class="bi bi-person-fill me-0"></i> {{profile.recruiterStaff}}</p>
+              <p class="card-text"><font-awesome-icon icon="fa-solid fa-user" /> {{profile.recruiterStaff}}</p>
               <p class="card-span">Description: </p>
               <p class="card-text">{{profile.recruiterDesc}}</p>
               <p class="card-span">Address: </p>
@@ -65,6 +65,8 @@
 
               <!-- <router-link class="btn btn-success" :to="{name: 'updateprofile', params:{id:profile.recruiterId}}">Update Profile</router-link> -->
               <router-link class="btn btn-success" :to="'/updateprofile/'+ profile.recruiterId">Update Profile</router-link>
+              
+              <!-- <router-link class="btn btn-success" to="/updateprofile">test</router-link> -->
             </div>
           </div>
 
@@ -74,12 +76,12 @@
             <div class="card-body section-contact panel-2">
               <h5 class="card-title">Contact</h5>
               <hr>
-              <a class="card-text"><i class="bi bi-envelope"></i> {{profile.recruiterEmail}}</a>
-              <a class="card-text"><i class="bi bi-facebook"></i> {{profile.recruiterFb}}</a>
-              <a class="card-text"><i class="bi bi-instagram"></i> {{profile.recruiterIg}}</a>
-              <a class="card-text"><i class="bi bi-linkedin"></i> {{profile.recruiterLinkedin}}</a>
-              <a class="card-text"><i class="bi bi-telephone"></i> {{profile.recruiterPhone}}</a>
-              <a class="card-text"><i class="bi bi-globe2"></i> {{profile.recruiterWebsite}}</a>
+              <a class="card-text"><font-awesome-icon icon="fa-solid fa-envelope" /> {{profile.recruiterEmail}}</a>
+              <a class="card-text"><font-awesome-icon icon="fa-brands fa-facebook" /> {{profile.recruiterFb}}</a>
+              <a class="card-text"><font-awesome-icon icon="fa-brands fa-instagram" /> {{profile.recruiterIg}}</a>
+              <a class="card-text"><font-awesome-icon icon="fa-brands fa-linkedin" /> {{profile.recruiterLinkedin}}</a>
+              <a class="card-text"><font-awesome-icon icon="fa-solid fa-phone" /> {{profile.recruiterPhone}}</a>
+              <a class="card-text"><font-awesome-icon icon="fa-solid fa-globe" /> {{profile.recruiterWebsite}}</a>
 
             </div>
           </div>
@@ -152,6 +154,12 @@
   };
 </script>
 <style scoped>
+*{
+  font-weight: 500;
+}
+span{
+  width: auto;
+}
 .btn-success{
   width: 100%;
 }
@@ -193,7 +201,6 @@
   .card-title {
     font-weight: bold;
     font-size: 36px;
-    margin-bottom: 30px;
   }
 
   .card-span {
@@ -230,6 +237,8 @@
  }
  .new:hover{
    padding: auto;
+   width: 125px;
+   height: 121px;
    color: white;
    background: rgba(0, 0, 0, 0.285);
  }

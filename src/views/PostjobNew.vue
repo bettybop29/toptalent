@@ -2,6 +2,7 @@
 <div>
   <sidebar-component></sidebar-component>
   <div class="container">
+    
   <div class="main">
     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#jobModal"
       data-bs-whatever="@getbootstrap">
@@ -81,38 +82,62 @@
   
     <div class="row">
      
-      <div class="col-md-3 mt-3 col-12" v-for="item in list" v-bind:key="item.id">
-        <transition name="fade">
-        <job-component class="job-component" :item="item"></job-component>
-        <!-- <jobcomponentnew class="job-component" :item="item"></jobcomponentnew> -->
-        </transition>
+      <div class="col-md-3 mt-3 col-12" >
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Visible</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Hidden</button>
+            </li>
+            
+            
+        </ul>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <div v-for="item in list" v-bind:key="item.id">
+        <jobcomponentnew :item="item"  v-if="item.jobStatus == 'visible'"></jobcomponentnew>
+      </div>
+  </div>
+  <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <div v-for="item in list" v-bind:key="item.id">
+        <jobcomponentnew :item="item"  v-if="item.jobStatus == 'active'"></jobcomponentnew>
+      </div>
+  </div>
+  
+</div>
+
+
+        
       </div>
       
     </div>
-    
+     <!-- <job-component class="job-component" :item="item"></job-component> -->
   </div>
   </div>
   </div>
 </template>
 <script>
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-  import JobComponent from '../components/JobComponent.vue';
-//   import jobcomponentnew from '../components/JobComponentNew.vue';
+  // import JobComponent from '../components/JobComponent.vue';
+  import jobcomponentnew from '../components/JobComponentNew.vue';
   import sidebarcomponent from '../components/SidebarComponent.vue'
   import axios from "axios";
-//   import {createToast} from "mosha-vue-toastify";
-//   import 'boxicons';
+  // import {createToast} from "mosha-vue-toastify";
 
+
+    
     
 
 
 
   export default {
-    name: "PostJob",
+    name: "PostJobNew",
     components: {
       SidebarComponent: sidebarcomponent,
-      JobComponent: JobComponent,
-    //   jobcomponentnew
+      // JobComponent: JobComponent,
+      jobcomponentnew
 
     },
     data() {
@@ -147,16 +172,16 @@
           await axios.post(
             `http://54.255.4.75:9091/api/v1/job/create?jobName=${this.jobName}&recruiterId=${recruiterId}&jobSalary=${this.jobSalary}&jobPosition=${this.jobPosition}&jobAddress=${this.jobAddress}&jobDesc=${this.jobDesc}&jobRequirement=${this.jobRequirement}`
             );
-        //   createToast("Job Successfully Created", {
-        //     type: "success"
-        //   });
+          // createToast("Job Successfully Created", {
+          //   type: "success"
+          // });
           this.modalOpen = true;
           location.reload(true)
 
         } catch (error) {
-        //   createToast("please, fill blank form", {
-        //     type: "danger"
-        //   });
+          // createToast("please, fill blank form", {
+          //   type: "danger"
+          // });
           console.log(error);
         }
       },
@@ -164,9 +189,9 @@
         try {
           localStorage.removeItem("user-info")
           this.$router.push("/login");
-        //   createToast("logout success!", {
-        //     type: "success"
-        //   });
+          // createToast("logout success!", {
+          //   type: "success"
+          // });
         } catch (error) {
           console.log(error);
         }

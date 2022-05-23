@@ -230,7 +230,9 @@ export default {
   .container-fluid{
     padding-right: 0;
     padding-left: 0;
+    
   }
+
  .card {
    width: 19rem;
    height: 300px;

@@ -2,55 +2,46 @@
 
 <div>
   
-    <sidebar-component></sidebar-component>
-    
-    <b-container class="bv-example-row">
-      
-      <img class="animate__animated animate__jackInTheBox" src="http://54.255.4.75:9091/resources/qnry9dzt9q8lym8.png" alt="">
-      <b-row style="width:max-content;">
-        <b-col>
-          <div class="card">
-            <div class="card-title animate__animated animate__fadeIn">              
-              <h2>Hi, {{recruiters.recruiterCompany}}!</h2>
-              <div class="card-text animate__animated animate__fadeIn">
-                <h5>Welcome</h5>
+    <sidebar-component/>
+    <sidebar-right v-if="this.sidepop == true" :view="views"></sidebar-right>
+    <sidebar-right-review  v-if="this.sidepop == false & this.err == '200'"></sidebar-right-review>
+    <sidebar-right-empty  v-if="this.err =='400'"></sidebar-right-empty>
+
+   <div class="container">
+        <div class="card">
+          <img class="animate__animated animate__tada" src="@/assets/saly.png" alt="">
+            <div class="card-title">              
+              <h2 class="main-head">Hi, {{recruiters.recruiterCompany}}!</h2>
+              <div class="card-text">
+                <h5>Welcome Back</h5>
                 <h5>you have <span class="decor">{{edit.data}}</span> new
-                <br>resume.</h5>  
+                <br>resume.</h5> 
               </div>
-              <button class="btn animate__animated animate__fadeIn">See all</button>    
+              <button class="btn" v-on:click="test">See all</button>    
             </div>    
         </div>
-        </b-col>
-        <b-col>
-          <div class="card-monitor">
+     
+        <div class="card-monitor">
           
           <div class="card-approve">
             <div class="card-title">
                 <h4>Summary of approve</h4>
-                <h1>{{accept.data}}<span> / 10</span></h1>
+                <h1>{{accept.data}}<span> / {{total.data}}</span></h1>
              </div>  
               </div>
                 <div class="col card-reject">
                 <h4>Summary of reject</h4>
-                <h1>{{reject.data}}<span> / 10</span></h1> 
-          </div>         
-        </div>            
-        </b-col>
-                
-      </b-row>
-      
-    </b-container>
+                <h1>{{reject.data}}<span> / {{total.data}}</span></h1>
+             
+          </div>
+         
+        </div>
+         
+    </div> 
+
     
     <div>
-    <b-table sticky-header :items="item" :lists="list" head-variant="light" 
-    style="width:840px; margin-left:308px; margin-top:30px; border-radius:30px;">
-     <template #cell(index)="list">
-        {{ list.index + 1 }}
-      </template>
-      <template #cell(name)="data">
-        <b class="text-info">{{ data.value.last.toUpperCase() }}</b>, <b>{{ data.value.first }}</b>
-      </template>
-    </b-table>
+   
     
   </div> -->
 
@@ -64,7 +55,7 @@
       <th scope="col">Status</th>
       <th scope="col">Job Name</th>
       <th scope="col">Position</th>
-      <th scope="col">action</th>
+      <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
@@ -93,39 +84,34 @@
 <script>
 import axios from 'axios'
 import SidebarComponent from '@/components/SidebarComponent.vue'
-// import SidebarRightEmpty from '@/components/SidebarRightEmpty.vue'
-// import SidebarRightReview from '@/components/SidebarRightReview.vue'
+import SidebarRight from '@/components/SidebarRight.vue'
+import SidebarRightEmpty from '@/components/SidebarRightEmpty.vue'
+import SidebarRightReview from '@/components/SidebarRightReview.vue'
+
+
 
 
 
 export default {
   components: { SidebarComponent, 
                 // SidebarRightEmpty, 
-                // SidebarRightReview 
+                SidebarRightReview,
+                SidebarRight,
+                SidebarRightEmpty
               },
   name:'DashboardView',
   data(){
     return{
-      list:[],
-      item: [
-          { Judul: 'table cell', 
-          heading2: 'table cell', 
-          heading3: 'table cell', 
-          heading4: 'table cell', 
-          heading5: 'table cell', 
-          heading6: 'table cell', 
-          heading7: 'table cell' },
-          
-        ],
-
-
       path: 'http://54.255.4.75:9091',
       recruiters:[],
       accept:"",
       reject: "",
+      list:[],
       total:"",
       edit:"",
-      views:""  
+      views:"",
+      sidepop:'',
+      dashboardEmpty:'', 
     }
   },
   methods : {
@@ -134,9 +120,11 @@ export default {
     await axios.get(`http://54.255.4.75:9091/api/v1/application/new-resume/${recruiterId}`)
     .then((data)=>{
       this.edit=data.data
-      console.log(data)
     })
   },
+   async w3_open(){
+      await axios.get(``)
+    },
   async totalAplicant(){
     const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
     await axios.get(`http://54.255.4.75:9091/api/v1/application/applications/${recruiterId}`)
@@ -144,13 +132,35 @@ export default {
       this.total=data.data
     })
   },
+  // async newResume(){
+  //   const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
+  //   await axios.get(`http://54.255.4.75:9091/api/v1/application/dashboard/${recruiterId}`)
+  //   .then((resp)=>{
+  //     this.list = resp.data.data
+  //     console.log(this.list)
+  //     this.dashboardEmpty = resp.data.data.errorCode;
+  //     console.log(das)
+  //   })
+  // },
   async newResume(){
+    let response = '';
     const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
-    await axios.get(`http://54.255.4.75:9091/api/v1/application/dashboard/${recruiterId}`)
-    .then((resp)=>{
-      this.list = resp.data.data
-      
-    })
+    try{
+      response = await axios.get(`http://54.255.4.75:9091/api/v1/application/dashboard/${recruiterId}`)
+      .then((resp)=>{
+        this.list = resp.data.data
+        console.log(resp.data.code)
+        this.err = resp.data.code
+        this.sidepop = false
+      })
+    } catch(err) {
+      this.err = err.response.data.code
+      console.log(err.response.data.code)
+      this.sidepop = false
+    }
+    if(response.status == 200){
+      console.log(response)
+    }
   },
    async recruiter(){
    const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
@@ -179,7 +189,18 @@ export default {
        await axios.get(`http://54.255.4.75:9091/api/v1/application/applicant?applicationId=${applicationId}`)
       .then((data)=>{
         this.views=data.data.data
+        this.sidepop = true
+        console.log(this.sidepop)
         // console.log(data)
+              
+      })
+    },
+    test(){
+      console.log('test')
+      this.$toast.error('Profile saved.', {
+          // optional options Object
+           position: 'top-right',
+           pauseOnHover: true
       })
     }
   },
@@ -192,10 +213,12 @@ export default {
     this.totalnewAplicant(),
     this.getView()
   },
-}
-</script>
-
+}; 
+</script>  
 <style scoped>
+  .main-head{
+    font-weight: 600;
+  }
   .table{
   border-radius: 20px;
   padding: 10%;
@@ -205,8 +228,9 @@ export default {
   width: 30px;
   
 }
+
 .table td{
-  
+  font-weight: 500;
   overflow: auto;
 }
 .btn-primary{
@@ -235,6 +259,8 @@ export default {
   display: flex;
 }
 .card {
+  
+  position: relative;
   padding: 10px;
   text-align: right;
   border-radius: 29px;
@@ -253,9 +279,10 @@ img{
   position: fixed;
   display: block;
   left: 250px;
-  top: 50px;
-  margin-left: 0;
-  margin-right: 40px;
+  top: 20px;
+  /* right: 1000px; */
+  /* margin-left: 0; */
+  /* margin-right: 40px; */
   width: 270px;
   height: 270px;
     
@@ -316,9 +343,8 @@ span{
 }
 .table{
   margin-left: 310px;
-  margin-top: 60px;
   width: 52.5%;
-  background: white;
+  background: rgb(249, 249, 249)
 }
 .position{
   background: #E2E3F6;
