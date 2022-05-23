@@ -20,9 +20,11 @@ npm run build
 npm run lint
 ```
 ### Plugin
+```
 ==icon==
 npm i --save @fortawesome/free-solid-svg-icons
 ==toast==
 npm install vue-toast-notification@^0.6
+```
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
