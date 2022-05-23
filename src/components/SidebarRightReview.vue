@@ -23,7 +23,6 @@
 
 <script>
 
-import "mosha-vue-toastify/dist/style.css";
 
 export default {
     name:"SidebarRightReview",
@@ -33,10 +32,12 @@ export default {
 <style scoped>
 ul{
   padding-top: 80px;
+  font-weight: 500;
 }
     img{
       width: 180px;
       height: 180px;
+      margin-left: 29px;
     }
     
     .hide{
@@ -52,13 +53,15 @@ ul{
         
     }
     .side-content{
-        padding: 40px;
+        width: 320px;
+        position: absolute;
+        right: 0;
+        padding: 20px;
         background: white;
         border-radius: 20px 0 0 20px;
         text-decoration: none;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         height: 97vh;
-        width: 100%;
         transition: ease-in-out 1s;
         /* padding-right: 250px; */
 

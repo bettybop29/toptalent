@@ -6,7 +6,7 @@
             <img v-if="view.jobseekerImage == null" src="http://54.255.4.75:9091/resources/pfekimaggdc7k9r.png" alt="">
             <img v-else :src="'http://54.255.4.75:9091/resources/'+ view.jobseekerImage" alt="">
           </li>
-          <li class="li-header fw-bold">
+          <li class="li-header fw-bold fw-normal">
             <p v-if="view.jobseekerImage == null">---</p>
             <p v-else>{{view.jobseekerName}}</p>
             <p v-if="view.jobseekerImage == null" class="fw-normal">---</p>
@@ -15,7 +15,7 @@
           
           <li class="li-title">Basic Information</li>
           <!-- tabel untuk data jobseeker -->
-          <table class="jobseeker-informations ">
+          <table class="jobseeker-informations">
             <tbody>
               
               <tr>
@@ -37,13 +37,14 @@
             </tbody>
           </table>
           
-          <li><button class="btn-resume" v-on:click="getResume(view.jobseekerResume)">Resume <i class="bi bi-cloud-arrow-down-fill"></i></button></li>
-          <li><button class="btn-portofolio">Portofolio <i class="bi bi-box-arrow-up-right"></i></button></li>
-          <li> 
+          <li><button class="btn-resume act" v-on:click="getResume(view.jobseekerResume)">Resume <font-awesome-icon :icon="['fas','download']"/></button></li>
+          <li><button class="btn-portofolio act" v-on:click="getLink(view.jobseekerPortfolio)">Portofolio <font-awesome-icon :icon="['fas','link']"/></button></li>
+
+          <li>
             <div class="action">
               <!-- <button class="acc" v-on:click="accepted(view.applicationId)"><i class="bi bi-check2"></i>accept</button> -->
                <button type="button" class="acc" data-bs-toggle="modal" data-bs-target="#popUp1">
-                <i class="bi bi-check2"></i>accept
+                <font-awesome-icon class="icn" :icon="['fas','check']"/>accept
               </button>
 
               <!-- Modal -->
@@ -67,7 +68,7 @@
 
               <!-- <button class="rej" v-on:click="rejected(view.applicationId)"><i class="bi bi-x-lg"></i>reject</button> -->
                <button type="button" class="rej" data-bs-toggle="modal" data-bs-target="#popUp2">
-                <i class="bi bi-x-lg"></i>reject
+                <font-awesome-icon class="icn" :icon="['fas','xmark']"/>reject
               </button>
 
               <!-- Modal -->
@@ -75,18 +76,19 @@
                 <div class="modal-dialog">
                   <div class="modal-content" style="border-radius:20px; margin:auto; width:300px; margin-top:200px; padding-bottom:20px;">
                     <div class="modal-body">
-                      <h4>Are you sure want to reject {{view.jobseekerName}}?</h4>
+                      <h5>Are you sure want to reject {{view.jobseekerName}}?</h5>
                     </div>
                     <div class="select-button">
-                      <button type="button" class="btn btn-danger pop" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
-                      <button type="button" class="btn btn-primary pop" v-on:click="rejected(view.applicationId)"><i class="bi bi-check2"></i></button>
+                      <button type="button" class="pop" v-on:click="rejected(view.applicationId)">Yes, accept</button>
+                      <button type="button" class="pop" data-bs-dismiss="modal">Cancel</button>
+                      
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </li>
-
+        
       </ul>
     </div>
   </div>
@@ -94,8 +96,8 @@
 
 <script>
 import axios from "axios";
-import "mosha-vue-toastify/dist/style.css";
-import { createToast } from "mosha-vue-toastify";
+// import "mosha-vue-toastify/dist/style.css";
+// import { createToast } from "mosha-vue-toastify";
 export default {
     name:"SidebarRight",
     props:['view','id'],
@@ -103,13 +105,17 @@ export default {
       
       async accepted(id) {
         await axios.post(`http://54.255.4.75:9091/api/v1/application/status/accepted/?applicationId=${id}`)
-        createToast(`Accepted`, { type: "success" });
+        // createToast(`Accepted`, { type: "success" });
         location.reload(true)
       },
       async rejected(id) {
         await axios.post(`http://54.255.4.75:9091/api/v1/application/status/rejected/?applicationId=${id}`)
-         createToast(`Reject`, { type: "danger" });
+        //  createToast(`Reject`, { type: "danger" });
         location.reload(true)
+      },
+      async getLink(jobseekerPortofolio) {
+        window.open(`${jobseekerPortofolio}`);
+        console.log(jobseekerPortofolio)
       },
      async getResume(jobseekerResume){
          await axios({
@@ -131,6 +137,15 @@ export default {
 </script>
 
 <style scoped>
+.fw-normal{
+  font-weight: 500;
+}
+.icn{
+  width: 20px;
+}
+.act{
+  justify-content: space-between;
+}
     .sidebar-right{
         
         float: right;
@@ -139,14 +154,16 @@ export default {
         
     }
     .side-content{
-      
+        width: 320px;
+        position: absolute;
+        right: 0;
         padding: 20px;
         background: white;
         border-radius: 20px 0 0 20px;
         text-decoration: none;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         height: 97vh;
-        width: 100%;
+        /* width: 100%; */
         transition: ease-in-out 1s;
         /* padding-right: 250px; */
 
@@ -253,9 +270,6 @@ export default {
       border: 3px solid #f3f3f3;
     }
     .pop{
-     
-     
-      
       text-align: center;
       margin: 0;
     }
@@ -266,13 +280,16 @@ export default {
     }
     .modal-body{
       text-align: center;
+      width:410px; 
+      padding: 32px;
     }
     .modal-content{
       border-radius:20px;  
       margin:auto; 
-      width:300px; 
+      
       margin-top:200px; 
       padding-bottom:20px;
+      
     }
     .jobseeker-informations{
       margin-left: -20px;
@@ -280,9 +297,13 @@ export default {
     .jobseeker-informations td{
       height: 40px;
       padding: 15px;
+      right: 0;
     }
     .jobseeker-informations th{
       height: 40px;
       padding: 15px;
+      font-weight: 500;
+    }.jobseeker-informations tr{
+      font-weight: 500;
     }
 </style>
