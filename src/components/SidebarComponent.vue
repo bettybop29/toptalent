@@ -14,7 +14,7 @@
                     <router-link class="" to="/dashboard"><font-awesome-icon icon="fa-solid fa-house" class="icn" />Dashboard</router-link>
                 </li>
                 <li>
-                   <router-link class="" to="/postjobview"><font-awesome-icon icon="fa-solid fa-list" class="icn"/>Post Job</router-link>
+                   <router-link class="" to="/postjobNew"><font-awesome-icon icon="fa-solid fa-list" class="icn"/>Post Job</router-link>
                 </li>
                 <li>
                    <router-link class="" to="/about"><font-awesome-icon icon="fa-solid fa-user" class="icn"/>Company Profile</router-link>
