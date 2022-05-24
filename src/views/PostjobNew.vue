@@ -4,7 +4,7 @@
   <div class="container">
   
   <div class="main">
-    <div class="d-flex justify-content-between">
+    <div class="d-flex ">
      <h1 class="text-center">{{userName}}</h1> 
     <button type="button" class="btn btn-success act" data-bs-toggle="modal" data-bs-target="#jobModal"
       data-bs-whatever="@getbootstrap">

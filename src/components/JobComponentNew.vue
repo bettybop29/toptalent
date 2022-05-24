@@ -27,9 +27,9 @@
         <router-link to="/jobdetail" class="text-title align-items-center primary text-decoration-none fs-6">1 aplicant
             <font-awesome-icon icon="fa-solid fa-circle-arrow-right" class="px-1"/>
         </router-link>
-            <div class="act-btn">
-            <button class="act dgr"><font-awesome-icon icon="fa-solid fa-trash" /></button>
-            <button class="act prm"><font-awesome-icon icon="fa-solid fa-pen-to-square" /></button>
+            <div class="ict-btn">
+            <button class="ict dgr"><font-awesome-icon icon="fa-solid fa-trash" /></button>
+            <button class="ict prm"><font-awesome-icon icon="fa-solid fa-pen-to-square" /></button>
         </div>
     </div>
     </div>
@@ -155,13 +155,13 @@ export default {
         display: flex;
         margin-top: 21px;
     }
-    .act-btn{
+    .ict-btn{
         background: red;
         height: 0;
        
         margin-top: 15px;
     }
-    .act{
+    .ict{
         margin: 7px;
         border: none;
         background: transparent;
