@@ -158,7 +158,7 @@
   font-weight: 500;
 }
 .icn{
-  color: cyan;
+  color: #006EFF;
 }
 span{
   width: auto;
