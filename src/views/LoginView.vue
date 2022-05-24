@@ -97,9 +97,7 @@ export default {
           this.searchDisabled = false;
           this.err = err.response.data.message
           console.log(err.response.data.message)
-          this.$toast.error(err.response.data.message, {
-            position:'top-right'
-          })
+          this.$toast.error(err.response.data.message)
           // createToast(`${err.response.data.message}`, { type: "danger" });
         }
         if(response.status == 200){

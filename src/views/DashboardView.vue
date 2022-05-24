@@ -65,7 +65,7 @@
       <td>{{resume.jobseekerEmail}}</td>
       <td>
         <p v-if="resume.applicationStatus != 'sent'">{{resume.applicationStatus}}</p>
-        <p v-else>review</p></td>
+        <p v-else>Reviewed</p></td>
       <td>{{resume.jobName}}</td>
       <td>
         <p v-if="resume.jobPosition != 'Internship'" class="position">{{resume.jobPosition}}</p>
@@ -120,7 +120,15 @@ export default {
     await axios.get(`http://54.255.4.75:9091/api/v1/application/new-resume/${recruiterId}`)
     .then((data)=>{
       this.edit=data.data
+      console.log(data.data)
+      this.$toast.info(`You have ${data.data.data} new apllicant`, {
+          // optional options Object
+           position: 'top-right',
+           pauseOnHover: true,
+           queue:'true'
+      })
     })
+    
   },
    async w3_open(){
       await axios.get(``)
@@ -212,6 +220,9 @@ export default {
     this.totalAplicant(),
     this.totalnewAplicant(),
     this.getView()
+
+    
+
   },
 }; 
 </script>  
