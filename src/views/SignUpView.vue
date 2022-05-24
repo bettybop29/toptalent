@@ -143,6 +143,11 @@ export default {
         this.ress = response.status
         console.log(this.ress)
         // createToast(`Signup Sukses`, { type: "success" });
+        this.$toast.success('Sign Up Successful', {
+          // optional options Object
+           position: 'top-right',
+           pauseOnHover: true
+      })
         localStorage.setItem("sign-info", JSON.stringify(response.data));
         this.$router.push('/activation')
       }
