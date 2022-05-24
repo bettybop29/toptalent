@@ -65,7 +65,7 @@
 
               <!-- <router-link class="btn btn-success" :to="{name: 'updateprofile', params:{id:profile.recruiterId}}">Update Profile</router-link> -->
               <!-- <router-link class="btn btn-success" :to="'/updateprofile/'+ profile.recruiterId">Update Profile</router-link> -->
-              <router-link class="btn btn-success" :to="{name: 'updateprofile', params:{id:profile.recruiterId}}">Detail</router-link>
+              <router-link class="btn btn-success" :to="{name: 'updateprofile', params:{id:profile.recruiterId}}">Update profile</router-link>
               <!-- <router-link class="btn btn-success" to="/updateprofile">test</router-link> -->
             </div>
           </div>

@@ -163,7 +163,11 @@ export default {
         const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
         await axios.put(`http://54.255.4.75:9091/api/v1/auth/recruiter/${recruiterId}?recruiterEmail=${this.profile.recruiterEmail}&recruiterCompany=${this.profile.recruiterCompany}&recruiterIndustry=${this.profile.recruiterIndustry}&recruiterPhone=${this.profile.recruiterPhone}&recruiterStaff=${this.profile.recruiterStaff}&recruiterDesc=${this.profile.recruiterDesc}&recruiterAddress=${this.profile.recruiterAddress}&recruiterBenefit=${this.profile.recruiterBenefit}&recruiterFb=${this.profile.recruiterFb}&recruiterIg=${this.profile.recruiterIg}&recruiterLinkedin=${this.profile.recruiterLinkedin}&recruiterCulture=${this.profile.recruiterCulture}&recruiterWebsite=${this.profile.recruiterWebsite}`);
         this.$router.push('/about')
-        // createToast("Profile updated", {type: 'success'});
+        this.$toast.success(`Profile updated`, {
+          // optional options Object
+           position: 'top-right',
+           pauseOnHover: true
+      })
        
         } catch {
           console.log(Error)
