@@ -2,6 +2,7 @@
     <div class="reset">
         <!-- navbar -->
     <div class="container-fluid">
+        
         <nav class="row navbar navbar-expand-lg navbar-light bg-white">
             <div class="container">
             <ul class="navbar-nav ms-auto me-auto d-none d-lg-block ">
@@ -49,15 +50,5 @@ export default {
     margin-top: 10px;
 }
 
-.navbar-nav img{
-    margin-left: 450px;
-}
 
-/* breakpoints */
-/* for large screen desktop */
-@media only screen and (min-width: 1200px) {
-    .navbar-nav img{
-    margin-left: 520px;
-}
-}
 </style>

@@ -38,7 +38,7 @@
     <input type="password" class="form-control" id="password1" aria-describedby="emailHelp" v-model="password" required placeholder="Password123@">
   </div>
 
-  <div class="mb-3">
+  <div class="mb-4">
     <input class="show" type="checkbox" v-on:click="myFunction1" id="show"> <small class="text-muted label-show">show Password</small>
       <br>
   </div>  
@@ -184,12 +184,5 @@ export default {
         margin-top: -20px;
     }
 
-    nav{
-        /* width: 100% !important; */
-        width: 1349px !important;
-
-    }
-
-      
 
 </style>

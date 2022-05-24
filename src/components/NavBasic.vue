@@ -24,8 +24,8 @@
         </ul>
         
         <form class="d-flex">
-          <router-link class="btn btn-outline-primary" to="/login">Login</router-link>
-          <router-link class="btn btn-primary"  to="/signup">Get started</router-link>
+          <router-link class="btn btn-outline-primary btn-login" to="/login">Login</router-link>
+          <router-link class="btn btn-primary btn-signup"  to="/signup">Get started</router-link>
           <!-- <router-link class="btn btn-primary"  >user</router-link> -->
           <!-- <a class="btn btn-primary" href="login.html" role="button">Login</a> -->
         </form>
@@ -50,9 +50,18 @@ nav{
   margin-top: -5px;
 }
   .btn {
-      width: 110px;
+      width: 120px;
+      padding: 12px;
       height: auto;
       border-radius: 30px;
       margin-left: 30px;
+  }
+
+  .btn-login{
+    text-decoration: none;
+  }
+
+  .btn-signup{
+    text-decoration: none;
   }
 </style>

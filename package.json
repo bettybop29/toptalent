@@ -10,9 +10,9 @@
   "dependencies": {
     "@babel/polyfill": "^7.11.5",
     "@ckeditor/ckeditor5-build-classic": "^34.0.0",
-    "@ckeditor/ckeditor5-vue": "^4.0.1",
     "@ckeditor/ckeditor5-vue2": "^3.0.1",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-brands-svg-icons": "^6.1.1",
     "@fortawesome/free-regular-svg-icons": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/vue-fontawesome": "^2.0.6",
@@ -26,7 +26,7 @@
     "popper.js": "^1.16.1",
     "portal-vue": "^2.1.7",
     "vue-axios": "^3.4.1",
-    "vue-router": "^3.5.4",
+    "vue-router": "^3.5.1",
     "vue-toast-notification": "^0.6.2",
     "vue2-animate": "^2.1.4"
   },

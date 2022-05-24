@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 section-left">
         <img class="image-login" src="../assets/signup-image.png" alt="">
         <div tag="article" class="card mb-2 card-testimony">
           <div class="text-testimony">
@@ -94,7 +94,6 @@
 
 <script>
 import axios from 'axios';
-// import "mosha-vue-toastify/dist/style.css";
 import 'animate.css';
 
 
@@ -160,6 +159,7 @@ export default {
     padding-right: 0;
     font-family: 'Montserrat';
     font-weight: 500;
+    max-width: 100%;
 }
 
 .section-right{
@@ -168,6 +168,7 @@ export default {
 
 .image-login{
     height: 1024px;
+    max-width: 100%;
 }
 .form-control{
     padding: 10px;
@@ -192,11 +193,14 @@ h1{
   box-sizing: border-box;
   padding: 30px;
 
-  position: absolute;
+  /* position: absolute; */
   width: 550px;
   max-height: 402px;
-  left: 46px;
-  top: 590px;
+  /* left: 46px;
+  top: 590px; */
+
+  margin-top: -400px;
+  margin-left: 40px;
 
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 40px 50px 4px rgba(0, 0, 0, 0.15);
@@ -260,6 +264,47 @@ font-size: 20px;
 
 
 /* breakpoints */
+/* for mobile */
+@media only screen and (max-width: 576px){
+  .image-login{
+    height: 80vh;
+    width: 100%;
+  }
+
+  .card-testimony{
+    box-sizing: border-box;
+    padding: 30px;
+
+    /* position: absolute; */
+    width: 320px;
+    max-height: 402px;
+    /* left: 46px;
+    top: 590px; */
+
+    margin-top: -600px;
+    margin-left: 40px;
+
+  }
+
+  .card-testimony p{
+    font-size: 16px;
+  }
+
+  .text-testimony h5{
+    margin-top: -5px;
+    font-weight: 900;
+    font-size: 18px;
+    text-align: right;
+    }
+
+    .text-testimony h6{
+      text-align: right;
+    }
+
+    h1{
+      margin-top: 150px;
+    }
+}
 
 
 

@@ -1,6 +1,6 @@
 <template>
 
-<div class="d-flex justify-content-center">
+<div class="d-flex">
   <div class="align-content-center">
     <img class="image-login" src="../assets/login-image.png" alt="">
         <div class="card animate__animated animate__bounceIn">
@@ -125,21 +125,14 @@ export default {
 </script>
 
 <style scoped>
+
 *{
     padding-left: 0;
     padding-right: 0;
-    font-family: 'Montserrat';
-    font-weight: 500;
 }
-
-h1{
-    font-size: 32px;
-    font-weight: 900;
-    margin-top: 50px;
-}
-
-.section-right{
-  padding: 50px;
+.container{
+    margin: 100px;
+    width: 500px;
 }
 .image-login{
     /* position: relative; */
@@ -161,17 +154,12 @@ h1{
 .sign-up{
     text-align: center;
 }
-
-.card-testimony{
-  box-sizing: border-box;
+.card{
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
   padding: 30px;
-
-  position: absolute;
-  width: 550px;
-  max-height: 500px;
-  left: 46px;
-  top: 400px;
-
+  border-radius: 32px;
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 40px 50px 4px rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(11px);
@@ -182,41 +170,22 @@ h1{
   left: 120px;
   /* right: 10px; */
 }
-
-.text-testimony{
-  color: #fff;
+.card-image{
+  width: 50px;
+  height: auto;
+}
+.footer{
+  margin-top: 60px;
+}
+.title-footer{
+  position: relative;
+  font-weight: bolder;
+}
+small{
+  position: absolute;
+  top: 250px;
+  width: max-content;
+  font-weight: 500;
 }
 
-.text-testimony p{
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 32px;
-}
-
-.text-testimony .title-footer{
-margin-top: 50px;
-font-weight: 900;
-font-size: 20px;
-}
-
-.text-testimony h6{
-  font-weight: 700;
-  line-height: 28px;
-}
-
-.btn-forgot{
-  text-decoration: none;
-  color: #51AEFE;
-}
-
-.btn-forgot:hover{
-  text-decoration: underline;
-}
-
-.btn-signup{
-  text-decoration: none;
-}
-.btn-signup:hover{
-  text-decoration: underline;
-}
 </style>

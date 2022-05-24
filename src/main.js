@@ -15,12 +15,15 @@ import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import CKEditor from '@ckeditor/ckeditor5-vue2';
+//fontawesomeeicon
 import { fas } from '@fortawesome/free-solid-svg-icons'
-
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
-library.add(fas)
+import { fab } from '@fortawesome/free-brands-svg-icons'
+library.add(fas,fab)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+
+
+
 Vue.use(VueToast);
 Vue.use( CKEditor );
 Vue.config.productionTip = false

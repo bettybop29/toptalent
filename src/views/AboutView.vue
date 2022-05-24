@@ -53,7 +53,7 @@
 
               <span class="mb-4 badge bg-info text-dark category">{{profile.recruiterIndustry}}</span>
               <p class="card-span">Staff: </p>
-              <p class="card-text"><font-awesome-icon icon="fa-solid fa-user" /> {{profile.recruiterStaff}}</p>
+              <p class="card-text"><font-awesome-icon icon="fa-solid fa-user" class="icn"/> {{profile.recruiterStaff}}</p>
               <p class="card-span">Description: </p>
               <p class="card-text">{{profile.recruiterDesc}}</p>
               <p class="card-span">Address: </p>
@@ -64,8 +64,8 @@
               <p class="card-text" v-html="profile.recruiterBenefit"></p>
 
               <!-- <router-link class="btn btn-success" :to="{name: 'updateprofile', params:{id:profile.recruiterId}}">Update Profile</router-link> -->
-              <router-link class="btn btn-success" :to="'/updateprofile/'+ profile.recruiterId">Update Profile</router-link>
-              
+              <!-- <router-link class="btn btn-success" :to="'/updateprofile/'+ profile.recruiterId">Update Profile</router-link> -->
+              <router-link class="btn btn-success" :to="{name: 'updateprofile', params:{id:profile.recruiterId}}">Update Profile</router-link>
               <!-- <router-link class="btn btn-success" to="/updateprofile">test</router-link> -->
             </div>
           </div>
@@ -76,12 +76,12 @@
             <div class="card-body section-contact panel-2">
               <h5 class="card-title">Contact</h5>
               <hr>
-              <a class="card-text"><font-awesome-icon icon="fa-solid fa-envelope" /> {{profile.recruiterEmail}}</a>
-              <a class="card-text"><font-awesome-icon icon="fa-brands fa-facebook" /> {{profile.recruiterFb}}</a>
-              <a class="card-text"><font-awesome-icon icon="fa-brands fa-instagram" /> {{profile.recruiterIg}}</a>
-              <a class="card-text"><font-awesome-icon icon="fa-brands fa-linkedin" /> {{profile.recruiterLinkedin}}</a>
-              <a class="card-text"><font-awesome-icon icon="fa-solid fa-phone" /> {{profile.recruiterPhone}}</a>
-              <a class="card-text"><font-awesome-icon icon="fa-solid fa-globe" /> {{profile.recruiterWebsite}}</a>
+              <a class="card-text"><font-awesome-icon icon="fa-solid fa-envelope" class="icn"/> {{profile.recruiterEmail}}</a>
+              <a class="card-text"><font-awesome-icon icon="fa-brands fa-twitter" class="icn"/> {{profile.recruiterFb}}</a>
+              <a class="card-text"><font-awesome-icon icon="fa-brands fa-instagram" class="icn"/> {{profile.recruiterIg}}</a>
+              <a class="card-text"><font-awesome-icon icon="fa-brands fa-linkedin" class="icn"/> {{profile.recruiterLinkedin}}</a>
+              <a class="card-text"><font-awesome-icon icon="fa-solid fa-phone" class="icn"/> {{profile.recruiterPhone}}</a>
+              <a class="card-text"><font-awesome-icon icon="fa-solid fa-globe" class="icn"/> {{profile.recruiterWebsite}}</a>
 
             </div>
           </div>
@@ -156,6 +156,9 @@
 <style scoped>
 *{
   font-weight: 500;
+}
+.icn{
+  color: cyan;
 }
 span{
   width: auto;
