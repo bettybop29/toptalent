@@ -46,7 +46,7 @@
                 />
                   
                   <p>
-                    
+                    <br>
                     <router-link class="forgot" to="/resetpass">Forgot Password?</router-link></p>
                     <!-- <input class="form-control" type="tel" id="phone" v-model="phone" > -->
                     <button v-if="this.searchDisabled == true" type="submit" class="btn btn-primary" :disabled="searchDisabled" value="Login">Login</button>
@@ -192,6 +192,10 @@ small{
   top: 250px;
   width: max-content;
   font-weight: 500;
+}
+
+.forgot{
+  text-decoration: none;
 }
 
 </style>

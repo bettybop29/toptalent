@@ -7,6 +7,7 @@
         </div> -->
         <div class="row align-items-start">
             <div class="col-md-6 content1">
+                <div class="card">
                 <h1>Reset Password</h1>
                 <span class="label text-muted">
                     The verification email will be sent into mailbox<br>Please check it
@@ -21,6 +22,7 @@
                     
                     <button type="submit" class="btn btn-primary" :disabled="searchDisabled">Reset</button>
                 </form>
+                </div>
             </div>
             <div class="col-md-6 content2">
                 <img src="http://54.255.4.75:9091/resources/kurtb4zq5unn0md.gif" alt="">
@@ -45,12 +47,27 @@ export default {
             try {
                 this.searchDisabled = true;
                 await axios.post(`http://54.255.4.75:9091/api/v1/auth/reset?recruiterEmail=${this.recruiterEmail}`)
-                window.alert("E-mail has been sent");
+                // window.alert("E-mail has been sent");
+                this.$toast.success('E-mail has been sent',{
+                    position: 'top-right',
+                    pauseOnHover: true
+                });
                 this.$router.push("VerificationPassword")
             } catch  {
                 this.searchDisabled = false;
                 location.reload(true)
-                window.alert("failed")
+                // window.alert("failed")
+                // this.$toast.error('failed', {
+                //     position: 'top-right',
+                //     pauseOnHover: true,
+                //     duration: 10000
+                // });
+
+                this.$toast.success('Sign Up Successful', {
+                    // optional options Object
+                    position: 'top-right',
+                    pauseOnHover: true
+                })
             }
         }
     },
@@ -74,8 +91,8 @@ h1{
     font-size: 36px;
 }
     
-.content1{
-    background: #fff;
+.card{
+    /* background: #fff; */
     padding: 20px;
     border-radius: 20px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -91,5 +108,16 @@ h1{
 
 img{
     width: 80%;
+}
+
+/* breakpoints */
+/* mobile */
+@media only screen and (max-width: 576px){
+    .content2{
+        margin-top: 30px;
+    }
+
+   
+    
 }
 </style>

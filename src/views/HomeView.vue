@@ -12,7 +12,7 @@
                 <p class="main-text animate__animated animate__fadeInLeft">The most important asset to a company is not the<br>
                   product they sell or processes they've<br>implemented, it's their people!</p>
                  
-                  <button class="btn pop animate__animated animate__fadeInUp">Start with us</button>
+                  <a href="/signup" class="btn pop animate__animated animate__fadeInUp">Start with us</a>
                 </div>                
                 <div class="col-md-6 p-5">
                 <img class="img-fluid animate__animated animate__backInRight" src="../assets/banner.png" alt="">
@@ -159,7 +159,7 @@
             <div class="col">
             <ul class="navbar-nav mr-auto p-2"><h2>Lets Join Us!!</h2>
               <li class="nav-item">
-                <a href="#/login" class="btn btn-primary">Login</a>
+                <a href="/login" class="btn btn-primary rounded-pill">Login</a>
               </li>
               
           </ul>

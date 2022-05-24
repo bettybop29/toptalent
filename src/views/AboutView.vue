@@ -53,7 +53,7 @@
 
               <span class="mb-4 badge bg-info text-dark category">{{profile.recruiterIndustry}}</span>
               <p class="card-span">Staff: </p>
-              <p class="card-text"><font-awesome-icon icon="fa-solid fa-user" /> {{profile.recruiterStaff}}</p>
+              <p class="card-text"><font-awesome-icon icon="fa-solid fa-user" class="icn"/> {{profile.recruiterStaff}}</p>
               <p class="card-span">Description: </p>
               <p class="card-text">{{profile.recruiterDesc}}</p>
               <p class="card-span">Address: </p>
@@ -65,7 +65,7 @@
 
               <!-- <router-link class="btn btn-success" :to="{name: 'updateprofile', params:{id:profile.recruiterId}}">Update Profile</router-link> -->
               <!-- <router-link class="btn btn-success" :to="'/updateprofile/'+ profile.recruiterId">Update Profile</router-link> -->
-              <router-link class="btn btn-success" :to="{name: 'updateprofile', params:{id:profile.recruiterId}}">Update profile</router-link>
+              <router-link class="btn btn-success" :to="{name: 'updateprofile', params:{id:profile.recruiterId}}">Update Profile</router-link>
               <!-- <router-link class="btn btn-success" to="/updateprofile">test</router-link> -->
             </div>
           </div>
