@@ -32,7 +32,8 @@
       <small class="text-muted">x day ago</small>
     </div>
     <div class="col-6">
-      <router-link to="/jobdetail" class="text-title align-items-center primary text-decoration-none fs-6">1
+      <router-link to="/jobdetail" class="text-title align-items-center primary text-decoration-none fs-6">
+      {{resp}}
         Applicant
         <!-- <font-awesome-icon icon="fa-solid fa-circle-arrow-right" class="px-1" /> -->
         <img class="import-icon sml mx-1" src="../assets/icon-postjob/arrow-right.svg" alt="">
@@ -59,7 +60,14 @@
                     </div>
                     <div class="mb-3">
                       <label for="recipient-name" class="col-form-label">Job Position edit: </label>
-                      <input type="text" class="form-control" id="" v-model="edit.jobPosition">
+                       <select class="form-control" id="inputState" v-model="edit.jobPosition" required>
+                        <option selected>Choose..</option>
+                        <option>Internship</option>
+                        <option>Full time</option>
+                        <option>Part Time</option>
+                        <option>Contractual</option>
+                        <option>Freelance</option>
+                      </select>
                     </div>
                     <div class="mb-3">
                       <label for="recipient-name" class="col-form-label">Job Address: </label>
@@ -111,10 +119,18 @@
         editorConfig: {
           // The configuration of the editor.
         },
-        edit: []
+        edit: [],
+        resp:''
       }
     },
     methods: {
+      async countTotalAplicant(){
+        await axios.get(`http://54.255.4.75:9091/api/v1/application/count-applicants/${this.item.jobId}`)
+        .then((data)=>{
+          this.resp = data.data.data
+          console.log(data.data.data)
+        })
+      },
       formatPrice(value) {
         let val = (value / 1).toFixed().replace('.', ',')
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
@@ -181,6 +197,7 @@
     },
     mounted() {
       this.getDetail();
+      this.countTotalAplicant();
     }
   }
 </script>
