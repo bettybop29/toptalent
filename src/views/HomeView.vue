@@ -177,7 +177,7 @@
               <ul class="navbar-nav mr-auto p-2">
                 <h2>Lets Join Us!!</h2>
                 <li class="nav-item">
-                  <a href="#/login" class="btn btn-primary fw-bold">Login</a>
+                  <a href="#/login" class="btn btn-primary fw-bold rounded-pill">Login</a>
                 </li>
               </ul>
             </div>
