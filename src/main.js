@@ -19,7 +19,8 @@ import CKEditor from '@ckeditor/ckeditor5-vue2';
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-library.add(fas,fab)
+import { far } from '@fortawesome/free-regular-svg-icons'
+library.add(fas,fab,far)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 

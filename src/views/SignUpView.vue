@@ -1,7 +1,7 @@
 <template>
   <div class="row">
-    <div class="col-md-6 section-left">
-        <img class="image-login" src="../assets/signup-image.png" alt="">
+    <div class="col-md-7 section-left">
+        <img class="image-login " src="../assets/signup-img.png" alt="">
         <div tag="article" class="card mb-2 card-testimony">
           <div class="text-testimony">
             <p>
@@ -13,7 +13,7 @@
           </div>
         </div>
     </div>
-    <div class="col-md-6 section-right"> 
+    <div class="col-md-5 section-right"> 
       <h1 class="animate__animated animate__fadeInLeft">Start Building Your Top Company!</h1>
       <div class="form-login">
       <form action="" @submit.prevent="signUp" class="row">
@@ -204,8 +204,8 @@ h1{
   /* left: 46px;
   top: 590px; */
 
-  margin-top: -400px;
-  margin-left: 40px;
+  margin-top: -800px;
+  margin-left: 100px;
 
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 40px 50px 4px rgba(0, 0, 0, 0.15);
@@ -216,7 +216,7 @@ h1{
 }
 
 .text-testimony{
-  color: #fff;
+  color: rgb(88, 88, 88);
 }
 
 .text-testimony p{
@@ -271,6 +271,7 @@ font-size: 20px;
 /* breakpoints */
 /* for mobile */
 @media only screen and (max-width: 576px){
+  
   .image-login{
     height: 80vh;
     width: 100%;
@@ -279,21 +280,19 @@ font-size: 20px;
   .card-testimony{
     box-sizing: border-box;
     padding: 30px;
-
-    /* position: absolute; */
-    width: 320px;
+    width: 300px;
     max-height: 402px;
-    /* left: 46px;
-    top: 590px; */
-
-    margin-top: -600px;
-    margin-left: 40px;
-
+    box-shadow: 5px 10px 4px rgba(0, 0, 0, 0.15);
+    margin-top: -500px;
+    margin-left: 50px;
+    
   }
 
   .card-testimony p{
     font-size: 16px;
+    line-height: 24px;
   }
+
 
   .text-testimony h5{
     margin-top: -5px;
@@ -307,7 +306,7 @@ font-size: 20px;
     }
 
     h1{
-      margin-top: 150px;
+      margin-top: 80px;
     }
 }
 

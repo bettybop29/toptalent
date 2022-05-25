@@ -17,6 +17,7 @@ import PostjobNew from '@/views/PostjobNew.vue'
 import JobDetail from '../components/JobDetail.vue'
 import AplicantDetail from '@/components/AplicantDetail.vue'
 import ExpiredForgot from '@/views/ExpiredForgotView.vue'
+import ApplicantDetailView from '@/views/ApplicantDetailView.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -99,6 +100,11 @@ const routes = [
     path: '/expiredforgot',
     name: 'ExpiredForgot',
     component: ExpiredForgot, 
+  },
+  {
+    path: '/applicant-detail',
+    name: 'ApplicantDetailView',
+    component: ApplicantDetailView, 
   },
   
 ]
