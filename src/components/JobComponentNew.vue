@@ -40,52 +40,50 @@
     </div>
     <div class="col-6 d-flex justify-content-end">
       <div class="ict-btn">
-        <button v-on:click="updateJobData" class="ict prm">
+        <button data-bs-toggle="modal" :data-bs-target="'#exampleModalToggle' + item.jobId" role="button" v-on:click="getDetail(item.jobId)" class="ict">
           <img class="import-icon" src="../assets/icon-postjob/edit.svg" alt="">
-          <div class="modal fade" :id="'exampleModalToggle' + item.jobId" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-        <div class="modal-dialog modal-xl">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalToggleLabel">Edit Jobs</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Job Name:</label>
-                  <input type="text" class="form-control" id="" v-model="edit.jobName">
+        </button>
+          <!-- modal editorData -->
+              <div class="modal fade" :id="'exampleModalToggle' + item.jobId" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+            <div class="modal-dialog modal-xl">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalToggleLabel">Edit Jobs</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Job Position edit: </label>
-                  <input type="text" class="form-control" id="" v-model="edit.jobPosition">
-                </div>
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Job Address: </label>
-                  <input type="text" class="form-control" id="recipient-name" v-model="edit.jobAddress">
-                </div>
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Job Requirement: </label>
-                  <!-- <input type="text" class="form-control" id="recipient-name" v-model="edit.jobRequirement"> -->
-                  <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="edit.jobRequirement" :config="editorConfig"></ckeditor>
-                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="mb-3">
+                      <label for="recipient-name" class="col-form-label">Job Name:</label>
+                      <input type="text" class="form-control" id="" v-model="edit.jobName">
+                    </div>
+                    <div class="mb-3">
+                      <label for="recipient-name" class="col-form-label">Job Position edit: </label>
+                      <input type="text" class="form-control" id="" v-model="edit.jobPosition">
+                    </div>
+                    <div class="mb-3">
+                      <label for="recipient-name" class="col-form-label">Job Address: </label>
+                      <input type="text" class="form-control" id="recipient-name" v-model="edit.jobAddress">
+                    </div>
+                    <div class="mb-3">
+                      <label for="recipient-name" class="col-form-label">Job Requirement: </label>
+                      <!-- <input type="text" class="form-control" id="recipient-name" v-model="edit.jobRequirement"> -->
+                      <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="edit.jobRequirement" :config="editorConfig"></ckeditor>
+                    </div>
 
-                <div class="mb-3">
-                  <label for="message-text" class="col-form-label">Job Description:</label>
-                  <!-- <textarea class="form-control" id="message-text" v-model="edit.jobDesc" /> -->
-                  <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="edit.jobDesc" :config="editorConfig"></ckeditor>
+                    <div class="mb-3">
+                      <label for="message-text" class="col-form-label">Job Description:</label>
+                      <!-- <textarea class="form-control" id="message-text" v-model="edit.jobDesc" /> -->
+                      <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="edit.jobDesc" :config="editorConfig"></ckeditor>
+                    </div>
+                    <div class="modal-footer">
+                      <button class="btn btn-success" v-on:click="updateJobData(edit.jobId)">Update</button>
+                    </div>
+                  </form>
                 </div>
-                <div class="modal-footer">
-                  <button class="btn btn-success" v-on:click="updateJobData(edit.jobId)">Update</button>
-                </div>
-              </form>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-
-
-
-        </button>
         <button v-on:click="deleteJob(item.jobId)" class="ict dgr">
           <img class="import-icon" src="../assets/icon-postjob/delete.svg" alt="">
         </button>
@@ -164,7 +162,7 @@
           await axios.patch(
             `http://54.255.4.75:9091/api/v1/job/${id}?jobName=${this.edit.jobName}&jobStatus=active&jobSalary=${this.edit.jobSalary}&jobPosition=${this.edit.jobPosition}&jobAddress=${this.edit.jobAddress}&jobDesc=${this.edit.jobDesc}&jobRequirement=${this.edit.jobRequirement}`
           )
-          this.$toast
+          this.$toast.success("Job edited !")
           location.reload(true)
         } catch {
           // console.log(warn)
@@ -174,7 +172,7 @@
         try {
           let result = await axios.put(`http://54.255.4.75:9091/api/v1/job/delete/` + id);
           console.warn(result)
-          this.$toast.success("Job deleted!")
+          this.$toast.success("Job deleted !")
           location.reload(true)
         } catch {
           console.warn
