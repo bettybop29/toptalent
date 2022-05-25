@@ -16,8 +16,8 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
 
         <form class="d-flex flex-row align-items-center">
-          <router-link class="btn btn-outline-primary fw-bold" to="/login" width>Login</router-link>
-          <router-link class="btn btn-primary fw-bold" to="/signup">Get started</router-link>
+          <router-link class="btn btn-outline-primary fw-bold btn-login" to="/login" width>Login</router-link>
+          <router-link class="btn btn-primary fw-bold btn-signup" to="/signup">Get started</router-link>
           <!-- <router-link class="btn btn-primary"  >user</router-link> -->
           <!-- <a class="btn btn-primary" href="login.html" role="button">Login</a> -->
         </form>
@@ -43,5 +43,13 @@
     height: auto;
     border-radius: 30px;
     margin-left: 30px;
+  }
+
+  .btn-signup{
+    text-decoration: none;
+  }
+
+  .btn-login{
+    text-decoration: none;
   }
 </style>

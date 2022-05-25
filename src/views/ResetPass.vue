@@ -63,7 +63,7 @@ export default {
                 //     duration: 10000
                 // });
 
-                this.$toast.success('Sign Up Successful', {
+                this.$toast.error('Email Not Found', {
                     // optional options Object
                     position: 'top-right',
                     pauseOnHover: true

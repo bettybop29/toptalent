@@ -141,11 +141,13 @@
     box-sizing: border-box;
     padding: 30px;
 
-    position: absolute;
+    /* position: absolute; */
     width: 550px;
     max-height: 500px;
-    left: 345px;
-    top: 560px;
+    /* left: 345px;
+    top: 560px; */
+    margin-top: -400px;
+    margin-left: 100px;
 
     background: rgba(255, 255, 255, 0.2);
     box-shadow: 40px 50px 4px rgba(0, 0, 0, 0.15);
