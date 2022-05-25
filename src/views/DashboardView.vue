@@ -17,7 +17,7 @@
                 <h5>you have <span class="decor">{{edit.data}}</span> new
                 <br>resume.</h5> 
               </div>
-              <button class="btn">See all</button>    
+              <button class="btn" hidden>See all</button>    
             </div>    
         </div>
      

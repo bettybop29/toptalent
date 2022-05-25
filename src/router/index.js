@@ -5,6 +5,7 @@ import AboutView from '@/views/AboutView.vue'
 import LoginView from '@/views/LoginView.vue'
 import SignUpView from '@/views/SignUpView.vue'
 import DasboardView from  '@/views/DashboardView.vue'
+import AddjobView from '@/views/AddjobView.vue'
 
 import ActivationView from '@/views/ActivationView.vue'
 import ExpiredSignup from '@/views/ExpiredSignup.vue'
@@ -88,6 +89,11 @@ const routes = [
     path: '/postjobview',
     name: 'postjobview',
     component: PostJobView
+  },
+  {
+    path: '/addjobview',
+    name: 'addjobview',
+    component: AddjobView
   },
   {
     path: '/jobdetail/:id',

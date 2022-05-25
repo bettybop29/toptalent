@@ -107,8 +107,7 @@ export default {
           this.$router.push('/dashboard')
           this.$toast.success(`Welcome back! ${response.data.data.registerDTO.recruiterCompany}`, {
           // optional options Object
-           position: 'top-right',
-           pauseOnHover: true
+
       })
           
           // createToast(`Welcome back!! ${response.data.data.registerDTO.recruiterCompany}`, { type: "success" });
