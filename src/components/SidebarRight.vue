@@ -38,13 +38,16 @@
           </table>
           
           <li><button class="btn-resume act" v-on:click="getResume(view.jobseekerResume)">Resume <font-awesome-icon :icon="['fas','download']"/></button></li>
-          <li><button class="btn-portofolio act" v-on:click="getLink(view.jobseekerPortfolio)">Portofolio <font-awesome-icon :icon="['fas','link']"/></button></li>
+          <li>
+            <button v-if="view.jobseekerPortfolio == ''" class="btn-portofolio act" v-on:click="Toast">No Portofolio<font-awesome-icon :icon="['fas','link']"/></button>
+            <button v-else class="btn-portofolio act" v-on:click="getLink(view.jobseekerPortfolio)">Portofolio <font-awesome-icon :icon="['fas','link']"/></button>
+          </li>
 
           <li>
             <div class="action">
               <!-- <button class="acc" v-on:click="accepted(view.applicationId)"><i class="bi bi-check2"></i>accept</button> -->
                <button type="button" class="acc" data-bs-toggle="modal" data-bs-target="#popUp1">
-                <font-awesome-icon class="icn" :icon="['fas','check']"/>accept
+                <font-awesome-icon class="icn" :icon="['fas','check']"/>Accept
               </button>
 
               <!-- Modal -->
@@ -68,7 +71,7 @@
 
               <!-- <button class="rej" v-on:click="rejected(view.applicationId)"><i class="bi bi-x-lg"></i>reject</button> -->
                <button type="button" class="rej" data-bs-toggle="modal" data-bs-target="#popUp2">
-                <font-awesome-icon class="icn" :icon="['fas','xmark']"/>reject
+                <font-awesome-icon class="icn" :icon="['fas','xmark']"/>Reject
               </button>
 
               <!-- Modal -->
@@ -131,7 +134,15 @@ export default {
           docUrl.click();
 
         })
+      },
+      Toast(){
+        this.$toast.error(`The applicant doesn't have any portfolio`, {
+          // optional options Object
+           position: 'top-right',
+           pauseOnHover: true
+      })
       }
+      
   }
 }
 </script>
@@ -185,7 +196,7 @@ export default {
       padding: 0;
       font-weight: bold;
       margin-left: -5px !important;
-      color: #6476c8;
+      color: #006EFF;
       
     }
     .action button{
@@ -207,17 +218,18 @@ export default {
      }
     .acc{
       width: 44%;
-      background: #6779CD;
+      background: #149E48;
     }
     .acc:hover{
-      background: #6476c8;
+      background: #3dca73;
     }
     .rej{
       width: 44%;
-      background: #E79AA2;
+      background: #FF3232;
     }
-    .rej{
-      background: #d79097;
+    .rej:hover{
+      width: 44%;
+      background: #f55959;
     }
     .btn-resume{
       border: none;

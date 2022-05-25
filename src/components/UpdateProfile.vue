@@ -20,7 +20,7 @@
       </div>
       <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Industry</label>
-        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterIndustry" required>
+        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterIndustry" required maxlength="30">
       </div>
      <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Benefit</label>
@@ -31,7 +31,7 @@
      
      <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Company</label>
-        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterCompany" required>
+        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterCompany" required maxlength="30">
       </div>
     
      <div class="col-md-10 mb-4">
@@ -55,7 +55,8 @@
       </div>
      <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Address</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="profile.recruiterAddress"></textarea>
+        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterAddress" required maxlength="200">
+        <!-- <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" v-model="profile.recruiterAddress"></textarea> -->
       </div>
      
  
@@ -77,19 +78,19 @@
       </div>
      <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Facebook</label>
-        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterFb" required>
+        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterFb" required maxlength="100">
       </div>
      <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Instagram</label>
-        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterIg" required>
+        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterIg" required maxlength="100">
       </div>
        <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Linkedin</label>
-        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterLinkedin" required>
+        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterLinkedin" required maxlength="100">
       </div>
        <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Website</label>
-        <input class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="profile.recruiterWebsite">
+        <input class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="profile.recruiterWebsite" maxlength="100">
       </div>
        <button class="btn btn-success" type="submit">Update</button>
      </form>

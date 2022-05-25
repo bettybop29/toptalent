@@ -2,13 +2,16 @@
 <div>
   <sidebar-component></sidebar-component>
   <div class="container">
-    
+  
   <div class="main">
-    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#jobModal"
+    <div class="d-flex ">
+     <h1 class="text-center">{{userName}}</h1> 
+    <button type="button" class="btn btn-success act" data-bs-toggle="modal" data-bs-target="#jobModal"
       data-bs-whatever="@getbootstrap">
       <i class="bi bi-plus-circle me-2"></i>
       Add New Job
     </button>
+    </div>
 <form @submit.prevent="addjob">
     <div class="modal fade" id="jobModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
@@ -102,7 +105,7 @@
   </div>
   <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
       <div v-for="item in list" v-bind:key="item.id">
-        <jobcomponentnew :item="item"  v-if="item.jobStatus == 'active'"></jobcomponentnew>
+        <jobcomponentnew :item="item"  v-if="item.jobStatus == 'hidden'"></jobcomponentnew>
       </div>
   </div>
   
@@ -127,7 +130,7 @@
   // import {createToast} from "mosha-vue-toastify";
 
 
-    
+     
     
 
 
@@ -155,8 +158,8 @@
         jobDesc: "",
         jobAddress: "",
         list: [],
-        modalOpen:false
-
+        modalOpen:false,
+        userName:""
       };
     },
     methods: {
@@ -208,12 +211,22 @@
           this.list = resp.data
           localStorage.setItem("job-info", JSON.stringify(resp.data));
         })
-
-    }
+      //header PT render
+      const user = JSON.parse(localStorage.getItem("user-info")).recruiterCompany
+      this.userName = user
+       
+      console.log(this.userName)
+    },
+    
+     
+    
 
   };
 </script>
 <style scoped>
+.act{
+  margin-right: 123px;
+}
   /* .main {
     margin-left: 16%;
     padding: 20px;
