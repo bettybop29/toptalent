@@ -1,50 +1,30 @@
 <template>
-  <div class="row justify-content-between m-1 px-3">
-    <div class="col-6 d-flex align-items-center">
-      <span class="fw-bold">{{item.jobName}}</span>
-    </div>
-    <div class="col-6 d-flex justify-content-end align-items-center">
-      <span class="badge bg-light text-success py-2" style="border-radius: 5px">{{item.jobPosition}}</span>
-      <div class="dropdown">
-        <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-          <font-awesome-icon icon="fa-solid fa-ellipsis" class="ps-2 text-muted" /></a>
 
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <li></li>
-          <button v-if="item.jobStatus !='hidden'" class="dropdown-item" v-on:click="active(item.jobId)">Hidden</button>
-          <button v-else disabled class="dropdown-item">Hidden</button>
-          <button v-if="item.jobStatus !='visible'" class="dropdown-item"
-            v-on:click="visible(item.jobId)">Visible</button>
-          <button v-else disabled class="dropdown-item">Visible</button>
-        </ul>
-      </div>
+<div class="row m-1 pt-4 px-3">
+    <div class="col-md-2">
+        <img src="https://picsum.photos/200" class="img-thumbnail" alt="..." width="100px">
     </div>
-    <div class="col-6">
-      <small class="text-muted">Rp{{ formatPrice(item.jobSalary)}},-</small>
+    <div class="col-md-7">
+        <h6 class="fw-bold">name Applicant</h6>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta tempore dolorem sequi voluptas quae atque? Ratione commodi officiis nisi cum!</p>
     </div>
-    <div class="col-6 d-flex justify-content-end">
-      <small class="text-muted">x day ago</small>
+    <div class="col-md-3">
+        <font-awesome-icon icon="fa-solid fa-circle-check" />
+        <font-awesome-icon icon="fa-solid fa-circle-x" />
     </div>
-    <div class="col-6">
-      <router-link to="/jobdetail" class="text-title align-items-center primary text-decoration-none fs-6">1
-        Applicant
-        <font-awesome-icon icon="fa-solid fa-circle-arrow-right" class="px-1" />
-      </router-link>
+    <div class="col-md-2">
     </div>
-    <div class="col-6 d-flex justify-content-end">
-      <div class="ict-btn">
-        <button class="ict prm">
-          <font-awesome-icon icon="fa-solid fa-pen-to-square" />
-        </button>
-        <button class="ict dgr">
-          <font-awesome-icon icon="fa-solid fa-trash" />
-        </button>
-      </div>
+    <div class="col-md-7">
+        <div class="d-flex">
+            <font-awesome-icon icon="fa-solid fa-file-lines" /> View CV
+            <font-awesome-icon icon="fa-solid fa-link" class="ms-3" /> Portofolio
+        </div>
+    </div>
+    <div class="col-md-3">
+        <span class="text-muted" style="font-size: 12px">Applied on DD-MM-YYYY</span>
     </div>
     <hr class="mt-4" />
-  </div>
-  <!-- hidden  -->
-
+</div>
 </template>
 
 <script>
