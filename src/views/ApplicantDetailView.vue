@@ -13,7 +13,7 @@
                         <h2 class="mt-3">Product Designer</h2>
                         <div class="detail-profile">
                             <div class="row">
-                                <div class="col-md-6 left-items middle-item">
+                                <div class="col-md-6 left-items ">
                                     <p><font-awesome-icon icon="fa-solid fa-location-dot" class="detail-profile-icon" /> San Fransisco, USA</p>
                                     <p><font-awesome-icon icon="fa-solid fa-phone" class="detail-profile-icon"/> +62 87877451236</p>
                                 </div>
@@ -35,7 +35,7 @@
                         <h3 class="mb-4">Background</h3>
                         <p><font-awesome-icon icon="fa-solid fa-graduation-cap " class="icon-background" /> Bachelor of Engineering</p>
                         <p><font-awesome-icon icon="fa-solid fa-cake-candles" class="icon-background"/> 14-04-1997</p>
-                        <p><font-awesome-icon icon="fa-brands fa-github" class="icon-background"/> github.com</p>
+                        <p><font-awesome-icon icon="fa-solid fa-file" class="icon-background"/> github.com</p>
                         <p><font-awesome-icon icon="fa-brands fa-instagram" class="icon-background"/> instagram.com/janedoe</p>
                         <p><font-awesome-icon icon="fa-brands fa-linkedin" class="icon-background"/> linked.in/janedoe</p>
                     </div>
