@@ -17,7 +17,7 @@
                 <h5>you have <span class="decor">{{edit.data}}</span> new
                 <br>resume.</h5> 
               </div>
-              <button class="btn">See all</button>    
+              <button class="btn" hidden>See all</button>    
             </div>    
         </div>
      
@@ -45,6 +45,7 @@
     
   </div> -->
 
+  <div class="table-wrapper">
   <table class="table">
   <thead>
       <h3>Resume</h3>
@@ -65,7 +66,7 @@
       <td>{{resume.jobseekerEmail}}</td>
       <td>
         <p v-if="resume.applicationStatus != 'sent'">{{resume.applicationStatus}}</p>
-        <p v-else>review</p></td>
+        <p v-else>Reviewed</p></td>
       <td>{{resume.jobName}}</td>
       <td>
         <p v-if="resume.jobPosition != 'Internship'" class="position">{{resume.jobPosition}}</p>
@@ -76,6 +77,7 @@
     </tr>
   </tbody>  
 </table>
+</div>
 
  </div>
 
@@ -120,7 +122,15 @@ export default {
     await axios.get(`http://54.255.4.75:9091/api/v1/application/new-resume/${recruiterId}`)
     .then((data)=>{
       this.edit=data.data
+      console.log(data.data)
+      this.$toast.info(`You have ${data.data.data} new apllicant`, {
+          // optional options Object
+           position: 'top-right',
+           pauseOnHover: true,
+           queue:'true'
+      })
     })
+    
   },
    async w3_open(){
       await axios.get(``)
@@ -212,6 +222,9 @@ export default {
     this.totalAplicant(),
     this.totalnewAplicant(),
     this.getView()
+
+    
+
   },
 }; 
 </script>  
@@ -219,10 +232,21 @@ export default {
   .main-head{
     font-weight: 600;
   }
+  
   .table{
-  border-radius: 20px;
-  padding: 10%;
+    /* border: 1px solid red; */
+    border-radius: 20px;
+    padding: 10%;
 }
+
+.table-wrapper {
+  /* background-color: green; */
+  margin-top: 50px;
+  max-height: 40vh;
+  overflow: auto;
+  display:inline-block;
+}
+
 .table h3{
   margin: 15px;
   width: 30px;
