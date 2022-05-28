@@ -32,12 +32,12 @@
       <small class="text-muted">x day ago</small>
     </div>
     <div class="col-6">
-      <router-link to="/jobdetail" class="text-title align-items-center primary text-decoration-none fs-6">
+      <button v-on:click="$emit(getDetail)" class="btn text-title align-items-center primary text-decoration-none fs-6">
       {{resp}}
         Applicant
         <!-- <font-awesome-icon icon="fa-solid fa-circle-arrow-right" class="px-1" /> -->
         <img class="import-icon sml mx-1" src="../assets/icon-postjob/arrow-right.svg" alt="">
-      </router-link>
+      </button>
     </div>
     <div class="col-6 d-flex justify-content-end">
       <div class="ict-btn">
@@ -105,10 +105,8 @@
 
 <script>
   import axios from 'axios'
-  // import "mosha-vue-toastify/dist/style.css";
-  // import { createToast } from "mosha-vue-toastify";
-  // import { warn } from '@vue/runtime-core';
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
   export default {
     name: "JobComponent",
     props: ['item', 'id', ],
@@ -135,14 +133,6 @@
         let val = (value / 1).toFixed().replace('.', ',')
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
       },
-      escapeHtml(text) {
-        return text
-          .replace(/&/g, "&amp;")
-          .replace(/</g, "&lt;")
-          .replace(/>/g, "&gt;")
-          .replace(/"/g, "&quot;")
-          .replace(/'/g, "&#039;");
-      },
       async active(id) {
         try {
           await axios.patch(`http://54.255.4.75:9091/api/v1/job/status/${id}?jobStatus=hidden`)
@@ -161,10 +151,9 @@
           console.log(Error);
         }
       },
-      async getDetail(id) {
+      async getDetail() {
         try {
-          console.log(id)
-          await axios.get(`http://54.255.4.75:9091/api/v1/job/${id}`)
+          await axios.get(`http://54.255.4.75:9091/api/v1/job/82`)
             .then((data) => {
               this.edit = data.data.data
               console.log(data.data)

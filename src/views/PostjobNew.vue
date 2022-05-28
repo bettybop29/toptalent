@@ -96,101 +96,10 @@
       </form>
 
       <div class="row">
-        <div class="col-md-5">
-          <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-              <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
-                role="tab" aria-controls="home" aria-selected="true">Visible</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
-                role="tab" aria-controls="profile" aria-selected="false">Hidden</button>
-            </li>
-          </ul>
+        <listjobcomponent></listjobcomponent>
 
-          <div class="tab-content">
-            <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
-             <div class="mx-3 mb-4 pt-4 px-3">
-                <h5 class="fw-bold">xx Jobs is Visible</h5>
-              </div>
-
-              <div v-for="item in list" v-bind:key="item.id">
-                <jobcomponentnew :item="item" v-if="item.jobStatus == 'visible'"></jobcomponentnew>
-              </div>
-            </div>
-            <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-              <div class="mx-3 mb-4 pt-4 px-3">
-                <h5 class="fw-bold">xx Jobs is Hidden</h5>
-              </div>
-              
-              <div v-for="item in list" v-bind:key="item.id">
-                <jobcomponentnew :item="item" v-if="item.jobStatus == 'hidden'"></jobcomponentnew>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-7">
-          <div class="candidates p-4 mb-4">
-            <h5 class="fw-bold">Candidates</h5>
-
-            <div class="row justify-content-between mt-4">
-              <div class="col-6 d-flex align-items-center">
-                <h6 class="fw-bold">jobName</h6>
-              </div>
-              <div class="col-6 d-flex justify-content-end align-items-center">
-                <button class="ict">
-                  <img class="import-icon" src="../assets/icon-postjob/see-all.svg" alt="">
-                </button>
-                <button class="ict prm">
-                  <img class="import-icon" src="../assets/icon-postjob/edit.svg" alt="">
-                </button>
-                <button class="ict dgr">
-                  <img class="import-icon" src="../assets/icon-postjob/delete.svg" alt="">
-                </button>
-              </div>
-              <div class="col-12">
-                <small class="text-muted">Visible on </small>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="applicantDetail">
-            <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
-              <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="unreview-tab" data-bs-toggle="tab" data-bs-target="#unreview"
-                  type="button" role="tab" aria-controls="unreview" aria-selected="true">Unreviewed</button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" id="accept-tab" data-bs-toggle="tab" data-bs-target="#accept" type="button"
-                  role="tab" aria-controls="accept" aria-selected="false">Accepted</button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" id="reject-tab" data-bs-toggle="tab" data-bs-target="#reject" type="button"
-                  role="tab" aria-controls="reject" aria-selected="false">Rejected</button>
-              </li>
-            </ul>
-
-            <div class="tab-content">
-              <div class="tab-pane active" id="unreview" role="tabpanel" aria-labelledby="unreview-tab">
-                <div v-for="item in list" v-bind:key="item.id">
-                  <applicantjobcomponent :item="item" v-if="item.jobStatus == 'visible'"></applicantjobcomponent>
-                </div>
-              </div>
-              <div class="tab-pane" id="accept" role="tabpanel" aria-labelledby="accept-tab">
-                <div v-for="item in list" v-bind:key="item.id">
-                  <applicantjobcomponent :item="item" v-if="item.jobStatus == 'hidden'"></applicantjobcomponent>
-                </div>
-              </div>
-              <div class="tab-pane" id="reject" role="tabpanel" aria-labelledby="reject-tab">
-                <div v-for="item in list" v-bind:key="item.id">
-                  <applicantjobcomponent :item="item" v-if="item.jobStatus == 'hidden'"></applicantjobcomponent>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <candidatejob-component></candidatejob-component>
+        
       </div>
       <!-- <job-component class="job-component" :item="item"></job-component> -->
     </div>
@@ -198,20 +107,24 @@
 </template>
 <script>
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-  // import JobComponent from '../components/JobComponent.vue';
-  import jobcomponentnew from '../components/JobComponentNew.vue';
-  import applicantjobcomponent from '../components/ApplicantJobComponent.vue';
-  import sidebarcomponent from '../components/SidebarComponent.vue'
   import axios from "axios";
-  // import {createToast} from "mosha-vue-toastify";
+
+  import sidebarcomponent from '../components/SidebarComponent.vue'
+  import listjobcomponent from '@/components/ListjobComponent.vue'
+  import CandidatejobComponent from '@/components/CandidatejobComponent.vue';
+  
+
   export default {
     name: "PostJobNew",
     components: {
       SidebarComponent: sidebarcomponent,
       // JobComponent: JobComponent,
-      jobcomponentnew,
-      applicantjobcomponent
+      // jobcomponentnew,
+      // applicantjobcomponent,
+      listjobcomponent,
+      CandidatejobComponent
     },
+    props:['edit'],
     data() {
       return {
         editor: ClassicEditor,
