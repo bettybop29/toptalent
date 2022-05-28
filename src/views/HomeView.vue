@@ -12,7 +12,7 @@
                 <p class="main-text animate__animated animate__fadeInLeft">The most important asset to a company is not the<br>
                   product they sell or processes they've<br>implemented, it's their people!</p>
                  
-                  <button class="btn pop animate__animated animate__fadeInUp">Start with us</button>
+                  <router-link to="/login" class="btn pop animate__animated animate__fadeInUp">Start with us</router-link>
                 </div>                
                 <div class="col-md-6 p-5">
                 <img class="img-fluid animate__animated animate__backInRight" src="../assets/banner.png" alt="">
@@ -219,8 +219,12 @@ export default {
   color: white;
   border-radius: 36px;
   width: 154px;
-  height: 50px;
+  padding: 12px;
   margin-top: 20px;
+}
+.pop:hover{
+  background: #0164e6;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;  
 }
 
   .main-text{
