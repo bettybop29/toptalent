@@ -102,7 +102,7 @@ const routes = [
     component: ExpiredForgot, 
   },
   {
-    path: '/applicant-detail',
+    path: '/applicant-detail/:id',
     name: 'ApplicantDetailView',
     component: ApplicantDetailView, 
   },
