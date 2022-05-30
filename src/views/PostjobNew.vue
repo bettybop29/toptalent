@@ -7,11 +7,11 @@
         <div class="container-fluid">
           <a class="navbar-brand">{{userName}}</a>
           <form class="d-flex">
-            <router-link to="/addnewjob" type="button" class="btn btn-primary act px-3 py-2" data-bs-toggle="modal"
+            <button to="/addnewjob" type="button" class="btn btn-primary act px-3 py-2" data-bs-toggle="modal"
               data-bs-target="#jobModal" data-bs-whatever="@getbootstrap">
               <img class="import-icon" src="../assets/icon-postjob/add.svg" alt="">
               Create a new job
-            </router-link>
+            </button>
           </form>
         </div>
       </nav>
@@ -97,13 +97,13 @@
 
       <div class="row">
         <listjobcomponent></listjobcomponent>
-
-        <candidatejob-component></candidatejob-component>
-        
+        <!-- <candidatejob-component></candidatejob-component>    -->
       </div>
+      
       <!-- <job-component class="job-component" :item="item"></job-component> -->
     </div>
   </div>
+  
 </template>
 <script>
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -111,7 +111,7 @@
 
   import sidebarcomponent from '../components/SidebarComponent.vue'
   import listjobcomponent from '@/components/ListjobComponent.vue'
-  import CandidatejobComponent from '@/components/CandidatejobComponent.vue';
+  // import CandidatejobComponent from '@/components/CandidatejobComponent.vue';
   
 
   export default {
@@ -122,7 +122,7 @@
       // jobcomponentnew,
       // applicantjobcomponent,
       listjobcomponent,
-      CandidatejobComponent
+      // CandidatejobComponent
     },
     props:['edit'],
     data() {

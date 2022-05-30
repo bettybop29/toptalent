@@ -1,12 +1,13 @@
 <template>
 
-<div class="row m-1 pt-4 px-3">
+<div class="row m-1 pt-4 px-3 animate__animated animate__fadeIn">
     <div class="col-md-2">
-        <img src="https://picsum.photos/200" class="img-thumbnail" alt="..." width="100px">
+        <img v-if="item.jobseekerImage != null" :src="'http://54.255.4.75:9091/resources/'+ item.jobseekerImage" class="img-thumbnail" alt="..." width="100px">
+         <img v-else src="http://54.255.4.75:9091/resources/r5jr7e3qf8f5uhr.png" class="img-thumbnail" alt="..." width="100px">
     </div>
     <div class="col-md-7">
-        <h6 class="fw-bold">name Applicant</h6>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta tempore dolorem sequi voluptas quae atque? Ratione commodi officiis nisi cum!</p>
+        <h6 class="fw-bold">{{item.jobseekerName}}</h6><p>{{item.jobseekerProfession}}</p>
+        <p>{{item.jobseekerAddress}}</p>
     </div>
     <div class="col-md-3">
         <font-awesome-icon icon="fa-solid fa-circle-check" />
@@ -35,7 +36,7 @@
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
   export default {
     name: "JobComponent",
-    props: ['item', 'id', ],
+    props: ['item'],
     data() {
       return {
         editor: ClassicEditor,

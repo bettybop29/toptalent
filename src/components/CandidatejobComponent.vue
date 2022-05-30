@@ -1,4 +1,5 @@
 <template>
+
   <div class="col-md-7">
           <div class="candidates p-4 mb-4">
             <h5 class="fw-bold">Candidates</h5>

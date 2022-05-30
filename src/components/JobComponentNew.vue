@@ -32,12 +32,14 @@
       <small class="text-muted">x day ago</small>
     </div>
     <div class="col-6">
-      <button v-on:click="$emit(getDetail)" class="btn text-title align-items-center primary text-decoration-none fs-6">
-      {{resp}}
+      <router-link v-if="resp == '0'" :to="{name:'jobdetail', params:{id:item.jobId}}" class="text-muted text-title align-items-center primary text-decoration-none fs-6">{{resp}}
         Applicant
-        <!-- <font-awesome-icon icon="fa-solid fa-circle-arrow-right" class="px-1" /> -->
         <img class="import-icon sml mx-1" src="../assets/icon-postjob/arrow-right.svg" alt="">
-      </button>
+      </router-link>
+      <router-link v-else :to="{name:'jobdetail', params:{id:item.jobId}}" class="text-title align-items-center primary text-decoration-none fs-6">{{resp}}
+        Applicant
+        <img class="import-icon sml mx-1" src="../assets/icon-postjob/arrow-right.svg" alt="">
+      </router-link>
     </div>
     <div class="col-6 d-flex justify-content-end">
       <div class="ict-btn">
@@ -92,9 +94,9 @@
               </div>
             </div>
           </div>
-        <button v-on:click="deleteJob(item.jobId)" class="ict dgr">
-          <img class="import-icon" src="../assets/icon-postjob/delete.svg" alt="">
-        </button>
+          <button v-on:click="deleteJob(item.jobId)" class="ict dgr">
+            <img class="import-icon" src="../assets/icon-postjob/delete.svg" alt="">
+          </button>
       </div>
     </div>
     <hr class="mt-4" />
@@ -151,12 +153,13 @@
           console.log(Error);
         }
       },
-      async getDetail() {
+      async getDetail(jobId) {
         try {
-          await axios.get(`http://54.255.4.75:9091/api/v1/job/82`)
+          await axios.get(`http://54.255.4.75:9091/api/v1/job/${jobId}`)
             .then((data) => {
+              // this.$emit.edit = data.data.data
               this.edit = data.data.data
-              console.log(data.data)
+              console.log(this.edit)
             })
         } catch {
           console.log(Error)

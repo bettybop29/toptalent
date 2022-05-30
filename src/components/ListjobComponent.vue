@@ -1,5 +1,8 @@
 <template>
-  <div class="col-md-5">
+<div>
+  
+  <div class="col-md-12">
+    
           <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
               <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
@@ -21,22 +24,43 @@
                 <jobcomponentnew :item="item" v-if="item.jobStatus == 'visible'"></jobcomponentnew>
               </div>
             </div>
+
             <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
               <div class="mx-3 mb-4 pt-4 px-3">
                 <h5 class="fw-bold">xx Jobs is Hidden</h5>
-              </div>
-              
+              </div>  
               <div v-for="item in list" v-bind:key="item.id">
                 <jobcomponentnew :item="item" v-if="item.jobStatus == 'hidden'"></jobcomponentnew>
               </div>
             </div>
           </div>
-  </div>  
+        </div> 
+        </div> 
 </template>
 
 <script>
+import axios from 'axios'
+import jobcomponentnew from '@/components/JobComponentNew.vue'
+// import CandidatejobComponent from '@/components/CandidatejobComponent.vue'
 export default {
-
+  components:{
+    jobcomponentnew,
+    // CandidatejobComponent
+  },
+  data(){
+    return{
+      list:[]
+    }
+  },
+  mounted(){
+    const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
+      axios.get(`http://54.255.4.75:9091/api/v1/jobs/${recruiterId}`)
+        .then((resp) => {
+          this.list = resp.data
+          console.log(this.list)
+          localStorage.setItem("job-info", JSON.stringify(resp.data));
+        })
+  }
 }
 </script>
 
