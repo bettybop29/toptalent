@@ -6,20 +6,23 @@
             <section class="section-profile">
                 <div class="row">
                     <div class="col-md-2">
-                        <img src="@/assets/photo_profile.png" alt="profile picture" height="200">
+                        <img v-if="applicant.jobseekerImage != null" :src="'http://54.255.4.75:9091/resources/'+ applicant.jobseekerImage" alt="profile picture" height="200">
+                        <img v-else src="http://54.255.4.75:9091/resources/r5jr7e3qf8f5uhr.png" alt="profile picture" height="200" width="200">
                     </div>
                     <div class="col-md-7 middle-item">
-                        <h1>Anggi Anindita</h1>
-                        <h2 class="mt-3">Product Designer</h2>
+                        <h1>{{applicant.jobseekerName}}</h1>
+                        <h2 class="mt-3">{{applicant.jobseekerProfession}}</h2>
+                        <h3>Digimaster</h3>
                         <div class="detail-profile">
                             <div class="row">
                                 <div class="col-md-6 left-items ">
-                                    <p><font-awesome-icon icon="fa-solid fa-location-dot" class="detail-profile-icon" /> San Fransisco, USA</p>
-                                    <p><font-awesome-icon icon="fa-solid fa-phone" class="detail-profile-icon"/> +62 87877451236</p>
+                                    <p><font-awesome-icon icon="fa-solid fa-location-dot" class="detail-profile-icon" /> {{applicant.jobseekerAddress}}</p>
+                                    <p v-if="applicant.jobseekerPhone != null"><font-awesome-icon icon="fa-solid fa-phone" class="detail-profile-icon"/> {{applicant.jobseekerPhone}}</p>
+                                    <p v-if="applicant.jobseekerPhone == null"><font-awesome-icon icon="fa-solid fa-phone" class="detail-profile-icon"/> -</p>
                                 </div>
                                 <div class="col-md-5 right-items">
-                                    <p><font-awesome-icon icon="fa-regular fa-circle" class="detail-profile-icon"/> Designer</p>
-                                    <p><font-awesome-icon icon="fa-regular fa-envelope" class="detail-profile-icon"/> anggikrist@gmail.com</p>
+                                    <p><font-awesome-icon icon="fa-regular fa-circle" class="detail-profile-icon"/> {{applicant.jobseekerProfession}}</p>
+                                    <p><font-awesome-icon icon="fa-regular fa-envelope" class="detail-profile-icon"/> {{applicant.jobseekerEmail}}</p>
                                 </div>
                             </div>
                         </div>
@@ -34,10 +37,10 @@
                     <div class="col-md-5 content-left">
                         <h3 class="mb-4">Background</h3>
                         <p><font-awesome-icon icon="fa-solid fa-graduation-cap " class="icon-background" /> Bachelor of Engineering</p>
-                        <p><font-awesome-icon icon="fa-solid fa-cake-candles" class="icon-background"/> 14-04-1997</p>
-                        <p><font-awesome-icon icon="fa-solid fa-file" class="icon-background"/> github.com</p>
-                        <p><font-awesome-icon icon="fa-brands fa-instagram" class="icon-background"/> instagram.com/janedoe</p>
-                        <p><font-awesome-icon icon="fa-brands fa-linkedin" class="icon-background"/> linked.in/janedoe</p>
+                        <p><font-awesome-icon icon="fa-solid fa-cake-candles" class="icon-background"/> {{applicant.jobseekerDateOfBirth}}</p>
+                        <a href="https://github.com/" target="_blank"><font-awesome-icon icon="fa-solid fa-file" class="icon-background"/> github.com</a>
+                        <a href="https://www.instagram.com/" target="_blank"><font-awesome-icon icon="fa-brands fa-instagram" class="icon-background"/> instagram.com/janedoe</a>
+                        <a href="https://www.linkedin.com/" target="_blank"><font-awesome-icon icon="fa-brands fa-linkedin" class="icon-background"/> linked.in/janedoe</a>
                     </div>
                     <div class="col-md-7">
                         <h3>Skills</h3>
@@ -79,11 +82,41 @@
 
 <script>
 import sidebarcomponent from '../components/SidebarComponent.vue'
+import axios from 'axios'
 
 export default{
     name: "ApplicantDetailView",
     components: {
         SidebarComponent: sidebarcomponent,
+    },
+    data(){
+        return {
+            applicant: ""
+        }
+    },
+    // methods: {
+    //     // get data form api
+    //      async fetchData(){
+    //         //  await axios.get(`http://54.255.4.75:9091/api/v1/application/applicant?applicationId=`+this.$route.params.id)
+    //          await axios.get(`http://54.255.4.75:9091/api/v1/application/applicant?applicationId=141`)
+    //          .then((data) => {
+    //              this.applicant = data.data
+    //              console.log(data.data)
+    //          })
+             
+    //      }
+    // },
+    mounted(){
+        // this.fetchData();
+         
+            //  await axios.get(`http://54.255.4.75:9091/api/v1/application/applicant?applicationId=`+this.$route.params.id)
+              axios.get(`http://54.255.4.75:9091/api/v1/application/applicant?applicationId=`+this.$route.params.id)
+             .then((data) => {
+                 this.applicant = data.data.data
+                 console.log(data.data.data)
+             })
+             
+         
     }
 }
 </script>
@@ -112,6 +145,11 @@ export default{
 
 .section-profile h2{
     font-size: 16px;
+}
+
+.section-profile h3{
+    font-size: 16px;
+    margin-top: 10px;
 }
 
 .section-profile .detail-profile{
@@ -148,6 +186,18 @@ export default{
 
 .content-left p{
     margin-bottom: 20px;
+}
+
+.content-left a{
+    display: block;
+    margin-bottom: 20px;
+    text-decoration: none;
+    color: #000;
+}
+
+.content-left a:hover{
+    color: #006EFF;
+    text-decoration: underline;
 }
 
 h3{
