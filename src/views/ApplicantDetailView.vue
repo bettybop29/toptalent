@@ -12,6 +12,7 @@
                     <div class="col-md-7 middle-item">
                         <h1>{{applicant.jobseekerName}}</h1>
                         <h2 class="mt-3">{{applicant.jobseekerProfession}}</h2>
+                        <h3>Digimaster</h3>
                         <div class="detail-profile">
                             <div class="row">
                                 <div class="col-md-6 left-items ">
@@ -37,9 +38,9 @@
                         <h3 class="mb-4">Background</h3>
                         <p><font-awesome-icon icon="fa-solid fa-graduation-cap " class="icon-background" /> Bachelor of Engineering</p>
                         <p><font-awesome-icon icon="fa-solid fa-cake-candles" class="icon-background"/> {{applicant.jobseekerDateOfBirth}}</p>
-                        <p><font-awesome-icon icon="fa-solid fa-file" class="icon-background"/> github.com</p>
-                        <p><font-awesome-icon icon="fa-brands fa-instagram" class="icon-background"/> instagram.com/janedoe</p>
-                        <p><font-awesome-icon icon="fa-brands fa-linkedin" class="icon-background"/> linked.in/janedoe</p>
+                        <a href="https://github.com/" target="_blank"><font-awesome-icon icon="fa-solid fa-file" class="icon-background"/> github.com</a>
+                        <a href="https://www.instagram.com/" target="_blank"><font-awesome-icon icon="fa-brands fa-instagram" class="icon-background"/> instagram.com/janedoe</a>
+                        <a href="https://www.linkedin.com/" target="_blank"><font-awesome-icon icon="fa-brands fa-linkedin" class="icon-background"/> linked.in/janedoe</a>
                     </div>
                     <div class="col-md-7">
                         <h3>Skills</h3>
@@ -146,6 +147,11 @@ export default{
     font-size: 16px;
 }
 
+.section-profile h3{
+    font-size: 16px;
+    margin-top: 10px;
+}
+
 .section-profile .detail-profile{
     margin-top: 70px;
 }
@@ -180,6 +186,18 @@ export default{
 
 .content-left p{
     margin-bottom: 20px;
+}
+
+.content-left a{
+    display: block;
+    margin-bottom: 20px;
+    text-decoration: none;
+    color: #000;
+}
+
+.content-left a:hover{
+    color: #006EFF;
+    text-decoration: underline;
 }
 
 h3{
