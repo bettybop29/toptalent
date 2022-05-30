@@ -10,15 +10,23 @@
         <p>{{item.jobseekerAddress}}</p>
     </div>
     <div class="col-md-3">
-        <font-awesome-icon icon="fa-solid fa-circle-check" />
-        <font-awesome-icon icon="fa-solid fa-circle-x" />
+      <button class="btn">
+        <img class="pt-4" src="../assets/icon-postjob/view-applicant.svg" alt="">
+      </button>
+      <button class="btn">  
+        <img class="pt-4 ms-5" src="../assets/icon-postjob/cancel-applicant.svg" alt="">
+      </button> 
     </div>
     <div class="col-md-2">
     </div>
     <div class="col-md-7">
         <div class="d-flex">
-            <font-awesome-icon icon="fa-solid fa-file-lines" /> View CV
-            <font-awesome-icon icon="fa-solid fa-link" class="ms-3" /> Portofolio
+          <button class="btn icn" v-on:click="getResume(item.jobseekerResume)">
+            <font-awesome-icon class=" mt-1" icon="fa-solid fa-file-lines"/> View CV
+          </button>
+          <button class="btn icn" v-on:click="getLink(item.jobseekerPortfolio)">
+            <font-awesome-icon class="ms-3 me-2 mt-1" icon="fa-solid fa-link" /> Portofolio
+          </button>            
         </div>
     </div>
     <div class="col-md-3">
@@ -48,6 +56,24 @@
       }
     },
     methods: {
+      async getLink(jobseekerPortofolio) {
+        window.open(`https://${jobseekerPortofolio}`);
+      },
+      async getResume(jobseekerResume){
+         await axios({
+          url: `http://54.255.4.75:9091/resources/${jobseekerResume}`,
+          methods: 'GET',
+          responseType: 'blob',
+        }).then((res) => {
+          var FILE = window.URL.createObjectURL(new Blob([res.data]));
+          var docUrl = document.createElement('x');
+          docUrl.href = FILE;
+          docUrl.setAttribute('download', 'resume.pdf');
+          document.body.appendChild(docUrl);
+          docUrl.click();
+
+        })
+      },
       formatPrice(value) {
         let val = (value / 1).toFixed().replace('.', ',')
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
@@ -110,7 +136,9 @@
         } catch {
           console.warn
         }
-      }
+      },
+      
+      
     },
     mounted() {
       this.getDetail();
@@ -119,6 +147,14 @@
 </script>
 
 <style scope>
+.icn{
+  color:blue ;
+}
+.icn:hover{
+  transition: color 0.5s;
+  color: rgb(115, 115, 255);
+  text-decoration: underline;
+}
   .bdge {
     background: lightblue;
     border-radius: 7px;
