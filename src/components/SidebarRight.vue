@@ -118,7 +118,6 @@ export default {
       },
       async getLink(jobseekerPortofolio) {
         window.open(`https://${jobseekerPortofolio}`);
-        console.log(jobseekerPortofolio)
       },
      async getResume(jobseekerResume){
          await axios({

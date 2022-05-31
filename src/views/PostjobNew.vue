@@ -11,7 +11,7 @@
               data-bs-target="#jobModal" data-bs-whatever="@getbootstrap">
               <img class="import-icon" src="../assets/icon-postjob/add.svg" alt="">
               Create a new job
-            </button>
+            </button> 
           </form>
         </div>
       </nav>
@@ -96,7 +96,7 @@
       </form>
 
       <div class="row">
-        <listjobcomponent></listjobcomponent>
+        <listjobcomponent :count="hide"></listjobcomponent>
         <!-- <candidatejob-component></candidatejob-component>    -->
       </div>
       
@@ -140,7 +140,8 @@
         jobAddress: "",
         list: [],
         modalOpen: false,
-        userName: ""
+        userName: "",
+        hide:''
       };
     },
     methods: {

@@ -6,7 +6,10 @@
          <img v-else src="http://54.255.4.75:9091/resources/r5jr7e3qf8f5uhr.png" class="img-thumbnail" alt="..." width="100px">
     </div>
     <div class="col-md-7">
-        <h6 class="fw-bold">{{item.jobseekerName}}</h6><p>{{item.jobseekerProfession}}</p>
+
+          <h6 class="fw-bold">{{item.jobseekerName}}</h6>
+        
+        <p>{{item.jobseekerProfession}}</p>
         <p>{{item.jobseekerAddress}}</p>
     </div>
     <div class="col-md-3">
@@ -21,10 +24,10 @@
     </div>
     <div class="col-md-7">
         <div class="d-flex">
-          <button class="btn icn" v-on:click="getResume(item.jobseekerResume)">
+          <button class="btn ict" v-on:click="getResume(item.jobseekerResume)">
             <font-awesome-icon class=" mt-1" icon="fa-solid fa-file-lines"/> View CV
           </button>
-          <button class="btn icn" v-on:click="getLink(item.jobseekerPortfolio)">
+          <button class="btn ict" v-on:click="getLink(item.jobseekerPortfolio)">
             <font-awesome-icon class="ms-3 me-2 mt-1" icon="fa-solid fa-link" /> Portofolio
           </button>            
         </div>
@@ -139,6 +142,7 @@
       },
       
       
+      
     },
     mounted() {
       this.getDetail();
@@ -147,10 +151,13 @@
 </script>
 
 <style scope>
-.icn{
+.link-appl{
+  text-decoration: none;
+}
+.ict{
   color:blue ;
 }
-.icn:hover{
+.ict:hover{
   transition: color 0.5s;
   color: rgb(115, 115, 255);
   text-decoration: underline;

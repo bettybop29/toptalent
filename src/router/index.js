@@ -17,6 +17,8 @@ import PostJobView from "@/views/PostjobView.vue"
 import PostjobNew from '@/views/PostjobNew.vue'
 import JobDetail from '../components/JobDetail.vue'
 import AplicantDetail from '@/components/AplicantDetail.vue'
+import jobsDetail from '@/views/jobsDetail.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -44,6 +46,11 @@ const routes = [
     path: '/aplicantdetail/:id',
     name: 'aplicantdetail',
     component: AplicantDetail, 
+  },
+  {
+    path: '/jobsdetail/:id',
+    name: 'jobsdetail',
+    component: jobsDetail, 
   },
   {
     path: '/login',

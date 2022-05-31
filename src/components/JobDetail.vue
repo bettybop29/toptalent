@@ -10,14 +10,60 @@
               <div class="col-6 d-flex align-items-center">
                 <h6 class="fw-bold">{{job.jobName}}</h6>
               </div>
+              
               <div class="col-6 d-flex justify-content-end align-items-center">
-                <button class="ict">
+                
+                <router-link :to="{name: 'jobsdetail', params:{id:job.jobId}}">
                   <img class="import-icon" src="../assets/icon-postjob/see-all.svg" alt="">
-                </button>
-                <button class="ict prm">
+                </router-link>
+                
+                <button class="ict prm" data-bs-toggle="modal" :data-bs-target="'#exampleModalToggle' + job.jobId" role="button" v-on:click="getDetail(job.jobId)">
                   <img class="import-icon" src="../assets/icon-postjob/edit.svg" alt="">
                 </button>
-                <button class="ict dgr">
+               
+              <div class="modal fade" :id="'exampleModalToggle' + job.jobId" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalToggleLabel">Edit Jobs</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">Job Name:</label>
+                  <input type="text" class="form-control" id="" v-model="job.jobName">
+                </div>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">Job Position edit: </label>
+                  <input type="text" class="form-control" id="" v-model="job.jobPosition">
+                </div>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">Job Address: </label>
+                  <input type="text" class="form-control" id="recipient-name" v-model="job.jobAddress">
+                </div>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">Job Requirement: </label>
+                  <!-- <input type="text" class="form-control" id="recipient-name" v-model="edit.jobRequirement"> -->
+                  <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="job.jobRequirement" :config="editorConfig"></ckeditor>
+                </div>
+
+                <div class="mb-3">
+                  <label for="message-text" class="col-form-label">Job Description:</label>
+                  <!-- <textarea class="form-control" id="message-text" v-model="edit.jobDesc" /> -->
+                  <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="job.jobDesc" :config="editorConfig"></ckeditor>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-success" v-on:click="updateJobData(job.jobId)">Update</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+                <button  class="ict dgr" v-on:click="deleteJob(item.jobId)">
                   <img class="import-icon" src="../assets/icon-postjob/delete.svg" alt="">
                 </button>
               </div>
@@ -68,6 +114,7 @@
 </template>
 
 <script>
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import axios from 'axios'
 import sidebarcomponent from '@/components/SidebarComponent.vue'
 import applicantjobcomponent from '@/components/ApplicantJobComponent.vue'
@@ -79,8 +126,16 @@ export default {
   },
   data(){
     return{
+      editor: ClassicEditor,
+        editorData: '',
+        editorConfig: {
+         // The configuration of the editor.
+         
+        },
       job:[],
-      list:[]
+      list:[],
+      edit:[]
+      
     }
   },
   methods:{
@@ -99,9 +154,45 @@ export default {
         console.log('candidate')
         console.log(this.list)
       })
-    }
+    },
+    async deleteJob(id) {
+        try {
+          let result = await axios.put(`http://54.255.4.75:9091/api/v1/job/delete/` + id);
+          console.warn(result)
+          //  createToast("Job Deleted!", { type: "danger" });
+          location.reload(true)
+        } catch {
+          console.warn
+        }
+      },
+      async updateJobData(id) {
+        try {
+          await axios.patch(
+            `http://54.255.4.75:9091/api/v1/job/${id}?jobName=${this.edit.jobName}&jobStatus=active&jobSalary=${this.edit.jobSalary}&jobPosition=${this.edit.jobPosition}&jobAddress=${this.edit.jobAddress}&jobDesc=${this.edit.jobDesc}&jobRequirement=${this.edit.jobRequirement}`
+          )
+          // createToast("Job Updated", { type: "success" });
+          location.reload(true)
+        } catch {
+          // console.log(warn)
+        }
+      },
+      async getDetail(id){
+        try{
+        console.log(id)
+        await axios.get(`http://54.255.4.75:9091/api/v1/job/${id}`)
+        .then((data)=>{
+          this.edit=data.data.data
+          console.log(data.data)
+        })
+        } catch{
+          console.log(Error)
+        }
+      },
+      
+      
   },
   mounted(){
+    this.getDetail();
     this.getJobDetail();
     this.getCandidate();
   }
