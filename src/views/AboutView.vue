@@ -72,17 +72,34 @@
 
         </div>
         <div class="col-md-6">
-          <div class="card">
+          <div class="card m-1">
             <div class="card-body section-contact panel-2">
               <h5 class="card-title">Contact</h5>
               <hr>
-              <a class="card-text"><font-awesome-icon icon="fa-solid fa-envelope" class="icn"/> {{profile.recruiterEmail}}</a>
-              <a class="card-text"><font-awesome-icon icon="fa-brands fa-twitter" class="icn"/> {{profile.recruiterFb}}</a>
-              <a class="card-text"><font-awesome-icon icon="fa-brands fa-instagram" class="icn"/> {{profile.recruiterIg}}</a>
-              <a class="card-text"><font-awesome-icon icon="fa-brands fa-linkedin" class="icn"/> {{profile.recruiterLinkedin}}</a>
-              <a class="card-text"><font-awesome-icon icon="fa-solid fa-phone" class="icn"/> {{profile.recruiterPhone}}</a>
-              <a class="card-text"><font-awesome-icon icon="fa-solid fa-globe" class="icn"/> {{profile.recruiterWebsite}}</a>
-
+              <div>
+              <a class="card-text" v-if="profile.recruiterEmail == ''"></a>
+              <a class="card-text" v-else><font-awesome-icon icon="fa-solid fa-envelope" class="icn"/> {{profile.recruiterEmail}}</a>
+              </div>
+              <div>
+              <a class="card-text" v-if="profile.recruiterFb == ''"></a>
+              <a class="card-text" v-else><font-awesome-icon icon="fa-brands fa-twitter" class="icn"/> {{profile.recruiterFb}}</a>
+              </div>
+              <div>
+              <a class="card-text" v-if="profile.recruiterIg == ''"></a>
+              <a class="card-text" v-else><font-awesome-icon icon="fa-brands fa-instagram" class="icn"/> {{profile.recruiterIg}}</a>
+              </div>
+              <div >
+              <a class="card-text" v-if="profile.recruiterLinkedin == ''"></a>
+              <a class="card-text" v-else ><font-awesome-icon icon="fa-brands fa-linkedin" class="icn"/> {{profile.recruiterLinkedin}}</a>
+              </div>
+              <div >
+              <a class="card-text"  v-if="profile.recruiterPhone == ''"></a>
+              <a class="card-text" v-else><font-awesome-icon icon="fa-solid fa-phone" class="icn"/> {{profile.recruiterPhone}}</a>
+              </div>
+              <div >
+              <a class="card-text" v-if="profile.recruiterWebsite == ''"></a>
+              <a class="card-text" v-else><font-awesome-icon icon="fa-solid fa-globe" class="icn"/> {{profile.recruiterWebsite}}</a>
+              </div>
             </div>
           </div>
         </div>
@@ -158,7 +175,7 @@
   font-weight: 500;
 }
 .icn{
-  color: cyan;
+  color: #006EFF;
 }
 span{
   width: auto;

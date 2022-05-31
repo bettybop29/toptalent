@@ -17,7 +17,6 @@
                   product they sell or processes they've<br />implemented, it's
                   their people!
                 </p>
-
                 <a href="/signup" class="btn pop animate__animated animate__fadeInUp fw-bold">Start with us</a>
               </div>
               <div class="col-md-6 p-5">
@@ -226,11 +225,30 @@
     width: 290px;
   }
 
+
   @media (max-width: 575.98px) {
     .line {
       margin-left: 0px;
     }
   }
+
+.line{
+  margin-left:250px;
+  width: 290px;
+}
+.pop{
+  background: #006EFF;
+  color: white;
+  border-radius: 36px;
+  width: 154px;
+  padding: 12px;
+  margin-top: 20px;
+}
+.pop:hover{
+  background: #0164e6;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;  
+}
+
 
   .pop {
     background: #006eff;
