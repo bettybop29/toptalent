@@ -3,9 +3,10 @@
       <sidebarcomponent></sidebarcomponent>
 
       <div class="container p-4">
-          <div class="row align-items-start">
-            <div class="col">
-                <h2>{{detail.jobName}}</h2><h3>({{detail.jobPosition}})</h3>
+          <div class="row justify-content-between">
+            <div class="col-7">
+                <h2>{{detail.jobName}} <span>({{detail.jobPosition}})</span></h2>
+                <small>{{userName}}</small>
                 
             </div>
             <div class="col">
@@ -32,7 +33,8 @@ export default {
     },
     data(){
         return{
-            detail:[]
+            detail:[],
+            userName:''
         }
     },
     methods:{
@@ -46,6 +48,10 @@ export default {
     },
     mounted(){
         this.getDetailJob();
+        // get company name 
+        const user = JSON.parse(localStorage.getItem("user-info")).recruiterCompany
+        this.userName = user
+        console.log(this.userName)
     }
 }
 </script>
