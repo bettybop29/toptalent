@@ -53,7 +53,7 @@
 
               <span class="mb-4 badge bg-info text-dark category">{{profile.recruiterIndustry}}</span>
               <p class="card-span">Staff: </p>
-              <p class="card-text"><i class="bi bi-person-fill me-0"></i> {{profile.recruiterStaff}}</p>
+              <p class="card-text"><font-awesome-icon icon="fa-solid fa-user" /> {{profile.recruiterStaff}}</p>
               <p class="card-span">Description: </p>
               <p class="card-text">{{profile.recruiterDesc}}</p>
               <p class="card-span">Address: </p>
@@ -64,23 +64,42 @@
               <p class="card-text" v-html="profile.recruiterBenefit"></p>
 
               <!-- <router-link class="btn btn-success" :to="{name: 'updateprofile', params:{id:profile.recruiterId}}">Update Profile</router-link> -->
-              <router-link class="btn btn-success" :to="'/updateprofile/'+ profile.recruiterId">Update Profile</router-link>
+              <!-- <router-link class="btn btn-success" :to="'/updateprofile/'+ profile.recruiterId">Update Profile</router-link> -->
+              <router-link class="btn btn-success" :to="{name: 'updateprofile', params:{id:profile.recruiterId}}">Update profile</router-link>
+              <!-- <router-link class="btn btn-success" to="/updateprofile">test</router-link> -->
             </div>
           </div>
 
         </div>
         <div class="col-md-6">
-          <div class="card">
+          <div class="card m-1">
             <div class="card-body section-contact panel-2">
               <h5 class="card-title">Contact</h5>
               <hr>
-              <a class="card-text"><i class="bi bi-envelope"></i> {{profile.recruiterEmail}}</a>
-              <a class="card-text"><i class="bi bi-facebook"></i> {{profile.recruiterFb}}</a>
-              <a class="card-text"><i class="bi bi-instagram"></i> {{profile.recruiterIg}}</a>
-              <a class="card-text"><i class="bi bi-linkedin"></i> {{profile.recruiterLinkedin}}</a>
-              <a class="card-text"><i class="bi bi-telephone"></i> {{profile.recruiterPhone}}</a>
-              <a class="card-text"><i class="bi bi-globe2"></i> {{profile.recruiterWebsite}}</a>
-
+              <div>
+              <a class="card-text" v-if="profile.recruiterEmail == ''"></a>
+              <a class="card-text" v-else><font-awesome-icon icon="fa-solid fa-envelope" class="icn"/> {{profile.recruiterEmail}}</a>
+              </div>
+              <div>
+              <a class="card-text" v-if="profile.recruiterFb == ''"></a>
+              <a class="card-text" v-else><font-awesome-icon icon="fa-brands fa-twitter" class="icn"/> {{profile.recruiterFb}}</a>
+              </div>
+              <div>
+              <a class="card-text" v-if="profile.recruiterIg == ''"></a>
+              <a class="card-text" v-else><font-awesome-icon icon="fa-brands fa-instagram" class="icn"/> {{profile.recruiterIg}}</a>
+              </div>
+              <div >
+              <a class="card-text" v-if="profile.recruiterLinkedin == ''"></a>
+              <a class="card-text" v-else ><font-awesome-icon icon="fa-brands fa-linkedin" class="icn"/> {{profile.recruiterLinkedin}}</a>
+              </div>
+              <div >
+              <a class="card-text"  v-if="profile.recruiterPhone == ''"></a>
+              <a class="card-text" v-else><font-awesome-icon icon="fa-solid fa-phone" class="icn"/> {{profile.recruiterPhone}}</a>
+              </div>
+              <div >
+              <a class="card-text" v-if="profile.recruiterWebsite == ''"></a>
+              <a class="card-text" v-else><font-awesome-icon icon="fa-solid fa-globe" class="icn"/> {{profile.recruiterWebsite}}</a>
+              </div>
             </div>
           </div>
         </div>
@@ -152,6 +171,12 @@
   };
 </script>
 <style scoped>
+*{
+  font-weight: 500;
+}
+.icn{
+  color: #006EFF;
+}
 span{
   width: auto;
 }
@@ -196,7 +221,6 @@ span{
   .card-title {
     font-weight: bold;
     font-size: 36px;
-    margin-bottom: 30px;
   }
 
   .card-span {

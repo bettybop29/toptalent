@@ -3,7 +3,7 @@
 <div>
   
     <sidebar-component/>
-    <sidebar-right class="animate__animated animate__fadeIn"  v-if="this.sidepop == true" :view="views"></sidebar-right>
+    <sidebar-right v-if="this.sidepop == true" :view="views"></sidebar-right>
     <sidebar-right-review  v-if="this.sidepop == false & this.err == '200'"></sidebar-right-review>
     <sidebar-right-empty  v-if="this.err =='400'"></sidebar-right-empty>
 
@@ -11,13 +11,13 @@
         <div class="card">
           <img class="animate__animated animate__tada" src="@/assets/saly.png" alt="">
             <div class="card-title">              
-              <h2>Hi, {{recruiters.recruiterCompany}}!</h2>
+              <h2 class="main-head">Hi, {{recruiters.recruiterCompany}}!</h2>
               <div class="card-text">
                 <h5>Welcome Back</h5>
                 <h5>you have <span class="decor">{{edit.data}}</span> new
                 <br>resume.</h5> 
               </div>
-              <button class="btn" v-on:click="test">See all</button>    
+              <button class="btn" hidden>See all</button>    
             </div>    
         </div>
      
@@ -65,13 +65,13 @@
       <td>{{resume.jobseekerEmail}}</td>
       <td>
         <p v-if="resume.applicationStatus != 'sent'">{{resume.applicationStatus}}</p>
-        <p v-else>review</p></td>
+        <p v-else>Reviewed</p></td>
       <td>{{resume.jobName}}</td>
       <td>
         <p v-if="resume.jobPosition != 'Internship'" class="position">{{resume.jobPosition}}</p>
         <p v-else class="position2">{{resume.jobPosition}}</p>
       </td>
-      <td><button class="btn-primary" @click="getView(resume.applicationId)">view</button></td>
+      <td><button class="btn-primary" @click="getView(resume.applicationId)">View</button></td>
       
     </tr>
   </tbody>  
@@ -120,7 +120,15 @@ export default {
     await axios.get(`http://54.255.4.75:9091/api/v1/application/new-resume/${recruiterId}`)
     .then((data)=>{
       this.edit=data.data
+      console.log(data.data)
+      this.$toast.info(`You have ${data.data.data} new apllicant`, {
+          // optional options Object
+           position: 'top-right',
+           pauseOnHover: true,
+           queue:'true'
+      })
     })
+    
   },
    async w3_open(){
       await axios.get(``)
@@ -212,11 +220,16 @@ export default {
     this.totalAplicant(),
     this.totalnewAplicant(),
     this.getView()
+
+    
+
   },
 }; 
 </script>  
 <style scoped>
-
+  .main-head{
+    font-weight: 600;
+  }
   .table{
   border-radius: 20px;
   padding: 10%;
@@ -226,8 +239,9 @@ export default {
   width: 30px;
   
 }
+
 .table td{
-  
+  font-weight: 500;
   overflow: auto;
 }
 .btn-primary{
@@ -340,7 +354,6 @@ span{
 }
 .table{
   margin-left: 310px;
-  margin-top: 60px;
   width: 52.5%;
   background: rgb(249, 249, 249)
 }

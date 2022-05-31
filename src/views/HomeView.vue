@@ -1,20 +1,20 @@
 <template>
-
+<div class="full">
 <div class="container-fluid-sm-lg-md">
   <NavBasic></NavBasic>
       <div class="section-2 my-6">
         <div class="main" style="background-image: linear-gradient(#ffffff 50%,#006EFF); padding-top: 50px;">       
           <div class="container-fluid pt-5 mt-5">
-            <div class="row p-5">
-              <div class="col-md-6">
+            <div class="row g-0">
+              <div class="col-md-6 p-5">
                 <h1 class="display-2 pt-3 animate__animated animate__backInLeft">Top Company<br>need a Toptalent.</h1>
                  <img class="line animate__animated animate__rollIn animate__delay-1s" src="../assets/line-main.png" alt="">
                 <p class="main-text animate__animated animate__fadeInLeft">The most important asset to a company is not the<br>
                   product they sell or processes they've<br>implemented, it's their people!</p>
                  
-                  <button class="btn pop animate__animated animate__fadeInUp">Start with us</button>
+                  <router-link to="/login" class="btn pop animate__animated animate__fadeInUp">Start with us</router-link>
                 </div>                
-                <div class="col-md-6">
+                <div class="col-md-6 p-5">
                 <img class="img-fluid animate__animated animate__backInRight" src="../assets/banner.png" alt="">
                 </div>
           </div>              
@@ -175,6 +175,7 @@
   </div>
 
 </div>   
+</div>
 </template>
 
 <script>
@@ -208,6 +209,7 @@ export default {
 </script>
 
 <style scoped>
+
 .line{
   margin-left:250px;
   width: 290px;
@@ -217,8 +219,12 @@ export default {
   color: white;
   border-radius: 36px;
   width: 154px;
-  height: 50px;
+  padding: 12px;
   margin-top: 20px;
+}
+.pop:hover{
+  background: #0164e6;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;  
 }
 
   .main-text{
@@ -226,6 +232,7 @@ export default {
     padding-top: 40px;
     font-size: 18px;
     width: 526px;
+    font-weight: 500;
   }
   .container-fluid{
     padding-right: 0;
@@ -302,5 +309,8 @@ i{
 }
 .btn-primary:hover{
   background: rgb(0, 0, 177);
+}
+.img-fluid{
+  margin-left: 121px;
 }
 </style>

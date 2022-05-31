@@ -7,7 +7,8 @@
           <img src="http://54.255.4.75:9091/resources/mb3.png" alt=""></li>  
         <li>
           <p>Some candidates<br>need to be reviewed!</p>
-          <button class="btn btn-primary">Review Now</button>
+          <button  class="btn btn-primary">Review Now</button>
+          
         </li>
 
       </ul>
@@ -32,10 +33,12 @@ export default {
 <style scoped>
 ul{
   padding-top: 80px;
+  font-weight: 500;
 }
     img{
       width: 180px;
       height: 180px;
+      margin-left: 29px;
     }
     
     .hide{
