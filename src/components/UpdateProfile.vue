@@ -20,7 +20,7 @@
       </div>
       <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Industry</label>
-        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterIndustry" required>
+        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterIndustry" required maxlength="30">
       </div>
      <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Benefit</label>
@@ -31,7 +31,7 @@
      
      <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Company</label>
-        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterCompany" required>
+        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterCompany" required maxlength="30">
       </div>
     
      <div class="col-md-10 mb-4">
@@ -55,7 +55,8 @@
       </div>
      <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Address</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="profile.recruiterAddress"></textarea>
+        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterAddress" required maxlength="200">
+        <!-- <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" v-model="profile.recruiterAddress"></textarea> -->
       </div>
      
  
@@ -163,11 +164,7 @@ export default {
         const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
         await axios.put(`http://54.255.4.75:9091/api/v1/auth/recruiter/${recruiterId}?recruiterEmail=${this.profile.recruiterEmail}&recruiterCompany=${this.profile.recruiterCompany}&recruiterIndustry=${this.profile.recruiterIndustry}&recruiterPhone=${this.profile.recruiterPhone}&recruiterStaff=${this.profile.recruiterStaff}&recruiterDesc=${this.profile.recruiterDesc}&recruiterAddress=${this.profile.recruiterAddress}&recruiterBenefit=${this.profile.recruiterBenefit}&recruiterFb=${this.profile.recruiterFb}&recruiterIg=${this.profile.recruiterIg}&recruiterLinkedin=${this.profile.recruiterLinkedin}&recruiterCulture=${this.profile.recruiterCulture}&recruiterWebsite=${this.profile.recruiterWebsite}`);
         this.$router.push('/about')
-        this.$toast.success(`Profile updated`, {
-          // optional options Object
-           position: 'top-right',
-           pauseOnHover: true
-      })
+        // createToast("Profile updated", {type: 'success'});
        
         } catch {
           console.log(Error)

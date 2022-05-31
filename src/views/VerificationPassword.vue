@@ -50,7 +50,5 @@ export default {
     margin-top: 10px;
 }
 
-.navbar-nav img{
-    margin-left: 450px;
-}
+
 </style>

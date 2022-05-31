@@ -103,10 +103,7 @@
 //   import {createToast} from "mosha-vue-toastify";
 //   import 'boxicons';
 
-    
-
-
-
+  
   export default {
     name: "PostJob",
     components: {

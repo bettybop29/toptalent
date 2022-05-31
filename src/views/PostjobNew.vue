@@ -75,7 +75,6 @@
             </div>
           </div>
         </div>
-
         <div class="modal fade" v-if="this.modalOpen = true" id="exampleModalToggle2" aria-hidden="true"
           aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
           <div class="modal-dialog modal-dialog-centered">
@@ -99,7 +98,6 @@
         <listjobcomponent :count="hide"></listjobcomponent>
         <!-- <candidatejob-component></candidatejob-component>    -->
       </div>
-      
       <!-- <job-component class="job-component" :item="item"></job-component> -->
     </div>
   </div>
@@ -140,6 +138,7 @@
         jobAddress: "",
         list: [],
         modalOpen: false,
+
         userName: "",
         hide:''
       };
@@ -207,6 +206,7 @@
   .act {
     margin-right: 123px;
   }
+
   /* .main {
     margin-left: 16%;
     padding: 20px;
@@ -215,19 +215,23 @@
   .btn:hover {
     box-shadow: 0 2px 10px rgb(0 0 0 / 0.5);
   }
+
   .container {
     margin-left: 20%;
     margin-top: 3%;
   }
+
   .job-component {
     margin-top: 15px;
   }
+
   .pop {
     padding: 10px;
     text-align: center;
     margin: 0;
     width: 125px;
   }
+
   .select-button {
     display: flex;
     text-align: center;
@@ -235,6 +239,7 @@
     margin: 10px;
     padding-top: 30px;
   }
+
   /* transition */
   .fade-enter-from {
     opacity: 0;
@@ -251,6 +256,7 @@
   .fade-leave-to {
     opacity: 0;
   }
+
   .fade-leave-active {
     transition: all 2s ease;
   }

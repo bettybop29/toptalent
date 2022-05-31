@@ -45,6 +45,7 @@
     
   </div> -->
 
+  <div class="table-wrapper">
   <table class="table">
   <thead>
       <h3>Resume</h3>
@@ -76,6 +77,7 @@
     </tr>
   </tbody>  
 </table>
+</div>
 
  </div>
 
@@ -230,10 +232,21 @@ export default {
   .main-head{
     font-weight: 600;
   }
+  
   .table{
-  border-radius: 20px;
-  padding: 10%;
+    /* border: 1px solid red; */
+    border-radius: 20px;
+    padding: 10%;
 }
+
+.table-wrapper {
+  /* background-color: green; */
+  margin-top: 50px;
+  max-height: 40vh;
+  overflow: auto;
+  display:inline-block;
+}
+
 .table h3{
   margin: 15px;
   width: 30px;

@@ -25,6 +25,7 @@
         </ul>
       </div>
     </div>
+
     <div class="col-6">
       <small class="text-muted">Rp{{ formatPrice(item.jobSalary)}},-</small>
     </div>
@@ -135,6 +136,14 @@
         let val = (value / 1).toFixed().replace('.', ',')
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
       },
+      escapeHtml(text) {
+        return text
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      },
       async active(id) {
         try {
           await axios.patch(`http://54.255.4.75:9091/api/v1/job/status/${id}?jobStatus=hidden`)
@@ -160,6 +169,7 @@
               // this.$emit.edit = data.data.data
               this.edit = data.data.data
               console.log(this.edit)
+
             })
         } catch {
           console.log(Error)
@@ -191,6 +201,7 @@
       this.getDetail();
       this.countTotalAplicant();
     }
+
   }
 </script>
 
@@ -221,6 +232,7 @@
     width: 16px;
   }
   /* ==================================== */
+
   .bdge {
     background: lightblue;
     border-radius: 7px;
@@ -233,19 +245,23 @@
     display: flex;
     margin-top: 21px;
   }
+
   .ict-btn {
     background: red;
     height: 0;
     margin-top: 15px;
   }
+
   .ict {
     margin: 7px;
     border: none;
     background: transparent;
   }
+
   .dgr {
     color: red;
   }
+
   .prm {
     color: lightgreen;
   }

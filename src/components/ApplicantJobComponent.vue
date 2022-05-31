@@ -45,6 +45,7 @@
   // import { createToast } from "mosha-vue-toastify";
   // import { warn } from '@vue/runtime-core';
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+  
   export default {
     name: "JobComponent",
     props: ['item'],
@@ -147,6 +148,7 @@
     mounted() {
       this.getDetail();
     }
+
   }
 </script>
 
@@ -162,6 +164,7 @@
   color: rgb(115, 115, 255);
   text-decoration: underline;
 }
+
   .bdge {
     background: lightblue;
     border-radius: 7px;
@@ -170,23 +173,28 @@
     padding: 3px;
     height: fit-content;
   }
+  
   .text-title {
     display: flex;
     margin-top: 21px;
   }
+
   .ict-btn {
     background: red;
     height: 0;
     margin-top: 15px;
   }
+
   .ict {
     margin: 7px;
     border: none;
     background: transparent;
   }
+
   .dgr {
     color: red;
   }
+
   .prm {
     color: lightgreen;
   }
