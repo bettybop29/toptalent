@@ -5,6 +5,7 @@ import AboutView from '@/views/AboutView.vue'
 import LoginView from '@/views/LoginView.vue'
 import SignUpView from '@/views/SignUpView.vue'
 import DasboardView from  '@/views/DashboardView.vue'
+import AddjobView from '@/views/AddjobView.vue'
 
 import ActivationView from '@/views/ActivationView.vue'
 import ExpiredSignup from '@/views/ExpiredSignup.vue'
@@ -19,6 +20,8 @@ import AplicantDetail from '@/components/AplicantDetail.vue'
 import ExpiredForgot from '@/views/ExpiredForgotView.vue'
 import ApplicantDetailView from '@/views/ApplicantDetailView.vue'
 import ApplicantJobComponent from '../components/ApplicantJobComponent.vue'
+import jobsDetail from '@/views/jobsDetail.vue'
+
 
 Vue.use(VueRouter)
 
@@ -47,6 +50,11 @@ const routes = [
     path: '/aplicantdetail/:id',
     name: 'aplicantdetail',
     component: AplicantDetail, 
+  },
+  {
+    path: '/jobsdetail/:id',
+    name: 'jobsdetail',
+    component: jobsDetail, 
   },
   {
     path: '/login',
@@ -92,6 +100,11 @@ const routes = [
     path: '/postjobview',
     name: 'postjobview',
     component: PostJobView
+  },
+  {
+    path: '/addjobview',
+    name: 'addjobview',
+    component: AddjobView
   },
   {
     path: '/jobdetail/:id',

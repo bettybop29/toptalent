@@ -25,7 +25,12 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 
 
-Vue.use(VueToast);
+Vue.use(VueToast, {
+  // One of the options
+  position: 'top-right',
+  dismissible:'true',
+  pauseOnHover:'true'
+})
 Vue.use( CKEditor );
 Vue.config.productionTip = false
 

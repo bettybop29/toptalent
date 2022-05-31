@@ -1,23 +1,35 @@
 <template>
 
-<div class="row m-1 pt-4 px-3">
+<div class="row m-1 pt-4 px-3 animate__animated animate__fadeIn">
     <div class="col-md-2">
-        <img src="https://picsum.photos/200" class="img-thumbnail" alt="..." width="100px">
+        <img v-if="item.jobseekerImage != null" :src="'http://54.255.4.75:9091/resources/'+ item.jobseekerImage" class="img-thumbnail" alt="..." width="100px">
+         <img v-else src="http://54.255.4.75:9091/resources/r5jr7e3qf8f5uhr.png" class="img-thumbnail" alt="..." width="100px">
     </div>
     <div class="col-md-7">
-        <h6 class="fw-bold">name Applicant</h6>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta tempore dolorem sequi voluptas quae atque? Ratione commodi officiis nisi cum!</p>
+
+          <h6 class="fw-bold">{{item.jobseekerName}}</h6>
+        
+        <p>{{item.jobseekerProfession}}</p>
+        <p>{{item.jobseekerAddress}}</p>
     </div>
     <div class="col-md-3">
-        <font-awesome-icon icon="fa-solid fa-circle-check" />
-        <font-awesome-icon icon="fa-solid fa-circle-x" />
+      <button class="btn">
+        <img class="pt-4" src="../assets/icon-postjob/view-applicant.svg" alt="">
+      </button>
+      <button class="btn">  
+        <img class="pt-4 ms-5" src="../assets/icon-postjob/cancel-applicant.svg" alt="">
+      </button> 
     </div>
     <div class="col-md-2">
     </div>
     <div class="col-md-7">
         <div class="d-flex">
-            <font-awesome-icon icon="fa-solid fa-file-lines" /> View CV
-            <font-awesome-icon icon="fa-solid fa-link" class="ms-3" /> Portofolio
+          <button class="btn ict" v-on:click="getResume(item.jobseekerResume)">
+            <font-awesome-icon class=" mt-1" icon="fa-solid fa-file-lines"/> View CV
+          </button>
+          <button class="btn ict" v-on:click="getLink(item.jobseekerPortfolio)">
+            <font-awesome-icon class="ms-3 me-2 mt-1" icon="fa-solid fa-link" /> Portofolio
+          </button>            
         </div>
     </div>
     <div class="col-md-3">
@@ -33,25 +45,39 @@
   // import { createToast } from "mosha-vue-toastify";
   // import { warn } from '@vue/runtime-core';
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
-
+  
   export default {
     name: "JobComponent",
-    props: ['item', 'id', ],
-
+    props: ['item'],
     data() {
       return {
         editor: ClassicEditor,
         editorData: '',
         editorConfig: {
           // The configuration of the editor.
-
         },
         edit: []
       }
     },
     methods: {
+      async getLink(jobseekerPortofolio) {
+        window.open(`https://${jobseekerPortofolio}`);
+      },
+      async getResume(jobseekerResume){
+         await axios({
+          url: `http://54.255.4.75:9091/resources/${jobseekerResume}`,
+          methods: 'GET',
+          responseType: 'blob',
+        }).then((res) => {
+          var FILE = window.URL.createObjectURL(new Blob([res.data]));
+          var docUrl = document.createElement('x');
+          docUrl.href = FILE;
+          docUrl.setAttribute('download', 'resume.pdf');
+          document.body.appendChild(docUrl);
+          docUrl.click();
 
+        })
+      },
       formatPrice(value) {
         let val = (value / 1).toFixed().replace('.', ',')
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
@@ -73,7 +99,6 @@
           console.log(Error);
         }
       },
-
       async visible(id) {
         try {
           await axios.patch(`http://54.255.4.75:9091/api/v1/job/status/${id}?jobStatus=visible`)
@@ -83,7 +108,6 @@
           console.log(Error);
         }
       },
-
       async getDetail(id) {
         try {
           console.log(id)
@@ -98,7 +122,6 @@
       },
       async updateJobData(id) {
         try {
-
           await axios.patch(
             `http://54.255.4.75:9091/api/v1/job/${id}?jobName=${this.edit.jobName}&jobStatus=active&jobSalary=${this.edit.jobSalary}&jobPosition=${this.edit.jobPosition}&jobAddress=${this.edit.jobAddress}&jobDesc=${this.edit.jobDesc}&jobRequirement=${this.edit.jobRequirement}`
           )
@@ -112,27 +135,36 @@
         try {
           let result = await axios.put(`http://54.255.4.75:9091/api/v1/job/delete/` + id);
           console.warn(result)
-
           //  createToast("Job Deleted!", { type: "danger" });
           location.reload(true)
-
         } catch {
           console.warn
-
         }
-      }
+      },
+      
+      
+      
     },
-
-
     mounted() {
       this.getDetail();
     }
-
 
   }
 </script>
 
 <style scope>
+.link-appl{
+  text-decoration: none;
+}
+.ict{
+  color:blue ;
+}
+.ict:hover{
+  transition: color 0.5s;
+  color: rgb(115, 115, 255);
+  text-decoration: underline;
+}
+
   .bdge {
     background: lightblue;
     border-radius: 7px;
@@ -141,7 +173,7 @@
     padding: 3px;
     height: fit-content;
   }
-
+  
   .text-title {
     display: flex;
     margin-top: 21px;
@@ -150,7 +182,6 @@
   .ict-btn {
     background: red;
     height: 0;
-
     margin-top: 15px;
   }
 

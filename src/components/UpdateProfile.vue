@@ -78,19 +78,19 @@
       </div>
      <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Facebook</label>
-        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterFb" required maxlength="100">
+        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterFb" >
       </div>
      <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Instagram</label>
-        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterIg" required maxlength="100">
+        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterIg" >
       </div>
        <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Linkedin</label>
-        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterLinkedin" required maxlength="100">
+        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterLinkedin" >
       </div>
        <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Website</label>
-        <input class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="profile.recruiterWebsite" maxlength="100">
+        <input class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="profile.recruiterWebsite" required>
       </div>
        <button class="btn btn-success" type="submit">Update</button>
      </form>
