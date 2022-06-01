@@ -18,6 +18,7 @@ import PostjobNew from '@/views/PostjobNew.vue'
 import JobDetail from '../components/JobDetail.vue'
 import AplicantDetail from '@/components/AplicantDetail.vue'
 import jobsDetail from '@/views/jobsDetail.vue'
+import ApplicantDetailView from '@/components/AplicantDetail.vue'
 
 Vue.use(VueRouter)
 
@@ -71,6 +72,11 @@ const routes = [
     path: '/activation',
     name: 'activation',
     component: ActivationView
+  },
+  {
+    path: '/applicant-detail/:id',
+    name: 'ApplicantDetailView',
+    component: ApplicantDetailView, 
   },
   {
     path: '/expiredsignup',
