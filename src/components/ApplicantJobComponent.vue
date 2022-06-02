@@ -2,11 +2,11 @@
 
 <div class="row m-1 pt-4 px-3 animate__animated animate__fadeIn">
     <div class="col-md-2">
-        <img v-if="item.jobseekerImage != null" :src="'http://54.255.4.75:9091/resources/'+ item.jobseekerImage" class="img-thumbnail" alt="..." width="100px">
-         <img v-else src="http://54.255.4.75:9091/resources/r5jr7e3qf8f5uhr.png" class="img-thumbnail" alt="..." width="100px">
+        <img v-if="item.jobseekerImage != null" :src="'http://54.255.4.75:9091/resources/'+ item.jobseekerImage" class="img-thumbnail" alt="..." width="100px" style="width:150px; height:150px;">
+         <img v-else src="http://54.255.4.75:9091/resources/r5jr7e3qf8f5uhr.png" class="img-thumbnail" alt="..." width="100px" style="width:150px; height:150px;">
     </div>
     <div class="col-md-7">
-      <router-link :to="'/applicant-detail/'+ item.jobseekerId">
+      <router-link class="txt" :to="'/applicant-detail/'+ item.jobseekerId">
           <h6 class="fw-bold">{{item.jobseekerName}}</h6>
       </router-link>  
         <p>{{item.jobseekerProfession}}</p>   
@@ -24,9 +24,9 @@
     </div>
     <div class="col-md-7">
         <div class="d-flex">
-          <button class="btn ict" v-on:click="getResume(item.jobseekerResume)">
+          <a v-bind:href="'http://54.255.4.75:9091/resources/' + item.jobseekerResume" class="btn ict" download>
             <font-awesome-icon class=" mt-1" icon="fa-solid fa-file-lines"/> View CV
-          </button>
+          </a>
           <button class="btn ict" v-on:click="getLink(item.jobseekerPortfolio)">
             <font-awesome-icon class="ms-3 me-2 mt-1" icon="fa-solid fa-link" /> Portofolio
           </button>            
@@ -153,6 +153,9 @@
 </script>
 
 <style scope>
+.txt{
+  text-decoration: none;
+}
 .link-appl{
   text-decoration: none;
 }
