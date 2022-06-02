@@ -39,7 +39,7 @@
           
           <li><button class="btn-resume act" v-on:click="getResume(view.jobseekerResume)">Resume <font-awesome-icon :icon="['fas','download']"/></button></li>
           <li>
-            <button v-if="view.jobseekerPortfolio == ''" class="btn-portofolio act" v-on:click="Toast">No Portofolio<font-awesome-icon :icon="['fas','link']"/></button>
+            <button v-if="view.jobseekerPortfolio == ''" class="btn-portofolio act text-muted" v-on:click="Toast">No Portofolio<font-awesome-icon :icon="['fas','link']"/></button>
             <button v-else class="btn-portofolio act" v-on:click="getLink(view.jobseekerPortfolio)">Portofolio <font-awesome-icon :icon="['fas','link']"/></button>
           </li>
 
@@ -118,7 +118,6 @@ export default {
       },
       async getLink(jobseekerPortofolio) {
         window.open(`https://${jobseekerPortofolio}`);
-        console.log(jobseekerPortofolio)
       },
      async getResume(jobseekerResume){
          await axios({

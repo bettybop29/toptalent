@@ -7,11 +7,11 @@
         <div class="container-fluid">
           <a class="navbar-brand">{{userName}}</a>
           <form class="d-flex">
-            <button type="button" class="btn btn-primary act px-3 py-2" data-bs-toggle="modal"
+            <button to="/addnewjob" type="button" class="btn btn-primary act px-3 py-2" data-bs-toggle="modal"
               data-bs-target="#jobModal" data-bs-whatever="@getbootstrap">
-              <i class="bi bi-plus-circle me-2"></i>
+              <img class="import-icon" src="../assets/icon-postjob/add.svg" alt="">
               Create a new job
-            </button>
+            </button> 
           </form>
         </div>
       </nav>
@@ -75,7 +75,6 @@
             </div>
           </div>
         </div>
-
         <div class="modal fade" v-if="this.modalOpen = true" id="exampleModalToggle2" aria-hidden="true"
           aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
           <div class="modal-dialog modal-dialog-centered">
@@ -96,134 +95,40 @@
       </form>
 
       <div class="row">
-        <div class="col-md-5">
-          <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-              <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
-                role="tab" aria-controls="home" aria-selected="true">Visible</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
-                role="tab" aria-controls="profile" aria-selected="false">Hidden</button>
-            </li>
-          </ul>
-
-          <div class="tab-content">
-            <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
-             <div class="mx-3 mb-4 pt-4 px-3">
-                <h5 class="fw-bold">xx Jobs is Visible</h5>
-              </div>
-
-              <div v-for="item in list" v-bind:key="item.id">
-                <jobcomponentnew :item="item" v-if="item.jobStatus == 'visible'"></jobcomponentnew>
-              </div>
-            </div>
-            <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-              <div class="mx-3 mb-4 pt-4 px-3">
-                <h5 class="fw-bold">xx Jobs is Hidden</h5>
-              </div>
-              
-              <div v-for="item in list" v-bind:key="item.id">
-                <jobcomponentnew :item="item" v-if="item.jobStatus == 'hidden'"></jobcomponentnew>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-7">
-          <div class="candidates p-4 mb-4">
-            <h5 class="fw-bold">Candidates</h5>
-
-            <div class="row justify-content-between mt-4">
-              <div class="col-6 d-flex align-items-center">
-                <h6 class="fw-bold">jobName</h6>
-              </div>
-              <div class="col-6 d-flex justify-content-end align-items-center">
-                <button class="ict prm">
-                  <font-awesome-icon icon="fa-solid fa-pen-to-square" />
-                </button>
-                <button class="ict dgr">
-                  <font-awesome-icon icon="fa-solid fa-trash" />
-                </button>
-              </div>
-              <div class="col-12">
-                <small class="text-muted">Visible on </small>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="applicantDetail">
-            <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
-              <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="unreview-tab" data-bs-toggle="tab" data-bs-target="#unreview"
-                  type="button" role="tab" aria-controls="unreview" aria-selected="true">Unreviewed</button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" id="accept-tab" data-bs-toggle="tab" data-bs-target="#accept" type="button"
-                  role="tab" aria-controls="accept" aria-selected="false">Accepted</button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" id="reject-tab" data-bs-toggle="tab" data-bs-target="#reject" type="button"
-                  role="tab" aria-controls="reject" aria-selected="false">Rejected</button>
-              </li>
-            </ul>
-
-            <div class="tab-content">
-              <div class="tab-pane active" id="unreview" role="tabpanel" aria-labelledby="unreview-tab">
-                <div v-for="item in list" v-bind:key="item.id">
-                  <applicantjobcomponent :item="item" v-if="item.jobStatus == 'visible'"></applicantjobcomponent>
-                </div>
-              </div>
-              <div class="tab-pane" id="accept" role="tabpanel" aria-labelledby="accept-tab">
-                <div v-for="item in list" v-bind:key="item.id">
-                  <applicantjobcomponent :item="item" v-if="item.jobStatus == 'hidden'"></applicantjobcomponent>
-                </div>
-              </div>
-              <div class="tab-pane" id="reject" role="tabpanel" aria-labelledby="reject-tab">
-                <div v-for="item in list" v-bind:key="item.id">
-                  <applicantjobcomponent :item="item" v-if="item.jobStatus == 'hidden'"></applicantjobcomponent>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <listjobcomponent :count="hide"></listjobcomponent>
+        <!-- <candidatejob-component></candidatejob-component>    -->
       </div>
       <!-- <job-component class="job-component" :item="item"></job-component> -->
     </div>
   </div>
+  
 </template>
 <script>
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-  // import JobComponent from '../components/JobComponent.vue';
-  import jobcomponentnew from '../components/JobComponentNew.vue';
-  import applicantjobcomponent from '../components/ApplicantJobComponent.vue';
-  import sidebarcomponent from '../components/SidebarComponent.vue'
   import axios from "axios";
-  // import {createToast} from "mosha-vue-toastify";
 
-
-
-
-
-
+  import sidebarcomponent from '../components/SidebarComponent.vue'
+  import listjobcomponent from '@/components/ListjobComponent.vue'
+  // import CandidatejobComponent from '@/components/CandidatejobComponent.vue';
+  
 
   export default {
     name: "PostJobNew",
     components: {
       SidebarComponent: sidebarcomponent,
       // JobComponent: JobComponent,
-      jobcomponentnew,
-      applicantjobcomponent
-
+      // jobcomponentnew,
+      // applicantjobcomponent,
+      listjobcomponent,
+      // CandidatejobComponent
     },
+    props:['edit'],
     data() {
       return {
         editor: ClassicEditor,
         editorData: '',
         editorConfig: {
           // The configuration of the editor.
-
         },
         jobName: "",
         jobSalary: "",
@@ -233,11 +138,12 @@
         jobAddress: "",
         list: [],
         modalOpen: false,
-        userName: ""
+
+        userName: "",
+        hide:''
       };
     },
     methods: {
-
       formatPrice(value) {
         let val = (value / 1).toFixed().replace('.', ',')
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
@@ -254,7 +160,6 @@
           // });
           this.modalOpen = true;
           location.reload(true)
-
         } catch (error) {
           // createToast("please, fill blank form", {
           //   type: "danger"
@@ -272,10 +177,8 @@
         } catch (error) {
           console.log(error);
         }
-
       }
     },
-
     // func tampilin data
     //monted render
     mounted() {
@@ -288,13 +191,8 @@
       //header PT render
       const user = JSON.parse(localStorage.getItem("user-info")).recruiterCompany
       this.userName = user
-
       console.log(this.userName)
     },
-
-
-
-
   };
 </script>
 
@@ -314,7 +212,6 @@
     padding: 20px;
     background-color: #F3F3F3;
   } */
-
   .btn:hover {
     box-shadow: 0 2px 10px rgb(0 0 0 / 0.5);
   }
@@ -344,23 +241,18 @@
   }
 
   /* transition */
-
   .fade-enter-from {
     opacity: 0;
   }
-
   .fade-enter-to {
     opacity: 1;
   }
-
   .fade-enter-active {
     transition: all 2s ease;
   }
-
   .fade-leave-from {
     opacity: 1;
   }
-
   .fade-leave-to {
     opacity: 0;
   }

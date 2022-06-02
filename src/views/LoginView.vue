@@ -73,12 +73,17 @@
         } catch (err) {
           this.err = err.response.data.message
           console.log(err.response.data.message)
+          this.$toast.error(err.response.data.message)
           // createToast(`${err.response.data.message}`, { type: "danger" });
         }
         if (response.status == 200) {
           console.log(response)
           localStorage.setItem("user-info", JSON.stringify(response.data.data.registerDTO));
           this.$router.push('/dashboard')
+          this.$toast.success(`Welcome back! ${response.data.data.registerDTO.recruiterCompany}`, {
+          // optional options Object
+
+      })
           // createToast(`Welcome back!! ${response.data.data.registerDTO.recruiterCompany}`, { type: "success" });
         }
       }

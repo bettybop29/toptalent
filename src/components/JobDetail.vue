@@ -1,381 +1,206 @@
-<template><div>
-  <sidebar-component></sidebar-component>
-  
-  <!-- <h1>{{jobName}}</h1>
-            <h1>{{jobSalary}}</h1>
-            <h1>{{jobPosition}}</h1> -->
-  <!-- <div class="back">
-    <router-link class="link-back" to="/post  job"><i class="bi bi-arrow-left-circle-fill"></i>Post job</router-link>
-  </div> -->
+<template>
+<div>
+  <sidebarcomponent/>
   <div class="main">
-   
-    <button class="btn btn-primary new" onclick="history.back()"><i class="bi bi-chevron-left"></i>Go Back</button>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card mb-3" style="max-width: 1240px;">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img v-if="job.recruiterImage != null" :src="'http://54.255.4.75:9091/resources/'+job.recruiterImage" class="img-fluid rounded-start img-thumbnail"
-                alt="...">
-                  <img v-else src="http://54.255.4.75:9091/resources/meta.png" class="img-fluid rounded-start img-thumbnail"
-                  alt="...">
+  <div class="col-md-11">
+          <div class="candidates p-4 mb-4">
+            <h5 class="fw-bold">Candidate</h5>
+
+            <div class="row justify-content-between mt-4">
+              <div class="col-6 d-flex align-items-center">
+                <h6 class="fw-bold">{{job.jobName}}</h6>
+              </div>
+              
+              <div class="col-6 d-flex justify-content-end align-items-center">
                 
+                <router-link :to="{name: 'jobsdetail', params:{id:job.jobId}}">
+                  <img class="import-icon" src="../assets/icon-postjob/see-all.svg" alt="">
+                </router-link>
+                
+                <button class="ict prm" data-bs-toggle="modal" :data-bs-target="'#exampleModalToggle' + job.jobId" role="button" v-on:click="getDetail(job.jobId)">
+                  <img class="import-icon" src="../assets/icon-postjob/edit.svg" alt="">
+                </button>
+               
+              <div class="modal fade" :id="'exampleModalToggle' + job.jobId" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalToggleLabel">Edit Jobs</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                      <h4 class="card-title1">{{job.jobName}}</h4>
-                      <h6 class="card-title">{{job.jobPosition}} | Rp{{formatPrice(job.jobSalary)}}</h6>
-                      <label class="label mt-3">Description job : </label>
-                      <p class="card-text" v-html="job.jobDesc"></p>
-                      <label class="label">Job Requirement :</label>
-                      <p class="card-text" v-html="job.jobRequirement"></p>
-                      <label class="label">Address :</label>
-                      <p class="card-text">{{job.jobAddress}}</p>
-                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
-                   
-                </p>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">Job Name:</label>
+                  <input type="text" class="form-control" id="" v-model="job.jobName">
+                </div>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">Job Position edit: </label>
+                  <input type="text" class="form-control" id="" v-model="job.jobPosition">
+                </div>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">Job Address: </label>
+                  <input type="text" class="form-control" id="recipient-name" v-model="job.jobAddress">
+                </div>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">Job Requirement: </label>
+                  <!-- <input type="text" class="form-control" id="recipient-name" v-model="edit.jobRequirement"> -->
+                  <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="job.jobRequirement" :config="editorConfig"></ckeditor>
+                </div>
+
+                <div class="mb-3">
+                  <label for="message-text" class="col-form-label">Job Description:</label>
+                  <!-- <textarea class="form-control" id="message-text" v-model="edit.jobDesc" /> -->
+                  <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="job.jobDesc" :config="editorConfig"></ckeditor>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-success" v-on:click="updateJobData(job.jobId)">Update</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+                <button  class="ict dgr" v-on:click="deleteJob(item.jobId)">
+                  <img class="import-icon" src="../assets/icon-postjob/delete.svg" alt="">
+                </button>
+              </div>
+              <div class="col-12">
+                <small class="text-muted">Created on {{job.createdAt}}</small>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="applicantDetail">
+            <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="unreview-tab" data-bs-toggle="tab" data-bs-target="#unreview"
+                  type="button" role="tab" aria-controls="unreview" aria-selected="true">Unreviewed</button>
+              </li>     
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="accept-tab" data-bs-toggle="tab" data-bs-target="#accept" type="button"
+                  role="tab" aria-controls="accept" aria-selected="false">Accepted</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="reject-tab" data-bs-toggle="tab" data-bs-target="#reject" type="button"
+                  role="tab" aria-controls="reject" aria-selected="false">Rejected</button>
+              </li>
+            </ul>
+            <!-- CANDIDATE  -->
+            <div class="tab-content">
+              <div class="tab-pane active" id="unreview" role="tabpanel" aria-labelledby="unreview-tab">
+                <div v-for="item in list" v-bind:key="item.id">
+                  <applicantjobcomponent :item="item" v-if="item.applicationStatus == 'sent'"></applicantjobcomponent>
+                </div>
+              </div>
+              <div class="tab-pane" id="accept" role="tabpanel" aria-labelledby="accept-tab">
+                <div v-for="item in list" v-bind:key="item.id">
+                  <applicantjobcomponent :item="item" v-if="item.applicationStatus == 'accepted'"></applicantjobcomponent>
+                </div>
+              </div>
+              <div class="tab-pane" id="reject" role="tabpanel" aria-labelledby="reject-tab">
+                <div v-for="item in list" v-bind:key="item.id">
+                  <applicantjobcomponent :item="item" v-if="item.applicationStatus == 'rejected'"></applicantjobcomponent>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-md-10">
-        <h2 class="fw-bold mb-4">Applicants</h2>
-        <table class="table table-hover">
-          <thead>
-            <tr class="text-center">
-              <th scope="col">No.</th>
-              <th scope="col">Name</th>
-              <th scope="col">E-mail</th>
-              <th scope="col">Resume</th>
-              <th scope="col">Status</th>
-              <th scope="col">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(item, index) in list" :key="item.id" class="text-center">
-              <th scope="row">{{index +1}}</th>
-              <td>{{item.jobseekerName}}</td>
-              <td>{{item.jobseekerEmail}}</td>
-              <td><button class="btn btn-primary" v-on:click="getResume(item.jobseekerResume)">Download</button></td>
-
-              <td>
-                <p v-if="item.applicationStatus != 'sent'">{{item.applicationStatus}}</p>
-                <p v-else>review</p>
-              </td>
-
-              <td><button v-if="item.applicationStatus == 'sent'" class="btn btn-success"
-                  v-on:click="accepted(item.applicationId)" id="button" name="button">Accept</button>
-                <button v-else disabled class="btn btn-success" v-on:click="accepted(item.applicationId)" id="button"
-                  name="button">Accept</button>
-                <button v-if="item.applicationStatus == 'sent'" class="btn btn-danger"
-                  v-on:click="rejected(item.applicationId)" id="button">Reject</button>
-                <button v-else disabled class="btn btn-danger" v-on:click="rejected(item.applicationId)"
-                  id="button">Reject</button>
-                <router-link class="btn btn-primary" :to="{name:'aplicantdetail', params:{id:item.applicationId}}">view
-                </router-link>
-              </td>
-
-
-            </tr>
-
-          </tbody>
-        </table>
       </div>
-    </div>
-  </div>
-
-    <!-- <table border="1">
-          <tr v-for="item in list" :key="item.id">
-            <td>{{item.jobseekerName}}</td>
-            <td>{{item.jobseekerEmail}}</td>
-            <td>{{item.jobseekerResume}}</td>
-          </tr>
-        </table> -->
-
-
-    <!-- <JlDatatable
-        :url='datatable.url'
-        :columns="datatable.columns"  
-
-        :requestOptions="datatable.requestOptions"
-        :lengthMenu="datatable.lengthMenu"
-        :isLengthMenu="datatable.isLengthMenu"
-        :pageLength="datatable.pageLength"
-        :isSearch="datatable.isSearch"
-        :isSort="datatable.isSort"
-        :sortDt="datatable.sortDt"
-
-        @countPageChanged="onCountPageChanged"
-        @search="onSearch"
-
-        @gettingEntries="onGettingEntries"
-        @entriesFetched="onEntriesFetched"
-
-        @columnClicked="onColumnClicked"
-
-        @prevPaginated="onPaginate"
-        @nextPaginated="onPaginate"
-        @paginated="onPaginate"
-
-        @error="error"
-      /> -->
-</div>
 </template>
 
 <script>
-  // import "mosha-vue-toastify/dist/style.css";
-  // import { createToast } from "mosha-vue-toastify";
-  // import JlDatatable from 'jl-datatable';
-  import sidebarcomponent from '../components/SidebarComponent.vue'
-  import axios from 'axios'
-  
-      var codeHTML = document.getElementsByClassName('code-html')
-
-    for (var i = 0; i < codeHTML.length; i+=1) {
-
-        codeHTML[i].replace('<', '&lt;')
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import axios from 'axios'
+import sidebarcomponent from '@/components/SidebarComponent.vue'
+import applicantjobcomponent from '@/components/ApplicantJobComponent.vue'
+export default {
+  props:['item'],
+  components:{
+    sidebarcomponent,
+    applicantjobcomponent
+  },
+  data(){
+    return{
+      editor: ClassicEditor,
+        editorData: '',
+        editorConfig: {
+         // The configuration of the editor.
+         
+        },
+      job:[],
+      list:[],
+      edit:[]
+      
     }
-
-
-
-  export default {
-    components: {
-      // JlDatatable
-      SidebarComponent: sidebarcomponent
+  },
+  methods:{
+    async getJobDetail(){
+      await axios.get(`http://54.255.4.75:9091/api/v1/job/` + this.$route.params.id)
+      .then((data)=>{
+        this.job = data.data.data
+        console.log('jobdetail')
+        console.log(this.job)
+      })
     },
-    props: ['id'],
-    data() {
-      return {
-        // datatable: {
-        //   url: 'https://www.jhonpride.ybdweb.com/api/users',
-        //   requestOptions: {
-        //     method: 'GET',
-        //     headers: {
-        //       "Accept": "application/json",                
-        //     }
-        //   },
-        //   lengthMenu: [10, 15, 20, 50, 120],
-        //   pageLength: 10,
-        //   isSearch: true,
-        //   isLengthMenu: true,
-        //   isSort: true,
-        //   sortDt:{
-        //     sortBy: 'name',
-        //     sort: 'ASC'
-        //   },
-        //   columns: [       
-        //       {
-        //       title: 'ID',
-        //       key: 'id',
-        //       isSort: true,            
-        //       width: '5%'
-        //     },   
-        //     {
-        //       title: 'Name',
-        //       key: 'name',
-        //       isSort: true,
-        //       isSearch: true,
-        //       // width: '10%'
-        //     },
-        //     {
-        //       title: 'Last Name',
-        //       key: 'last_name',
-        //       isSort: false,
-        //       isSearch: false,
-        //       // width: '10%'
-        //     },
-        //     {
-        //       title: 'Email',
-        //       key: 'email',
-        //       isSort: false,
-        //       isSearch: true,
-        //       // width: '10%'
-        //     },
-        //     {
-        //       title: 'Address',
-        //       key: 'address',                        
-        //     },
-        //     {
-        //       title: 'Cell Phone',
-        //       key: 'cell_phone',  
-        //       width: '10%'                      
-        //     },
-        //     {
-        //       title: 'Actions',            
-        //       key: 'id',
-        //       isAction: true,
-
-        //     }
-        //   ]
-        // },
-        index: 1,
-        job: [],
-        list: []
-      }
+    async getCandidate(){
+      await axios.get(`http://54.255.4.75:9091/api/v1/application/applicants/` + this.$route.params.id)
+      .then((data)=>{
+        this.list = data.data
+        console.log('candidate')
+        console.log(this.list)
+      })
     },
-
-    methods: {
-      // onCountPageChanged(countPage){
-      //   alert(countPage);
-      // },
-      // onSearch(search){
-      //   alert(search);
-      // },
-      // onGettingEntries(request){
-      //   console.log(request);
-      // },
-      // onEntriesFetched(fetched){
-      //   console.log(fetched.request);
-      //   console.log(fetched.data);
-      // },
-      // onColumnClicked(data){
-      //   console.log(data);
-      // },
-      // onPaginate(url){
-      //   console.log(url);
-      // },
-      // error(err){
-      //   console.log(err);
-      // },
-          
-      formatPrice(value) {
-        let val = (value / 1).toFixed().replace('.', ',')
-        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    async deleteJob(id) {
+        try {
+          let result = await axios.put(`http://54.255.4.75:9091/api/v1/job/delete/` + id);
+          console.warn(result)
+          //  createToast("Job Deleted!", { type: "danger" });
+          location.reload(true)
+        } catch {
+          console.warn
+        }
       },
-      // escapeHtml(text) {
-      //   var map = {
-      //     '&': '&amp;',
-      //     '<': '&lt;',
-      //     '>': '&gt;',
-      //     '"': '&quot;',
-      //     '<p>': '&nbsp',
-      //     '</p>': '&nbsp',
-      //     "'": '&#039;'
-      //   };
-        
-      //   return text.replace(/[&<>"']/g, function(m) { return map[m]; });
-      // },
-      async fetchData() {
-        // const url = this.apiUrl + this.id
-        await axios.get(`http://54.255.4.75:9091/api/v1/job/` + this.$route.params.id)
-          .then((data) => {
-            this.job = data.data.data
-           console.log(this.job)
-          })
+      async updateJobData(id) {
+        try {
+          await axios.patch(
+            `http://54.255.4.75:9091/api/v1/job/${id}?jobName=${this.edit.jobName}&jobStatus=active&jobSalary=${this.edit.jobSalary}&jobPosition=${this.edit.jobPosition}&jobAddress=${this.edit.jobAddress}&jobDesc=${this.edit.jobDesc}&jobRequirement=${this.edit.jobRequirement}`
+          )
+          // createToast("Job Updated", { type: "success" });
+          location.reload(true)
+        } catch {
+          // console.log(warn)
+        }
       },
-      async getResume(jobseekerResume) {
-        await axios({
-          url: `http://54.255.4.75:9091/resources/${jobseekerResume}`,
-          methods: 'GET',
-          responseType: 'blob',
-        }).then((res) => {
-          var FILE = window.URL.createObjectURL(new Blob([res.data]));
-          var docUrl = document.createElement('x');
-          docUrl.href = FILE;
-          docUrl.setAttribute('download', 'resume.pdf');
-          document.body.appendChild(docUrl);
-          docUrl.click();
-
-        })
-      },
-      async accepted(id) {
-        await axios.post(`http://54.255.4.75:9091/api/v1/application/status/accepted/?applicationId=${id}`)
-        location.reload(true)
+      async getDetail(id){
+        try{
         console.log(id)
-      },
-      async rejected(id) {
-        await axios.post(`http://54.255.4.75:9091/api/v1/application/status/rejected/?applicationId=${id}`)
-        location.reload(true)
-        console.log(id)
-      }
-
-    },
-    mounted() {
-      this.fetchData()
-
-      axios.get(`http://54.255.4.75:9091/api/v1/application/applicants/` + this.$route.params.id)
-        .then((resp) => {
-          this.list = resp.data
+        await axios.get(`http://54.255.4.75:9091/api/v1/job/${id}`)
+        .then((data)=>{
+          this.edit=data.data.data
+          console.log(data.data)
         })
-    }
+        } catch{
+          console.log(Error)
+        }
+      },
+      
+      
+  },
+  mounted(){
+    this.getDetail();
+    this.getJobDetail();
+    this.getCandidate();
   }
+}
 </script>
 
 <style scoped>
   .main{
-    margin-top: 10px;
-    margin-left: 18%;
+    margin-left: 280px;
   }
-  .container {
-    background: #f3f3f3;
-    background-attachment: fixed;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-    padding: 20px;
-    border-radius: 20px;
-    margin-left: 16%;
-  }
-
-  .card {
-    padding: 10px;
-    border-radius: 20px;
-  }
-
-  .btn {
-    margin-left: 10px;
-  }
-
-  i {
-    margin-right: 10px;
-  }
-
-  .card-title1 {
-    font-weight: bold;
-  }
-
-  .label {
-    font-weight: 600;
-  }
-
-  .table {
-    background-color: white;
-    padding: 20px;
-  }
-
-  .resume {
-    padding-left: 35px;
-  }
-
-  .action {
-    padding-left: 70px;
-  }
-
-  .back {
-    padding: 20px;
-    margin: 0;
-  }
-
-  .link-back {
-    text-decoration: none;
-    color: rgb(33, 33, 33);
-  }
-
-  .link-back:hover {
-    text-decoration: underline;
-  }
-  .new{
-    background: transparent;
-    margin: 10px;
-    border: none;
-    color: black;
-    
-  }
-  .new:hover{
-    transition: color 1s;
-    background: transparent;
-    color: red;
-    
-  }
-  
-  
 </style>
