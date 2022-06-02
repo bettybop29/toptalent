@@ -2,7 +2,7 @@
   <div class="main">
 
     <sidebar-component></sidebar-component>
-
+    
     <div class="container" style="padding: 2rem;">
       <p class="head-title">Company Profile</p>
       <div class="row">

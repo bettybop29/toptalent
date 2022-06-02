@@ -3,6 +3,10 @@
       <sidebarcomponent></sidebarcomponent>
 
       <div class="container p-4">
+          <button class="btn" onclick="javascript:window.history.back();">
+              <font-awesome-icon icon="fa-solid fa-chevron-left" />
+              go back
+          </button>
           <div class="row justify-content-between sticky-top bg-white" style="border-bottom: 5px solid whitesmoke;">
               
             <div class="col-1">
@@ -37,13 +41,13 @@
                 <h4 class="jobabout">About the company</h4>
                 <p class="jobtext mb-4">{{recruiter.recruiterDesc}}</p>
                 <h5 class="jobabout">Staff</h5>
-                <p class="jobtext">{{recruiter.recruiterStaff}}</p>
+                <p class="jobtext mb-4">{{recruiter.recruiterStaff}}</p>
                 <h5 class="jobabout">Industry</h5>
-                <p class="jobtext">{{recruiter.recruiterIndustry}}</p>
+                <p class="jobtext mb-4">{{recruiter.recruiterIndustry}}</p>
                 <h5 class="jobabout">Culture</h5>
-                <p class="jobtext" v-html="recruiter.recruiterCulture"></p>
+                <p class="jobtext mb-4" v-html="recruiter.recruiterCulture"></p>
                 <h5 class="jobabout">Benefit</h5>
-                <p class="jobtext" v-html="recruiter.recruiterBenefit"></p>
+                <p class="jobtext mb-4" v-html="recruiter.recruiterBenefit"></p>
                 <h5 class="jobabout">Address</h5>
                 <p class="jobtext mb-3">{{recruiter.recruiterAddress}}</p>
                 

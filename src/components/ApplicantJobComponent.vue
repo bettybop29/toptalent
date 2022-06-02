@@ -33,7 +33,8 @@
         </div>
     </div>
     <div class="col-md-3">
-        <span class="text-muted" style="font-size: 12px">Applied on DD-MM-YYYY</span>
+        <!-- <span class="text-muted" style="font-size: 12px">Applied on DD-2018-08-03 15:47:00-YYYY</span> -->
+        <time-ago :locale="locale" refresh datetime="2022-05-30 15:47:00"></time-ago> 
     </div>
     <hr class="mt-4" />
 </div>
@@ -41,15 +42,15 @@
 
 <script>
   import axios from 'axios'
-  // import "mosha-vue-toastify/dist/style.css";
-  // import { createToast } from "mosha-vue-toastify";
-  // import { warn } from '@vue/runtime-core';
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+  import "vue2-timeago/dist/vue2-timeago.css";
+  import { TimeAgo } from "vue2-timeago";
   export default {
     name: "JobComponent",
     props: ['item'],
     data() {
       return {
+        locale:'en',  
         editor: ClassicEditor,
         editorData: '',
         editorConfig: {
@@ -57,6 +58,9 @@
         },
         edit: []
       }
+    },
+    components:{
+      TimeAgo
     },
     methods: {
       async getLink(jobseekerPortofolio) {

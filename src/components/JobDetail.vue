@@ -3,7 +3,12 @@
   <sidebarcomponent/>
   <div class="main">
   <div class="col-md-11">
+    <button class="btn" onclick="javascript:window.history.back();">
+              <font-awesome-icon icon="fa-solid fa-chevron-left" />
+              go back
+          </button>
           <div class="candidates p-4 mb-4">
+            
             <h5 class="fw-bold">Candidate</h5>
 
             <div class="row justify-content-between mt-4">
@@ -118,11 +123,14 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import axios from 'axios'
 import sidebarcomponent from '@/components/SidebarComponent.vue'
 import applicantjobcomponent from '@/components/ApplicantJobComponent.vue'
+
+
 export default {
   props:['item'],
   components:{
     sidebarcomponent,
     applicantjobcomponent
+    
   },
   data(){
     return{
