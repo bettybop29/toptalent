@@ -6,10 +6,10 @@
          <img v-else src="http://54.255.4.75:9091/resources/r5jr7e3qf8f5uhr.png" class="img-thumbnail" alt="..." width="100px">
     </div>
     <div class="col-md-7">
-
+      <router-link :to="'/applicant-detail/'+ item.jobseekerId">
           <h6 class="fw-bold">{{item.jobseekerName}}</h6>
-        
-        <p>{{item.jobseekerProfession}}</p>
+      </router-link>  
+        <p>{{item.jobseekerProfession}}</p>   
         <p>{{item.jobseekerAddress}}</p>
     </div>
     <div class="col-md-3">

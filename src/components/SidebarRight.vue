@@ -37,7 +37,11 @@
             </tbody>
           </table>
           
-          <li><button class="btn-resume act" v-on:click="getResume(view.jobseekerResume)">Resume <font-awesome-icon :icon="['fas','download']"/></button></li>
+          <!-- <li><button class="btn-resume act" v-on:click="getResume(view.jobseekerResume)">Resume <font-awesome-icon :icon="['fas','download']"/></button></li> -->
+            <li>
+              <button v-if="view.jobseekerResume == null" v-on:click="ToastResume" class="btn-resume act lnk text-muted">No data resume <font-awesome-icon :icon="['fas','download']"/></button>
+              <a v-else v-bind:href="'http://54.255.4.75:9091/resources/' + view.jobseekerResume"  target="_blank" download class="btn-resume act lnk">Resume <font-awesome-icon :icon="['fas','download']"/></a>
+            </li>
           <li>
             <button v-if="view.jobseekerPortfolio == ''" class="btn-portofolio act text-muted" v-on:click="Toast">No Portofolio<font-awesome-icon :icon="['fas','link']"/></button>
             <button v-else class="btn-portofolio act" v-on:click="getLink(view.jobseekerPortfolio)">Portofolio <font-awesome-icon :icon="['fas','link']"/></button>
@@ -98,6 +102,9 @@
 </template>
 
 <script>
+
+
+
 import axios from "axios";
 // import "mosha-vue-toastify/dist/style.css";
 // import { createToast } from "mosha-vue-toastify";
@@ -134,12 +141,20 @@ export default {
 
         })
       },
+      
       Toast(){
         this.$toast.error(`The applicant doesn't have any portfolio`, {
           // optional options Object
            position: 'top-right',
            pauseOnHover: true
-      })
+        })
+      },
+      ToastResume(){
+        this.$toast.error(`The applicant doesn't have any resume`, {
+          // optional options Object
+           position: 'top-right',
+           pauseOnHover: true
+        })
       }
       
   }
@@ -147,6 +162,10 @@ export default {
 </script>
 
 <style scoped>
+.lnk{
+  text-decoration: none;
+  color: black;
+}
 .fw-normal{
   font-weight: 500;
 }
