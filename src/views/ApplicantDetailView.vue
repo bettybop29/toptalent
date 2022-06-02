@@ -11,18 +11,37 @@
                     </div>
                     <div class="col-md-7 middle-item">
                         <h1>{{applicant.jobseekerName}}</h1>
-                        <h2 class="mt-3">{{applicant.jobseekerProfession}}</h2>
-                        <h3>Digimaster</h3>
+                        <div>
+                        <h2 class="mt-3" v-if="applicant.jobseekerProfession != null">{{applicant.jobseekerProfession}}</h2>
+                        <h2 v-else></h2>
+                        </div>
+
+                        <div class="mt-2">
+                            <p v-if="applicant.workEndYear == 0 || applicant.workStartYear == 0 || applicant.jobsekerCompany == null"></p>
+                            
+                            <p v-else class="jobseeker-company">{{applicant.jobsekerCompany}} ({{applicant.workStartYear}} - {{applicant.workEndYear}})</p>
+                        </div>
                         <div class="detail-profile">
                             <div class="row">
                                 <div class="col-md-6 left-items ">
-                                    <p><font-awesome-icon icon="fa-solid fa-location-dot" class="detail-profile-icon" /> {{applicant.jobseekerAddress}}</p>
+                                    <div>
+                                        <p v-if="applicant.jobseekerAddress == null || applicant.jobseekerAddress == ''"><font-awesome-icon icon="fa-solid fa-location-dot" class="detail-profile-icon" /> -</p>
+                                        <p v-else><font-awesome-icon icon="fa-solid fa-location-dot" class="detail-profile-icon" /> {{applicant.jobseekerAddress}}</p>
+                                    </div>
+
                                     <p v-if="applicant.jobseekerPhone != null"><font-awesome-icon icon="fa-solid fa-phone" class="detail-profile-icon"/> {{applicant.jobseekerPhone}}</p>
                                     <p v-if="applicant.jobseekerPhone == null"><font-awesome-icon icon="fa-solid fa-phone" class="detail-profile-icon"/> -</p>
                                 </div>
                                 <div class="col-md-5 right-items">
-                                    <p><font-awesome-icon icon="fa-regular fa-circle" class="detail-profile-icon"/> {{applicant.jobseekerProfession}}</p>
-                                    <p><font-awesome-icon icon="fa-regular fa-envelope" class="detail-profile-icon"/> {{applicant.jobseekerEmail}}</p>
+                                    <div>
+                                        <p v-if="applicant.jobseekerProfession == null || applicant.jobseekerProfession == ''"><font-awesome-icon icon="fa-regular fa-circle" class="detail-profile-icon"/> -</p>
+                                        <p v-else><font-awesome-icon icon="fa-regular fa-circle" class="detail-profile-icon"/> {{applicant.jobseekerProfession}}</p>
+                                    </div>
+
+                                    <div>
+                                        <p v-if="applicant.jobseekerEmail == null || applicant.jobseekerEmail == ''"><font-awesome-icon icon="fa-regular fa-envelope" class="detail-profile-icon"/> -</p>
+                                        <p v-else><font-awesome-icon icon="fa-regular fa-envelope" class="detail-profile-icon"/> {{applicant.jobseekerEmail}}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -36,44 +55,46 @@
                 <div class="row">
                     <div class="col-md-5 content-left">
                         <h3 class="mb-4">Background</h3>
-                        <p><font-awesome-icon icon="fa-solid fa-graduation-cap " class="icon-background" /> Bachelor of Engineering</p>
-                        <p><font-awesome-icon icon="fa-solid fa-cake-candles" class="icon-background"/> {{applicant.jobseekerDateOfBirth}}</p>
-                        <a href="https://github.com/" target="_blank"><font-awesome-icon icon="fa-solid fa-file" class="icon-background"/> github.com</a>
-                        <a href="https://www.instagram.com/" target="_blank"><font-awesome-icon icon="fa-brands fa-instagram" class="icon-background"/> instagram.com/janedoe</a>
-                        <a href="https://www.linkedin.com/" target="_blank"><font-awesome-icon icon="fa-brands fa-linkedin" class="icon-background"/> linked.in/janedoe</a>
+                        <div>
+                        <p v-if="applicant.jobseekerEducation != null"><font-awesome-icon icon="fa-solid fa-graduation-cap " class="icon-background" /> {{applicant.jobseekerEducation}}</p>
+                        <p v-else></p>
+                        </div>
+
+                        <div>
+                        <p v-if="applicant.jobseekerDateOfBirth != null"><font-awesome-icon icon="fa-solid fa-cake-candles" class="icon-background"/> {{applicant.jobseekerDateOfBirth}}</p>
+                        <p v-else></p>
+                        </div>
+                        
+                        <div>
+                            <a href="#" v-if="applicant.jobseekerPortfolio == null || applicant.jobseekerPortfolio == '' "></a>
+                            <a v-bind:href="applicant.jobseekerPortfolio" target="_blank" v-else><font-awesome-icon icon="fa-solid fa-file" class="icon-background"/> Portofolio</a>
+                        </div>
+
+                        <div>
+                            <a href="#" v-if="applicant.jobseekerMedsos == null || applicant.jobseekerMedsos == '' "></a>
+                            <a v-bind:href="applicant.jobseekerMedsos" target="_blank" v-else><font-awesome-icon icon="fa-solid fa-user-group" class="icon-background"/> LinkedIn</a>
+                        </div>
                     </div>
                     <div class="col-md-7">
                         <h3>Skills</h3>
-                        <div class="box-skills d-flex flex-wrap">
-                            <span class="badge text-dark">Markerting</span>
-                            <span class="badge text-dark">Digital Marketing</span>
-                            <span class="badge text-dark">Markerting Communications</span>
-                            <span class="badge text-dark">Event Management</span>
-                            <span class="badge text-dark">Event Management</span>
-                            <span class="badge text-dark">Event Management</span>
-                            <span class="badge text-dark">Event Management</span>
-                            <span class="badge text-dark">Event Management</span>
-                            <span class="badge text-dark">Event Management</span>
-                            <span class="badge text-dark">Event Management</span>
-                            <span class="badge text-dark">Event Management</span>
+                        <div class="box-skills d-flex flex-wrap" >
+                            <span class="badge text-dark" :key="item.id" v-for="item in splitStringToArray(applicant.jobseekerSkill)">{{item}}</span>
                         </div>
                     </div>
                 </div>
-
-                <section class="section-about">
-                <h3>About</h3>
+                <section class="section-about" >
+                    <div>
+                        <h3 v-if="applicant.jobseekerAbout == '' || applicant.jobseekerAbout == null " ></h3>
+                        <h3 v-else>About</h3>
+                
+                </div>
                 <div class="box-about">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae dictum felis. Nulla 
-                        dolor dolor, pellentesque non sagittis quis, scelerisque aliquet massa. Nunc a arcu neque. 
-                        Aliquam id gravida neque. 
-
-                        Etiam faucibus erat arcu, ac ornare mauris vehicula at. Nunc eros 
-                        mauris, volutpat suscipit lectus a, iaculis rutrum ex. Donec sed dui ut orci pellentesque iaculis 
-                        vitae ac purus. Suspendisse potenti. 
+                    <p >
+                        {{applicant.jobseekerAbout}}
                     </p>
                 </div>
             </section>
+            
             </section>
             
         </div>
@@ -91,33 +112,55 @@ export default{
     },
     data(){
         return {
-            applicant: ""
+            applicant: "",
+            skill: "",
+            
         }
     },
-    // methods: {
-    //     // get data form api
-    //      async fetchData(){
-    //         //  await axios.get(`http://54.255.4.75:9091/api/v1/application/applicant?applicationId=`+this.$route.params.id)
-    //          await axios.get(`http://54.255.4.75:9091/api/v1/application/applicant?applicationId=141`)
-    //          .then((data) => {
-    //              this.applicant = data.data
-    //              console.log(data.data)
-    //          })
+    methods: {
+        // get data form api
+         async fetchData(){
+            try{
+                await axios.get(`http://54.255.4.75:9091/api/v1/jobseeker/user/ ` + this.$route.params.id)
+                // createToast("Job Updated", { type: "success" });
+                .then((data) => {
+                    this.applicant = data.data.data
+                    console.log(data.data.data)
+                })
+                } catch {
+                console.log(Error);
+                }
              
-    //      }
-    // },
+         },
+         async getStringSkill(){
+            try{
+                await axios.get(`http://54.255.4.75:9091/api/v1/jobseeker/user/ ` + this.$route.params.id)
+                .then((data) => {
+                    this.skill = data.data.data.jobseekerSkill
+                    console.log(this.skill);
+                })
+                } catch {
+                console.log(Error);
+                }
+             
+         },
+         splitStringToArray(sentences){
+            const words = sentences.split(';');
+            console.log(words);
+            return words;
+            
+        }
+         
+    },
     mounted(){
-        // this.fetchData();
+        this.fetchData();
+        this.getStringSkill();
+        
          
-            //  await axios.get(`http://54.255.4.75:9091/api/v1/application/applicant?applicationId=`+this.$route.params.id)
-              axios.get(`http://54.255.4.75:9091/api/v1/application/applicant?applicationId=`+this.$route.params.id)
-             .then((data) => {
-                 this.applicant = data.data.data
-                 console.log(data.data.data)
-             })
-             
+                         
          
-    }
+    },
+    
 }
 </script>
 
@@ -234,6 +277,10 @@ h3{
 
 .box-about p{
     font-size: 20px;
+}
+
+.jobseeker-company{
+    font-size: 12px !important;
 }
 
 /*css3 design scrollbar*/
