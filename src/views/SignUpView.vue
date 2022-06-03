@@ -81,7 +81,11 @@
           required
           
         />
-        <button type="submit" class="btn btn-primary btn-signup" :disabled="searchDisabled">Create Account</button>
+        <button v-if="searchDisabled == true"  class="btn btn-primary" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Loading...
+              </button>
+        <button v-else type="submit" class="btn btn-primary btn-signup" :disabled="searchDisabled">Create Account</button>
           <!-- <input type="submit" class="btn btn-primary btn-signup" :disabled="searchDisabled" value="Create Account"> -->
         <p class="sign-up mt-4">Already have an account? 
           <router-link class="btn-login" to="/login">Log In</router-link>
@@ -135,6 +139,11 @@ export default {
         // console.log(this.searchDisabled)
         // console.log(err.response.data.errorCode)
         // createToast(`${err.response.data.message}`, { type: "danger" });
+        this.$toast.error(`${err.response.data.message}`, {
+          // optional options Object
+           position: 'top-right',
+           pauseOnHover: true
+      })
 
       }
       if(response.status == 200){

@@ -30,7 +30,8 @@
       <small class="text-muted">Rp{{ formatPrice(item.jobSalary)}},-</small>
     </div>
     <div class="col-6 d-flex justify-content-end">
-      <small class="text-muted">x day ago</small>
+      <!-- <small class="text-muted">3 day ago</small> -->{{time}}
+      <small><time-ago  :datetime="item.createdAt" refresh long></time-ago></small>
     </div>
     <div class="col-6">
       <router-link v-if="resp == '0'" :to="{name:'jobdetail', params:{id:item.jobId}}" class="text-muted text-title align-items-center primary text-decoration-none fs-6">{{resp}}
@@ -109,8 +110,13 @@
 <script>
   import axios from 'axios'
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+  import { TimeAgo } from 'vue2-timeago'
+ 
 
   export default {
+    components:{
+      TimeAgo
+    },
     name: "JobComponent",
     props: ['item', 'id', ],
     data() {
@@ -121,10 +127,12 @@
           // The configuration of the editor.
         },
         edit: [],
-        resp:''
+        resp:'',
+        // locale: "en"
       }
     },
     methods: {
+      
       async countTotalAplicant(){
         await axios.get(`http://54.255.4.75:9091/api/v1/application/count-applicants/${this.item.jobId}`)
         .then((data)=>{
