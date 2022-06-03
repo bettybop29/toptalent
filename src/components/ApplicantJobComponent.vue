@@ -82,21 +82,23 @@
       async getLink(jobseekerPortofolio) {
         window.open(`https://${jobseekerPortofolio}`);
       },
-      // async getResume(jobseekerResume){
-      //    await axios({
-      //     url: `http://54.255.4.75:9091/resources/${jobseekerResume}`,
-      //     methods: 'GET',
-      //     responseType: 'blob',
-      //   }).then((res) => {
-      //     var FILE = window.URL.createObjectURL(new Blob([res.data]));
-      //     var docUrl = document.createElement('x');
-      //     docUrl.href = FILE;
-      //     docUrl.setAttribute('download', 'resume.pdf');
-      //     document.body.appendChild(docUrl);
-      //     docUrl.click();
+      async getResume(jobseekerResume){
+        window.open(`http://54.255.4.75:9091/resources/${jobseekerResume}`, '_blank');
 
-      //   })
-      // },
+        //  await axios({
+        //   url: `http://54.255.4.75:9091/resources/${jobseekerResume}`,
+        //   methods: 'GET',
+        //   responseType: 'blob',
+        // }).then((res) => {
+        //   var FILE = window.URL.createObjectURL(new Blob([res.data]));
+        //   var docUrl = document.createElement('x');
+        //   docUrl.href = FILE;
+        //   docUrl.setAttribute('download', 'resume.pdf');
+        //   document.body.appendChild(docUrl);
+        //   docUrl.click();
+
+        // })
+      },
       formatPrice(value) {
         let val = (value / 1).toFixed().replace('.', ',')
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
