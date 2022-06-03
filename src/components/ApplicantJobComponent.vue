@@ -1,16 +1,18 @@
 <template>
 
-<div class="row m-1 pt-4 px-3 animate__animated animate__fadeIn">
+  <div class="row m-1 pt-4 px-3 animate__animated animate__fadeIn">
     <div class="col-md-2">
-        <img v-if="item.jobseekerImage != null" :src="'http://54.255.4.75:9091/resources/'+ item.jobseekerImage" class="img-thumbnail" alt="..." width="100px" style="width:150px; height:150px;">
-         <img v-else src="http://54.255.4.75:9091/resources/r5jr7e3qf8f5uhr.png" class="img-thumbnail" alt="..." width="100px" style="width:150px; height:150px;">
+      <img v-if="item.jobseekerImage != null" :src="'http://54.255.4.75:9091/resources/'+ item.jobseekerImage"
+        class="img-thumbnail" alt="..." width="100px" style="width:150px; height:150px;">
+      <img v-else src="http://54.255.4.75:9091/resources/r5jr7e3qf8f5uhr.png" class="img-thumbnail" alt="..."
+        width="100px" style="width:150px; height:150px;">
     </div>
     <div class="col-md-7">
       <router-link class="txt" :to="'/applicant-detail/'+ item.jobseekerId">
-          <h6 class="fw-bold">{{item.jobseekerName}}</h6>
-      </router-link>  
-        <p>{{item.jobseekerProfession}}</p>   
-        <p>{{item.jobseekerAddress}}</p>
+        <h6 class="fw-bold">{{item.jobseekerName}}</h6>
+      </router-link>
+      <p>{{item.jobseekerProfession}}</p>
+      <p>{{item.jobseekerAddress}}</p>
     </div>
     <div class="col-md-3">
       <button class="btn" v-if="item.jobseekerStatus == 'sent'">
@@ -20,7 +22,7 @@
         <img class="pt-4" src="../assets/icon-postjob/acc-applicant.svg" alt="">
       </button>
 
-      <button class="btn" v-if="item.jobseekerStatus == 'sent'">  
+      <button class="btn" v-if="item.jobseekerStatus == 'sent'">
         <img class="pt-4 ms-5" src="../assets/icon-postjob/cancel-applicant.svg" alt="">
       </button>
       <button v-else class="btn" v-onclick="rejApplicant(item.applicationId)">
@@ -30,32 +32,34 @@
     <div class="col-md-2">
     </div>
     <div class="col-md-7">
-        <div class="d-flex">
-          <a v-bind:href="'http://54.255.4.75:9091/resources/' + item.jobseekerResume" class="btn ict" download>
+      <div class="d-flex">
+          <button class="btn ict" v-on:click="getResume(item.jobseekerResume)">
             <font-awesome-icon class=" mt-1" icon="fa-solid fa-file-lines"/> View CV
-          </a>
-          <button class="btn ict" v-on:click="getLink(item.jobseekerPortfolio)">
-            <font-awesome-icon class="ms-3 me-2 mt-1" icon="fa-solid fa-link" /> Portofolio
-          </button>            
-        </div>
+          </button>
+        <button class="btn ict" v-on:click="getLink(item.jobseekerPortfolio)">
+          <font-awesome-icon class="ms-3 me-2 mt-1" icon="fa-solid fa-link" /> Portofolio
+        </button>
+      </div>
     </div>
     <div class="col-md-3">
-        <!-- <span class="text-muted" style="font-size: 12px">Applied on DD-MM-YYYY</span> -->
-        <time-ago  :datetime="item.createdAt" refresh long></time-ago>
+      <!-- <span class="text-muted" style="font-size: 12px">Applied on DD-MM-YYYY</span> -->
+      <time-ago :datetime="item.createdAt" refresh long></time-ago>
     </div>
     <hr class="mt-4" />
-</div>
+  </div>
 </template>
 
 <script>
   import axios from 'axios'
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-  import { TimeAgo } from 'vue2-timeago'
+  import {
+    TimeAgo
+  } from 'vue2-timeago'
 
   export default {
-    components:{
+    components: {
       TimeAgo
-    },  
+    },
     name: "JobComponent",
     props: ['item'],
     data() {
@@ -69,20 +73,20 @@
       }
     },
     methods: {
-      async rejApplicant(id){
+      async rejApplicant(id) {
         await axios.post(`http://54.255.4.75:9091/api/v1/application/status/rejected/?applicationId=${id}`)
         //  createToast(`Reject`, { type: "danger" });
         // location.reload(true)
       },
-     async accApplicant(id){
-       await axios.post(`http://54.255.4.75:9091/api/v1/application/status/accepted/?applicationId=${id}`)
+      async accApplicant(id) {
+        await axios.post(`http://54.255.4.75:9091/api/v1/application/status/accepted/?applicationId=${id}`)
         // createToast(`Accepted`, { type: "success" });
         // location.reload(true)
       },
       async getLink(jobseekerPortofolio) {
         window.open(`https://${jobseekerPortofolio}`);
       },
-      async getResume(jobseekerResume){
+      async getResume(jobseekerResume) {
         window.open(`http://54.255.4.75:9091/resources/${jobseekerResume}`, '_blank');
 
         //  await axios({
@@ -162,9 +166,9 @@
           console.warn
         }
       },
-      
-      
-      
+
+
+
     },
     mounted() {
       this.getDetail();
@@ -174,20 +178,23 @@
 </script>
 
 <style scope>
-.txt{
-  text-decoration: none;
-}
-.link-appl{
-  text-decoration: none;
-}
-.ict{
-  color:blue ;
-}
-.ict:hover{
-  transition: color 0.5s;
-  color: rgb(115, 115, 255);
-  text-decoration: underline;
-}
+  .txt {
+    text-decoration: none;
+  }
+
+  .link-appl {
+    text-decoration: none;
+  }
+
+  .ict {
+    color: blue;
+  }
+
+  .ict:hover {
+    transition: color 0.5s;
+    color: rgb(115, 115, 255);
+    text-decoration: underline;
+  }
 
   .bdge {
     background: lightblue;
@@ -197,7 +204,7 @@
     padding: 3px;
     height: fit-content;
   }
-  
+
   .text-title {
     display: flex;
     margin-top: 21px;
