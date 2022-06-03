@@ -13,19 +13,22 @@
         <p>{{item.jobseekerAddress}}</p>
     </div>
     <div class="col-md-3">
-      <button class="btn" v-if="item.jobseekerStatus == 'sent'">
+
+      <button v-if="item.applicationStatus != 'sent'" class="btn" v-on:click="revApplicant(item.applicationId)">
         <img class="pt-4" src="../assets/icon-postjob/view-applicant.svg" alt="">
       </button>
-      <button v-else class="btn" v-on:click="accApplicant(item.applicationId)">
+       <button v-else class="btn" v-on:click="accApplicant(item.applicationId)">
         <img class="pt-4" src="../assets/icon-postjob/acc-applicant.svg" alt="">
       </button>
-
-      <button class="btn" v-if="item.jobseekerStatus == 'sent'">  
-        <img class="pt-4 ms-5" src="../assets/icon-postjob/cancel-applicant.svg" alt="">
+      
+      
+      <button v-if="item.applicationStatus != 'sent'" class="btn">  
+        <img class="pt-4 ms-5" src="../assets/icon-postjob/cancel-applicant.svg" alt="" v-on:click="rejApplicant(item.applicationId)">
       </button>
-      <button v-else class="btn" v-onclick="rejApplicant(item.applicationId)">
-        <img class="pt-4" src="../assets/icon-postjob/rej-applicant.svg" alt="">
+      <button v-else class="btn">  
+        <img class="pt-4 ms-5" src="../assets/icon-postjob/cancel-applicant.svg" alt="" v-on:click="rejApplicant(item.applicationId)">
       </button>
+     
     </div>
     <div class="col-md-2">
     </div>
@@ -69,34 +72,24 @@
       }
     },
     methods: {
-      async rejApplicant(id){
-        await axios.post(`http://54.255.4.75:9091/api/v1/application/status/rejected/?applicationId=${id}`)
-        //  createToast(`Reject`, { type: "danger" });
-        // location.reload(true)
+      async revApplicant(applicationId){
+        await axios.post(`http://54.255.4.75:9091/api/v1/application/status/sent/?applicationId=${applicationId}`)
+        this.$toast.success(`Job updated !`)
+        location.reload(true)
       },
-     async accApplicant(id){
-       await axios.post(`http://54.255.4.75:9091/api/v1/application/status/accepted/?applicationId=${id}`)
-        // createToast(`Accepted`, { type: "success" });
-        // location.reload(true)
+      async rejApplicant(applicationId){
+        await axios.post(`http://54.255.4.75:9091/api/v1/application/status/rejected/?applicationId=${applicationId}`)
+        this.$toast.success(`Job updated !`)
+        location.reload(true)
+      },
+      async accApplicant(applicationId){
+       await axios.post(`http://54.255.4.75:9091/api/v1/application/status/accepted/?applicationId=${applicationId}`)
+       this.$toast.success(`Job updated !`)
+       location.reload(true)
       },
       async getLink(jobseekerPortofolio) {
         window.open(`https://${jobseekerPortofolio}`);
       },
-      // async getResume(jobseekerResume){
-      //    await axios({
-      //     url: `http://54.255.4.75:9091/resources/${jobseekerResume}`,
-      //     methods: 'GET',
-      //     responseType: 'blob',
-      //   }).then((res) => {
-      //     var FILE = window.URL.createObjectURL(new Blob([res.data]));
-      //     var docUrl = document.createElement('x');
-      //     docUrl.href = FILE;
-      //     docUrl.setAttribute('download', 'resume.pdf');
-      //     document.body.appendChild(docUrl);
-      //     docUrl.click();
-
-      //   })
-      // },
       formatPrice(value) {
         let val = (value / 1).toFixed().replace('.', ',')
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
