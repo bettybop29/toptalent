@@ -64,7 +64,7 @@
                     <div class="select-button">
                       <button type="button" class="btn btn-primary pop" v-on:click="accepted(view.applicationId)">
                         <font-awesome-icon class="icn" :icon="['fas','check']"/>
-                        Yes, accepted
+                        Yes, accept
                       </button>
                       <button type="button" class="btn btn-danger pop" data-bs-dismiss="modal">
                         <font-awesome-icon class="icn" :icon="['fas','xmark']"/>
@@ -92,11 +92,11 @@
                       <h5 class="form-popup-title">Are you sure want to reject {{view.jobseekerName}}?</h5>
                     </div>
                     <div class="select-button">
-                      <button type="button" class="pop" v-on:click="rejected(view.applicationId)">
+                      <button type="button" class="pop1" v-on:click="rejected(view.applicationId)">
                       <font-awesome-icon class="icn" :icon="['fas','check']"/>
                         Yes, reject
                       </button>
-                      <button type="button" class="pop" data-bs-dismiss="modal">
+                      <button type="button" class="pop2" data-bs-dismiss="modal">
                         <font-awesome-icon class="icn" :icon="['fas','xmark']"/>
                         Cancel
                       </button>
@@ -320,6 +320,12 @@ export default {
     .pop{
       text-align: center;
       margin: 0;
+    }
+    .pop1{
+      background: blue;
+    }
+    .pop2{
+      background: red;
     }
     .select-button{
       display: flex;
