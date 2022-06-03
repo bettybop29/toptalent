@@ -242,6 +242,7 @@ export default {
 .table-wrapper {
   /* background-color: green; */
   margin-top: 50px;
+  width: -webkit-fill-available;
   max-height: 40vh;
   overflow: auto;
   display:inline-block;
