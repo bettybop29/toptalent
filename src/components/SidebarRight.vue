@@ -59,11 +59,17 @@
                 <div class="modal-dialog">
                   <div class="modal-content" style="border-radius:20px; margin:auto; width:300px; margin-top:200px; padding-bottom:20px;">
                     <div class="modal-body">
-                      <h4>Are you sure want to accept {{view.jobseekerName}}?</h4>
+                      <h5 class="form-popup-title">Are you sure want to accept {{view.jobseekerName}}?</h5>
                     </div>
                     <div class="select-button">
-                      <button type="button" class="btn btn-danger pop" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
-                      <button type="button" class="btn btn-primary pop" v-on:click="accepted(view.applicationId)"><i class="bi bi-check2"></i></button>
+                      <button type="button" class="btn btn-primary pop" v-on:click="accepted(view.applicationId)">
+                        <font-awesome-icon class="icn" :icon="['fas','check']"/>
+                        Yes, accepted
+                      </button>
+                      <button type="button" class="btn btn-danger pop" data-bs-dismiss="modal">
+                        <font-awesome-icon class="icn" :icon="['fas','xmark']"/>
+                        Cancel
+                      </button>       
                     </div>
                   </div>
                 </div>
@@ -83,11 +89,17 @@
                 <div class="modal-dialog">
                   <div class="modal-content" style="border-radius:20px; margin:auto; width:300px; margin-top:200px; padding-bottom:20px;">
                     <div class="modal-body">
-                      <h5>Are you sure want to reject {{view.jobseekerName}}?</h5>
+                      <h5 class="form-popup-title">Are you sure want to reject {{view.jobseekerName}}?</h5>
                     </div>
                     <div class="select-button">
-                      <button type="button" class="pop" v-on:click="rejected(view.applicationId)">Yes, accept</button>
-                      <button type="button" class="pop" data-bs-dismiss="modal">Cancel</button>
+                      <button type="button" class="pop" v-on:click="rejected(view.applicationId)">
+                      <font-awesome-icon class="icn" :icon="['fas','check']"/>
+                        Yes, reject
+                      </button>
+                      <button type="button" class="pop" data-bs-dismiss="modal">
+                        <font-awesome-icon class="icn" :icon="['fas','xmark']"/>
+                        Cancel
+                      </button>
                       
                     </div>
                   </div>
@@ -164,6 +176,10 @@ export default {
 </script>
 
 <style scoped>
+.form-popup-title{
+  width: 235px;
+  text-align: center;
+}
 .lnk{
   text-decoration: none;
   color: black;
