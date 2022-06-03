@@ -47,7 +47,13 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <button class="btn btn-primary btn-resume"><font-awesome-icon icon="fa-solid fa-cloud-arrow-down" /> Resume</button>
+                        <a v-bind:href="'http://54.255.4.75:9091/resources/' + applicant.jobseekerResume"
+                        type="application/octet-stream" 
+                        download=""
+                        class="btn btn-primary btn-resume">
+                        <font-awesome-icon icon="fa-solid fa-cloud-arrow-down" /> 
+                        Resume
+                        </a>
                     </div>
                 </div>
             </section>
@@ -78,7 +84,8 @@
                     <div class="col-md-7">
                         <h3>Skills</h3>
                         <div class="box-skills d-flex flex-wrap" >
-                            <span class="badge text-dark" :key="item.id" v-for="item in splitStringToArray(applicant.jobseekerSkill)">{{item}}</span>
+                            <!-- <span class="badge text-dark" :key="item.id" v-for="item in splitStringToArray(applicant.jobseekerSkill)">{{item}}</span> -->
+                            <span class="badge text-dark" v-for="item in (applicant.skills)" :key="item.id">{{item}}</span>
                         </div>
                     </div>
                 </div>
@@ -104,7 +111,6 @@
 <script>
 import sidebarcomponent from '../components/SidebarComponent.vue'
 import axios from 'axios'
-
 export default{
     name: "ApplicantDetailView",
     components: {
@@ -113,11 +119,17 @@ export default{
     data(){
         return {
             applicant: "",
-            skill: "",
-            
+            skill: [],
+            item:''
         }
     },
     methods: {
+        splitStringToArray(sentences){
+            const words = sentences.split(';');
+            console.log(words);
+            return words;
+            
+        },
         // get data form api
          async fetchData(){
             try{
@@ -136,29 +148,20 @@ export default{
             try{
                 await axios.get(`http://54.255.4.75:9091/api/v1/jobseeker/user/ ` + this.$route.params.id)
                 .then((data) => {
-                    this.skill = data.data.data.jobseekerSkill
+                    this.skill = data.data.data.skills
                     console.log(this.skill);
+                    console.log('skill')
                 })
                 } catch {
                 console.log(Error);
                 }
              
-         },
-         splitStringToArray(sentences){
-            const words = sentences.split(';');
-            console.log(words);
-            return words;
-            
-        }
-         
+         },     
     },
     mounted(){
+       
         this.fetchData();
-        this.getStringSkill();
-        
-         
-                         
-         
+        this.getStringSkill();   
     },
     
 }
@@ -169,56 +172,43 @@ export default{
     padding: 0;
     margin: 0;
 }
-
 .page{
     margin-left: 20%;
 }
-
 .section-profile{
     margin-top: 50px;
 }
-
 .section-profile .middle-item{
     padding-left: 20px;
 }
-
 .section-profile h1{
     font-size: 28px;
 }
-
 .section-profile h2{
     font-size: 16px;
 }
-
 .section-profile h3{
     font-size: 16px;
     margin-top: 10px;
 }
-
 .section-profile .detail-profile{
     margin-top: 70px;
 }
-
 .detail-profile p{
     margin-bottom: 10px;
 }
-
 .detail-profile-icon{
     color: #006EFF;
 }
-
 .icon-background{
     color: #006EFF;
 }
-
 .right-items{
     margin-left: -80px;
 }
-
 .btn-resume{
     padding: 10px;
 }
-
 .section-content{
     background-color: #F8F9FD;
     margin-top: 26px;
@@ -226,55 +216,45 @@ export default{
     padding-top: 30px;
     margin-left: -5%;
 }
-
 .content-left p{
     margin-bottom: 20px;
 }
-
 .content-left a{
     display: block;
     margin-bottom: 20px;
     text-decoration: none;
     color: #000;
 }
-
 .content-left a:hover{
     color: #006EFF;
     text-decoration: underline;
 }
-
 h3{
     font-size: 20px;
 }
-
 .box-skills{
     max-width: 410px;
     max-height: 225px;
     overflow-y: scroll;
 }
-
 .box-skills span{
     margin: 5px;
     padding: 10px;
     font-size: 14px;
     background-color: #D1E7F3;
 }
-
 .section-about{
     max-width: 930px;
     margin-top: 70px;
     margin-bottom: 80px;
     
 }
-
 .section-about .box-about{
     margin-top: 30px;
 }
-
 .section-about h3{
     font-weight: 600;
 }
-
 .box-about p{
     font-size: 20px;
 }
@@ -287,17 +267,13 @@ h3{
 ::-webkit-scrollbar {
     width: 5px;
 }
-
 ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     background: #F8F9FA;
-
 }
-
 ::-webkit-scrollbar-thumb {
     background: #006EFF;
 }
-
 /* breakpoints */
 /* for mobile */
 @media only screen and (max-width: 576px){

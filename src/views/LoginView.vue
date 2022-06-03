@@ -19,7 +19,7 @@
       <div class="col-md-6 p-5">
         <h1 class="animate_animated animate_fadeInDown">Welcome Back!</h1>
         <div class="form-login animate_animated animate_fadeInDown">
-          <form action="" @submit.prevent="login">
+          <form action="" @submit.prevent="login" class="col-11">
             <label for="validationDefault01" class="form-label mt-4">Email</label>
             <input type="email" v-model="email" class="form-control" id="floatingInput" aria-describedby="emailHelp"
               placeholder="yourcompany@mail.com" required />
@@ -31,7 +31,15 @@
               <router-link class="btn-forgot" to="/resetpass">Forgot Password?</router-link>
             </p>
             <!-- <input class="form-control" type="tel" id="phone" v-model="phone" > -->
-            <input type="submit" class="btn btn-primary" :disabled="searchDisabled" value="Login">
+            <div class="d-grid gap-2">
+              <button v-if="searchDisabled == true"  class="btn btn-primary" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Loading...
+              </button>
+               <input v-else type="submit" class="btn btn-primary" :disabled="searchDisabled" value="Login">
+               
+            </div>
+           
             <p class="sign-up mt-4">Don't have any account?
               <router-link class="btn-signup" to="/signup">Sign Up For Free!</router-link>
             </p>
@@ -57,7 +65,8 @@
       return {
         email: "",
         password: "",
-        show: false
+        show: false,
+        searchDisabled:false
       }
     },
     methods: {
@@ -67,10 +76,12 @@
       async login() {
         let response = '';
         try {
+          this.searchDisabled = true
           response = await axios.post(
             `http://54.255.4.75:9091/api/v1/auth/recruiter/login?recruiterEmail=${this.email}&recruiterPassword=${this.password}`
             )
         } catch (err) {
+          this.searchDisabled = false
           this.err = err.response.data.message
           console.log(err.response.data.message)
           this.$toast.error(err.response.data.message)
