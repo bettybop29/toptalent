@@ -138,7 +138,6 @@ export default{
                 .then((data) => {
                     this.applicant = data.data.data
                     console.log(data.data.data)
-                    console.log('applicant')
                 })
                 } catch {
                 console.log(Error);
@@ -157,18 +156,12 @@ export default{
                 console.log(Error);
                 }
              
-         },
-         
-         
+         },     
     },
     mounted(){
-        
+       
         this.fetchData();
-        this.getStringSkill();
-        
-         
-                         
-         
+        this.getStringSkill();   
     },
     
 }
@@ -265,9 +258,11 @@ h3{
 .box-about p{
     font-size: 20px;
 }
+
 .jobseeker-company{
     font-size: 12px !important;
 }
+
 /*css3 design scrollbar*/
 ::-webkit-scrollbar {
     width: 5px;

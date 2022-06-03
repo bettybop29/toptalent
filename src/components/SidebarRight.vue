@@ -15,23 +15,23 @@
           
           <li class="li-title">Basic Information</li>
           <!-- tabel untuk data jobseeker -->
-          <table class="jobseeker-informations">
+           <table class="jobseeker-informations mb-4">
             <tbody>
               
               <tr>
                 <th style="width: 25%;">Birthdate</th>
                 <td v-if="view.jobseekerDateOfBirth == null" class="text-side text-muted">-</td>
-                <td v-else class="text-side">{{view.jobseekerDateOfBirth}}</td>
+                <td v-else class="text-side mt-4">{{view.jobseekerDateOfBirth}}</td>
               </tr>
               <tr>
                 <th>Phone</th>
                 <td v-if="view.jobseekerPhone == null" class="text-side text-muted">-</td>
-                <td class="text-side">{{view.jobseekerPhone}}</td>
+                <td class="text-side mt-4">{{view.jobseekerPhone}}</td>
               </tr>
               <tr>
                 <th>Email</th>
                 <td v-if="view.jobseekerEmail == null" class="text-side text-muted">-</td>
-                <td class="text-side">{{view.jobseekerEmail}}</td>
+                <td class="text-side mt-4 ">{{view.jobseekerEmail}}</td>
               </tr>
               
             </tbody>
@@ -127,19 +127,21 @@ export default {
         window.open(`https://${jobseekerPortofolio}`);
       },
      async getResume(jobseekerResume){
-         await axios({
-          url: `http://54.255.4.75:9091/resources/${jobseekerResume}`,
-          methods: 'GET',
-          responseType: 'blob',
-        }).then((res) => {
-          var FILE = window.URL.createObjectURL(new Blob([res.data]));
-          var docUrl = document.createElement('x');
-          docUrl.href = FILE;
-          docUrl.setAttribute('download', 'resume.pdf');
-          document.body.appendChild(docUrl);
-          docUrl.click();
+        window.open(`http://54.255.4.75:9091/resources/${jobseekerResume}`, '_blank');
 
-        })
+        //  await axios({
+        //   url: `http://54.255.4.75:9091/resources/${jobseekerResume}`,
+        //   methods: 'GET',
+        //   responseType: 'blob',
+        // }).then((res) => {
+        //   var FILE = window.URL.createObjectURL(new Blob([res.data]));
+        //   var docUrl = document.createElement('x');
+        //   docUrl.href = FILE;
+        //   docUrl.setAttribute('download', 'resume.pdf');
+        //   document.body.appendChild(docUrl);
+        //   docUrl.click();
+
+        // })
       },
       
       Toast(){
@@ -325,11 +327,13 @@ export default {
       margin-left: -20px;
     }
     .jobseeker-informations td{
+      font-size: 14px;
       height: 40px;
       padding: 15px;
       right: 0;
     }
     .jobseeker-informations th{
+      font-size: 14px;
       height: 40px;
       padding: 15px;
       font-weight: 500;
