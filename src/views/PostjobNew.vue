@@ -28,7 +28,7 @@
 
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">Job Name:</label>
-                  <input type="text" class="form-control" id="recipient-name" v-model="jobName" required />
+                  <input type="text" class="form-control" id="recipient-name" v-model="jobName" maxlength="100" required />
                 </div>
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">Job Salary:</label>
