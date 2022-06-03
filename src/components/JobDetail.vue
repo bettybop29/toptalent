@@ -68,7 +68,8 @@
                 </button>
               </div>
               <div class="col-12">
-                <small class="text-muted">Created on {{job.createdAt}}</small>
+                <!-- <small class="text-muted">Created on {{job.createdAt}}</small> -->
+                <small class="text-muted">Created on <time-ago :datetime="job.createdAt" refresh long></time-ago></small>
               </div>
             </div>
 
@@ -118,11 +119,14 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import axios from 'axios'
 import sidebarcomponent from '@/components/SidebarComponent.vue'
 import applicantjobcomponent from '@/components/ApplicantJobComponent.vue'
+  import { TimeAgo } from 'vue2-timeago'
+
 export default {
   props:['item'],
   components:{
     sidebarcomponent,
-    applicantjobcomponent
+    applicantjobcomponent,
+    TimeAgo
   },
   data(){
     return{
