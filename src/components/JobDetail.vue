@@ -3,7 +3,12 @@
   <sidebarcomponent/>
   <div class="main">
   <div class="col-md-11">
+  <button class="btn mt-3 back" onclick="javascript:window.history.back();">
+              <font-awesome-icon icon="fa-solid fa-chevron-left" />
+              Go back
+            </button>
           <div class="candidates p-4 mb-4">
+            
             <h5 class="fw-bold">Candidate</h5>
 
             <div class="row justify-content-between mt-4">
@@ -206,5 +211,15 @@ export default {
 <style scoped>
   .main{
     margin-left: 280px;
+  }
+  .back{
+   
+    border-radius: 30px;
+    height: fit-content;
+    
+  }
+  .back:hover{
+   
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   }
 </style>
