@@ -26,8 +26,9 @@
           <div class="card-approve">
             <div class="card-title">
               <radial-progress-bar :diameter="100"
-                          :stopColor="babdff"
-                          :startColor="ffffff"
+                          :stopColor="stopColor"
+                          :startColor="startColor"
+                          :innerStrokeColor="innerStrokeColor"
                     v-bind:completed-steps="accept.data"
                     v-bind:total-steps="total.data"
                           :strokeWidth="6"
@@ -43,8 +44,9 @@
               </div>
                 <div class="col card-reject">
                   <radial-progress-bar :diameter="100"
-                          :stopColor="babdff"
-                          :startColor="ffffff"
+                          :stopColor="stopColor"
+                          :startColor="startColor"
+                          :innerStrokeColor="innerStrokeColor"
                     v-bind:completed-steps="reject.data"
                     v-bind:total-steps="total.data"
                           :strokeWidth="6"
@@ -137,8 +139,9 @@ export default {
       views:"",
       sidepop:'',
       dashboardEmpty:'', 
-      completedSteps: 3,
-      totalSteps: 10
+      startColor:'#F39201',
+      stopColor:'#F39201',
+      innerStrokeColor:'#C4C4C4'
     }
   },
   methods : {
@@ -255,7 +258,7 @@ export default {
 </script>  
 <style scoped>
   .sum-title{
-    font-size: larger;
+    font-size: 22px;
   }
   .radial-custom{
     position: absolute;
