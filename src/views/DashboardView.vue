@@ -25,12 +25,34 @@
           
           <div class="card-approve">
             <div class="card-title">
-                <h4>Summary of approve</h4>
+              <radial-progress-bar :diameter="100"
+                          :stopColor="babdff"
+                          :startColor="ffffff"
+                    v-bind:completed-steps="accept.data"
+                    v-bind:total-steps="total.data"
+                          :strokeWidth="6"
+                          :innerStrokeWidth="6"
+                    class="radial-custom">
+                
+                 </radial-progress-bar>
+                <h6 class="sum-title">Summary of approve</h6>
+                
                 <h1>{{accept.data}}<span> / {{total.data}}</span></h1>
+                
              </div>  
               </div>
                 <div class="col card-reject">
-                <h4>Summary of reject</h4>
+                  <radial-progress-bar :diameter="100"
+                          :stopColor="babdff"
+                          :startColor="ffffff"
+                    v-bind:completed-steps="reject.data"
+                    v-bind:total-steps="total.data"
+                          :strokeWidth="6"
+                          :innerStrokeWidth="6"
+                    class="radial-custom">
+                
+                 </radial-progress-bar>
+                <h6 class="sum-title">Summary of reject</h6>
                 <h1>{{reject.data}}<span> / {{total.data}}</span></h1>
              
           </div>
@@ -89,7 +111,7 @@ import SidebarComponent from '@/components/SidebarComponent.vue'
 import SidebarRight from '@/components/SidebarRight.vue'
 import SidebarRightEmpty from '@/components/SidebarRightEmpty.vue'
 import SidebarRightReview from '@/components/SidebarRightReview.vue'
-
+import RadialProgressBar from 'vue-radial-progress'
 
 
 
@@ -99,7 +121,8 @@ export default {
                 // SidebarRightEmpty, 
                 SidebarRightReview,
                 SidebarRight,
-                SidebarRightEmpty
+                SidebarRightEmpty,
+                RadialProgressBar
               },
   name:'DashboardView',
   data(){
@@ -114,6 +137,8 @@ export default {
       views:"",
       sidepop:'',
       dashboardEmpty:'', 
+      completedSteps: 3,
+      totalSteps: 10
     }
   },
   methods : {
@@ -229,6 +254,13 @@ export default {
 }; 
 </script>  
 <style scoped>
+  .sum-title{
+    font-size: larger;
+  }
+  .radial-custom{
+    position: absolute;
+    margin-left: 230px;
+  }
   .main-head{
     font-weight: 600;
   }

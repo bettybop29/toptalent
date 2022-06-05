@@ -39,7 +39,7 @@
           
           <!-- <li><button class="btn-resume act" v-on:click="getResume(view.jobseekerResume)">Resume <font-awesome-icon :icon="['fas','download']"/></button></li> -->
             <li>
-              <button v-if="view.jobseekerResume == 'null'" v-on:click="ToastResume" class="btn-resume act lnk text-muted">No data resume <font-awesome-icon :icon="['fas','download']"/></button>
+              <button v-if="view.jobseekerResume == ''" v-on:click="ToastResume" class="btn-resume act lnk text-muted">No data resume <font-awesome-icon :icon="['fas','download']"/></button>
               <a v-else v-bind:href="'http://54.255.4.75:9091/resources/' + view.jobseekerResume"  target="_blank" download class="btn-resume act lnk">Resume <font-awesome-icon :icon="['fas','download']"/></a>
             </li>
           <li>

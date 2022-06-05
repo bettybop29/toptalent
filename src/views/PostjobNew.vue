@@ -40,7 +40,7 @@
                     <option selected>Choose..</option>
                     <option>Internship</option>
                     <option>Full time</option>
-                    <option>Part Time</option>
+                    <option>Part time</option>
                     <option>Contractual</option>
                     <option>Freelance</option>
                   </select>

@@ -77,23 +77,23 @@
               <h5 class="card-title">Contact</h5>
               <hr>
               <div>
-              <a class="card-text" v-if="profile.recruiterEmail == 'null'"></a>
+              <a class="card-text" v-if="profile.recruiterEmail == ''"></a>
               <a class="card-text" v-else><font-awesome-icon icon="fa-solid fa-envelope" class="icn"/> {{profile.recruiterEmail}}</a>
               </div>
               <div>
-              <a class="card-text" v-if="profile.recruiterFb == 'null'"></a>
+              <a class="card-text" v-if="profile.recruiterFb == ''"></a>
               <a class="card-text" v-else><font-awesome-icon icon="fa-brands fa-twitter" class="icn"/> {{profile.recruiterFb}}</a>
               </div>
               <div>
-              <a class="card-text" v-if="profile.recruiterIg == 'null'"></a>
+              <a class="card-text" v-if="profile.recruiterIg == ''"></a>
               <a class="card-text" v-else><font-awesome-icon icon="fa-brands fa-instagram" class="icn"/> {{profile.recruiterIg}}</a>
               </div>
               <div >
-              <a class="card-text" v-if="profile.recruiterLinkedin == 'null'"></a>
+              <a class="card-text" v-if="profile.recruiterLinkedin == ''"></a>
               <a class="card-text" v-else ><font-awesome-icon icon="fa-brands fa-linkedin" class="icn"/> {{profile.recruiterLinkedin}}</a>
               </div>
               <div >
-              <a class="card-text"  v-if="profile.recruiterPhone == 'null'"></a>
+              <a class="card-text"  v-if="profile.recruiterPhone == ''"></a>
               <a class="card-text" v-else><font-awesome-icon icon="fa-solid fa-phone" class="icn"/> {{profile.recruiterPhone}}</a>
               </div>
               <div >
