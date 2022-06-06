@@ -130,8 +130,6 @@
         editorData: '',
         editorConfig: {
           // The configuration of the editor.
-                // name: 'clipboard', groups: [ 'clipboard', 'undo' ]
-                
                 toolbar:{
                   items:[
                     'heading',
