@@ -10,6 +10,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.11.5",
     "@ckeditor/ckeditor5-build-classic": "^34.0.0",
+    "@ckeditor/ckeditor5-list": "^34.1.0",
     "@ckeditor/ckeditor5-vue2": "^3.0.1",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-brands-svg-icons": "^6.1.1",

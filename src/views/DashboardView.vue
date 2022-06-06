@@ -34,7 +34,7 @@
                           :strokeWidth="6"
                           :innerStrokeWidth="6"
                     class="radial-custom">
-                
+                    <p class="ellipse-title">{{percentt}}%</p>
                  </radial-progress-bar>
                 <h6 class="sum-title">Summary of approve</h6>
                 
@@ -52,7 +52,7 @@
                           :strokeWidth="6"
                           :innerStrokeWidth="6"
                     class="radial-custom">
-                
+                  <p class="ellipse-title">{{percent}}%</p>
                  </radial-progress-bar>
                 <h6 class="sum-title">Summary of reject</h6>
                 <h1>{{reject.data}}<span> / {{total.data}}</span></h1>
@@ -141,10 +141,25 @@ export default {
       dashboardEmpty:'', 
       startColor:'#F39201',
       stopColor:'#F39201',
-      innerStrokeColor:'#C4C4C4'
+      innerStrokeColor:'#C4C4C4',
+      percent:'',
+      percentt:''
     }
   },
   methods : {
+    async percenttCount(){
+      const accept = JSON.parse(localStorage.getItem("countaccept-info"))
+      const total = JSON.parse(localStorage.getItem("counttotal-info"))
+      const result = Math.round(( accept / total) * 100)
+      this.percentt = result
+      
+    },
+    async percentCount(){
+      const reject = JSON.parse(localStorage.getItem("countreject-info"))
+      const total = JSON.parse(localStorage.getItem("counttotal-info"))
+      const result = Math.round(( reject / total) * 100)
+      this.percent = result
+    },
   async totalnewAplicant(){
     const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
     await axios.get(`http://54.255.4.75:9091/api/v1/application/new-resume/${recruiterId}`)
@@ -168,18 +183,9 @@ export default {
     await axios.get(`http://54.255.4.75:9091/api/v1/application/applications/${recruiterId}`)
     .then((data)=>{
       this.total=data.data
+      localStorage.setItem("counttotal-info", JSON.stringify(data.data.data));
     })
   },
-  // async newResume(){
-  //   const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
-  //   await axios.get(`http://54.255.4.75:9091/api/v1/application/dashboard/${recruiterId}`)
-  //   .then((resp)=>{
-  //     this.list = resp.data.data
-  //     console.log(this.list)
-  //     this.dashboardEmpty = resp.data.data.errorCode;
-  //     console.log(das)
-  //   })
-  // },
   async newResume(){
     let response = '';
     const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
@@ -213,6 +219,7 @@ export default {
      await axios.get(`http://54.255.4.75:9091/api/v1/application/count-accepted/${recruiterId}`)
      .then((data)=>{
       this.accept=data.data
+      localStorage.setItem("countaccept-info", JSON.stringify(data.data.data));
       })
     },
     async countRejc(){
@@ -220,10 +227,10 @@ export default {
      await axios.get(`http://54.255.4.75:9091/api/v1/application/count-rejected/${recruiterId}`)
      .then((data)=>{
       this.reject=data.data
+      localStorage.setItem("countreject-info", JSON.stringify(data.data.data));
       })
     },
-    async getView(applicationId){
-     
+    async getView(applicationId){ 
        await axios.get(`http://54.255.4.75:9091/api/v1/application/applicant?applicationId=${applicationId}`)
       .then((data)=>{
         this.views=data.data.data
@@ -249,7 +256,9 @@ export default {
     this.newResume(),
     this.totalAplicant(),
     this.totalnewAplicant(),
-    this.getView()
+    this.getView(),
+    this.percentCount(),
+    this.percenttCount()
 
     
 
@@ -257,6 +266,11 @@ export default {
 }; 
 </script>  
 <style scoped>
+.ellipse-title{
+  font-size: 25px;
+  margin-left: 6px;
+  margin-top: 15px;
+}
   .sum-title{
     font-size: 22px;
   }

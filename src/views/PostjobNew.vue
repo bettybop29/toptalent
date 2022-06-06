@@ -21,21 +21,21 @@
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel1">Add Job</h5>
+                <h5 class="modal-title" id="exampleModalLabel1">Add job</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
 
                 <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Job Name:</label>
+                  <label for="recipient-name" class="col-form-label">Job name:</label>
                   <input type="text" class="form-control" id="recipient-name" v-model="jobName" required />
                 </div>
                 <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Job Salary:</label>
+                  <label for="recipient-name" class="col-form-label">Job salary:</label>
                   <input type="number" class="form-control" id="recipient-name" v-model="jobSalary" required />
                 </div>
                 <div class="mb-3">
-                  <label for="inputState">Job Position</label>
+                  <label for="inputState">Job position</label>
                   <select class="form-control" id="inputState" v-model="jobPosition" required>
                     <option selected>Choose..</option>
                     <option>Internship</option>
@@ -46,20 +46,20 @@
                   </select>
                 </div>
                 <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Job Requirement:</label>
+                  <label for="recipient-name" class="col-form-label">Job requirement:</label>
                   <ckeditor :editor="editor" tag-name="textarea" v-model="jobRequirement" :config="editorConfig">
                   </ckeditor>
 
                 </div>
                 <div class="mb-3">
-                  <label for="message-text" class="col-form-label">Job Desc:</label>
+                  <label for="message-text" class="col-form-label">Job description:</label>
                   <ckeditor :editor="editor" tag-name="textarea" id="jobDesc" :model-value="jobDesc" v-model="jobDesc"
                     :config="editorConfig"></ckeditor>
                   <!-- <textarea class="form-control" id="jobdescription" v-model="jobDesc"></textarea> -->
 
                 </div>
                 <div class="mb-3">
-                  <label for="message-text" class="col-form-label">Job Address:</label>
+                  <label for="message-text" class="col-form-label">Job address:</label>
                   <textarea class="form-control" id="message-text" v-model="jobAddress" maxlength="100"
                     required></textarea>
                   <small>max.100 characters</small>
@@ -129,6 +129,7 @@
         editorData: '',
         editorConfig: {
           // The configuration of the editor.
+          
         },
         jobName: "",
         jobSalary: "",
