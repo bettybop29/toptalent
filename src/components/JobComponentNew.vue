@@ -53,17 +53,17 @@
             <div class="modal-dialog modal-xl">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalToggleLabel">Edit Jobs</h5>
+                  <h5 class="modal-title" id="exampleModalToggleLabel">Edit jobs</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                   <form>
                     <div class="mb-3">
-                      <label for="recipient-name" class="col-form-label">Job Name:</label>
+                      <label for="recipient-name" class="col-form-label">Job name:</label>
                       <input type="text" class="form-control" id="" v-model="edit.jobName">
                     </div>
                     <div class="mb-3">
-                      <label for="recipient-name" class="col-form-label">Job status edit: </label>
+                      <label for="recipient-name" class="col-form-label">Job status: </label>
                        <select class="form-control" id="inputState" v-model="edit.jobStatus" required>
                         <option selected>Choose..</option>
                         <option>hidden</option>
@@ -71,7 +71,11 @@
                       </select>
                     </div>
                     <div class="mb-3">
-                      <label for="recipient-name" class="col-form-label">Job Position edit: </label>
+                      <label for="recipient-name" class="col-form-label">Job salary:</label>
+                      <input type="number" class="form-control" id="" v-model="edit.jobSalary">
+                    </div>
+                    <div class="mb-3">
+                      <label for="recipient-name" class="col-form-label">Job position: </label>
                        <select class="form-control" id="inputState" v-model="edit.jobPosition" required>
                         <option selected>Choose..</option>
                         <option>Internship</option>
@@ -82,19 +86,19 @@
                       </select>
                     </div>
                     <div class="mb-3">
-                      <label for="recipient-name" class="col-form-label">Job Address: </label>
-                      <input type="text" class="form-control" id="recipient-name" v-model="edit.jobAddress">
-                    </div>
-                    <div class="mb-3">
-                      <label for="recipient-name" class="col-form-label">Job Requirement: </label>
+                      <label for="recipient-name" class="col-form-label">Job requirement: </label>
                       <!-- <input type="text" class="form-control" id="recipient-name" v-model="edit.jobRequirement"> -->
                       <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="edit.jobRequirement" :config="editorConfig"></ckeditor>
                     </div>
 
                     <div class="mb-3">
-                      <label for="message-text" class="col-form-label">Job Description:</label>
+                      <label for="message-text" class="col-form-label">Job description:</label>
                       <!-- <textarea class="form-control" id="message-text" v-model="edit.jobDesc" /> -->
                       <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="edit.jobDesc" :config="editorConfig"></ckeditor>
+                    </div>
+                    <div class="mb-3">
+                      <label for="recipient-name" class="col-form-label">Job address: </label>
+                      <input type="text" class="form-control" id="recipient-name" v-model="edit.jobAddress">
                     </div>
                     <div class="modal-footer">
                       <button class="btn btn-success" v-on:click="updateJobData(edit.jobId)">Update</button>
@@ -133,6 +137,17 @@
         editorData: '',
         editorConfig: {
           // The configuration of the editor.
+          toolbar:{
+                  items:[
+                    'heading',
+                    '|',
+                    'bold',
+                    'italic',
+                    'bulletedList',
+                    'undo',
+                    'redo'
+                  ]
+                }
         },
         edit: [],
         resp:'',

@@ -46,7 +46,12 @@
     </div>
     <div class="col-md-3">
       <!-- <span class="text-muted" style="font-size: 12px">Applied on DD-MM-YYYY</span> -->
-      <time-ago :datetime="item.createdAt" refresh long></time-ago>
+      <time-ago :datetime="dateTime" 
+                  refresh 
+                :tooltip="tooltip"
+                :long="longString"
+      ></time-ago>
+      <!-- <p>{{moment(item.createdAt).format('DD MMM YYYY')}}</p> -->
     </div>
     
     <hr class="mt-4" />
@@ -56,9 +61,9 @@
 <script>
   import axios from 'axios'
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
+  moment().format();
   // import pdf from 'pdfvuer';
-
+  import moment from 'moment';
   import {TimeAgo} from 'vue2-timeago'
 
   export default {
@@ -72,6 +77,16 @@
     props: ['item'],
     data() {
       return {
+        pickerOptions: {
+          dateTime:'2019-05-08 19:58:35',
+          longString: true,
+          tooltip: true,
+          tooltipOptions: {
+            placement: "top",
+          },
+          locale: "en",
+        },
+
         editor: ClassicEditor,
         editorData: '',
         editorConfig: {
@@ -82,6 +97,8 @@
       }
     },
     methods: {
+    
+
       async revApplicant(applicationId){
         await axios.post(`http://54.255.4.75:9091/api/v1/application/status/sent/?applicationId=${applicationId}`)
         this.$toast.success(`Job updated !`)

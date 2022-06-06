@@ -74,7 +74,8 @@
               </div>
               <div class="col-12">
                 <!-- <small class="text-muted">Created on {{job.createdAt}}</small> -->
-                <small class="text-muted">Created on <time-ago :datetime="job.createdAt" refresh long></time-ago></small>
+                <!-- <small class="text-muted">Created on <time-ago :datetime="job.createdAt" refresh long></time-ago></small> -->
+                <small class="text-muted">Created on {{moment(job.createdAt).format('DD MMM YYYY')}}</small>
               </div>
             </div>
 
@@ -124,14 +125,16 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import axios from 'axios'
 import sidebarcomponent from '@/components/SidebarComponent.vue'
 import applicantjobcomponent from '@/components/ApplicantJobComponent.vue'
-  import { TimeAgo } from 'vue2-timeago'
+  // import { TimeAgo } from 'vue2-timeago'
+import moment from 'moment';
+moment().format();
 
 export default {
   props:['item'],
   components:{
     sidebarcomponent,
     applicantjobcomponent,
-    TimeAgo
+    // TimeAgo
   },
   data(){
     return{
@@ -148,6 +151,10 @@ export default {
     }
   },
   methods:{
+    moment: function (date) {
+      return moment(date);
+    },
+
     async getJobDetail(){
       await axios.get(`http://54.255.4.75:9091/api/v1/job/` + this.$route.params.id)
       .then((data)=>{

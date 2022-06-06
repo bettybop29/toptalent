@@ -13,8 +13,8 @@
           </div>
         </div>
     </div>
-    <div class="col-md-5 section-right"> 
-      <h1 class="animate__animated animate__fadeInLeft">Start Building Your Top Company!</h1>
+    <div class="col-md-5 section-right animate__animated animate__fadeInDown"> 
+      <h1>Start Building Your Top Company!</h1>
       <div class="form-login">
       <form action="" @submit.prevent="signUp" class="row">
         <div class="col-12">
