@@ -105,12 +105,13 @@
 </template>
 <script>
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+  // import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor';
   import axios from "axios";
-
+  // import Editor from 'ckeditor5-custom-build/build/ckeditor';
   import sidebarcomponent from '../components/SidebarComponent.vue'
   import listjobcomponent from '@/components/ListjobComponent.vue'
   // import CandidatejobComponent from '@/components/CandidatejobComponent.vue';
-  
+  // import ParagraphPlugin from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 
   export default {
     name: "PostJobNew",
@@ -129,7 +130,19 @@
         editorData: '',
         editorConfig: {
           // The configuration of the editor.
-          
+                // name: 'clipboard', groups: [ 'clipboard', 'undo' ]
+                
+                toolbar:{
+                  items:[
+                    'heading',
+                    '|',
+                    'bold',
+                    'italic',
+                    'bulletedList',
+                    'undo',
+                    'redo'
+                  ]
+                }
         },
         jobName: "",
         jobSalary: "",
