@@ -37,6 +37,8 @@
           <button class="btn ict" v-on:click="getResume(item.jobseekerResume)">
             <font-awesome-icon class=" mt-1" icon="fa-solid fa-file-lines"/> View CV
           </button>
+         <!-- <pdf :src="'http://54.255.4.75:9091/resources/'+ item.jobseekerResume"></pdf> -->
+        <PdfViewer></PdfViewer>
         <button class="btn ict" v-on:click="getLink(item.jobseekerPortfolio)">
           <font-awesome-icon class="ms-3 me-2 mt-1" icon="fa-solid fa-link" /> Portofolio
         </button>
@@ -46,6 +48,7 @@
       <!-- <span class="text-muted" style="font-size: 12px">Applied on DD-MM-YYYY</span> -->
       <time-ago :datetime="item.createdAt" refresh long></time-ago>
     </div>
+    
     <hr class="mt-4" />
   </div>
 </template>
@@ -53,13 +56,17 @@
 <script>
   import axios from 'axios'
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-  import {
-    TimeAgo
-  } from 'vue2-timeago'
+
+  // import pdf from 'pdfvuer';
+
+  import {TimeAgo} from 'vue2-timeago'
 
   export default {
     components: {
-      TimeAgo
+      TimeAgo,
+      
+      // pdf
+    
     },
     name: "JobComponent",
     props: ['item'],
@@ -70,7 +77,8 @@
         editorConfig: {
           // The configuration of the editor.
         },
-        edit: []
+        edit: [],
+        
       }
     },
     methods: {

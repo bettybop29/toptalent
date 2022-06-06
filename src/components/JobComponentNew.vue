@@ -63,12 +63,20 @@
                       <input type="text" class="form-control" id="" v-model="edit.jobName">
                     </div>
                     <div class="mb-3">
+                      <label for="recipient-name" class="col-form-label">Job status edit: </label>
+                       <select class="form-control" id="inputState" v-model="edit.jobStatus" required>
+                        <option selected>Choose..</option>
+                        <option>hidden</option>
+                        <option>visible</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
                       <label for="recipient-name" class="col-form-label">Job Position edit: </label>
                        <select class="form-control" id="inputState" v-model="edit.jobPosition" required>
                         <option selected>Choose..</option>
                         <option>Internship</option>
                         <option>Full time</option>
-                        <option>Part Time</option>
+                        <option>Part time</option>
                         <option>Contractual</option>
                         <option>Freelance</option>
                       </select>
@@ -111,7 +119,7 @@
   import axios from 'axios'
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
   import { TimeAgo } from 'vue2-timeago'
- 
+  
 
   export default {
     components:{
@@ -186,7 +194,7 @@
       async updateJobData(id) {
         try {
           await axios.patch(
-            `http://54.255.4.75:9091/api/v1/job/${id}?jobName=${this.edit.jobName}&jobStatus=active&jobSalary=${this.edit.jobSalary}&jobPosition=${this.edit.jobPosition}&jobAddress=${this.edit.jobAddress}&jobDesc=${this.edit.jobDesc}&jobRequirement=${this.edit.jobRequirement}`
+            `http://54.255.4.75:9091/api/v1/job/${id}?jobName=${this.edit.jobName}&jobStatus=${this.edit.jobStatus}&jobSalary=${this.edit.jobSalary}&jobPosition=${this.edit.jobPosition}&jobAddress=${this.edit.jobAddress}&jobDesc=${this.edit.jobDesc}&jobRequirement=${this.edit.jobRequirement}`
           )
           this.$toast.success("Job edited !")
           location.reload(true)

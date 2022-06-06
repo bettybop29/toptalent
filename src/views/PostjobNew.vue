@@ -21,7 +21,7 @@
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel1">Add Job</h5>
+                <h5 class="modal-title" id="exampleModalLabel1">Add job</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
@@ -31,35 +31,35 @@
                   <input type="text" class="form-control" id="recipient-name" v-model="jobName" maxlength="100" required />
                 </div>
                 <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Job Salary:</label>
+                  <label for="recipient-name" class="col-form-label">Job salary:</label>
                   <input type="number" class="form-control" id="recipient-name" v-model="jobSalary" required />
                 </div>
                 <div class="mb-3">
-                  <label for="inputState">Job Position</label>
+                  <label for="inputState">Job position</label>
                   <select class="form-control" id="inputState" v-model="jobPosition" required>
                     <option selected>Choose..</option>
                     <option>Internship</option>
                     <option>Full time</option>
-                    <option>Part Time</option>
+                    <option>Part time</option>
                     <option>Contractual</option>
                     <option>Freelance</option>
                   </select>
                 </div>
                 <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Job Requirement:</label>
+                  <label for="recipient-name" class="col-form-label">Job requirement:</label>
                   <ckeditor :editor="editor" tag-name="textarea" v-model="jobRequirement" :config="editorConfig">
                   </ckeditor>
 
                 </div>
                 <div class="mb-3">
-                  <label for="message-text" class="col-form-label">Job Desc:</label>
+                  <label for="message-text" class="col-form-label">Job description:</label>
                   <ckeditor :editor="editor" tag-name="textarea" id="jobDesc" :model-value="jobDesc" v-model="jobDesc"
                     :config="editorConfig"></ckeditor>
                   <!-- <textarea class="form-control" id="jobdescription" v-model="jobDesc"></textarea> -->
 
                 </div>
                 <div class="mb-3">
-                  <label for="message-text" class="col-form-label">Job Address:</label>
+                  <label for="message-text" class="col-form-label">Job address:</label>
                   <textarea class="form-control" id="message-text" v-model="jobAddress" maxlength="100"
                     required></textarea>
                   <small>max.100 characters</small>
@@ -105,12 +105,13 @@
 </template>
 <script>
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+  // import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor';
   import axios from "axios";
-
+  // import Editor from 'ckeditor5-custom-build/build/ckeditor';
   import sidebarcomponent from '../components/SidebarComponent.vue'
   import listjobcomponent from '@/components/ListjobComponent.vue'
   // import CandidatejobComponent from '@/components/CandidatejobComponent.vue';
-  
+  // import ParagraphPlugin from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 
   export default {
     name: "PostJobNew",
@@ -129,6 +130,17 @@
         editorData: '',
         editorConfig: {
           // The configuration of the editor.
+                toolbar:{
+                  items:[
+                    'heading',
+                    '|',
+                    'bold',
+                    'italic',
+                    'bulletedList',
+                    'undo',
+                    'redo'
+                  ]
+                }
         },
         jobName: "",
         jobSalary: "",
