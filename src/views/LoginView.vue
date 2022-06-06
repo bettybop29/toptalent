@@ -25,8 +25,18 @@
               placeholder="yourcompany@mail.com" required />
 
             <label for="floatingInput" class="form-label mt-3">Password</label>
-            <input type="password" v-model="password" class="form-control mb-3" id="myInput" placeholder="Password123@"
+            <div>
+              <input :type="visibility" v-model="password" class="form-control mb-3" id="myInput" placeholder="Password123@"
               required />
+              <a @click="showPassword()" class="toggle-password" v-if="visibility == 'password' ">
+                <font-awesome-icon icon="fa-solid fa-eye" width="22" height="22" icon-name="show password" />
+              </a>
+              <!-- hides password -->
+              <a @click="hidePassword()" class="toggle-password" v-if="visibility == 'text' ">
+                <!-- <font-awesome-icon icon="fa-solid fa-eye" width="22" height="22" icon-name="show password" /> -->
+                <font-awesome-icon icon="fa-solid fa-eye-slash" width="22" height="22" icon-name="hide password"/>
+              </a>
+            </div>
             <p>
               <router-link class="btn-forgot" to="/resetpass">Forgot Password?</router-link>
             </p>
@@ -66,10 +76,17 @@
         email: "",
         password: "",
         show: false,
-        searchDisabled:false
+        searchDisabled:false,
+        visibility: 'password'
       }
     },
     methods: {
+      showPassword(){
+        this.visibility = 'text';
+      },
+      hidePassword(){
+        this.visibility = 'password';
+      },
       showThis() {
         this.show = true
       },
@@ -210,4 +227,22 @@
   .btn-signup:hover {
     text-decoration: underline;
   }
+
+  .toggle-password{
+    /* style="position: absolute; right: 5px; top: 50px;" */
+    position: absolute;
+    right: 120px;
+    top: 310px;
+    /* margin-left: 400px; */
+  }
+
+  /* breakpoint */
+  /* for mobile */
+@media only screen and (max-width: 576px){
+    .toggle-password{
+    position: absolute;
+    right: 100px;
+    top: 770px;
+    }
+}
 </style>
