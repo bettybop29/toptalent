@@ -86,6 +86,7 @@
                         <div class="box-skills d-flex flex-wrap" >
                             <span class="badge text-dark" :key="item.id" v-for="item in splitStringToArray(applicant.jobseekerSkill)">{{item}}</span>
                             <!-- <span class="badge text-dark" v-for="item in (applicant.skills)" :key="item.id">{{item}}</span> -->
+
                         </div>
                     </div>
                 </div>
@@ -148,9 +149,10 @@ export default{
             try{
                 await axios.get(`http://54.255.4.75:9091/api/v1/jobseeker/user/ ` + this.$route.params.id)
                 .then((data) => {
-                    this.skill = data.data.data.skills
+                    this.skill = data.data.data.skills.map(({skillName}) => skillName)
+                    // this.name = this.skill.map(({skillName}) => skillName)
                     console.log(this.skill);
-                    console.log('skill')
+                    // console.log(this.name);
                 })
                 } catch {
                 console.log(Error);

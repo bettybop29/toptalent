@@ -17,7 +17,7 @@
           <div class="tab-content">
             <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
              <div class="mx-3 mb-4 pt-4 px-3">
-                <h5 class="fw-bold">{{visible}} Jobs is Visible</h5>
+                <h5 class="fw-bold">{{visible}} Job(s) is Visible</h5>
               </div>
               <!-- list job -->
               <div v-for="item in list" v-bind:key="item.id">
@@ -27,7 +27,7 @@
 
             <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
               <div class="mx-3 mb-4 pt-4 px-3">
-                <h5 class="fw-bold">{{hide}} Jobs is Hidden</h5>
+                <h5 class="fw-bold">{{hide}} Job(s) is Hidden</h5>
               </div>  
               <div v-for="item in list" v-bind:key="item.id">
                 <jobcomponentnew :item="item" v-if="item.jobStatus == 'hidden'"></jobcomponentnew>

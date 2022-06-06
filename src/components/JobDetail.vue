@@ -74,7 +74,7 @@
               </div>
               <div class="col-12">
                 <!-- <small class="text-muted">Created on {{job.createdAt}}</small> -->
-                <small class="text-muted">Created on <time-ago :datetime="job.createdAt" refresh long></time-ago></small>
+                <small class="text-muted">Created <time-ago :datetime="job.createdAt" refresh long></time-ago></small>
               </div>
             </div>
 
