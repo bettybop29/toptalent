@@ -26,10 +26,10 @@
       <button v-if="item.applicationStatus != 'sent'" class="btn">  
         <img class="pt-4 ms-5" src="../assets/icon-postjob/cancel-applicant.svg" alt="" v-on:click="rejApplicant(item.applicationId)">
       </button>
-      <!-- <button v-else class="btn">  
+      <button v-else class="btn">  
         <img class="pt-4 ms-5" src="../assets/icon-postjob/cancel-applicant.svg" alt="" v-on:click="rejApplicant(item.applicationId)">
-      </button> -->
-      <router-link class="btn" to="/pdfviewer">View resume</router-link>
+      </button>
+      
      
     </div>
     <div class="col-md-2">
@@ -39,9 +39,7 @@
           <button class="btn ict" v-on:click="getResume(item.jobseekerResume)">
             <font-awesome-icon class=" mt-1" icon="fa-solid fa-file-lines"/> Download CV
           </button>
-          <button class="btn ict" v-on:click="testResume">
-            <font-awesome-icon class=" mt-1" icon="fa-solid fa-file-lines"/> View CV
-          </button>
+          <router-link class="btn ict" target="_blank" to="/pdfviewer">View resume</router-link>
          <!-- <pdf :src="'http://54.255.4.75:9091/resources/'+ item.jobseekerResume"></pdf> -->
         <PdfViewer></PdfViewer>
         <button class="btn ict" v-on:click="getLink(item.jobseekerPortfolio)">
