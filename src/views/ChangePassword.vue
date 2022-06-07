@@ -94,9 +94,14 @@ export default {
 
             } catch (err) {
               console.log(err.response.data.message)
+              this.$toast.error(err.response.data.message)
             }
             if(response.status === 200){
-              window.alert("Password Changed");
+              // window.alert("Password Changed");
+              this.$toast.success('Password Changed', {
+          // optional options Object
+          
+      })
               this.$router.push('/login')
             }
         },

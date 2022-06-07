@@ -27,7 +27,7 @@
             <label for="password" class="form-label mt-3">Password</label>
             <!-- addons -->
             <div class="input-group mb-3">
-              <input :type="visibility" id="password" class="form-control" placeholder="Password123@" aria-label="password" aria-describedby="button-addon2">
+              <input :type="visibility" v-model="password" id="password" class="form-control" placeholder="Password123@" aria-label="password" aria-describedby="button-addon2">
               <button class="btn btn-outline-secondary" type="button" id="button-addon2" @click="showPassword()" v-if="visibility == 'password' ">
                 <font-awesome-icon icon="fa-solid fa-eye" width="22" height="22" icon-name="show password" />
               </button>

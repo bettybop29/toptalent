@@ -47,7 +47,7 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <a v-bind:href="'http://54.255.4.75:9091/resources/' + applicant.jobseekerResume"
+                        <a target="_blank" v-bind:href="'http://54.255.4.75:9091/resources/' + applicant.jobseekerResume"
                         type="application/octet-stream" 
                         download=""
                         class="btn btn-primary btn-resume">
@@ -85,7 +85,7 @@
                         <h3>Skills</h3>
                         <div class="box-skills d-flex flex-wrap" >
                             <!-- <span class="badge text-dark" :key="item.id" v-for="item in splitStringToArray(applicant.jobseekerSkill)">{{item}}</span> -->
-                            <span class="badge text-dark" v-for="item in (skills)" :key="item.id">{{item}}</span>
+                            <span class="badge text-dark" v-for="item in (skill)" :key="item.id">{{item}}</span>
 
                         </div>
                     </div>
