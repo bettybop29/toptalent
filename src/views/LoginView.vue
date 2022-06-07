@@ -162,6 +162,10 @@
     color: #838383;
   }
 
+  /* .btn {
+    margin-top: 100px;
+  } */
+
   .sign-up {
     text-align: center;
   }
@@ -172,10 +176,10 @@
 
     /* position: absolute; */
     width: 550px;
-    max-height: 350px;
+    max-height: 500px;
     /* left: 345px;
     top: 560px; */
-    margin-top: -300px;
+    margin-top: -400px;
     margin-left: 100px;
 
     background: rgba(255, 255, 255, 0.2);
@@ -192,12 +196,12 @@
 
   .text-testimony p {
     font-weight: 700;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 32px;
   }
 
   .text-testimony .title-footer {
-    margin-top: 40px;
+    margin-top: 50px;
     font-weight: 900;
     font-size: 20px;
   }
