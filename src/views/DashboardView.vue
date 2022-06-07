@@ -4,7 +4,7 @@
   
     <sidebar-component/>
     <sidebar-right v-if="this.sidepop == true" :view="views"></sidebar-right>
-    <sidebar-right-review  v-if="this.sidepop == false & this.err == '200'"></sidebar-right-review>
+    <sidebar-right-review  v-if="this.sidepop == false & this.err == '200'" :view="views"></sidebar-right-review>
     <sidebar-right-empty  v-if="this.err =='400'"></sidebar-right-empty>
 
    <div class="container">
@@ -97,7 +97,6 @@
         <p v-else class="position2">{{resume.jobPosition}}</p>
       </td>
       <td><button class="btn-primary" @click="getView(resume.applicationId)">View</button></td>
-      
     </tr>
   </tbody>  
 </table>
@@ -143,7 +142,8 @@ export default {
       stopColor:'#F39201',
       innerStrokeColor:'#C4C4C4',
       percent:'',
-      percentt:''
+      percentt:'',
+      index:'1'
     }
   },
   methods : {
@@ -235,6 +235,10 @@ export default {
       .then((data)=>{
         this.views=data.data.data
         this.sidepop = true
+        if(this.index == 1){
+          localStorage.setItem("candidateReview-info", JSON.stringify(data.data.data.applicationId));
+        }
+        console.warn(data.data.data.applicationId)
         console.log(this.sidepop)
         // console.log(data)
               

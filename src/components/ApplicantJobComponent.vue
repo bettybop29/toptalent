@@ -35,6 +35,9 @@
     <div class="col-md-7">
       <div class="d-flex">
           <button class="btn ict" v-on:click="getResume(item.jobseekerResume)">
+            <font-awesome-icon class=" mt-1" icon="fa-solid fa-file-lines"/> Download CV
+          </button>
+          <button class="btn ict" v-on:click="testResume">
             <font-awesome-icon class=" mt-1" icon="fa-solid fa-file-lines"/> View CV
           </button>
          <!-- <pdf :src="'http://54.255.4.75:9091/resources/'+ item.jobseekerResume"></pdf> -->
@@ -46,12 +49,16 @@
     </div>
     <div class="col-md-3">
       <!-- <span class="text-muted" style="font-size: 12px">Applied on DD-MM-YYYY</span> -->
-      <time-ago :datetime="dateTime" 
-                  refresh 
-                :tooltip="tooltip"
-                :long="longString"
-      ></time-ago>
-      <!-- <p>{{moment(item.createdAt).format('DD MMM YYYY')}}</p> -->
+      <time-ago :datetime="item.createdAt" refresh long></time-ago>
+    </div>
+    <div class="col-md-12 animate__animated animate__fadeInDown" v-if="resumeView == true">
+      <div id="pdf">
+        <object width="100%" height="650" type="application/pdf"
+            data="http://54.255.4.75:9091/resources/Putri-20220603-aly.pdf" id="pdf_content"
+            >
+            <p>Insert your error message here, if the PDF cannot be displayed.</p>
+        </object>
+      </div>
     </div>
     
     <hr class="mt-4" />
@@ -61,9 +68,9 @@
 <script>
   import axios from 'axios'
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-  moment().format();
+
   // import pdf from 'pdfvuer';
-  import moment from 'moment';
+
   import {TimeAgo} from 'vue2-timeago'
 
   export default {
@@ -77,28 +84,20 @@
     props: ['item'],
     data() {
       return {
-        pickerOptions: {
-          dateTime:'2019-05-08 19:58:35',
-          longString: true,
-          tooltip: true,
-          tooltipOptions: {
-            placement: "top",
-          },
-          locale: "en",
-        },
-
         editor: ClassicEditor,
         editorData: '',
         editorConfig: {
           // The configuration of the editor.
         },
         edit: [],
-        
+        resumeView:false
       }
     },
     methods: {
-    
-
+      async testResume(){
+        this.resumeView = true
+        console.warn(this.resumeView)
+      },
       async revApplicant(applicationId){
         await axios.post(`http://54.255.4.75:9091/api/v1/application/status/sent/?applicationId=${applicationId}`)
         this.$toast.success(`Job updated !`)

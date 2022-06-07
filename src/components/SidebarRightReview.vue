@@ -8,7 +8,7 @@
         <li>
           <p>Some candidates<br>need to be reviewed!</p>
           <button  class="btn btn-primary">Review Now</button>
-          
+          <p>{{view.jobseekerName}}</p>
         </li>
 
       </ul>
@@ -23,10 +23,28 @@
 </template>
 
 <script>
-
+import axios from 'axios'
 
 export default {
     name:"SidebarRightReview",
+    props:['view'],
+    data(){
+      return{
+        candidate:''
+      }
+    },
+    methods:{
+      async candidateNew(){
+        const recruiterId = JSON.parse(localStorage.getItem("candidateReview-info"))
+        await axios.get(`http://54.255.4.75:9091/api/v1/application/applicant?applicationId=${recruiterId}`)
+        .then((data)=>{
+          this.candidate = data.data
+        })
+      }
+    },
+    mounted(){
+      this.candidate();
+    }
 }
 </script>
 

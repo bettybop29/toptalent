@@ -30,8 +30,11 @@
       <small class="text-muted">Rp{{ formatPrice(item.jobSalary)}},-</small>
     </div>
     <div class="col-6 d-flex justify-content-end">
-      <!-- <small class="text-muted">3 day ago</small> -->{{time}}
-      <small><time-ago  :datetime="item.createdAt" refresh long></time-ago></small>
+      <!-- <small class="text-muted">3 day ago</small> -->
+      <!-- <small><time-ago  :datetime="item.createdAt" refresh long></time-ago></small> -->
+      <!-- <small>{{candidateDate()}}</small> -->
+      <!-- <small>{{moment(item.createdAt).format('DD MMM YYYY')}}</small> -->
+
     </div>
     <div class="col-6">
       <router-link v-if="resp == '0'" :to="{name:'jobdetail', params:{id:item.jobId}}" class="text-muted text-title align-items-center primary text-decoration-none fs-6">{{resp}}
@@ -122,12 +125,13 @@
 <script>
   import axios from 'axios'
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-  import { TimeAgo } from 'vue2-timeago'
-  
+  // import { TimeAgo } from 'vue2-timeago'
+  import moment from 'moment';
+  moment().format();
 
   export default {
     components:{
-      TimeAgo
+      // TimeAgo
     },
     name: "JobComponent",
     props: ['item', 'id', ],
@@ -155,7 +159,15 @@
       }
     },
     methods: {
-      
+      moment: function (date) {
+      return moment(date);
+    },
+      candidateDate(){
+        var a = moment([new Date()]);
+        var b = moment([this.item.createdAt]);
+        console.warn(a)
+        return a.diff(b, 'days').format("YYYY MM DD");
+      },
       async countTotalAplicant(){
         await axios.get(`http://54.255.4.75:9091/api/v1/application/count-applicants/${this.item.jobId}`)
         .then((data)=>{
@@ -231,6 +243,7 @@
     mounted() {
       this.getDetail();
       this.countTotalAplicant();
+      
     }
 
   }
