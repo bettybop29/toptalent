@@ -21,7 +21,7 @@ import ExpiredForgot from '@/views/ExpiredForgotView.vue'
 import ApplicantDetailView from '@/views/ApplicantDetailView.vue'
 import ApplicantJobComponent from '../components/ApplicantJobComponent.vue'
 import jobsDetail from '@/views/jobsDetail.vue'
-
+import PdfViewer from '@/views/PdfViewer.vue' 
 
 Vue.use(VueRouter)
 
@@ -55,6 +55,11 @@ const routes = [
     path: '/jobsdetail/:id',
     name: 'jobsdetail',
     component: jobsDetail, 
+  },
+  {
+    path: '/pdfviewer/',
+    name: 'PdfViewer',
+    component: PdfViewer, 
   },
   {
     path: '/login',

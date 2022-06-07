@@ -22,12 +22,14 @@
        <button v-else class="btn" v-on:click="accApplicant(item.applicationId)">
         <img class="pt-4" src="../assets/icon-postjob/acc-applicant.svg" alt="">
       </button>
+      
       <button v-if="item.applicationStatus != 'sent'" class="btn">  
         <img class="pt-4 ms-5" src="../assets/icon-postjob/cancel-applicant.svg" alt="" v-on:click="rejApplicant(item.applicationId)">
       </button>
-      <button v-else class="btn">  
+      <!-- <button v-else class="btn">  
         <img class="pt-4 ms-5" src="../assets/icon-postjob/cancel-applicant.svg" alt="" v-on:click="rejApplicant(item.applicationId)">
-      </button>
+      </button> -->
+      <router-link class="btn" to="/pdfviewer">View resume</router-link>
      
     </div>
     <div class="col-md-2">
@@ -51,15 +53,7 @@
       <!-- <span class="text-muted" style="font-size: 12px">Applied on DD-MM-YYYY</span> -->
       <time-ago :datetime="item.createdAt" refresh long></time-ago>
     </div>
-    <div class="col-md-12 animate__animated animate__fadeInDown" v-if="resumeView == true">
-      <div id="pdf">
-        <object width="100%" height="650" type="application/pdf"
-            data="http://54.255.4.75:9091/resources/Putri-20220603-aly.pdf" id="pdf_content"
-            >
-            <p>Insert your error message here, if the PDF cannot be displayed.</p>
-        </object>
-      </div>
-    </div>
+    
     
     <hr class="mt-4" />
   </div>
@@ -90,12 +84,13 @@
           // The configuration of the editor.
         },
         edit: [],
-        resumeView:false
+        // resumeView:false
       }
     },
     methods: {
       async testResume(){
-        this.resumeView = true
+        // this.resumeView = true
+        window.open(`http://54.255.4.75:9091/resources/Putri-20220603-aly.pdf`)
         console.warn(this.resumeView)
       },
       async revApplicant(applicationId){
