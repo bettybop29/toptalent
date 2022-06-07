@@ -97,7 +97,7 @@
               <a class="card-text" v-else><font-awesome-icon icon="fa-solid fa-phone" class="icn"/> {{profile.recruiterPhone}}</a>
               </div>
               <div >
-              <a class="card-text" v-if="profile.recruiterWebsite == ''"></a>
+              <a class="card-text" v-if="profile.recruiterWebsite == 'null'"></a>
               <a class="card-text" v-else><font-awesome-icon icon="fa-solid fa-globe" class="icn"/> {{profile.recruiterWebsite}}</a>
               </div>
             </div>

@@ -85,8 +85,8 @@
                         <h3>Skills</h3>
                         <div class="box-skills d-flex flex-wrap" >
                             <!-- <span class="badge text-dark" :key="item.id" v-for="item in splitStringToArray(applicant.jobseekerSkill)">{{item}}</span> -->
-                            <!-- <span class="badge text-dark" v-for="item in (applicant.skills)" :key="item.id">{{item}}</span> -->
-                            <span class="badge text-dark" v-for="item in (skill)" :key="item.id">{{item}}</span>
+                            <span class="badge text-dark" v-for="item in (skills)" :key="item.id">{{item}}</span>
+
                         </div>
                     </div>
                 </div>

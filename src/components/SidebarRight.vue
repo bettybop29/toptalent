@@ -39,7 +39,7 @@
           
           <!-- <li><button class="btn-resume act" v-on:click="getResume(view.jobseekerResume)">Resume <font-awesome-icon :icon="['fas','download']"/></button></li> -->
             <li>
-              <button v-if="view.jobseekerResume == null" v-on:click="ToastResume" class="btn-resume act lnk text-muted">No data resume <font-awesome-icon :icon="['fas','download']"/></button>
+              <button v-if="view.jobseekerResume == ''" v-on:click="ToastResume" class="btn-resume act lnk text-muted">No data resume <font-awesome-icon :icon="['fas','download']"/></button>
               <a v-else v-bind:href="'http://54.255.4.75:9091/resources/' + view.jobseekerResume"  target="_blank" download class="btn-resume act lnk">Resume <font-awesome-icon :icon="['fas','download']"/></a>
             </li>
           <li>
@@ -59,11 +59,17 @@
                 <div class="modal-dialog">
                   <div class="modal-content" style="border-radius:20px; margin:auto; width:300px; margin-top:200px; padding-bottom:20px;">
                     <div class="modal-body">
-                      <h4>Are you sure want to accept {{view.jobseekerName}}?</h4>
+                      <h5 class="form-popup-title">Are you sure want to accept {{view.jobseekerName}}?</h5>
                     </div>
                     <div class="select-button">
-                      <button type="button" class="btn btn-danger pop" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
-                      <button type="button" class="btn btn-primary pop" v-on:click="accepted(view.applicationId)"><i class="bi bi-check2"></i></button>
+                      <button type="button" class="btn btn-primary pop" v-on:click="accepted(view.applicationId)">
+                        <font-awesome-icon class="icn" :icon="['fas','check']"/>
+                        Yes, accept
+                      </button>
+                      <button type="button" class="btn btn-danger pop" data-bs-dismiss="modal">
+                        <font-awesome-icon class="icn" :icon="['fas','xmark']"/>
+                        Cancel
+                      </button>       
                     </div>
                   </div>
                 </div>
@@ -83,11 +89,17 @@
                 <div class="modal-dialog">
                   <div class="modal-content" style="border-radius:20px; margin:auto; width:300px; margin-top:200px; padding-bottom:20px;">
                     <div class="modal-body">
-                      <h5>Are you sure want to reject {{view.jobseekerName}}?</h5>
+                      <h5 class="form-popup-title">Are you sure want to reject {{view.jobseekerName}}?</h5>
                     </div>
                     <div class="select-button">
-                      <button type="button" class="pop" v-on:click="rejected(view.applicationId)">Yes, accept</button>
-                      <button type="button" class="pop" data-bs-dismiss="modal">Cancel</button>
+                      <button type="button" class="pop1" v-on:click="rejected(view.applicationId)">
+                      <font-awesome-icon class="icn" :icon="['fas','check']"/>
+                        Yes, reject
+                      </button>
+                      <button type="button" class="pop2" data-bs-dismiss="modal">
+                        <font-awesome-icon class="icn" :icon="['fas','xmark']"/>
+                        Cancel
+                      </button>
                       
                     </div>
                   </div>
@@ -164,6 +176,10 @@ export default {
 </script>
 
 <style scoped>
+.form-popup-title{
+  width: 235px;
+  text-align: center;
+}
 .lnk{
   text-decoration: none;
   color: black;
@@ -304,6 +320,12 @@ export default {
     .pop{
       text-align: center;
       margin: 0;
+    }
+    .pop1{
+      background: blue;
+    }
+    .pop2{
+      background: red;
     }
     .select-button{
       display: flex;
