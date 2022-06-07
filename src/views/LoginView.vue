@@ -1,8 +1,8 @@
 <template>
   <div class="container-fluid min-vh-100 d-flex flex-column">
     <div class="row flex-grow-1">
-      <div class="col-md-6">
-        <img class="image-login img-fluid" src="../assets/login-image.png" alt="">
+      <div class="col-md-7">
+        <img class="image-login img-fluid" src="../assets/login-img.png" alt="">
         <div class="card mb-2 card-testimony d-none d-md-block d-lg-block">
           <div class="text-testimony">
             <p>“I was freshgraduate until I found toptalent and I find a suitable job here.
@@ -16,7 +16,7 @@
       </div>
 
       <!-- right panel -->
-      <div class="col-md-6 p-5">
+      <div class="col-md-5 p-5">
         <h1 class="animate_animated animate_fadeInDown">Welcome Back!</h1>
         <div class="form-login animate_animated animate_fadeInDown">
           <form action="" @submit.prevent="login" class="col-11">
@@ -152,7 +152,7 @@
     /* height: 750px; */
     height: 100%;
     /* width: 760px; */
-    /* width: 50vw; */
+    width: 50vw;
 
   }
 
