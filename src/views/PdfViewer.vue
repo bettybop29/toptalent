@@ -1,21 +1,68 @@
 <template>
-  <div class="col-md-12 animate__animated animate__fadeInDown">
-      <div id="pdf">
-        <object width="100%" height="1200vh" type="application/pdf"
-            :data="'http://54.255.4.75:9091/resources/'+ this.$route.params.id" id="pdf_content"
-            >
-            <p>Insert your error message here, if the PDF cannot be displayed.</p>
-        </object>
-      </div>
-    </div>
+  <div id="app">
+    <PSPDFKitContainer :pdfFile="'http://54.255.4.75:9091/resources/'+ this.$route.params.id" @loaded="handleLoaded" />
+  </div>
 </template>
 
 <script>
-export default {
+import PSPDFKitContainer from "@/components/PSPDFKitContainer";
 
-}
+export default {
+  data() {
+    return {
+      pdfFile: "" || "/example.pdf",
+    };
+  },
+  /**
+   * Render the `PSPDFKitContainer` component.
+   */
+  components: {
+    PSPDFKitContainer,
+  },
+  /**
+   * Our component has two methods — one to check when the document is loaded, and the other to open the document.
+   */
+  methods: {
+    
+
+    openDocument(event) {
+      // To access the Vue.js instance data properties, use `this` keyword.
+      if (this.pdfFile && this.pdfFile.startsWith('blob:')) {
+        window.URL.revokeObjectURL(this.pdfFile);
+      }
+      this.pdfFile = window.URL.createObjectURL(event.target.files[0]);
+    },
+  },
+};
 </script>
 
 <style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  text-align: center;
+  color: #2c3e50;
+}
+
+body {
+  margin: 0;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    background:#4A8FED;
+    padding:10px;
+    color:#fff;
+    font:inherit;
+    font-size: 16px;
+    font-weight: bold;
+}
 
 </style>

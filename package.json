@@ -28,6 +28,7 @@
     "pdfvuer": "^2.0.1",
     "popper.js": "^1.16.1",
     "portal-vue": "^2.1.7",
+    "pspdfkit": "^2022.2.3",
     "vue-axios": "^3.4.1",
     "vue-pdf": "^4.3.0",
     "vue-radial-progress": "^0.3.2",
