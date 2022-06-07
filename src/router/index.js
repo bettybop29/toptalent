@@ -57,7 +57,7 @@ const routes = [
     component: jobsDetail, 
   },
   {
-    path: '/pdfviewer/',
+    path: '/pdfviewer/:id',
     name: 'PdfViewer',
     component: PdfViewer, 
   },
