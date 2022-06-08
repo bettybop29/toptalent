@@ -37,7 +37,7 @@
                 <div class="mb-3">
                   <label for="inputState">Job position</label>
                   <select class="form-control" id="inputState" v-model="jobPosition" required>
-                    <option selected>Choose..</option>
+                    <option>Choose..</option>
                     <option>Internship</option>
                     <option>Full time</option>
                     <option>Part time</option>

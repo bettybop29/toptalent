@@ -1,96 +1,102 @@
 <template>
-  <div class="row">
-    <div class="col-md-7 section-left">
-        <img class="image-login " src="../assets/signup-img.png" alt="">
-        <div tag="article" class="card mb-2 card-testimony">
-          <div class="text-testimony">
-            <p>
-              “I’ve been using this incredible job portal. They have comprehensive features that can help me build people in my company. 
-              Now, I’m building my business much better than before. Thanks toptalent!”
-            </p>
-            <h5>Jane Doe</h5> 
-            <h6>Founder, PT Karya Bangsa Nasional</h6>
+  <div class="container-fluid min-vh-100 d-flex flex-column ">
+    <div class="row flex-grow-1">
+      <div class="col-md-7 section-left">
+          <img class="image-login " src="../assets/signup-img.png" alt="">
+          <div class="card mb-2 card-testimony">
+            <div class="text-testimony">
+              <p>
+                “I’ve been using this incredible job portal. They have comprehensive features that can help me build people in my company. 
+                Now, I’m building my business much better than before. Thanks toptalent!”
+              </p>
+              <h5>Jane Doe</h5> 
+              <h6>Founder, PT Karya Bangsa Nasional</h6>
+            </div>
           </div>
-        </div>
-    </div>
-    <div class="col-md-5 section-right"> 
-      <h1 class="animate__animated animate__fadeInLeft">Start Building Your Top Company!</h1>
-      <div class="form-login">
-      <form action="" @submit.prevent="signUp" class="row">
-        <div class="col-12">
-            <label for="email" class="form-label mt-4">Email</label>
+      </div>
+      <div class="col-md-5 section-right"> 
+        <h1 class="animate__animated animate__fadeInLeft">Start Building Your Top Company!</h1>
+        <div class="form-login">
+        <form action="" @submit.prevent="signUp" class="row">
+          <div >
+              <label for="email" class="form-label mt-4">Email</label>
+              <input
+                type="email"
+                v-model="recruiterEmail"
+                class="form-control"
+                id="email"
+                aria-describedby="emailHelp"
+                placeholder="yourcompany@mail.com"
+                required
+              />
+          </div>
+          <div v-if="this.err == 'User already exists'">
+            <b-badge variant="danger">{{err}}</b-badge>
+          </div>
+          
+          <label for="password" class="form-label mt-3">Password</label>
+          <div>
             <input
-              type="email"
-              v-model="recruiterEmail"
+              type="password"
+              v-model="recruiterPassword"
               class="form-control"
-              id="email"
-              aria-describedby="emailHelp"
-              placeholder="yourcompany@mail.com"
+              id="password"
+              placeholder="Password123@"
               required
             />
-        </div>
-        <div v-if="this.err == 'User already exists'">
-              <b-badge variant="danger">{{err}}</b-badge>
-            </div>
-        
-        <label for="password" class="form-label mt-3">Password</label>
-        <input
-          type="password"
-          v-model="recruiterPassword"
-          class="form-control"
-          id="password"
-          placeholder="Password123@"
-          required
-        />
-        <div v-if="this.err == 'Password must be at least 8 characters'">
-              <span class="badge bg-danger">{{err}}</span>
-            </div>
-            <div v-if="this.err == 'Password must contain at least one number, one capital letter and one special character'">
-              <span class="badge bg-danger">{{err}}</span>
-            </div>
-        <div class="password-required">
-          <p>Password required:</p>
-          <ul>
-            <li>8 characters</li>
-            <li>1 upper-case [A-Z]</li>
-            <li>1 lower-case [a-z]</li>
-            <li>1 symbol/special character</li>
-          </ul>
-        </div>
-
-        <!-- company field -->
-        <label for="company" class="form-label mt-3">Company</label>
-        <input
-          type="text"
-          v-model="recruiterCompany"
-          class="form-control"
-          id="company"
-          placeholder="Your Company Name"
-          required
+          </div>
           
-        />
+          <div v-if="this.err == 'Password must be at least 8 characters'">
+                <span class="badge bg-danger">{{err}}</span>
+              </div>
+              <div v-if="this.err == 'Password must contain at least one number, one capital letter and one special character'">
+                <span class="badge bg-danger">{{err}}</span>
+              </div>
+          <div class="password-required">
+            <p>Password required:</p>
+            <ul>
+              <li>8 characters</li>
+              <li>1 upper-case [A-Z]</li>
+              <li>1 lower-case [a-z]</li>
+              <li>1 symbol/special character</li>
+            </ul>
+          </div>
 
-        <!-- Industry field -->
-        <label for="industry" class="form-label mt-3">Industry</label>
-        <input
-          type="text"
-          v-model="recruiterIndustry"
-          class="form-control"
-          id="industry"
-          placeholder="eg: Technology, Financial"
-          required
+          <!-- company field -->
+          <label for="company" class="form-label mt-3">Company</label>
+          <input
+            type="text"
+            v-model="recruiterCompany"
+            class="form-control"
+            id="company"
+            placeholder="Your Company Name"
+            required
+            
+          />
+
+          <!-- Industry field -->
+          <label for="industry" class="form-label mt-3">Industry</label>
+          <input
+            type="text"
+            v-model="recruiterIndustry"
+            class="form-control"
+            id="industry"
+            placeholder="eg: Technology, Financial"
+            required
+            
+          />
           
-        />
-        <button v-if="searchDisabled == true"  class="btn btn-primary" type="button" disabled>
-                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                Loading...
-              </button>
-        <button v-else type="submit" class="btn btn-primary btn-signup" :disabled="searchDisabled">Create Account</button>
-          <!-- <input type="submit" class="btn btn-primary btn-signup" :disabled="searchDisabled" value="Create Account"> -->
-        <p class="sign-up mt-4">Already have an account? 
-          <router-link class="btn-login" to="/login">Log In</router-link>
-        </p>
-      </form>
+          <button v-if="searchDisabled == true"  class="btn btn-primary" type="button" disabled>
+                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  Loading...
+                </button>
+          <button v-else type="submit" class="btn btn-primary btn-signup" :disabled="searchDisabled">Create Account</button>
+            <!-- <input type="submit" class="btn btn-primary btn-signup" :disabled="searchDisabled" value="Create Account"> -->
+          <p class="sign-up mt-4">Already have an account? 
+            <router-link class="btn-login" to="/login">Log In</router-link>
+          </p>
+        </form>
+        </div>
       </div>
     </div>
   </div>
@@ -112,10 +118,17 @@ export default {
         recruiterIndustry: "",
         searchDisabled:false,
         err:"",
-        ress:""
+        ress:"",
+        visibility: 'password'
       }
     },
     methods:{
+      showPassword(){
+        this.visibility = 'text';
+      },
+      hidePassword(){
+        this.visibility = 'password';
+      },
       async signUp() {
     
       let response = '';
@@ -276,6 +289,11 @@ font-size: 20px;
   text-decoration: underline;
 }
 
+.toggle-password{
+    position: absolute;
+    right: 90px;
+    top: 350px;
+}
 
 /* breakpoints */
 /* for mobile */
@@ -316,6 +334,11 @@ font-size: 20px;
 
     h1{
       margin-top: 80px;
+    }
+
+    .toggle-password{
+    right: 100px;
+    top: 860px;
     }
 }
 

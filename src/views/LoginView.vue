@@ -1,8 +1,8 @@
 <template>
   <div class="container-fluid min-vh-100 d-flex flex-column">
     <div class="row flex-grow-1">
-      <div class="col-md-6">
-        <img class="image-login img-fluid" src="../assets/login-image.png" alt="">
+      <div class="col-md-7">
+        <img class="image-login img-fluid" src="../assets/login-img.png" alt="">
         <div class="card mb-2 card-testimony d-none d-md-block d-lg-block">
           <div class="text-testimony">
             <p>“I was freshgraduate until I found toptalent and I find a suitable job here.
@@ -16,27 +16,27 @@
       </div>
 
       <!-- right panel -->
-      <div class="col-md-6 p-5">
+      <div class="col-md-5 p-5">
         <h1 class="animate_animated animate_fadeInDown">Welcome Back!</h1>
         <div class="form-login animate_animated animate_fadeInDown">
           <form action="" @submit.prevent="login" class="col-11">
-            <label for="validationDefault01" class="form-label mt-4">Email</label>
-            <input type="email" v-model="email" class="form-control" id="floatingInput" aria-describedby="emailHelp"
+            <label for="email" class="form-label mt-4">Email</label>
+            <input type="email" v-model="email" class="form-control" id="email" aria-describedby="emailHelp"
               placeholder="yourcompany@mail.com" required />
 
-            <label for="floatingInput" class="form-label mt-3">Password</label>
-            <div>
-              <input :type="visibility" v-model="password" class="form-control mb-3" id="myInput" placeholder="Password123@"
-              required />
-              <a @click="showPassword()" class="toggle-password" v-if="visibility == 'password' ">
+            <label for="password" class="form-label mt-3">Password</label>
+            <!-- addons -->
+            <div class="input-group mb-3">
+              <input :type="visibility" v-model="password" id="password" class="form-control" placeholder="Password123@" aria-label="password" aria-describedby="button-addon2">
+              <button class="btn btn-outline-secondary" type="button" id="button-addon2" @click="showPassword()" v-if="visibility == 'password' ">
                 <font-awesome-icon icon="fa-solid fa-eye" width="22" height="22" icon-name="show password" />
-              </a>
+              </button>
               <!-- hides password -->
-              <a @click="hidePassword()" class="toggle-password" v-if="visibility == 'text' ">
-                <!-- <font-awesome-icon icon="fa-solid fa-eye" width="22" height="22" icon-name="show password" /> -->
+              <button class="btn btn-outline-secondary" type="button" id="button-addon2" @click="hidePassword()" v-if="visibility == 'text' ">
                 <font-awesome-icon icon="fa-solid fa-eye-slash" width="22" height="22" icon-name="hide password"/>
-              </a>
+              </button>
             </div>
+            
             <p>
               <router-link class="btn-forgot" to="/resetpass">Forgot Password?</router-link>
             </p>
@@ -152,7 +152,7 @@
     /* height: 750px; */
     height: 100%;
     /* width: 760px; */
-    /* width: 50vw; */
+    width: 50vw;
 
   }
 
@@ -161,6 +161,10 @@
     background: #EFF0F2;
     color: #838383;
   }
+
+  /* .btn {
+    margin-top: 100px;
+  } */
 
   .sign-up {
     text-align: center;
@@ -172,10 +176,10 @@
 
     /* position: absolute; */
     width: 550px;
-    max-height: 350px;
+    max-height: 500px;
     /* left: 345px;
     top: 560px; */
-    margin-top: -300px;
+    margin-top: -400px;
     margin-left: 100px;
 
     background: rgba(255, 255, 255, 0.2);
@@ -192,12 +196,12 @@
 
   .text-testimony p {
     font-weight: 700;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 32px;
   }
 
   .text-testimony .title-footer {
-    margin-top: 40px;
+    margin-top: 50px;
     font-weight: 900;
     font-size: 20px;
   }
@@ -225,11 +229,9 @@
   }
 
   .toggle-password{
-    /* style="position: absolute; right: 5px; top: 50px;" */
     position: absolute;
     right: 120px;
     top: 310px;
-    /* margin-left: 400px; */
   }
 
   /* breakpoint */
