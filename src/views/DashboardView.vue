@@ -8,17 +8,22 @@
     <sidebar-right-empty  v-if="this.err =='400'"></sidebar-right-empty>
 
    <div class="container">
-        <div class="card">
-          <img class="animate__animated animate__tada" src="@/assets/saly.png" alt="">
-            <div class="card-title">              
-              <h2 class="main-head">Hi, {{recruiters.recruiterCompany}}!</h2>
+        <div class="card ">
+          <h2 class="main-head">Hi, {{recruiters.recruiterCompany}}!</h2>
+          <div class="row">
+          <div class="col-md-3">
+            <img class="animate__animated animate__tada" src="@/assets/saly.png" alt="">
+          </div>
+            <div class=" col-md-9">              
+              
               <div class="card-text">
-                <h5>Welcome Back</h5>
-                <h5>you have <span class="decor">{{edit.data}}</span> new
-                <br>resume.</h5> 
+                <h5 class="welcome">Welcome Back</h5>
+                <h5 id="info">You have <span class="decor">{{edit.data}}</span> new
+                resume(s)</h5> 
               </div>
               <button class="btn" hidden>See all</button>    
-            </div>    
+            </div>  
+            </div>  
         </div>
      
         <div class="card-monitor">
@@ -279,7 +284,9 @@ export default {
     margin-left: 230px;
   }
   .main-head{
-    font-weight: 600;
+    font-weight: 700;
+    font-size: 20px;
+    text-align: right;
   }
   
   .table{
@@ -333,10 +340,8 @@ export default {
   display: flex;
 }
 .card {
-  
   position: relative;
-  padding: 10px;
-  text-align: right;
+  padding: 20px;
   border-radius: 29px;
   width: 430px;
   height: 273px;
@@ -345,32 +350,43 @@ export default {
 .card-text {
   padding: 10px;
   margin: 0;
-  padding-left: 40px;
-  text-align: left;
+  /* padding-left: 40px; */
+  /* text-align: left; */
 }
 img{
-  z-index: 1;
-  position: fixed;
-  display: block;
-  left: 250px;
+  /* z-index: 1; */
+  position: relative;
+  /* display: block; */
+  left: -70px;
   top: 20px;
   /* right: 1000px; */
   /* margin-left: 0; */
   /* margin-right: 40px; */
-  width: 270px;
-  height: 270px;
+  width: 210px;
+  height: 210px;
     
   
 }
 h5{
   padding-top: 5px;
-  text-align: left;
-  margin-left: 160px;
+  text-align: right;
+  /* margin-left: 160px; */
 }
+
+.welcome{
+  font-size: 16px;
+  font-weight: 700;
+}
+
 .decor{
   font-size: 17px;
   color: rgb(37, 37, 37);
 }
+
+#info{
+  font-size: 16px;
+}
+
 .card-approve {
  background-image: url("../assets/approve.png");
   border-radius: 20px;
@@ -450,5 +466,7 @@ span{
   border-radius: 10px 50px 10px 0px;
   padding-right: 40px;
 }
+
+
 
 </style>
