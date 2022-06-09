@@ -1,6 +1,7 @@
 <template>
   <div>
     <sidebar-component></sidebar-component>
+    <nav-mobile></nav-mobile>
 
     <div class="main">
       <nav class="navbar navbar-expand-lg navbar-light bg-white py-4 sticky-top" style="border-bottom: 5px solid whitesmoke;">
@@ -112,6 +113,7 @@
   import listjobcomponent from '@/components/ListjobComponent.vue'
   // import CandidatejobComponent from '@/components/CandidatejobComponent.vue';
   // import ParagraphPlugin from '@ckeditor/ckeditor5-paragraph/src/paragraph';
+  import NavMobile from '../components/NavMobile.vue'
 
   export default {
     name: "PostJobNew",
@@ -121,6 +123,7 @@
       // jobcomponentnew,
       // applicantjobcomponent,
       listjobcomponent,
+      NavMobile
       // CandidatejobComponent
     },
     props:['edit'],
@@ -211,6 +214,15 @@
 <style scoped>
   .main {
     margin-left: 250px;
+  }
+
+  /* BREAKPOINTS */
+  /* MOBILE */
+  @media only screen and (max-width: 576px){
+    .main{
+      margin-left: 10px;
+      margin-top: 60px;
+    }
   }
 </style>
 
