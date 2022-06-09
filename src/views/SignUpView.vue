@@ -302,11 +302,6 @@ font-size: 20px;
   text-decoration: underline;
 }
 
-.toggle-password{
-    position: absolute;
-    right: 90px;
-    top: 350px;
-}
 
 /* breakpoints */
 /* for mobile */
@@ -349,10 +344,6 @@ font-size: 20px;
       margin-top: 80px;
     }
 
-    .toggle-password{
-    right: 100px;
-    top: 860px;
-    }
 }
 
 
