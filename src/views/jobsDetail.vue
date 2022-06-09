@@ -1,6 +1,7 @@
 <template>
   <div>
       <sidebarcomponent></sidebarcomponent>
+      <nav-mobile/>
 
       <div class="container p-4">
           <button class="btn" onclick="javascript:window.history.back();">
@@ -9,18 +10,18 @@
           </button>
           <div class="row justify-content-between sticky-top bg-white" style="border-bottom: 5px solid whitesmoke;">
               
-            <div class="col-1">
+            <div class="col-md-1 mt-3">
                 <img v-if="detail.recruiterImage != null" :src="'http://54.255.4.75:9091/resources/'+ detail.recruiterImage"  alt="..." width="200px">
                 <img v-else src="http://54.255.4.75:9091/resources/r5jr7e3qf8f5uhr.png"  alt="..." width="200px">                
             </div>
-            <div class="col-6">
+            <div class="col-md-6">
                 <h2 class="jobtitle">{{detail.jobName}} <span>({{detail.jobPosition}})</span></h2>
                 <h3 class="jobmediumtitle">{{userName}}</h3>
                 <p class="jobtext text-muted">Rp.{{formatPrice(detail.jobSalary)}},-</p>
                 <p class="jobtext text-muted">{{detail.jobAddress}}</p>
                 <p class="jobtext text-muted">Post on {{detail.createdAt}}</p>
             </div>
-            <div class="col-3 mt-5">
+            <div class="col-md-3 mt-5">
                 <button class="btn btn-outline-primary jobicn">
                     <img class="me-2" src="../assets/icon-postjob/pencil.svg" alt="">
                     Edit Job Post
@@ -68,10 +69,12 @@
 <script>
 import axios from 'axios'
 import sidebarcomponent from '@/components/SidebarComponent.vue'
+import NavMobile from '../components/NavMobile.vue'
 export default {
     name:'jobsDetail',
     components:{
-        sidebarcomponent   
+        sidebarcomponent,
+        NavMobile  
     },
     data(){
         return{
@@ -135,5 +138,14 @@ export default {
         border-radius: 50%;
         background: blue;
         color: inherit
+    }
+
+    /* BREAKPOINTS */
+    /* MOBILE */
+    @media only screen and (max-width: 576px){
+        .container{
+        margin-left: 0;
+        margin-top: 60px;
+    }
     }
 </style>

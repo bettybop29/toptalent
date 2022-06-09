@@ -1,6 +1,7 @@
 <template>
     <div>
         <sidebar-component></sidebar-component>
+        <nav-mobile/>
         <div class="page">
             <!-- section profile atas -->
             <section class="section-profile">
@@ -111,11 +112,14 @@
 
 <script>
 import sidebarcomponent from '../components/SidebarComponent.vue'
+import NavMobile from '../components/NavMobile.vue'
 import axios from 'axios'
+
 export default{
     name: "ApplicantDetailView",
     components: {
         SidebarComponent: sidebarcomponent,
+        NavMobile: NavMobile,
     },
     data(){
         return {
@@ -279,8 +283,17 @@ h3{
 /* breakpoints */
 /* for mobile */
 @media only screen and (max-width: 576px){
+    .page{
+        margin-top: 60px;
+        margin-left: 10%;
+    }
+
     .right-items{
     margin-left: 0;
+}
+
+h1{
+    margin-top: 20px;
 }
     
 }
