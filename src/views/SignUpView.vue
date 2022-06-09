@@ -50,11 +50,11 @@
             <!-- addons -->
             <div class="input-group mb-3">
               <input :type="visibility" v-model="recruiterPassword" id="password" class="form-control" placeholder="Password123@" aria-label="password" aria-describedby="button-addon2">
-              <button class="btn btn-outline-secondary" type="button" id="button-addon2" @click="showPassword()" v-if="visibility == 'password' ">
+              <button class="btn btn-outline-secondary btn-eye" type="button" id="button-addon2" @click="showPassword()" v-if="visibility == 'password' ">
                 <font-awesome-icon icon="fa-solid fa-eye" width="22" height="22" icon-name="show password" />
               </button>
               <!-- hides password -->
-              <button class="btn btn-outline-secondary" type="button" id="button-addon2" @click="hidePassword()" v-if="visibility == 'text' ">
+              <button class="btn btn-outline-secondary btn-eye" type="button" id="button-addon2" @click="hidePassword()" v-if="visibility == 'text' ">
                 <font-awesome-icon icon="fa-solid fa-eye-slash" width="22" height="22" icon-name="hide password"/>
               </button>
             </div>
@@ -215,9 +215,11 @@ export default {
     background: #EFF0F2;
     color: #838383;
 }
-.btn{
+
+.btn-signup{
     margin-top: 100px;
 }
+
 .sign-up{
     text-align: center;
 }
@@ -300,6 +302,10 @@ font-size: 20px;
 
 .btn-login:hover{
   text-decoration: underline;
+}
+
+.btn-eye{
+  padding: 0.375rem 0.75rem;
 }
 
 
