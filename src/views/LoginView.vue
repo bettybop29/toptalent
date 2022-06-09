@@ -242,5 +242,11 @@
     right: 100px;
     top: 770px;
     }
+
+    .image-login {
+    
+    width: 100vw;
+
+  }
 }
 </style>
