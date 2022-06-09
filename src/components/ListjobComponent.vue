@@ -4,18 +4,20 @@
   <div class="col-md-12">
         
           <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
+
             <li class="nav-item" role="presentation">
-              <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
-                role="tab" aria-controls="home" aria-selected="true">Visible</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
+              <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
                 role="tab" aria-controls="profile" aria-selected="false">Hidden</button>
             </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
+                role="tab" aria-controls="home" aria-selected="true">Visible</button>
+            </li>
+            
           </ul>
 
           <div class="tab-content">
-            <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div class="tab-pane" id="home" role="tabpanel" aria-labelledby="home-tab">
              <div class="mx-3 mb-4 pt-4 px-3">
                 <h5 class="fw-bold">{{visible}} Jobs is Visible</h5>
               </div>
@@ -25,7 +27,7 @@
               </div>
             </div>
 
-            <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
               <div class="mx-3 mb-4 pt-4 px-3">
                 <h5 class="fw-bold">{{hide}} Jobs is Hidden</h5>
               </div>  
@@ -33,6 +35,10 @@
                 <jobcomponentnew :item="item" v-if="item.jobStatus == 'hidden'"></jobcomponentnew>
               </div>
             </div>
+
+
+
+
           </div>
         </div> 
         </div> 

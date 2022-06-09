@@ -170,8 +170,10 @@
           // createToast("Job Successfully Created", {
           //   type: "success"
           // });
+          this.$toast.success("Job Successfully Created")
           this.modalOpen = true;
           location.reload(true)
+          // document.getElementsByClassName("active");
         } catch (error) {
           // createToast("please, fill blank form", {
           //   type: "danger"

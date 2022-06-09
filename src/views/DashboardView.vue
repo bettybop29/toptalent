@@ -235,10 +235,7 @@ export default {
       .then((data)=>{
         this.views=data.data.data
         this.sidepop = true
-        if(this.index == 1){
-          localStorage.setItem("candidateReview-info", JSON.stringify(data.data.data.applicationId));
-        }
-        console.warn(data.data.data.applicationId)
+        
         console.log(this.sidepop)
         // console.log(data)
               

@@ -18,7 +18,9 @@
                 <h3 class="jobmediumtitle">{{userName}}</h3>
                 <p class="jobtext text-muted">Rp.{{formatPrice(detail.jobSalary)}},-</p>
                 <p class="jobtext text-muted">{{detail.jobAddress}}</p>
-                <p class="jobtext text-muted">Post on {{detail.createdAt}}</p>
+                <p class="jobtext text-muted">Post on {{moment(detail.createdAt).format('DD MMM YYYY')}}</p>
+                      <!-- <small>{{moment(item.createdAt).format('DD MMM YYYY')}}</small> -->
+
             </div>
             <div class="col-3 mt-5">
                 <button class="btn btn-outline-primary jobicn">
@@ -68,6 +70,10 @@
 <script>
 import axios from 'axios'
 import sidebarcomponent from '@/components/SidebarComponent.vue'
+import moment from 'moment';
+moment().format();
+
+
 export default {
     name:'jobsDetail',
     components:{
@@ -81,6 +87,9 @@ export default {
         }
     },
     methods:{
+         moment: function (date) {
+      return moment(date);
+    },
         formatPrice(value) {
         let val = (value / 1).toFixed().replace('.', ',')
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")

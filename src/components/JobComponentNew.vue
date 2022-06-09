@@ -33,7 +33,7 @@
       <!-- <small class="text-muted">3 day ago</small> -->
       <!-- <small><time-ago  :datetime="item.createdAt" refresh long></time-ago></small> -->
       <!-- <small>{{candidateDate()}}</small> -->
-      <!-- <small>{{moment(item.createdAt).format('DD MMM YYYY')}}</small> -->
+      <small>{{moment(item.createdAt).format('DD MMM YYYY')}}</small>
 
     </div>
     <div class="col-6">
@@ -129,6 +129,10 @@
   import moment from 'moment';
   moment().format();
 
+  
+  
+
+
   export default {
     components:{
       // TimeAgo
@@ -157,8 +161,27 @@
         resp:'',
         // locale: "en"
       }
+      
     },
     methods: {
+      format(inputDate) {
+  let date, month, year;
+
+  date = inputDate.getDate();
+  month = inputDate.getMonth() + 1;
+  year = inputDate.getFullYear();
+
+    date = date
+        .toString()
+        .padStart(2, '0');
+
+    month = month
+        .toString()
+        .padStart(2, '0');
+
+  return `${date}/${month}/${year}`;
+},
+
       moment: function (date) {
       return moment(date);
     },
@@ -211,7 +234,7 @@
             .then((data) => {
               // this.$emit.edit = data.data.data
               this.edit = data.data.data
-              console.log(this.edit)
+              console.warn(this.edit)
 
             })
         } catch {
