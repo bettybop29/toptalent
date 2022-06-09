@@ -1,6 +1,7 @@
 <template>
 <div>
   <sidebarcomponent/>
+  <nav-mobile/>
   <div class="main">
   <div class="col-md-11">
   <button class="btn mt-3 back" onclick="javascript:window.history.back();">
@@ -124,14 +125,16 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import axios from 'axios'
 import sidebarcomponent from '@/components/SidebarComponent.vue'
 import applicantjobcomponent from '@/components/ApplicantJobComponent.vue'
-  import { TimeAgo } from 'vue2-timeago'
+import { TimeAgo } from 'vue2-timeago'
+import NavMobile from '@/components/NavMobile.vue'
 
 export default {
   props:['item'],
   components:{
     sidebarcomponent,
     applicantjobcomponent,
-    TimeAgo
+    TimeAgo,
+    NavMobile,
   },
   data(){
     return{
@@ -222,4 +225,17 @@ export default {
    
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   }
+
+  /* BREAKPOINTS */
+/* MOBILE */
+@media only screen and (max-width: 576px){
+  .main{
+    margin-left: 0;
+    margin-top: 60px;
+  }
+
+  .back{
+    margin-left: 10px;
+  }
+}
 </style>
