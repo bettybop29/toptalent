@@ -195,11 +195,13 @@ export default {
 <style scoped>
 
 *{
-    padding-left: 0;
-    padding-right: 0;
+    /* padding-left: 0;
+    padding-right: 0; */
+    margin: 0;
+    padding: 0;
     font-family: 'Montserrat';
     font-weight: 500;
-    max-width: 100%;
+    /* max-width: 100%; */
 }
 
 .section-right{
@@ -218,6 +220,7 @@ export default {
 
 .btn-signup{
     margin-top: 100px;
+    padding: 8px;
 }
 
 .sign-up{
@@ -277,6 +280,7 @@ font-size: 20px;
   font-size: 16px;
   color: #3300FF;
   margin-top: 12px;
+  margin-bottom: 10px;
 }
 
 .password-required ul{
@@ -347,7 +351,7 @@ font-size: 20px;
     }
 
     h1{
-      margin-top: 80px;
+      margin-top: 130px;
     }
 
 }
