@@ -3,12 +3,12 @@
 <div>
   <sidebar-component/>
   <sidebar-right v-if="this.sidepop == true" :view="views"></sidebar-right>
-  
   <div>
     <div v-if="!isMobile()">
       <sidebar-right-review  v-if="this.sidepop == false & this.err == '200'"></sidebar-right-review>
       <sidebar-right-empty  v-if="this.err =='400'"></sidebar-right-empty>
     </div>
+
 
     <div v-else>
       <nav-mobile></nav-mobile>
@@ -115,7 +115,6 @@
         <p v-else class="position2">{{resume.jobPosition}}</p>
       </td>
       <td class="d-none d-md-block"><button class="btn-primary" @click="getView(resume.applicationId)">View</button></td>
-      
     </tr>
   </tbody>  
 </table>
@@ -159,7 +158,8 @@ export default {
       stopColor:'#F39201',
       innerStrokeColor:'#C4C4C4',
       percent:'',
-      percentt:''
+      percentt:'',
+      index:'1'
     }
   },
 
@@ -262,6 +262,7 @@ export default {
       .then((data)=>{
         this.views=data.data.data
         this.sidepop = true
+        
         console.log(this.sidepop)
         // console.log(data)
               

@@ -22,12 +22,14 @@
        <button v-else class="btn" v-on:click="accApplicant(item.applicationId)">
         <img class="pt-4" src="../assets/icon-postjob/acc-applicant.svg" alt="">
       </button>
+      
       <button v-if="item.applicationStatus != 'sent'" class="btn">  
         <img class="pt-4 ms-5" src="../assets/icon-postjob/cancel-applicant.svg" alt="" v-on:click="rejApplicant(item.applicationId)">
       </button>
       <button v-else class="btn">  
         <img class="pt-4 ms-5" src="../assets/icon-postjob/cancel-applicant.svg" alt="" v-on:click="rejApplicant(item.applicationId)">
       </button>
+      
      
     </div>
     <div class="col-md-2">
@@ -35,8 +37,9 @@
     <div class="col-md-7">
       <div class="d-flex">
           <button class="btn ict" v-on:click="getResume(item.jobseekerResume)">
-            <font-awesome-icon class=" mt-1" icon="fa-solid fa-file-lines"/> View CV
+            <font-awesome-icon class=" mt-1" icon="fa-solid fa-file-lines"/> Download CV
           </button>
+          <router-link class="btn ict" target="_blank" :to="'/pdfviewer/'+ item.jobseekerResume">View resume</router-link>
          <!-- <pdf :src="'http://54.255.4.75:9091/resources/'+ item.jobseekerResume"></pdf> -->
         <PdfViewer></PdfViewer>
         <button class="btn ict" v-on:click="getLink(item.jobseekerPortfolio)">
@@ -48,6 +51,7 @@
       <!-- <span class="text-muted" style="font-size: 12px">Applied on DD-MM-YYYY</span> -->
       <time-ago :datetime="item.createdAt" refresh long></time-ago>
     </div>
+    
     
     <hr class="mt-4" />
   </div>
@@ -78,10 +82,15 @@
           // The configuration of the editor.
         },
         edit: [],
-        
+        // resumeView:false
       }
     },
     methods: {
+      async testResume(){
+        // this.resumeView = true
+        window.open(`http://54.255.4.75:9091/resources/Putri-20220603-aly.pdf`)
+        console.warn(this.resumeView)
+      },
       async revApplicant(applicationId){
         await axios.post(`http://54.255.4.75:9091/api/v1/application/status/sent/?applicationId=${applicationId}`)
         this.$toast.success(`Job updated !`)
