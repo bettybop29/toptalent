@@ -1,6 +1,7 @@
 <template>
 <div>
   <sidebarcomponent/>
+  <nav-mobile/>
   <div class="main">
   <div class="col-md-11">
   <button class="btn mt-3 back" onclick="javascript:window.history.back();">
@@ -26,55 +27,53 @@
                   <img class="import-icon" src="../assets/icon-postjob/edit.svg" alt="">
                 </button>
                
-              <div class="modal fade" :id="'exampleModalToggle' + job.jobId" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-        <div class="modal-dialog modal-xl">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalToggleLabel">Edit Jobs</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Job Name:</label>
-                  <input type="text" class="form-control" id="" v-model="job.jobName">
-                </div>
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Job Position edit: </label>
-                  <input type="text" class="form-control" id="" v-model="job.jobPosition">
-                </div>
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Job Address: </label>
-                  <input type="text" class="form-control" id="recipient-name" v-model="job.jobAddress">
-                </div>
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Job Requirement: </label>
-                  <!-- <input type="text" class="form-control" id="recipient-name" v-model="edit.jobRequirement"> -->
-                  <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="job.jobRequirement" :config="editorConfig"></ckeditor>
+                <div class="modal fade" :id="'exampleModalToggle' + job.jobId" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                  <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalToggleLabel">Edit Jobs</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <form>
+                          <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Job Name:</label>
+                            <input type="text" class="form-control" id="" v-model="job.jobName">
+                          </div>
+                          <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Job Position edit: </label>
+                            <input type="text" class="form-control" id="" v-model="job.jobPosition">
+                          </div>
+                          <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Job Address: </label>
+                            <input type="text" class="form-control" id="recipient-name" v-model="job.jobAddress">
+                          </div>
+                          <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Job Requirement: </label>
+                            <!-- <input type="text" class="form-control" id="recipient-name" v-model="edit.jobRequirement"> -->
+                            <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="job.jobRequirement" :config="editorConfig"></ckeditor>
+                          </div>
+
+                          <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Job Description:</label>
+                            <!-- <textarea class="form-control" id="message-text" v-model="edit.jobDesc" /> -->
+                            <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="job.jobDesc" :config="editorConfig"></ckeditor>
+                          </div>
+                          <div class="modal-footer">
+                            <button class="btn btn-success" v-on:click="updateJobData(job.jobId)">Update</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
-                <div class="mb-3">
-                  <label for="message-text" class="col-form-label">Job Description:</label>
-                  <!-- <textarea class="form-control" id="message-text" v-model="edit.jobDesc" /> -->
-                  <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="job.jobDesc" :config="editorConfig"></ckeditor>
-                </div>
-                <div class="modal-footer">
-                  <button class="btn btn-success" v-on:click="updateJobData(job.jobId)">Update</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-                <button  class="ict dgr" v-on:click="deleteJob(item.jobId)">
+                <button class="ict dgr icon-delete" v-on:click="deleteJob(item.jobId)">
                   <img class="import-icon" src="../assets/icon-postjob/delete.svg" alt="">
                 </button>
               </div>
               <div class="col-12">
                 <!-- <small class="text-muted">Created on {{job.createdAt}}</small> -->
-                <!-- <small class="text-muted">Created on <time-ago :datetime="job.createdAt" refresh long></time-ago></small> -->
                 <small class="text-muted">Created on {{moment(job.createdAt).format('DD MMM YYYY')}}</small>
               </div>
             </div>
@@ -125,7 +124,8 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import axios from 'axios'
 import sidebarcomponent from '@/components/SidebarComponent.vue'
 import applicantjobcomponent from '@/components/ApplicantJobComponent.vue'
-  // import { TimeAgo } from 'vue2-timeago'
+import { TimeAgo } from 'vue2-timeago'
+import NavMobile from '@/components/NavMobile.vue'
 import moment from 'moment';
 moment().format();
 
@@ -134,7 +134,8 @@ export default {
   components:{
     sidebarcomponent,
     applicantjobcomponent,
-    // TimeAgo
+    TimeAgo,
+    NavMobile,
   },
   data(){
     return{
@@ -229,4 +230,21 @@ export default {
    
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   }
+
+  .icon-delete{
+    margin-left: -1px;
+  }
+
+  /* BREAKPOINTS */
+/* MOBILE */
+@media only screen and (max-width: 576px){
+  .main{
+    margin-left: 0;
+    margin-top: 60px;
+  }
+
+  .back{
+    margin-left: 10px;
+  }
+}
 </style>

@@ -1,6 +1,7 @@
 <template>
     <div>
         <sidebar-component></sidebar-component>
+        <nav-mobile/>
         <div class="page">
             <!-- section profile atas -->
             <section class="section-profile">
@@ -47,7 +48,7 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <a v-bind:href="'http://54.255.4.75:9091/resources/' + applicant.jobseekerResume"
+                        <a target="_blank" v-bind:href="'http://54.255.4.75:9091/resources/' + applicant.jobseekerResume"
                         type="application/octet-stream" 
                         download=""
                         class="btn btn-primary btn-resume">
@@ -84,8 +85,9 @@
                     <div class="col-md-7">
                         <h3>Skills</h3>
                         <div class="box-skills d-flex flex-wrap" >
-                            <span class="badge text-dark" :key="item.id" v-for="item in splitStringToArray(applicant.jobseekerSkill)">{{item}}</span>
-                            <!-- <span class="badge text-dark" v-for="item in (applicant.skills)" :key="item.id">{{item}}</span> -->
+                            <!-- <span class="badge text-dark" :key="item.id" v-for="item in splitStringToArray(applicant.jobseekerSkill)">{{item}}</span> -->
+                            <span class="badge text-dark" v-for="item in (skill)" :key="item.id">{{item}}</span>
+
                         </div>
                     </div>
                 </div>
@@ -110,11 +112,14 @@
 
 <script>
 import sidebarcomponent from '../components/SidebarComponent.vue'
+import NavMobile from '../components/NavMobile.vue'
 import axios from 'axios'
+
 export default{
     name: "ApplicantDetailView",
     components: {
         SidebarComponent: sidebarcomponent,
+        NavMobile: NavMobile,
     },
     data(){
         return {
@@ -148,9 +153,10 @@ export default{
             try{
                 await axios.get(`http://54.255.4.75:9091/api/v1/jobseeker/user/ ` + this.$route.params.id)
                 .then((data) => {
-                    this.skill = data.data.data.skills
+                    this.skill = data.data.data.skills.map(({skillName}) => skillName)
+                    // this.name = this.skill.map(({skillName}) => skillName)
                     console.log(this.skill);
-                    console.log('skill')
+                    // console.log(this.name);
                 })
                 } catch {
                 console.log(Error);
@@ -277,8 +283,17 @@ h3{
 /* breakpoints */
 /* for mobile */
 @media only screen and (max-width: 576px){
+    .page{
+        margin-top: 60px;
+        margin-left: 10%;
+    }
+
     .right-items{
     margin-left: 0;
+}
+
+h1{
+    margin-top: 20px;
 }
     
 }

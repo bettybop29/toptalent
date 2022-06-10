@@ -1,6 +1,7 @@
 <template>
   <div>
     <sidebar-component></sidebar-component>
+    <nav-mobile></nav-mobile>
 
     <div class="main">
       <nav class="navbar navbar-expand-lg navbar-light bg-white py-4 sticky-top" style="border-bottom: 5px solid whitesmoke;">
@@ -25,7 +26,6 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-
               <div class="form-data" >
                   
                     <div class="forms-inputs mb-4"> <span>Job name:</span> 
@@ -58,7 +58,6 @@
                     <ckeditor :editor="editor" tag-name="textarea" id="jobDesc" :model-value="jobDesc" v-model="jobDesc"
                       :config="editorConfig"></ckeditor>
                     <!-- <textarea class="form-control" id="jobdescription" v-model="jobDesc"></textarea> -->
-
                   </div>
                   <div class="mb-3">
                     <label for="message-text" class="col-form-label">Job address:</label>
@@ -73,11 +72,6 @@
 
                     <div class="mb-3"> <button type="submit" class="btn btn-primary w-100">Create</button> </div>
                 </div>
-               
-              
-
-
-
            </div>
           </div>
          </div>
@@ -102,6 +96,7 @@
   import listjobcomponent from '@/components/ListjobComponent.vue'
   // import CandidatejobComponent from '@/components/CandidatejobComponent.vue';
   // import ParagraphPlugin from '@ckeditor/ckeditor5-paragraph/src/paragraph';
+  import NavMobile from '../components/NavMobile.vue'
 
 
 
@@ -115,6 +110,7 @@
       // jobcomponentnew,
       // applicantjobcomponent,
       listjobcomponent,
+      NavMobile
       // CandidatejobComponent
     },
     props:['edit'],
@@ -264,6 +260,15 @@ validUsername : function(username) {
 <style scoped>
   .main {
     margin-left: 250px;
+  }
+
+  /* BREAKPOINTS */
+  /* MOBILE */
+  @media only screen and (max-width: 576px){
+    .main{
+      margin-left: 10px;
+      margin-top: 60px;
+    }
   }
 </style>
 

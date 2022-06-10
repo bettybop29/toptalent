@@ -1,27 +1,44 @@
 <template>
 
 <div>
-  
-    <sidebar-component/>
-    <sidebar-right v-if="this.sidepop == true" :view="views"></sidebar-right>
-    <sidebar-right-review  v-if="this.sidepop == false & this.err == '200'" :view="views"></sidebar-right-review>
-    <sidebar-right-empty  v-if="this.err =='400'"></sidebar-right-empty>
+  <sidebar-component/>
+  <sidebar-right v-if="this.sidepop == true" :view="views"></sidebar-right>
+  <div>
+    <div v-if="!isMobile()">
+      <sidebar-right-review  v-if="this.sidepop == false & this.err == '200'"></sidebar-right-review>
+      <sidebar-right-empty  v-if="this.err =='400'"></sidebar-right-empty>
+    </div>
 
+
+    <div v-else>
+      <nav-mobile></nav-mobile>
+    </div>
+  </div>
+    
    <div class="container">
-        <div class="card">
-          <img class="animate__animated animate__tada" src="@/assets/saly.png" alt="">
-            <div class="card-title">              
-              <h2 class="main-head">Hi, {{recruiters.recruiterCompany}}!</h2>
-              <div class="card-text">
-                <h5>Welcome Back</h5>
-                <h5>you have <span class="decor">{{edit.data}}</span> new
-                <br>resume.</h5> 
-              </div>
-              <button class="btn" hidden>See all</button>    
-            </div>    
+     <div class="row">
+       <div class="col-md-6 ">
+         <div class="card greetings mb-4">
+          <h2 class="main-head">Hi, {{recruiters.recruiterCompany}}!</h2>
+          <div class="row">
+          <div class="col-md-3 col-6">
+            <img class="animate__animated animate__tada" src="@/assets/saly.png" alt="">
+          </div>
+          <div class=" col-md-9 col-6">              
+            
+            <div class="card-text">
+              <h5 class="welcome">Welcome Back</h5>
+              <h5 id="info">You have <span class="decor">{{edit.data}}</span> new
+              resume(s)</h5> 
+            </div>
+            <button class="btn" hidden>See all</button>    
+          </div>  
+            </div>  
         </div>
-     
-        <div class="card-monitor">
+       </div>
+
+       <div class="col-md-6">
+         <div class="card-monitor">
           
           <div class="card-approve">
             <div class="card-title">
@@ -60,14 +77,15 @@
           </div>
          
         </div>
-         
-    </div> 
+       </div>
 
+     </div>
+                 
+    </div> 
     
     <div>
-   
-    
-  </div> -->
+       
+  </div>
 
   <div class="table-wrapper">
   <table class="table">
@@ -80,7 +98,7 @@
       <th scope="col">Status</th>
       <th scope="col">Job Name</th>
       <th scope="col">Position</th>
-      <th scope="col">Action</th>
+      <th class="d-none d-md-block" scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
@@ -96,7 +114,7 @@
         <p v-if="resume.jobPosition != 'Internship'" class="position">{{resume.jobPosition}}</p>
         <p v-else class="position2">{{resume.jobPosition}}</p>
       </td>
-      <td><button class="btn-primary" @click="getView(resume.applicationId)">View</button></td>
+      <td class="d-none d-md-block"><button class="btn-primary" @click="getView(resume.applicationId)">View</button></td>
     </tr>
   </tbody>  
 </table>
@@ -113,17 +131,15 @@ import SidebarRight from '@/components/SidebarRight.vue'
 import SidebarRightEmpty from '@/components/SidebarRightEmpty.vue'
 import SidebarRightReview from '@/components/SidebarRightReview.vue'
 import RadialProgressBar from 'vue-radial-progress'
-
-
-
+import NavMobile from '../components/NavMobile.vue'
 
 export default {
   components: { SidebarComponent, 
-                // SidebarRightEmpty, 
+                SidebarRightEmpty, 
                 SidebarRightReview,
                 SidebarRight,
-                SidebarRightEmpty,
-                RadialProgressBar
+                RadialProgressBar,
+                NavMobile
               },
   name:'DashboardView',
   data(){
@@ -146,7 +162,18 @@ export default {
       index:'1'
     }
   },
+
+ 
+
+
   methods : {
+    isMobile() {
+      if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        return true
+      } else {
+        return false
+      }
+    },
     async percenttCount(){
       const accept = JSON.parse(localStorage.getItem("countaccept-info"))
       const total = JSON.parse(localStorage.getItem("counttotal-info"))
@@ -266,6 +293,7 @@ export default {
   },
 }; 
 </script>  
+
 <style scoped>
 .ellipse-title{
   font-size: 25px;
@@ -280,7 +308,9 @@ export default {
     margin-left: 230px;
   }
   .main-head{
-    font-weight: 600;
+    font-weight: 700;
+    font-size: 20px;
+    text-align: right;
   }
   
   .table{
@@ -334,10 +364,8 @@ export default {
   display: flex;
 }
 .card {
-  
   position: relative;
-  padding: 10px;
-  text-align: right;
+  padding: 20px;
   border-radius: 29px;
   width: 430px;
   height: 273px;
@@ -346,32 +374,43 @@ export default {
 .card-text {
   padding: 10px;
   margin: 0;
-  padding-left: 40px;
-  text-align: left;
+  /* padding-left: 40px; */
+  /* text-align: left; */
 }
 img{
-  z-index: 1;
-  position: fixed;
-  display: block;
-  left: 250px;
+  /* z-index: 1; */
+  position: relative;
+  /* display: block; */
+  left: -70px;
   top: 20px;
   /* right: 1000px; */
   /* margin-left: 0; */
   /* margin-right: 40px; */
-  width: 270px;
-  height: 270px;
+  width: 210px;
+  height: 210px;
     
   
 }
 h5{
   padding-top: 5px;
-  text-align: left;
-  margin-left: 160px;
+  text-align: right;
+  /* margin-left: 160px; */
 }
+
+.welcome{
+  font-size: 16px;
+  font-weight: 700;
+}
+
 .decor{
   font-size: 17px;
   color: rgb(37, 37, 37);
 }
+
+#info{
+  font-size: 16px;
+}
+
 .card-approve {
  background-image: url("../assets/approve.png");
   border-radius: 20px;
@@ -450,6 +489,22 @@ span{
   margin-top: 15px;
   border-radius: 10px 50px 10px 0px;
   padding-right: 40px;
+}
+
+/* breakpoints */
+ /* for mobile */
+ @media only screen and (max-width: 576px){
+   .container{
+     margin-top: 60px;
+     margin-left: 10%;
+   }
+
+
+.table{
+  margin-left: 20px;
+  width: 52.5%;
+  background: rgb(249, 249, 249)
+}
 }
 
 </style>

@@ -1,96 +1,115 @@
 <template>
-  <div class="row">
-    <div class="col-md-7 section-left">
-        <img class="image-login " src="../assets/signup-img.png" alt="">
-        <div tag="article" class="card mb-2 card-testimony">
-          <div class="text-testimony">
-            <p>
-              “I’ve been using this incredible job portal. They have comprehensive features that can help me build people in my company. 
-              Now, I’m building my business much better than before. Thanks toptalent!”
-            </p>
-            <h5>Jane Doe</h5> 
-            <h6>Founder, PT Karya Bangsa Nasional</h6>
+  <div class="container-fluid min-vh-100 d-flex flex-column ">
+    <div class="row flex-grow-1">
+      <div class="col-md-7 section-left">
+          <img class="image-login " src="../assets/signup-img.png" alt="">
+          <div class="card mb-2 card-testimony">
+            <div class="text-testimony">
+              <p>
+                “I’ve been using this incredible job portal. They have comprehensive features that can help me build people in my company. 
+                Now, I’m building my business much better than before. Thanks toptalent!”
+              </p>
+              <h5>Jane Doe</h5> 
+              <h6>Founder, PT Karya Bangsa Nasional</h6>
+            </div>
           </div>
-        </div>
-    </div>
-    <div class="col-md-5 section-right animate__animated animate__fadeInDown"> 
-      <h1>Start Building Your Top Company!</h1>
-      <div class="form-login">
-      <form action="" @submit.prevent="signUp" class="row">
-        <div class="col-12">
-            <label for="email" class="form-label mt-4">Email</label>
+      </div>
+      <div class="col-md-5 section-right"> 
+        <h1 class="animate__animated animate__fadeInLeft">Start Building Your Top Company!</h1>
+        <div class="form-login">
+        <form action="" @submit.prevent="signUp" class="row">
+          <div >
+              <label for="email" class="form-label mt-4">Email</label>
+              <input
+                type="email"
+                v-model="recruiterEmail"
+                class="form-control"
+                id="email"
+                aria-describedby="emailHelp"
+                placeholder="yourcompany@mail.com"
+                required
+              />
+          </div>
+          <div v-if="this.err == 'User already exists'">
+            <b-badge variant="danger">{{err}}</b-badge>
+          </div>
+          
+          <!-- <label for="password" class="form-label mt-3">Password</label>
+          <div>
             <input
-              type="email"
-              v-model="recruiterEmail"
+              type="password"
+              v-model="recruiterPassword"
               class="form-control"
-              id="email"
-              aria-describedby="emailHelp"
-              placeholder="yourcompany@mail.com"
+              id="password"
+              placeholder="Password123@"
               required
             />
-        </div>
-        <div v-if="this.err == 'User already exists'">
-              <b-badge variant="danger">{{err}}</b-badge>
-            </div>
-        
-        <label for="password" class="form-label mt-3">Password</label>
-        <input
-          type="password"
-          v-model="recruiterPassword"
-          class="form-control"
-          id="password"
-          placeholder="Password123@"
-          required
-        />
-        <div v-if="this.err == 'Password must be at least 8 characters'">
-              <span class="badge bg-danger">{{err}}</span>
-            </div>
-            <div v-if="this.err == 'Password must contain at least one number, one capital letter and one special character'">
-              <span class="badge bg-danger">{{err}}</span>
-            </div>
-        <div class="password-required">
-          <p>Password required:</p>
-          <ul>
-            <li>8 characters</li>
-            <li>1 upper-case [A-Z]</li>
-            <li>1 lower-case [a-z]</li>
-            <li>1 symbol/special character</li>
-          </ul>
-        </div>
+          </div> -->
 
-        <!-- company field -->
-        <label for="company" class="form-label mt-3">Company</label>
-        <input
-          type="text"
-          v-model="recruiterCompany"
-          class="form-control"
-          id="company"
-          placeholder="Your Company Name"
-          required
-          
-        />
-
-        <!-- Industry field -->
-        <label for="industry" class="form-label mt-3">Industry</label>
-        <input
-          type="text"
-          v-model="recruiterIndustry"
-          class="form-control"
-          id="industry"
-          placeholder="eg: Technology, Financial"
-          required
-          
-        />
-        <button v-if="searchDisabled == true"  class="btn btn-primary" type="button" disabled>
-                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                Loading...
+          <label for="password" class="form-label mt-3">Password</label>
+            <!-- addons -->
+            <div class="input-group mb-3">
+              <input :type="visibility" v-model="recruiterPassword" id="password" class="form-control" placeholder="Password123@" aria-label="password" aria-describedby="button-addon2">
+              <button class="btn btn-outline-secondary btn-eye" type="button" id="button-addon2" @click="showPassword()" v-if="visibility == 'password' ">
+                <font-awesome-icon icon="fa-solid fa-eye" width="22" height="22" icon-name="show password" />
               </button>
-        <button v-else type="submit" class="btn btn-primary btn-signup" :disabled="searchDisabled">Create Account</button>
-          <!-- <input type="submit" class="btn btn-primary btn-signup" :disabled="searchDisabled" value="Create Account"> -->
-        <p class="sign-up mt-4">Already have an account? 
-          <router-link class="btn-login" to="/login">Log In</router-link>
-        </p>
-      </form>
+              <!-- hides password -->
+              <button class="btn btn-outline-secondary btn-eye" type="button" id="button-addon2" @click="hidePassword()" v-if="visibility == 'text' ">
+                <font-awesome-icon icon="fa-solid fa-eye-slash" width="22" height="22" icon-name="hide password"/>
+              </button>
+            </div>
+          
+          <div v-if="this.err == 'Password must be at least 8 characters'">
+                <span class="badge bg-danger">{{err}}</span>
+              </div>
+              <div v-if="this.err == 'Password must contain at least one number, one capital letter and one special character'">
+                <span class="badge bg-danger">{{err}}</span>
+              </div>
+          <div class="password-required">
+            <p>Password required:</p>
+            <ul>
+              <li>8 characters</li>
+              <li>1 upper-case [A-Z]</li>
+              <li>1 lower-case [a-z]</li>
+              <li>1 symbol/special character</li>
+            </ul>
+          </div>
+
+          <!-- company field -->
+          <label for="company" class="form-label mt-3">Company</label>
+          <input
+            type="text"
+            v-model="recruiterCompany"
+            class="form-control"
+            id="company"
+            placeholder="Your Company Name"
+            required
+            
+          />
+
+          <!-- Industry field -->
+          <label for="industry" class="form-label mt-3">Industry</label>
+          <input
+            type="text"
+            v-model="recruiterIndustry"
+            class="form-control"
+            id="industry"
+            placeholder="eg: Technology, Financial"
+            required
+            
+          />
+          
+          <button v-if="searchDisabled == true"  class="btn btn-primary" type="button" disabled>
+                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  Loading...
+                </button>
+          <button v-else type="submit" class="btn btn-primary btn-signup" :disabled="searchDisabled">Create Account</button>
+            <!-- <input type="submit" class="btn btn-primary btn-signup" :disabled="searchDisabled" value="Create Account"> -->
+          <p class="sign-up mt-4">Already have an account? 
+            <router-link class="btn-login" to="/login">Log In</router-link>
+          </p>
+        </form>
+        </div>
       </div>
     </div>
   </div>
@@ -112,10 +131,17 @@ export default {
         recruiterIndustry: "",
         searchDisabled:false,
         err:"",
-        ress:""
+        ress:"",
+        visibility: 'password'
       }
     },
     methods:{
+      showPassword(){
+        this.visibility = 'text';
+      },
+      hidePassword(){
+        this.visibility = 'password';
+      },
       async signUp() {
     
       let response = '';
@@ -169,11 +195,13 @@ export default {
 <style scoped>
 
 *{
-    padding-left: 0;
-    padding-right: 0;
+    /* padding-left: 0;
+    padding-right: 0; */
+    margin: 0;
+    padding: 0;
     font-family: 'Montserrat';
     font-weight: 500;
-    max-width: 100%;
+    /* max-width: 100%; */
 }
 
 .section-right{
@@ -189,9 +217,12 @@ export default {
     background: #EFF0F2;
     color: #838383;
 }
-.btn{
+
+.btn-signup{
     margin-top: 100px;
+    padding: 8px;
 }
+
 .sign-up{
     text-align: center;
 }
@@ -249,6 +280,7 @@ font-size: 20px;
   font-size: 16px;
   color: #3300FF;
   margin-top: 12px;
+  margin-bottom: 10px;
 }
 
 .password-required ul{
@@ -274,6 +306,10 @@ font-size: 20px;
 
 .btn-login:hover{
   text-decoration: underline;
+}
+
+.btn-eye{
+  padding: 0.375rem 0.75rem;
 }
 
 
@@ -315,8 +351,9 @@ font-size: 20px;
     }
 
     h1{
-      margin-top: 80px;
+      margin-top: 130px;
     }
+
 }
 
 
