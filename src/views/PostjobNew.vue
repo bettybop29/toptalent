@@ -3,7 +3,8 @@
     <sidebar-component></sidebar-component>
 
     <div class="main">
-      <nav class="navbar navbar-expand-lg navbar-light bg-white py-4 sticky-top" style="border-bottom: 5px solid whitesmoke;">
+      <nav class="navbar navbar-expand-lg navbar-light bg-white py-4 sticky-top"
+        style="border-bottom: 5px solid whitesmoke;">
         <div class="container-fluid">
           <a class="navbar-brand">{{userName}}</a>
           <form class="d-flex">
@@ -11,12 +12,12 @@
               data-bs-target="#jobModal" data-bs-whatever="@getbootstrap">
               <img class="import-icon" src="../assets/icon-postjob/add.svg" alt="">
               Create a new job
-            </button> 
+            </button>
           </form>
         </div>
       </nav>
 
-      <form @submit.prevent="addjob" class="needs-validation">
+      <form class="needs-validation">
         <div class="modal fade" id="jobModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -26,19 +27,25 @@
               </div>
               <div class="modal-body">
 
-              <div class="form-data" >
-                  
-                    <div class="forms-inputs mb-4"> <span>Job name:</span> 
-                    <input type="text" v-model="jobName" v-bind:class="{'form-control':true, 'is-invalid' : !validjobName(jobName) && jobnameBlured}" v-on:blur="jobnameBlured = true" required> 
-                        <div class="invalid-feedback">Please fill blank form</div>
-                    </div>
-                    <div class="forms-inputs mb-4"> <span>Job salary:</span> 
-                    <input type="number" v-model="jobSalary" v-bind:class="{'form-control':true, 'is-invalid' : !validjobSalary(jobSalary) && jobsalaryBlured}" v-on:blur="jobsalaryBlured = true" required>
-                        <div class="invalid-feedback">Please fill blank form</div>
-                    </div>
-                    <div class="forms-inputs mb-4">
+                <div class="form-data" v-if="!submitted">
+
+                  <div class="forms-inputs mb-4"> <span>Job name:</span>
+                    <input type="text" v-model="jobName"
+                      v-bind:class="{'form-control':true, 'is-invalid' : !validjobName(jobName) && jobnameBlured}"
+                      v-on:blur="jobnameBlured = true">
+                    <div class="invalid-feedback">Please fill blank form</div>
+                  </div>
+                  <div class="forms-inputs mb-4"> <span>Job salary:</span>
+                    <input type="number" v-model="jobSalary"
+                      v-bind:class="{'form-control':true, 'is-invalid' : !validjobSalary(jobSalary) && jobsalaryBlured}"
+                      v-on:blur="jobsalaryBlured = true">
+                    <div class="invalid-feedback">Please fill blank form</div>
+                  </div>
+                  <div class="forms-inputs mb-4">
                     <label for="inputState">Job position</label>
-                    <select class="form-control" id="inputState" v-model="jobPosition" v-bind:class="{'form-control':true, 'is-invalid' : !validjobSalary(jobSalary) && jobsalaryBlured}" v-on:blur="jobsalaryBlured = true" required>
+                    <select class="form-control" id="inputState" v-model="jobPosition"
+                      v-bind:class="{'form-control':true, 'is-invalid' : !validJobPosition(jobPosition) && jobpositionBlured}"
+                      v-on:blur="jobpositionBlured = true">
                       <option selected>Choose..</option>
                       <option>Internship</option>
                       <option>Full time</option>
@@ -48,39 +55,54 @@
                     </select>
                     <div class="invalid-feedback">Please fill blank form</div>
                   </div>
-                   <div class="mb-3">
+                  <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">Job requirement:</label>
                     <ckeditor :editor="editor" tag-name="textarea" v-model="jobRequirement" :config="editorConfig">
                     </ckeditor>
                   </div>
-                   <div class="mb-3">
+                  <div class="mb-3">
                     <label for="message-text" class="col-form-label">Job description:</label>
                     <ckeditor :editor="editor" tag-name="textarea" id="jobDesc" :model-value="jobDesc" v-model="jobDesc"
-                      :config="editorConfig"></ckeditor>
+                      :config="editorConfig"
+                      v-bind:class="{'form-control':true, 'is-invalid' : !validJobDesc(jobDesc) && jobdescBlured}"
+                      v-on:blur="jobdescBlured = true"></ckeditor>
+                    <div class="invalid-feedback">Please fill blank form</div>
                     <!-- <textarea class="form-control" id="jobdescription" v-model="jobDesc"></textarea> -->
 
                   </div>
                   <div class="mb-3">
                     <label for="message-text" class="col-form-label">Job address:</label>
                     <textarea class="form-control" id="message-text" v-model="jobAddress" maxlength="100"
-                      required  v-bind:class="{'form-control':true, 'is-invalid' : !validjobSalary(jobSalary) && jobsalaryBlured}" v-on:blur="jobsalaryBlured = true">
+                      v-bind:class="{'form-control':true, 'is-invalid' : !validJobAddress(jobAddress) && jobaddressBlured}"
+                      v-on:blur="jobaddressBlured = true">
                       </textarea>
-                       <div class="invalid-feedback">Please fill blank form</div>
+                    <div class="invalid-feedback">Please fill blank form</div>
                     <small>max.100 characters</small>
                   </div>
 
 
 
-                    <div class="mb-3"> <button type="submit" class="btn btn-primary w-100">Create</button> </div>
+                  <div class="mb-3"> <button v-on:click.stop.prevent="submit"
+                      class="btn btn-primary w-100">Create</button> </div>
                 </div>
-               
-              
+                <div class="success-data" v-else>
+                  <div class="text-center d-flex flex-column"> <i class='bx bxs-badge-check'></i> <span
+                      class="text-center fs-3">Are you sure want to post <br> this job?</span>
+                    <div class="col text-center fs-3">
+                      <button class="btn btn-primary w-30 m-1" type="submit" v-on:click.prevent="addjob">Yes, post
+                        it!</button>
+                      <button class="btn btn-outline-danger w-30 m-1" data-bs-dismiss="modal"
+                        aria-label="Close">Cancel</button>
+                    </div>
+                  </div>
+                </div>
 
 
 
-           </div>
+
+              </div>
+            </div>
           </div>
-         </div>
         </div>
       </form>
 
@@ -91,7 +113,7 @@
       <!-- <job-component class="job-component" :item="item"></job-component> -->
     </div>
   </div>
-  
+
 </template>
 <script>
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -117,42 +139,45 @@
       listjobcomponent,
       // CandidatejobComponent
     },
-    props:['edit'],
+    props: ['edit'],
     data() {
       return {
         editor: ClassicEditor,
         editorData: '',
         editorConfig: {
           // The configuration of the editor.
-                toolbar:{
-                  items:[
-                    'heading',
-                    '|',
-                    'bold',
-                    'italic',
-                    'bulletedList',
-                    'undo',
-                    'redo'
-                  ]
-                }
+          toolbar: {
+            items: [
+              'heading',
+              '|',
+              'bold',
+              'italic',
+              'bulletedList',
+              'undo',
+              'redo'
+            ]
+          }
         },
         jobName: "",
-        jobnameBlured : false,
+        jobnameBlured: false,
         jobSalary: "",
         jobsalaryBlured: false,
         jobPosition: "",
+        jobpositionBlured: false,
         jobRequirement: "",
         jobDesc: "",
+        jobdescBlured: false,
         jobAddress: "",
+        jobaddressBlured: false,
         list: [],
         modalOpen: false,
         userName: "",
-        hide:'',
+        hide: '',
 
-    
-    
-        valid : false,
-        submitted : false,
+
+
+        valid: false,
+        submitted: false,
         // password:"",
         // username:"",
         // usernameBlured:false, 
@@ -161,48 +186,58 @@
       };
     },
     methods: {
-        validate : function(){
+      validate: function () {
         this.jobnameBlured = true;
         this.jobsalaryBlured = true;
-        this.usernameBlured = true;
-        this.phoneBlured = true;
-        if( this.validjobName(this.jobName) && this.validjobSalary(this.jobSalary) && this.validPhone(this.phone) && this.validUsername(this.username)){
-        this.valid = true;
+        this.jobpositionBlured = true;
+        this.jobaddressBlured = true;
+        this.jobdescBlured = true;
+        if (this.validjobName(this.jobName) && this.validjobSalary(this.jobSalary) &&
+          this.validJobPosition(this.jobPosition) && this.validJobAddress(this.jobAddress) &&
+          this.validJobDesc(this.jobDesc)) {
+          this.valid = true;
+
         }
-        },
+      },
 
-        validjobName : function(jobName) {
-        if(jobName.length > 0){
-       return true;
-      }
-    },
+      validjobName: function (jobName) {
+        if (jobName.length > 0) {
+          return true;
+        }
+      },
 
-        validjobSalary : function(jobSalary) {
+      validjobSalary: function (jobSalary) {
         if (jobSalary.length > 0) {
-        return true;
-      }
-},
-
-validUsername : function(username) {
-  
-   if (!/\s/.test(username)) {
-    return true;
-}
-},
-
-        validPhone : function(phone) {
-        if (phone.length > 9 && phone.length < 12 ) {
-            return true;
+          return true;
         }
-        },
+      },
 
-    submit : function(){
-            this.validate();
-            if(this.valid){
-                this.submitted = true;
-             }
-        },
-    
+      validJobPosition: function (jobPosition) {
+
+        if (jobPosition.length > 0) {
+          return true;
+        }
+      },
+
+      validJobAddress: function (jobAddress) {
+        if (jobAddress.length > 0) {
+          return true;
+        }
+      },
+
+      validJobDesc: function (jobDesc) {
+        if (jobDesc.length > 0) {
+          return true;
+        }
+      },
+
+      submit: function () {
+        this.validate();
+        if (this.valid) {
+          this.submitted = true;
+        }
+      },
+
 
 
 
