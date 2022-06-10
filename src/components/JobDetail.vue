@@ -124,7 +124,6 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import axios from 'axios'
 import sidebarcomponent from '@/components/SidebarComponent.vue'
 import applicantjobcomponent from '@/components/ApplicantJobComponent.vue'
-import { TimeAgo } from 'vue2-timeago'
 import NavMobile from '@/components/NavMobile.vue'
 import moment from 'moment';
 moment().format();
@@ -134,7 +133,6 @@ export default {
   components:{
     sidebarcomponent,
     applicantjobcomponent,
-    TimeAgo,
     NavMobile,
   },
   data(){
