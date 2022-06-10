@@ -22,6 +22,7 @@ import ApplicantDetailView from '@/views/ApplicantDetailView.vue'
 import ApplicantJobComponent from '../components/ApplicantJobComponent.vue'
 import jobsDetail from '@/views/jobsDetail.vue'
 import PdfViewer from '@/views/PdfViewer.vue' 
+import TestView from '@/views/TestView.vue'
 
 Vue.use(VueRouter)
 
@@ -30,6 +31,11 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/testview',
+    name: 'testview',
+    component: TestView
   },
   {
     path: '/about',
