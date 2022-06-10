@@ -1,7 +1,7 @@
 <template>
-  <div class="container-fluid min-vh-100 d-flex flex-column mx-0 px-0">
+  <div class="container-fluid min-vh-100 d-flex flex-column">
     <div class="row flex-grow-1">
-      <div class="col-md-7">
+      <div class="col-md-7 px-0">
         <img class="image-login img-fluid" src="../assets/login-img.png" alt="">
         <div class="card mb-2 card-testimony d-none d-md-block d-lg-block">
           <div class="text-testimony">
