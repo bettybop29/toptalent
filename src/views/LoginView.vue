@@ -19,7 +19,7 @@
       <div class="col-md-5 p-5">
         <h1 class="animate_animated animate_fadeInDown">Welcome Back!</h1>
         <div class="form-login animate_animated animate_fadeInDown">
-          <form action="" @submit.prevent="login" class="col-11">
+          <form action="" @submit.prevent="login" >
             <label for="email" class="form-label mt-4">Email</label>
             <input type="email" v-model="email" class="form-control" id="email" aria-describedby="emailHelp"
               placeholder="yourcompany@mail.com" required />
@@ -145,6 +145,7 @@
 
   .section-right {
     padding: 50px;
+    
   }
 
   .image-login {
@@ -242,5 +243,11 @@
     right: 100px;
     top: 770px;
     }
+
+    .image-login {
+    
+    width: 100vw;
+
+  }
 }
 </style>

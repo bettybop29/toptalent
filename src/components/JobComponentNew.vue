@@ -30,8 +30,11 @@
       <small class="text-muted">Rp{{ formatPrice(item.jobSalary)}},-</small>
     </div>
     <div class="col-6 d-flex justify-content-end">
-      <!-- <small class="text-muted">3 day ago</small> -->{{time}}
-      <small><time-ago  :datetime="item.createdAt" refresh long></time-ago></small>
+      <!-- <small class="text-muted">3 day ago</small> -->
+      <!-- <small><time-ago  :datetime="item.createdAt" refresh long></time-ago></small> -->
+      <!-- <small>{{candidateDate()}}</small> -->
+      <small>{{moment(item.createdAt).format('DD MMM YYYY')}}</small>
+
     </div>
     <div class="col-6">
       <router-link v-if="resp == '0'" :to="{name:'jobdetail', params:{id:item.jobId}}" class="text-muted text-title align-items-center primary text-decoration-none fs-6">{{resp}}
@@ -53,17 +56,17 @@
             <div class="modal-dialog modal-xl">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalToggleLabel">Edit Jobs</h5>
+                  <h5 class="modal-title" id="exampleModalToggleLabel">Edit jobs</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                   <form>
                     <div class="mb-3">
-                      <label for="recipient-name" class="col-form-label">Job Name:</label>
+                      <label for="recipient-name" class="col-form-label">Job name:</label>
                       <input type="text" class="form-control" id="" v-model="edit.jobName">
                     </div>
                     <div class="mb-3">
-                      <label for="recipient-name" class="col-form-label">Job status edit: </label>
+                      <label for="recipient-name" class="col-form-label">Job status: </label>
                        <select class="form-control" id="inputState" v-model="edit.jobStatus" required>
                         <option selected>Choose..</option>
                         <option>hidden</option>
@@ -71,7 +74,11 @@
                       </select>
                     </div>
                     <div class="mb-3">
-                      <label for="recipient-name" class="col-form-label">Job Position edit: </label>
+                      <label for="recipient-name" class="col-form-label">Job salary:</label>
+                      <input type="number" class="form-control" id="" v-model="edit.jobSalary">
+                    </div>
+                    <div class="mb-3">
+                      <label for="recipient-name" class="col-form-label">Job position: </label>
                        <select class="form-control" id="inputState" v-model="edit.jobPosition" required>
                         <option selected>Choose..</option>
                         <option>Internship</option>
@@ -82,19 +89,19 @@
                       </select>
                     </div>
                     <div class="mb-3">
-                      <label for="recipient-name" class="col-form-label">Job Address: </label>
-                      <input type="text" class="form-control" id="recipient-name" v-model="edit.jobAddress">
-                    </div>
-                    <div class="mb-3">
-                      <label for="recipient-name" class="col-form-label">Job Requirement: </label>
+                      <label for="recipient-name" class="col-form-label">Job requirement: </label>
                       <!-- <input type="text" class="form-control" id="recipient-name" v-model="edit.jobRequirement"> -->
                       <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="edit.jobRequirement" :config="editorConfig"></ckeditor>
                     </div>
 
                     <div class="mb-3">
-                      <label for="message-text" class="col-form-label">Job Description:</label>
+                      <label for="message-text" class="col-form-label">Job description:</label>
                       <!-- <textarea class="form-control" id="message-text" v-model="edit.jobDesc" /> -->
                       <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="edit.jobDesc" :config="editorConfig"></ckeditor>
+                    </div>
+                    <div class="mb-3">
+                      <label for="recipient-name" class="col-form-label">Job address: </label>
+                      <input type="text" class="form-control" id="recipient-name" v-model="edit.jobAddress">
                     </div>
                     <div class="modal-footer">
                       <button class="btn btn-success" v-on:click="updateJobData(edit.jobId)">Update</button>
@@ -118,12 +125,17 @@
 <script>
   import axios from 'axios'
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-  import { TimeAgo } from 'vue2-timeago'
+  // import { TimeAgo } from 'vue2-timeago'
+  import moment from 'moment';
+  moment().format();
+
   
+  
+
 
   export default {
     components:{
-      TimeAgo
+      // TimeAgo
     },
     name: "JobComponent",
     props: ['item', 'id', ],
@@ -133,14 +145,52 @@
         editorData: '',
         editorConfig: {
           // The configuration of the editor.
+          toolbar:{
+                  items:[
+                    'heading',
+                    '|',
+                    'bold',
+                    'italic',
+                    'bulletedList',
+                    'undo',
+                    'redo'
+                  ]
+                }
         },
         edit: [],
         resp:'',
         // locale: "en"
       }
+      
     },
     methods: {
-      
+      format(inputDate) {
+  let date, month, year;
+
+  date = inputDate.getDate();
+  month = inputDate.getMonth() + 1;
+  year = inputDate.getFullYear();
+
+    date = date
+        .toString()
+        .padStart(2, '0');
+
+    month = month
+        .toString()
+        .padStart(2, '0');
+
+  return `${date}/${month}/${year}`;
+},
+
+      moment: function (date) {
+      return moment(date);
+    },
+      candidateDate(){
+        var a = moment([new Date()]);
+        var b = moment([this.item.createdAt]);
+        console.warn(a)
+        return a.diff(b, 'days').format("YYYY MM DD");
+      },
       async countTotalAplicant(){
         await axios.get(`http://54.255.4.75:9091/api/v1/application/count-applicants/${this.item.jobId}`)
         .then((data)=>{
@@ -184,7 +234,7 @@
             .then((data) => {
               // this.$emit.edit = data.data.data
               this.edit = data.data.data
-              console.log(this.edit)
+              console.warn(this.edit)
 
             })
         } catch {
@@ -216,6 +266,7 @@
     mounted() {
       this.getDetail();
       this.countTotalAplicant();
+      
     }
 
   }

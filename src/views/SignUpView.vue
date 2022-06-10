@@ -34,7 +34,7 @@
             <b-badge variant="danger">{{err}}</b-badge>
           </div>
           
-          <label for="password" class="form-label mt-3">Password</label>
+          <!-- <label for="password" class="form-label mt-3">Password</label>
           <div>
             <input
               type="password"
@@ -44,7 +44,20 @@
               placeholder="Password123@"
               required
             />
-          </div>
+          </div> -->
+
+          <label for="password" class="form-label mt-3">Password</label>
+            <!-- addons -->
+            <div class="input-group mb-3">
+              <input :type="visibility" v-model="recruiterPassword" id="password" class="form-control" placeholder="Password123@" aria-label="password" aria-describedby="button-addon2">
+              <button class="btn btn-outline-secondary btn-eye" type="button" id="button-addon2" @click="showPassword()" v-if="visibility == 'password' ">
+                <font-awesome-icon icon="fa-solid fa-eye" width="22" height="22" icon-name="show password" />
+              </button>
+              <!-- hides password -->
+              <button class="btn btn-outline-secondary btn-eye" type="button" id="button-addon2" @click="hidePassword()" v-if="visibility == 'text' ">
+                <font-awesome-icon icon="fa-solid fa-eye-slash" width="22" height="22" icon-name="hide password"/>
+              </button>
+            </div>
           
           <div v-if="this.err == 'Password must be at least 8 characters'">
                 <span class="badge bg-danger">{{err}}</span>
@@ -182,11 +195,13 @@ export default {
 <style scoped>
 
 *{
-    padding-left: 0;
-    padding-right: 0;
+    /* padding-left: 0;
+    padding-right: 0; */
+    margin: 0;
+    padding: 0;
     font-family: 'Montserrat';
     font-weight: 500;
-    max-width: 100%;
+    /* max-width: 100%; */
 }
 
 .section-right{
@@ -202,9 +217,12 @@ export default {
     background: #EFF0F2;
     color: #838383;
 }
-.btn{
+
+.btn-signup{
     margin-top: 100px;
+    padding: 8px;
 }
+
 .sign-up{
     text-align: center;
 }
@@ -262,6 +280,7 @@ font-size: 20px;
   font-size: 16px;
   color: #3300FF;
   margin-top: 12px;
+  margin-bottom: 10px;
 }
 
 .password-required ul{
@@ -289,11 +308,10 @@ font-size: 20px;
   text-decoration: underline;
 }
 
-.toggle-password{
-    position: absolute;
-    right: 90px;
-    top: 350px;
+.btn-eye{
+  padding: 0.375rem 0.75rem;
 }
+
 
 /* breakpoints */
 /* for mobile */
@@ -333,13 +351,9 @@ font-size: 20px;
     }
 
     h1{
-      margin-top: 80px;
+      margin-top: 130px;
     }
 
-    .toggle-password{
-    right: 100px;
-    top: 860px;
-    }
 }
 
 
