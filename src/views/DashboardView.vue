@@ -4,27 +4,21 @@
   <sidebar-component/>
   <sidebar-right v-if="this.sidepop == true" :view="views"></sidebar-right>
   
-  <div>
-    <div v-if="!isMobile()">
       <sidebar-right-review  v-if="this.sidepop == false & this.err == '200'"></sidebar-right-review>
       <sidebar-right-empty  v-if="this.err =='400'"></sidebar-right-empty>
-    </div>
 
-    <div v-else>
       <nav-mobile></nav-mobile>
-    </div>
-  </div>
     
    <div class="container">
      <div class="row">
-       <div class="col-md-6 ">
+       <div class="col-lg-6 ">
          <div class="card greetings mb-4">
           <h2 class="main-head">Hi, {{recruiters.recruiterCompany}}!</h2>
           <div class="row">
-          <div class="col-md-3 col-6">
+          <div class="col-lg-3 col-6">
             <img class="animate__animated animate__tada" src="@/assets/saly.png" alt="">
           </div>
-          <div class=" col-md-9 col-6">              
+          <div class=" col-lg-9 col-6">              
             
             <div class="card-text">
               <h5 class="welcome">Welcome Back</h5>
@@ -41,6 +35,7 @@
          <div class="card-monitor">
           
           <div class="card-approve">
+            <!-- <img src="../assets/reject.png" alt=""> -->
             <div class="card-title">
               <radial-progress-bar :diameter="100"
                           :stopColor="stopColor"
@@ -53,13 +48,13 @@
                     class="radial-custom">
                     <p class="ellipse-title">{{percentt}}%</p>
                  </radial-progress-bar>
-                <h6 class="sum-title">Summary of approve</h6>
+                <h2 class="sum-title">Summary of approve</h2>
                 
-                <h1>{{accept.data}}<span> / {{total.data}}</span></h1>
+                <h3 class="data-progress">{{accept.data}}<span> / {{total.data}}</span></h3>
                 
              </div>  
               </div>
-                <div class="col card-reject">
+                <div class="card-reject">
                   <radial-progress-bar :diameter="100"
                           :stopColor="stopColor"
                           :startColor="startColor"
@@ -71,8 +66,8 @@
                     class="radial-custom">
                   <p class="ellipse-title">{{percent}}%</p>
                  </radial-progress-bar>
-                <h6 class="sum-title">Summary of reject</h6>
-                <h1>{{reject.data}}<span> / {{total.data}}</span></h1>
+                <h2 class="sum-title">Summary of reject</h2>
+                <h3 class="data-progress">{{reject.data}}<span> / {{total.data}}</span></h3>
              
           </div>
          
@@ -167,13 +162,6 @@ export default {
 
 
   methods : {
-    isMobile() {
-      if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        return true
-      } else {
-        return false
-      }
-    },
     async percenttCount(){
       const accept = JSON.parse(localStorage.getItem("countaccept-info"))
       const total = JSON.parse(localStorage.getItem("counttotal-info"))
@@ -432,6 +420,11 @@ h5{
   padding: 10px;
   padding-left: 10px;
 }
+
+.data-progress{
+  font-size: 32px;
+}
+
 span{
   font-size: 26px;
 }
@@ -503,6 +496,40 @@ span{
   margin-left: 20px;
   width: 52.5%;
   background: rgb(249, 249, 249)
+}
+}
+
+/* tablet */
+@media only screen and (max-width: 768px){
+  .container {
+    margin-left: 10%;
+    
+    
+    /* margin-top: 30px; */
+    padding-top: 30px;
+    width: auto;
+    display: flex;
+  }
+
+  .greetings{
+    width: 80vw;
+    
+  }
+
+  .card-monitor {
+ 
+  width: 80vw;
+  
+  
+}
+.card-reject{
+  padding: 20px;
+  background-image: url("../assets/reject.png");
+  border-radius: 20px;
+  height: 133px;
+  width: 373px;
+  margin-top: 9px;
+  /* box-shadow: 6px 10px 15px -3px rgba(0,0,0,0.1); */
 }
 }
 

@@ -3,7 +3,7 @@
     <div class="row flex-grow-1">
       <div class="col-md-7 section-left">
           <img class="image-login " src="../assets/signup-img.png" alt="">
-          <div class="card mb-2 card-testimony">
+          <div class="card mb-2 card-testimony d-none d-md-none d-lg-block">
             <div class="text-testimony">
               <p>
                 “I’ve been using this incredible job portal. They have comprehensive features that can help me build people in my company. 
@@ -318,7 +318,7 @@ font-size: 20px;
 @media only screen and (max-width: 576px){
   
   .image-login{
-    height: 80vh;
+    height: 60vh;
     width: 100%;
   }
 
@@ -351,7 +351,7 @@ font-size: 20px;
     }
 
     h1{
-      margin-top: 130px;
+      margin-top: -10px;
     }
 
 }

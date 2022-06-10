@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar-right">
+  <div class="sidebar-right d-none d-md-none d-lg-block" >
 
     <div class="side-content">
       <ul>
@@ -201,4 +201,19 @@ ul{
       height: 40px;
       padding: 15px;
     }
+
+    /* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+    /* @media (max-width: 576px) {
+    .side-content {
+        margin-right: -320px;
+    } */
+    /* #sidebar.active {
+        margin-left: 0;
+    }
+    #sidebarCollapse span {
+        display: none;
+    } */
+/* } */
 </style>

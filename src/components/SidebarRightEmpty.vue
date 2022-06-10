@@ -195,4 +195,19 @@ ul{
       height: 40px;
       padding: 15px;
     }
+
+    /* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+    @media (max-width: 576px) {
+    .side-content {
+        margin-right: -280px;
+    }
+    /* #sidebar.active {
+        margin-left: 0;
+    }
+    #sidebarCollapse span {
+        display: none;
+    } */
+}
 </style>

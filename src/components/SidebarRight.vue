@@ -362,4 +362,6 @@ export default {
     }.jobseeker-informations tr{
       font-weight: 500;
     }
+
+
 </style>
