@@ -17,7 +17,7 @@
         </div>
       </nav>
 
-      <form @submit.prevent="addjob">
+      <form @submit.prevent="addjob" class="needs-validation">
         <div class="modal fade" id="jobModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -26,72 +26,55 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
+              <div class="form-data" >
+                  
+                    <div class="forms-inputs mb-4"> <span>Job name:</span> 
+                    <input type="text" v-model="jobName" v-bind:class="{'form-control':true, 'is-invalid' : !validjobName(jobName) && jobnameBlured}" v-on:blur="jobnameBlured = true" required> 
+                        <div class="invalid-feedback">Please fill blank form</div>
+                    </div>
+                    <div class="forms-inputs mb-4"> <span>Job salary:</span> 
+                    <input type="number" v-model="jobSalary" v-bind:class="{'form-control':true, 'is-invalid' : !validjobSalary(jobSalary) && jobsalaryBlured}" v-on:blur="jobsalaryBlured = true" required>
+                        <div class="invalid-feedback">Please fill blank form</div>
+                    </div>
+                    <div class="forms-inputs mb-4">
+                    <label for="inputState">Job position</label>
+                    <select class="form-control" id="inputState" v-model="jobPosition" v-bind:class="{'form-control':true, 'is-invalid' : !validjobSalary(jobSalary) && jobsalaryBlured}" v-on:blur="jobsalaryBlured = true" required>
+                      <option selected>Choose..</option>
+                      <option>Internship</option>
+                      <option>Full time</option>
+                      <option>Part time</option>
+                      <option>Contractual</option>
+                      <option>Freelance</option>
+                    </select>
+                    <div class="invalid-feedback">Please fill blank form</div>
+                  </div>
+                   <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Job requirement:</label>
+                    <ckeditor :editor="editor" tag-name="textarea" v-model="jobRequirement" :config="editorConfig">
+                    </ckeditor>
+                  </div>
+                   <div class="mb-3">
+                    <label for="message-text" class="col-form-label">Job description:</label>
+                    <ckeditor :editor="editor" tag-name="textarea" id="jobDesc" :model-value="jobDesc" v-model="jobDesc"
+                      :config="editorConfig"></ckeditor>
+                    <!-- <textarea class="form-control" id="jobdescription" v-model="jobDesc"></textarea> -->
+                  </div>
+                  <div class="mb-3">
+                    <label for="message-text" class="col-form-label">Job address:</label>
+                    <textarea class="form-control" id="message-text" v-model="jobAddress" maxlength="100"
+                      required  v-bind:class="{'form-control':true, 'is-invalid' : !validjobSalary(jobSalary) && jobsalaryBlured}" v-on:blur="jobsalaryBlured = true">
+                      </textarea>
+                       <div class="invalid-feedback">Please fill blank form</div>
+                    <small>max.100 characters</small>
+                  </div>
 
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Job Name:</label>
-                  <input type="text" class="form-control" id="recipient-name" v-model="jobName" maxlength="100" required />
-                </div>
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Job salary:</label>
-                  <input type="number" class="form-control" id="recipient-name" v-model="jobSalary" required />
-                </div>
-                <div class="mb-3">
-                  <label for="inputState">Job position</label>
-                  <select class="form-control" id="inputState" v-model="jobPosition" required>
-                    <option>Choose..</option>
-                    <option>Internship</option>
-                    <option>Full time</option>
-                    <option>Part time</option>
-                    <option>Contractual</option>
-                    <option>Freelance</option>
-                  </select>
-                </div>
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Job requirement:</label>
-                  <ckeditor :editor="editor" tag-name="textarea" v-model="jobRequirement" :config="editorConfig">
-                  </ckeditor>
-
-                </div>
-                <div class="mb-3">
-                  <label for="message-text" class="col-form-label">Job description:</label>
-                  <ckeditor :editor="editor" tag-name="textarea" id="jobDesc" :model-value="jobDesc" v-model="jobDesc"
-                    :config="editorConfig"></ckeditor>
-                  <!-- <textarea class="form-control" id="jobdescription" v-model="jobDesc"></textarea> -->
-
-                </div>
-                <div class="mb-3">
-                  <label for="message-text" class="col-form-label">Job address:</label>
-                  <textarea class="form-control" id="message-text" v-model="jobAddress" maxlength="100"
-                    required></textarea>
-                  <small>max.100 characters</small>
-                </div>
 
 
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Back</button>
-                <!-- <button v-on:click="addjob" type="button" class="btn btn-primary" data-bs-dismiss="modal">Add</button> -->
-                <button type="submit" class="btn btn-primary">Create</button>
-              </div>
-            </div>
+                    <div class="mb-3"> <button type="submit" class="btn btn-primary w-100">Create</button> </div>
+                </div>
+           </div>
           </div>
-        </div>
-        <div class="modal fade" v-if="this.modalOpen = true" id="exampleModalToggle2" aria-hidden="true"
-          aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content"
-              style="border-radius:20px; margin:auto; width:400px; margin-top:200px; padding-bottom:20px; text-align:center; padding:50px;">
-              <h5 style="padding-bottom:30px; font-size:18px; font-weigh:bolder;">Are you sure want to<br>publish job?
-              </h5>
-              <div class="select-button">
-
-                <button class="btn btn-outline-danger pop" data-bs-target="#jobModal"
-                  data-bs-toggle="modal">Cancel</button>
-                <button v-on:click="addjob" type="button" class="btn btn-primary pop" data-bs-dismiss="modal">Yes,
-                  post it!</button>
-              </div>
-            </div>
-          </div>
+         </div>
         </div>
       </form>
 
@@ -114,6 +97,10 @@
   // import CandidatejobComponent from '@/components/CandidatejobComponent.vue';
   // import ParagraphPlugin from '@ckeditor/ckeditor5-paragraph/src/paragraph';
   import NavMobile from '../components/NavMobile.vue'
+
+
+
+
 
   export default {
     name: "PostJobNew",
@@ -146,19 +133,76 @@
                 }
         },
         jobName: "",
+        jobnameBlured : false,
         jobSalary: "",
+        jobsalaryBlured: false,
         jobPosition: "",
         jobRequirement: "",
         jobDesc: "",
         jobAddress: "",
         list: [],
         modalOpen: false,
-
         userName: "",
-        hide:''
+        hide:'',
+
+    
+    
+        valid : false,
+        submitted : false,
+        // password:"",
+        // username:"",
+        // usernameBlured:false, 
+        // phone:"",
+        // phoneBlured:false
       };
     },
     methods: {
+        validate : function(){
+        this.jobnameBlured = true;
+        this.jobsalaryBlured = true;
+        this.usernameBlured = true;
+        this.phoneBlured = true;
+        if( this.validjobName(this.jobName) && this.validjobSalary(this.jobSalary) && this.validPhone(this.phone) && this.validUsername(this.username)){
+        this.valid = true;
+        }
+        },
+
+        validjobName : function(jobName) {
+        if(jobName.length > 0){
+       return true;
+      }
+    },
+
+        validjobSalary : function(jobSalary) {
+        if (jobSalary.length > 0) {
+        return true;
+      }
+},
+
+validUsername : function(username) {
+  
+   if (!/\s/.test(username)) {
+    return true;
+}
+},
+
+        validPhone : function(phone) {
+        if (phone.length > 9 && phone.length < 12 ) {
+            return true;
+        }
+        },
+
+    submit : function(){
+            this.validate();
+            if(this.valid){
+                this.submitted = true;
+             }
+        },
+    
+
+
+
+
       formatPrice(value) {
         let val = (value / 1).toFixed().replace('.', ',')
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
@@ -173,8 +217,10 @@
           // createToast("Job Successfully Created", {
           //   type: "success"
           // });
+          this.$toast.success("Job Successfully Created")
           this.modalOpen = true;
           location.reload(true)
+          // document.getElementsByClassName("active");
         } catch (error) {
           // createToast("please, fill blank form", {
           //   type: "danger"

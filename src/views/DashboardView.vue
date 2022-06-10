@@ -1,5 +1,8 @@
 <template>
 
+<div>
+  <sidebar-component/>
+  <sidebar-right v-if="this.sidepop == true" :view="views"></sidebar-right>
   <div>
     <sidebar-component />
     <sidebar-right v-if="this.sidepop == true" :view="views"></sidebar-right>
@@ -265,10 +268,8 @@
         this.getView(),
         this.percentCount(),
         this.percenttCount()
-
-
-
     },
+    
   };
 </script>
 
