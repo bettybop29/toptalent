@@ -1,10 +1,10 @@
 <template>
 
 <div>
+  <sidebar-component/>
+  <sidebar-right v-if="this.sidepop == true" :view="views"></sidebar-right>
   
-    <sidebar-component/>
-    <sidebar-right v-if="this.sidepop == true" :view="views"></sidebar-right>
-    
+  <div>
     <div v-if="!isMobile()">
       <sidebar-right-review  v-if="this.sidepop == false & this.err == '200'"></sidebar-right-review>
       <sidebar-right-empty  v-if="this.err =='400'"></sidebar-right-empty>
@@ -13,7 +13,8 @@
     <div v-else>
       <nav-mobile></nav-mobile>
     </div>
-
+  </div>
+    
    <div class="container">
      <div class="row">
        <div class="col-md-6 ">
