@@ -45,7 +45,7 @@
 
 <script>
   export default {
-    name: "NavBasic",
+    name: "NavMobile",
     methods:{
         logout(){
         try {
