@@ -318,7 +318,7 @@ font-size: 20px;
 @media only screen and (max-width: 576px){
   
   .image-login{
-    height: 60vh;
+    height: 100%;
     width: 100%;
   }
 
@@ -356,6 +356,10 @@ font-size: 20px;
 
 }
 
-
+@media only screen and (max-width: 768px){
+  .image-login{
+      height: 100%;
+    }
+}
 
 </style>

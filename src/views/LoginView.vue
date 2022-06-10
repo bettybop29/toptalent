@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid min-vh-100 d-flex flex-column">
+  <div class="container-fluid min-vh-100 d-flex flex-column mx-0 px-0">
     <div class="row flex-grow-1">
       <div class="col-md-7">
         <img class="image-login img-fluid" src="../assets/login-img.png" alt="">
@@ -135,7 +135,10 @@
     padding-right: 0; */
     font-family: 'Montserrat';
     font-weight: 500;
+    
   }
+
+  
 
   h1 {
     font-size: 32px;
@@ -249,5 +252,7 @@
     width: 100vw;
 
   }
+
+  
 }
 </style>
