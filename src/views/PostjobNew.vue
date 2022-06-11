@@ -57,8 +57,11 @@
                   </div>
                   <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">Job requirement:</label>
-                    <ckeditor :editor="editor" tag-name="textarea" v-model="jobRequirement" :config="editorConfig">
+                    <ckeditor :editor="editor" tag-name="textarea" v-model="jobRequirement" :config="editorConfig"
+                      v-bind:class="{'form-control':true, 'is-invalid' : !validJobRequirement(jobRequirement) && jobrequirementBlured}"
+                      v-on:blur="jobrequirementBlured = true" >
                     </ckeditor>
+                    <div class="invalid-feedback">Please fill blank form <font-awesome-icon icon="fa-solid fa-circle-exclamation" /></div>
                   </div>
                   <div class="mb-3">
                     <label for="message-text" class="col-form-label">Job description:</label>
@@ -66,7 +69,7 @@
                       :config="editorConfig"
                       v-bind:class="{'form-control':true, 'is-invalid' : !validJobDesc(jobDesc) && jobdescBlured}"
                       v-on:blur="jobdescBlured = true"></ckeditor>
-                    <div class="invalid-feedback">Please fill blank form</div>
+                    <div class="invalid-feedback">Please fill blank form <font-awesome-icon icon="fa-solid fa-circle-exclamation" /></div>
                     <!-- <textarea class="form-control" id="jobdescription" v-model="jobDesc"></textarea> -->
 
                   </div>
@@ -89,9 +92,9 @@
                   <div class="text-center d-flex flex-column"> <i class='bx bxs-badge-check'></i> <span
                       class="text-center fs-3">Are you sure want to post <br> this job?</span>
                     <div class="col text-center fs-3">
-                      <button class="btn btn-primary w-30 m-1" type="submit" v-on:click.prevent="addjob">Yes, post
+                      <button class="btn btn-primary valid-pop m-1" type="submit" v-on:click.prevent="addjob">Yes, post
                         it!</button>
-                      <button class="btn btn-outline-danger w-30 m-1" data-bs-dismiss="modal"
+                      <button class="btn btn-outline-danger valid-pop m-1" data-bs-dismiss="modal"
                         aria-label="Close">Cancel</button>
                     </div>
                   </div>
@@ -165,6 +168,7 @@
         jobPosition: "",
         jobpositionBlured: false,
         jobRequirement: "",
+        jobrequirementBlured: false,
         jobDesc: "",
         jobdescBlured: false,
         jobAddress: "",
@@ -178,11 +182,6 @@
 
         valid: false,
         submitted: false,
-        // password:"",
-        // username:"",
-        // usernameBlured:false, 
-        // phone:"",
-        // phoneBlured:false
       };
     },
     methods: {
@@ -192,9 +191,10 @@
         this.jobpositionBlured = true;
         this.jobaddressBlured = true;
         this.jobdescBlured = true;
+        this.jobrequirementBlured = true;
         if (this.validjobName(this.jobName) && this.validjobSalary(this.jobSalary) &&
           this.validJobPosition(this.jobPosition) && this.validJobAddress(this.jobAddress) &&
-          this.validJobDesc(this.jobDesc)) {
+          this.validJobDesc(this.jobDesc) && this.validJobRequirement(this.jobRequirement)) {
           this.valid = true;
 
         }
@@ -227,6 +227,12 @@
 
       validJobDesc: function (jobDesc) {
         if (jobDesc.length > 0) {
+          return true;
+        }
+      },
+
+      validJobRequirement: function (jobRequirement) {
+        if (jobRequirement.length > 0) {
           return true;
         }
       },
@@ -300,6 +306,12 @@
   .main {
     margin-left: 250px;
   }
+  .valid-pop{
+    border-radius: 10px;
+    width: 195px;
+    padding: 9px;
+  }
+
 </style>
 
 <!-- <style scoped>
