@@ -3,7 +3,7 @@
     <div class="row d-flex justify-content-center">
         <div class="col-md-7">
             <div class="card px-5 py-4" id="form1">
-                <div class="form-data" v-if="!submitted">
+                <div class="form-data" >
                     <div class="text-center mb-4">
                         <h4>Register Now</h4>
                     </div>
@@ -15,7 +15,7 @@
                     <input type="text" v-model="username" v-bind:class="{'form-control':true, 'is-invalid' : !validUsername(username) && usernameBlured}" v-on:blur="usernameBlured = true">
                         <div class="invalid-feedback">A valid username is required!</div>
                     </div>
-                    <div class="forms-inputs mb-4"> <span>Phone</span> 
+                    <div class="forms-inputs mb-4"> <span>Phone</span>  
                     <input type="text" v-model="phone" v-bind:class="{'form-control':true, 'is-invalid' : !validPhone(phone) && phoneBlured}" v-on:blur="phoneBlured = true">
                         <div class="invalid-feedback">A valid phone is required!</div>
                     </div>
@@ -23,11 +23,12 @@
                     <input type="password" v-model="password" v-bind:class="{'form-control':true, 'is-invalid' : !validPassword(password) && passwordBlured}" v-on:blur="passwordBlured = true">
                         <div class="invalid-feedback">Password must be 8 character!</div>
                     </div>
-                    <div class="mb-3"> <button v-on:click.stop.prevent="submit" class="btn btn-dark w-100">Register</button> </div>
+                    
+                    <div class="mb-3"> <button v-on:click="submit" class="btn btn-dark w-100">Register</button> </div>
                 </div>
-                <div class="success-data" v-else>
+                <!-- <div class="success-data" v-else>
                     <div class="text-center d-flex flex-column"> <i class='bx bxs-badge-check'></i> <span class="text-center fs-3">Your has been created <br> Successfully</span> </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -92,7 +93,12 @@ export default {
                 this.validate();
                 if(this.valid){
                     this.submitted = true;
+                    console.log('oke')
+                    this.$toast.success('siip')
+                } else {
+                    this.submitted == false
                 }
+                
             }
         }
     }

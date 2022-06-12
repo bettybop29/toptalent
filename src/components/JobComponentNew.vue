@@ -1,7 +1,9 @@
 <template>
   <div class="row justify-content-between m-1 px-3">
     <div class="col-6 d-flex align-items-center">
-      <span class="fw-bold">{{item.jobName}}</span>
+      <router-link class="job-link" :to="{name: 'jobsdetail', params:{id:item.jobId}}">
+        <span class="fw-bold">{{item.jobName}}</span>
+      </router-link>
     </div>
     <div class="col-6 d-flex justify-content-end align-items-center">
       <span v-if="item.jobPosition == 'Full time'" class="badge bg-light py-2 green"
@@ -285,6 +287,10 @@
 
 <style scope>
   /* color for job position */
+  .job-link{
+    text-decoration: none;
+    color: black;
+  }
   .green {
     color: #149E48;
   }

@@ -19,31 +19,40 @@
       <div class="col-md-6 p-5">
         <h1 class="animate_animated animate_fadeInDown">Welcome Back!</h1>
         <div class="form-login animate_animated animate_fadeInDown">
-          <form action="" @submit.prevent="login" class="col-11">
-            <label for="validationDefault01" class="form-label mt-4">Email</label>
-            <input type="email" v-model="email" class="form-control" id="floatingInput" aria-describedby="emailHelp"
-              placeholder="yourcompany@mail.com" required />
-
+          <div action="" class="col-11">
+            <div>
+              <label for="validationDefault01" class="form-label mt-4">Email</label>
+              <input type="email" v-model="email" class="form-control" id="floatingInput" aria-describedby="emailHelp"
+                placeholder="yourcompany@mail.com"
+                v-bind:class="{'form-control':true, 'is-invalid' : !validEmail(email) && emailBlured}"
+                v-on:blur="emailBlured = true" />
+                <div class="invalid-feedback">A valid email is required!</div>
+            </div>
+            <div>
             <label for="floatingInput" class="form-label mt-3">Password</label>
             <input type="password" v-model="password" class="form-control mb-3" id="myInput" placeholder="Password123@"
-              required />
+              v-bind:class="{'form-control':true, 'is-invalid' : !validPassword(password) && passwordBlured}"
+              v-on:blur="passwordBlured = true" />
+              <div class="invalid-feedback">Password must be 8 character!</div>
+              </div>
             <p>
               <router-link class="btn-forgot" to="/resetpass">Forgot Password?</router-link>
             </p>
             <!-- <input class="form-control" type="tel" id="phone" v-model="phone" > -->
             <div class="d-grid gap-2">
-              <button v-if="searchDisabled == true"  class="btn btn-primary" type="button" disabled>
+              <button v-if="searchDisabled == true" class="btn btn-primary" type="button" disabled>
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 Loading...
               </button>
-               <input v-else type="submit" class="btn btn-primary" :disabled="searchDisabled" value="Login">
-               
+              <input v-else type="submit" v-on:click="submit" class="btn btn-primary" :disabled="searchDisabled"
+                value="Login">
+
             </div>
-           
+
             <p class="sign-up mt-4">Don't have any account?
               <router-link class="btn-signup" to="/signup">Sign Up For Free!</router-link>
             </p>
-          </form>
+          </div>
         </div>
       </div>
     </div>
@@ -64,22 +73,59 @@
     data() {
       return {
         email: "",
+        emailBlured: false,
         password: "",
+        passwordBlured: false,
         show: false,
-        searchDisabled:false
+        searchDisabled: false,
+        valid: false,
+        submitted: false
       }
     },
     methods: {
+
+      validate: function () {
+        this.emailBlured = true;
+        this.passwordBlured = true;
+        if (this.validEmail(this.email) && this.validPassword(this.password)) {
+          this.valid = true;
+        }
+      },
+      validEmail(email) {
+        var re = /(.+)@(.+){2,}\.(.+){2,}/;
+        if (re.test(email.toLowerCase())) {
+          return true;
+        }
+      },
+
+      validPassword(password) {
+        if (password.length > 7) {
+          return true;
+        }
+      },
+
+      submit() {
+        this.validate();
+        if (this.valid) {
+          this.submitted = true;
+          this.login()
+        } else {
+          this.submitted === false;
+          
+        }
+      },
+
       showThis() {
         this.show = true
       },
+
       async login() {
         let response = '';
         try {
           this.searchDisabled = true
           response = await axios.post(
             `http://54.255.4.75:9091/api/v1/auth/recruiter/login?recruiterEmail=${this.email}&recruiterPassword=${this.password}`
-            )
+          )
         } catch (err) {
           this.searchDisabled = false
           this.err = err.response.data.message
@@ -92,9 +138,9 @@
           localStorage.setItem("user-info", JSON.stringify(response.data.data.registerDTO));
           this.$router.push('/dashboard')
           this.$toast.success(`Welcome back! ${response.data.data.registerDTO.recruiterCompany}`, {
-          // optional options Object
+            // optional options Object
 
-      })
+          })
           // createToast(`Welcome back!! ${response.data.data.registerDTO.recruiterCompany}`, { type: "success" });
         }
       }

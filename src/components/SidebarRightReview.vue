@@ -27,7 +27,7 @@
             <p v-if="item.jobseekerImage == null" class="fw-normal">---</p>
             <p v-else class="fw-normal">{{item.jobseekerProfession}}</p>
           </li>
-           <li class="li-title">Basic Information</li>
+           <li class="li-title" style="text-align:left;">Basic Information</li>
           <!-- tabel untuk data jobseeker -->
            <table class="jobseeker-informations mb-4">
             <tbody>
@@ -176,6 +176,7 @@ export default {
 </script>
 
 <style scoped>
+
 .hide{
   padding-top: 80px;
 }
@@ -234,6 +235,7 @@ ul{
       margin-left: -5px !important;
       color: #6476c8;
       
+      
     }
     .action button{
       margin: 5px;
@@ -254,6 +256,8 @@ ul{
      }
      .act{
        justify-content: space-between;
+       text-decoration: none;
+       color: black;
      }
     .acc{
       width: 44%;
