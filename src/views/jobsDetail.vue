@@ -1,3 +1,33 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@rizkidani 
+bettybop29
+/
+toptalent
+Public
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+toptalent/src/views/jobsDetail.vue
+@fauziah21
+fauziah21 fixed layout
+Latest commit 141fc5a 3 days ago
+ History
+ 2 contributors
+@fauziah21@bettybop29
+152 lines (141 sloc)  5.18 KB
+
+
 <template>
   <div>
       <sidebarcomponent></sidebarcomponent>
@@ -27,43 +57,43 @@
                     Edit Job Post
                 </button> 
             </div>
-            <div class="row p-4" style="border-bottom: 5px solid whitesmoke;">
-                <div class="col">
-                    <h4 class="jobabout mb-4">About the job</h4>
-                    <h5 class="jobabout">Job Requirement:</h5>
-                    <p class="jobtext ms-5" v-html="detail.jobRequirement"></p>
-                    <h5 class="jobabout">Job Description:</h5>
-                    <p class="jobtext ms-5" v-html="detail.jobDesc"></p>
-                </div>
+          </div>
+        <div class="row p-4" style="border-bottom: 5px solid whitesmoke;">
+            <div class="col">
+                <h4 class="jobabout mb-4">About the job</h4>
+                <h5 class="jobabout">Job Requirement:</h5>
+                <p class="jobtext ms-5" v-html="detail.jobRequirement"></p>
+                <h5 class="jobabout">Job Description:</h5>
+                <p class="jobtext ms-5" v-html="detail.jobDesc"></p>
             </div>
-            <div class="row p-4">
-                <div class="col">
-                    <h4 class="jobabout">About the company</h4>
-                    <p class="jobtext mb-4">{{recruiter.recruiterDesc}}</p>
-                    <h5 class="jobabout">Staff</h5>
-                    <p class="jobtext mb-4">{{recruiter.recruiterStaff}}</p>
-                    <h5 class="jobabout">Industry</h5>
-                    <p class="jobtext mb-4">{{recruiter.recruiterIndustry}}</p>
-                    <h5 class="jobabout">Culture</h5>
-                    <p class="jobtext mb-4" v-html="recruiter.recruiterCulture"></p>
-                    <h5 class="jobabout">Benefit</h5>
-                    <p class="jobtext mb-4" v-html="recruiter.recruiterBenefit"></p>
-                    <h5 class="jobabout">Address</h5>
-                    <p class="jobtext mb-3">{{recruiter.recruiterAddress}}</p>
-
-                    <a href="https://google.com"><img class="me-2 socmed" src="../assets/icon-postjob/job-fb.svg"
-                            alt=""></a>
-                    <img class="me-2 socmed" src="../assets/icon-postjob/job-linkedin.svg" alt="">
-                    <img class="me-2 socmed" src="../assets/icon-postjob/job-ig.svg" alt="">
-                    <img class="me-2 socmed" src="../assets/icon-postjob/job-web.svg" alt="">
-                </div>
+        </div>
+        <div class="row p-4" >
+            <div class="col">
+                <h4 class="jobabout">About the company</h4>
+                <p class="jobtext mb-4">{{recruiter.recruiterDesc}}</p>
+                <h5 class="jobabout">Staff</h5>
+                <p class="jobtext mb-4">{{recruiter.recruiterStaff}}</p>
+                <h5 class="jobabout">Industry</h5>
+                <p class="jobtext mb-4">{{recruiter.recruiterIndustry}}</p>
+                <h5 class="jobabout">Culture</h5>
+                <p class="jobtext mb-4" v-html="recruiter.recruiterCulture"></p>
+                <h5 class="jobabout">Benefit</h5>
+                <p class="jobtext mb-4" v-html="recruiter.recruiterBenefit"></p>
+                <h5 class="jobabout">Address</h5>
+                <p class="jobtext mb-3">{{recruiter.recruiterAddress}}</p>
+                
+                <a href="https://google.com"><img class="me-2 socmed" src="../assets/icon-postjob/job-fb.svg" alt=""></a>
+                <img class="me-2 socmed" src="../assets/icon-postjob/job-linkedin.svg" alt="">
+                <img class="me-2 socmed" src="../assets/icon-postjob/job-ig.svg" alt="">
+                <img class="me-2 socmed" src="../assets/icon-postjob/job-web.svg" alt="">
             </div>
-
-
         </div>
 
 
-    </div>
+      </div>
+        
+      
+  </div>
 </template>
 
 <script>
@@ -95,72 +125,50 @@ export default {
                 console.log(this.detail)
             })
         },
-        methods: {
-            moment: function (date) {
-                return moment(date);
-            },
-            formatPrice(value) {
-                let val = (value / 1).toFixed().replace('.', ',')
-                return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
-            },
-            async getDetailJob() {
-                await axios.get(`http://54.255.4.75:9091/api/v1/job/` + this.$route.params.id)
-                    .then((data) => {
-                        this.detail = data.data.data
-                        console.log(this.detail)
-                    })
-            },
-            async getRecruiter() {
-                const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
-                await axios.get(`http://54.255.4.75:9091/api/v1/auth/recruiter/${recruiterId}`)
-                    .then((data) => {
-                        this.recruiter = data.data
-                        console.log(this.recruiter)
-                    })
-            }
-        },
-        mounted() {
-            this.getRecruiter();
-            this.getDetailJob();
-            // get company name 
-            const user = JSON.parse(localStorage.getItem("user-info")).recruiterCompany
-            this.userName = user
-            console.log(this.userName)
+        async getRecruiter(){
+             const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
+            await axios.get(`http://54.255.4.75:9091/api/v1/auth/recruiter/${recruiterId}`)
+            .then((data)=>{
+                this.recruiter = data.data
+                console.log(this.recruiter)
+            })
         }
+    },
+    mounted(){
+        this.getRecruiter();
+        this.getDetailJob();
+        // get company name 
+        const user = JSON.parse(localStorage.getItem("user-info")).recruiterCompany
+        this.userName = user
+        console.log(this.userName)
     }
+}
 </script>
 
 <style scoped>
     .container{
         margin-left: 250px;
     }
-
-    .jobicn {
+    .jobicn{
         width: 200px;
     }
-
-    .jobtitle {
+    .jobtitle{
         font-weight: 600;
     }
-
-    .jobtext {
+    .jobtext{
         margin-bottom: 0;
     }
-
-    .jobabout {
+    .jobabout{
         font-weight: 600;
     }
-
-    .jobtext {
+    .jobtext{
         font-weight: 500;
     }
-
-    .socmed:hover {
+    .socmed:hover{
         border-radius: 50%;
         background: blue;
         color: inherit
     }
-
     /* BREAKPOINTS */
     /* MOBILE */
     @media only screen and (max-width: 576px){

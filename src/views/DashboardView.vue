@@ -87,7 +87,7 @@
         <tbody>
           <tr v-for="(resume, index) in list" :key="resume.id">
             <td scope="row">{{index + 1}}
-              
+
             </td>
             <td>{{resume.jobseekerName}}</td>
             <td>{{resume.jobseekerEmail}}</td>
@@ -107,7 +107,8 @@
               <!-- <button class="btn-primary" @click="getView(resume.applicationId)">View</button> -->
 
               <!-- Button trigger modal -->
-              <button @click="getView(resume.applicationId)" type="button" class="btn btn-primary btn-view" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <button @click="getView(resume.applicationId)" type="button" class="btn btn-primary btn-view"
+                data-bs-toggle="modal" data-bs-target="#exampleModal">
                 View
                 <p></p>
               </button>
@@ -129,8 +130,10 @@
               Are you sure you want to accept {{ views.jobseekerName}}?
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-success" data-bs-dismiss="modal" v-on:click="accepted(views.applicationId)">Yes, accept</button>
-              <button type="button" class="btn btn-outline-danger" v-on:click="rejected(views.applicationId)">No, Reject</button>
+              <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                v-on:click="accepted(views.applicationId)">Yes, accept</button>
+              <button type="button" class="btn btn-outline-danger" v-on:click="rejected(views.applicationId)">No,
+                Reject</button>
             </div>
           </div>
         </div>
@@ -141,52 +144,25 @@
 </template>
 
 <script>
-import axios from 'axios'
-import SidebarComponent from '@/components/SidebarComponent.vue'
-import SidebarRight from '@/components/SidebarRight.vue'
-import SidebarRightEmpty from '@/components/SidebarRightEmpty.vue'
-import SidebarRightReview from '@/components/SidebarRightReview.vue'
-import RadialProgressBar from 'vue-radial-progress'
-import NavMobile from '../components/NavMobile.vue'
+  import axios from 'axios'
+  import SidebarComponent from '@/components/SidebarComponent.vue'
+  import SidebarRight from '@/components/SidebarRight.vue'
+  import SidebarRightEmpty from '@/components/SidebarRightEmpty.vue'
+  import SidebarRightReview from '@/components/SidebarRightReview.vue'
+  import RadialProgressBar from 'vue-radial-progress'
+  import NavMobile from '../components/NavMobile.vue'
 
 
 
-export default {
-  components: { SidebarComponent, 
-                // SidebarRightEmpty, 
-                SidebarRightReview,
-                SidebarRight,
-                SidebarRightEmpty,
-                RadialProgressBar,
-                NavMobile
-              },
-  name:'DashboardView',
-  data(){
-    return{
-      path: 'http://54.255.4.75:9091',
-      recruiters:[],
-      accept:"",
-      reject: "",
-      list:[],
-      total:"",
-      edit:"",
-      views:"",
-      sidepop:'',
-      dashboardEmpty:'', 
-      startColor:'#F39201',
-      stopColor:'#F39201',
-      innerStrokeColor:'#C4C4C4',
-      percent:'',
-      percentt:'',
-      index:'1'
-    }
-  },
-  methods : {
-    async percenttCount(){
-      const accept = JSON.parse(localStorage.getItem("countaccept-info"))
-      const total = JSON.parse(localStorage.getItem("counttotal-info"))
-      const result = Math.round(( accept / total) * 100)
-      this.percentt = result
+  export default {
+    components: {
+      SidebarComponent,
+      // SidebarRightEmpty, 
+      SidebarRightReview,
+      SidebarRight,
+      SidebarRightEmpty,
+      RadialProgressBar,
+      NavMobile
     },
     name: 'DashboardView',
     data() {
@@ -208,10 +184,6 @@ export default {
         percentt: ''
       }
     },
-
-
-
-
     methods: {
       async percenttCount() {
         const accept = JSON.parse(localStorage.getItem("countaccept-info"))
@@ -336,26 +308,8 @@ export default {
         this.getView(),
         this.percentCount(),
         this.percenttCount()
-    async countRejc(){
-   const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
-     await axios.get(`http://54.255.4.75:9091/api/v1/application/count-rejected/${recruiterId}`)
-     .then((data)=>{
-      this.reject=data.data
-      localStorage.setItem("countreject-info", JSON.stringify(data.data.data));
-      })
     },
-    async getView(applicationId){ 
-       await axios.get(`http://54.255.4.75:9091/api/v1/application/applicant?applicationId=${applicationId}`)
-      .then((data)=>{
-        this.views=data.data.data
-        this.sidepop = true
-        
-        console.log(this.sidepop)
-        // console.log(data)
-              
-      })
-    },
-  };
+    };
 </script>
 
 <style scoped>

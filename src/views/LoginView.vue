@@ -19,25 +19,31 @@
       <div class="col-md-5 p-5">
         <h1 class="animate_animated animate_fadeInDown">Welcome Back!</h1>
         <div class="form-login animate_animated animate_fadeInDown">
-          <form action="" @submit.prevent="login" >
+          <div action="">
             <label for="email" class="form-label mt-4">Email</label>
             <input type="email" v-model="email" class="form-control" id="email" aria-describedby="emailHelp"
-              placeholder="yourcompany@mail.com" v-bind:class="{'form-control':true, 'is-invalid' : !validEmail(email) && emailBlured}"
-                v-on:blur="emailBlured = true" />
+              placeholder="yourcompany@mail.com"
+              v-bind:class="{'form-control':true, 'is-invalid' : !validEmail(email) && emailBlured}"
+              v-on:blur="emailBlured = true" />
             <div class="invalid-feedback">A valid email is required!</div>
             <label for="password" class="form-label mt-3">Password</label>
             <!-- addons -->
             <div class="input-group mb-3">
-              <input :type="visibility" v-model="password" id="password" class="form-control" placeholder="Password123@" aria-label="password" aria-describedby="button-addon2" v-bind:class="{'form-control':true, 'is-invalid' : !validPassword(password) && passwordBlured}"
-              v-on:blur="passwordBlured = true">
-              <div class="invalid-feedback">Password must be 8 character!</div>
-              <button class="btn btn-outline-secondary" type="button" id="button-addon2" @click="showPassword()" v-if="visibility == 'password' ">
+              <input :type="visibility" v-model="password" id="password" class="form-control" placeholder="Password123@"
+                aria-label="password" aria-describedby="button-addon2"
+                v-bind:class="{'form-control':true, 'is-invalid' : !validPassword(password) && passwordBlured}"
+                v-on:blur="passwordBlured = true">
+              <button class="btn btn-outline-secondary" type="button" id="button-addon2" @click="showPassword()"
+                v-if="visibility == 'password' ">
                 <font-awesome-icon icon="fa-solid fa-eye" width="22" height="22" icon-name="show password" />
               </button>
+
               <!-- hides password -->
-              <button class="btn btn-outline-secondary" type="button" id="button-addon2" @click="hidePassword()" v-if="visibility == 'text' ">
-                <font-awesome-icon icon="fa-solid fa-eye-slash" width="22" height="22" icon-name="hide password"/>
+              <button class="btn btn-outline-secondary" type="button" id="button-addon2" @click="hidePassword()"
+                v-if="visibility == 'text' ">
+                <font-awesome-icon icon="fa-solid fa-eye-slash" width="22" height="22" icon-name="hide password" />
               </button>
+              <div class="invalid-feedback">Password must be 8 character!</div>
             </div>
             <p>
               <router-link class="btn-forgot" to="/resetpass">Forgot Password?</router-link>
@@ -82,16 +88,16 @@
         passwordBlured: false,
         show: false,
         searchDisabled: false,
-        visibility: 'password'
+        visibility: 'password',
         valid: false,
         submitted: false
       }
     },
     methods: {
-      showPassword(){
+      showPassword() {
         this.visibility = 'text';
       },
-      hidePassword(){
+      hidePassword() {
         this.visibility = 'password';
       },
       validate: function () {
@@ -121,7 +127,7 @@
           this.login()
         } else {
           this.submitted === false;
-          
+
         }
       },
       showThis() {
@@ -173,10 +179,10 @@
     padding-right: 0; */
     font-family: 'Montserrat';
     font-weight: 500;
-    
+
   }
 
-  
+
 
   h1 {
     font-size: 32px;
@@ -186,7 +192,7 @@
 
   .section-right {
     padding: 50px;
-    
+
   }
 
   .image-login {
@@ -270,7 +276,7 @@
     text-decoration: underline;
   }
 
-  .toggle-password{
+  .toggle-password {
     position: absolute;
     right: 120px;
     top: 310px;
@@ -278,19 +284,19 @@
 
   /* breakpoint */
   /* for mobile */
-@media only screen and (max-width: 576px){
-    .toggle-password{
-    position: absolute;
-    right: 100px;
-    top: 770px;
+  @media only screen and (max-width: 576px) {
+    .toggle-password {
+      position: absolute;
+      right: 100px;
+      top: 770px;
     }
 
     .image-login {
-    
-    width: 100vw;
+
+      width: 100vw;
+
+    }
+
 
   }
-
-  
-}
 </style>

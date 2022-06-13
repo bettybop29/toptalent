@@ -97,11 +97,6 @@
                   </div>
                 </div>
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Back</button>
-                <!-- <button v-on:click="addjob" type="button" class="btn btn-primary" data-bs-dismiss="modal">Add</button> -->
-                <button type="submit" class="btn btn-primary">Create</button>
-              </div>
             </div>
           </div>
         </div>
