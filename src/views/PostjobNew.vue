@@ -1,6 +1,7 @@
 <template>
   <div>
     <sidebar-component></sidebar-component>
+    <nav-mobile></nav-mobile>
 
     <div class="main">
       <nav class="navbar navbar-expand-lg navbar-light bg-white py-4 sticky-top"
@@ -26,7 +27,6 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-
                 <div class="form-data" v-if="!submitted">
 
                   <div class="forms-inputs mb-4"> <span>Job name:</span>
@@ -46,7 +46,7 @@
                     <select class="form-control" id="inputState" v-model="jobPosition"
                       v-bind:class="{'form-control':true, 'is-invalid' : !validJobPosition(jobPosition) && jobpositionBlured}"
                       v-on:blur="jobpositionBlured = true">
-                      <option selected>Choose..</option>
+                      <option>Choose..</option>
                       <option>Internship</option>
                       <option>Full time</option>
                       <option>Part time</option>
@@ -82,9 +82,6 @@
                     <div class="invalid-feedback">Please fill blank form</div>
                     <small>max.100 characters</small>
                   </div>
-
-
-
                   <div class="mb-3"> <button v-on:click.stop.prevent="submit"
                       class="btn btn-primary w-100">Create</button> </div>
                 </div>
@@ -99,10 +96,28 @@
                     </div>
                   </div>
                 </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Back</button>
+                <!-- <button v-on:click="addjob" type="button" class="btn btn-primary" data-bs-dismiss="modal">Add</button> -->
+                <button type="submit" class="btn btn-primary">Create</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" v-if="this.modalOpen = true" id="exampleModalToggle2" aria-hidden="true"
+          aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content"
+              style="border-radius:20px; margin:auto; width:400px; margin-top:200px; padding-bottom:20px; text-align:center; padding:50px;">
+              <h5 style="padding-bottom:30px; font-size:18px; font-weigh:bolder;">Are you sure want to<br>publish job?
+              </h5>
+              <div class="select-button">
 
-
-
-
+                <button class="btn btn-outline-danger pop" data-bs-target="#jobModal"
+                  data-bs-toggle="modal">Cancel</button>
+                <button v-on:click="addjob" type="button" class="btn btn-primary pop" data-bs-dismiss="modal">Yes,
+                  post it!</button>
               </div>
             </div>
           </div>
@@ -127,6 +142,7 @@
   import listjobcomponent from '@/components/ListjobComponent.vue'
   // import CandidatejobComponent from '@/components/CandidatejobComponent.vue';
   // import ParagraphPlugin from '@ckeditor/ckeditor5-paragraph/src/paragraph';
+  import NavMobile from '../components/NavMobile.vue'
 
 
 
@@ -140,6 +156,7 @@
       // jobcomponentnew,
       // applicantjobcomponent,
       listjobcomponent,
+      NavMobile
       // CandidatejobComponent
     },
     props: ['edit'],
@@ -306,12 +323,20 @@
   .main {
     margin-left: 250px;
   }
+
+  /* BREAKPOINTS */
+  /* MOBILE */
+  @media only screen and (max-width: 576px){
+    .main{
+      margin-left: 10px;
+      margin-top: 60px;
+    }
+  }
   .valid-pop{
     border-radius: 10px;
     width: 195px;
     padding: 9px;
   }
-
 </style>
 
 <!-- <style scoped>

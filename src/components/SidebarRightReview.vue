@@ -1,10 +1,6 @@
 <template>
-
-  <div class="sidebar-right">
-      <!-- =============================================== -->
-   
+  <div class="sidebar-right d-none d-md-none d-lg-block">
     <div class="side-content" v-if="this.openTab == false">
-
       <ul class="hide">
         <li class="li-title mt-5">
           <img src="http://54.255.4.75:9091/resources/mb3.png" alt=""></li>  
@@ -356,4 +352,19 @@ ul{
       height: 40px;
       padding: 15px;
     }
+
+    /* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+    /* @media (max-width: 576px) {
+    .side-content {
+        margin-right: -320px;
+    } */
+    /* #sidebar.active {
+        margin-left: 0;
+    }
+    #sidebarCollapse span {
+        display: none;
+    } */
+/* } */
 </style>

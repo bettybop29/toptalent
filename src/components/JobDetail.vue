@@ -125,24 +125,24 @@
 </template>
 
 <script>
-  import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-  import axios from 'axios'
-  import sidebarcomponent from '@/components/SidebarComponent.vue'
-  import applicantjobcomponent from '@/components/ApplicantJobComponent.vue'
-  // import { TimeAgo } from 'vue2-timeago'
-  import moment from 'moment';
-  moment().format();
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import axios from 'axios'
+import sidebarcomponent from '@/components/SidebarComponent.vue'
+import applicantjobcomponent from '@/components/ApplicantJobComponent.vue'
+import { TimeAgo } from 'vue2-timeago'
+import NavMobile from '@/components/NavMobile.vue'
 
-  export default {
-    props: ['item'],
-    components: {
-      sidebarcomponent,
-      applicantjobcomponent,
-      // TimeAgo
-    },
-    data() {
-      return {
-        editor: ClassicEditor,
+export default {
+  props:['item'],
+  components:{
+    sidebarcomponent,
+    applicantjobcomponent,
+    TimeAgo,
+    NavMobile,
+  },
+  data(){
+    return{
+      editor: ClassicEditor,
         editorData: '',
         editorConfig: {
           // The configuration of the editor.
@@ -235,4 +235,21 @@
 
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   }
+
+  .icon-delete{
+    margin-left: -1px;
+  }
+
+  /* BREAKPOINTS */
+/* MOBILE */
+@media only screen and (max-width: 576px){
+  .main{
+    margin-left: 0;
+    margin-top: 60px;
+  }
+
+  .back{
+    margin-left: 10px;
+  }
+}
 </style>

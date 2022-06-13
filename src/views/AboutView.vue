@@ -2,6 +2,7 @@
   <div class="main">
 
     <sidebar-component></sidebar-component>
+    <nav-mobile></nav-mobile>
 
     <div class="container" style="padding: 2rem;">
       <p class="head-title">Company Profile</p>
@@ -107,13 +108,16 @@
     </div>
   </div>
 </template>
+
 <script>
   import axios from 'axios'
   import sidebarcomponent from '../components/SidebarComponent.vue'
+  import NavMobile from '../components/NavMobile.vue'
   export default {
     props: ['id'],
     components: {
-      SidebarComponent: sidebarcomponent
+      SidebarComponent: sidebarcomponent,
+      NavMobile: NavMobile,
     },
     data() {
 
@@ -170,6 +174,7 @@
 
   };
 </script>
+
 <style scoped>
 *{
   font-weight: 500;
@@ -194,25 +199,13 @@ span{
     height: 110vh;
   }
 
-  /* .container {
-    padding-left: 170px;
-    margin-top: 40px;
-    height: 100px;
-  } */
-
   .head-title {
     position: relative;
     font-size: 30px;
     padding-left: 10px;
   }
 
-  /* .container img {
-    width: 60px;
-    height: auto;
-    padding: 10px;
-  } */
-
-  .card {
+   .card {
     border-radius: 20px;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     padding: 20px;
@@ -279,4 +272,18 @@ span{
  /* .custom-file-upload{
    
  } */
+
+ /* breakpoints */
+ /* for mobile */
+ @media only screen and (max-width: 576px){
+   .head-title {
+    position: static;
+    margin-top: 50px;
+  }
+
+  .container{
+  margin-left: 0;
+}
+
+ }
 </style>

@@ -1,34 +1,31 @@
 <template>
-    <div>
-        <sidebarcomponent></sidebarcomponent>
+  <div>
+      <sidebarcomponent></sidebarcomponent>
+      <nav-mobile/>
 
-        <div class="container p-4">
-            <button class="btn" onclick="javascript:window.history.back();">
-                <font-awesome-icon icon="fa-solid fa-chevron-left" />
-                go back
-            </button>
-            <div class="row justify-content-between sticky-top bg-white" style="border-bottom: 5px solid whitesmoke;">
-
-                <div class="col-1">
-                    <img v-if="detail.recruiterImage != null"
-                        :src="'http://54.255.4.75:9091/resources/'+ detail.recruiterImage" alt="..." width="200px">
-                    <img v-else src="http://54.255.4.75:9091/resources/r5jr7e3qf8f5uhr.png" alt="..." width="200px">
-                </div>
-                <div class="col-6">
-                    <h2 class="jobtitle">{{detail.jobName}} <span>({{detail.jobPosition}})</span></h2>
-                    <h3 class="jobmediumtitle">{{userName}}</h3>
-                    <p class="jobtext text-muted">Rp.{{formatPrice(detail.jobSalary)}},-</p>
-                    <p class="jobtext text-muted">{{detail.jobAddress}}</p>
-                    <p class="jobtext text-muted">Post on {{moment(detail.createdAt).format('DD MMM YYYY')}}</p>
-                    <!-- <small>{{moment(item.createdAt).format('DD MMM YYYY')}}</small> -->
-
-                </div>
-                <div class="col-3 mt-5">
-                    <button class="btn btn-outline-primary jobicn">
-                        <img class="me-2" src="../assets/icon-postjob/pencil.svg" alt="">
-                        Edit Job Post
-                    </button>
-                </div>
+      <div class="container p-4">
+          <button class="btn" onclick="javascript:window.history.back();">
+              <font-awesome-icon icon="fa-solid fa-chevron-left" />
+              go back
+          </button>
+          <div class="row bg-white pb-3" style="border-bottom: 5px solid whitesmoke;">
+              
+            <div class="col-md-2 mt-3">
+                <img v-if="detail.recruiterImage != null" :src="'http://54.255.4.75:9091/resources/'+ detail.recruiterImage"  alt="..." width="100%">
+                <img class="img-fluid" v-else src="http://54.255.4.75:9091/resources/r5jr7e3qf8f5uhr.png"  alt="..." >                
+            </div>
+            <div class="col-md-6">
+                <h2 class="jobtitle">{{detail.jobName}} <span>({{detail.jobPosition}})</span></h2>
+                <h3 class="jobmediumtitle">{{userName}}</h3>
+                <p class="jobtext text-muted">Rp.{{formatPrice(detail.jobSalary)}},-</p>
+                <p class="jobtext text-muted">{{detail.jobAddress}}</p>
+                <p class="jobtext text-muted">Post on {{detail.createdAt}}</p>
+            </div>
+            <div class="col-md-4 mt-5">
+                <button class="btn btn-outline-primary jobicn">
+                    <img class="me-2" src="../assets/icon-postjob/pencil.svg" alt="">
+                    Edit Job Post
+                </button> 
             </div>
             <div class="row p-4" style="border-bottom: 5px solid whitesmoke;">
                 <div class="col">
@@ -70,23 +67,33 @@
 </template>
 
 <script>
-    import axios from 'axios'
-    import sidebarcomponent from '@/components/SidebarComponent.vue'
-    import moment from 'moment';
-    moment().format();
-
-
-    export default {
-        name: 'jobsDetail',
-        components: {
-            sidebarcomponent
-        },
-        data() {
-            return {
-                detail: [],
-                userName: '',
-                recruiter: []
-            }
+import axios from 'axios'
+import sidebarcomponent from '@/components/SidebarComponent.vue'
+import NavMobile from '../components/NavMobile.vue'
+export default {
+    name:'jobsDetail',
+    components:{
+        sidebarcomponent,
+        NavMobile  
+    },
+    data(){
+        return{
+            detail:[],
+            userName:'',
+            recruiter:[]
+        }
+    },
+    methods:{
+        formatPrice(value) {
+        let val = (value / 1).toFixed().replace('.', ',')
+        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+      },
+        async getDetailJob(){
+            await axios.get(`http://54.255.4.75:9091/api/v1/job/` +  this.$route.params.id)
+            .then((data)=>{
+                this.detail = data.data.data
+                console.log(this.detail)
+            })
         },
         methods: {
             moment: function (date) {
@@ -124,7 +131,7 @@
 </script>
 
 <style scoped>
-    .container {
+    .container{
         margin-left: 250px;
     }
 
@@ -152,5 +159,14 @@
         border-radius: 50%;
         background: blue;
         color: inherit
+    }
+
+    /* BREAKPOINTS */
+    /* MOBILE */
+    @media only screen and (max-width: 576px){
+        .container{
+        margin-left: 0;
+        margin-top: 60px;
+    }
     }
 </style>
