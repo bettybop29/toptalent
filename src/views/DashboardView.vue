@@ -102,15 +102,15 @@
               <p v-if="resume.jobPosition != 'Internship'" class="position">{{resume.jobPosition}}</p>
               <p v-else class="position2">{{resume.jobPosition}}</p>
             </td>
-            <td class="d-none d-md-block"><button class="btn-primary"
+            <td class="d-none d-md-block"><button class="btn-primary btn-view"
                 @click="getView(resume.applicationId)">View</button></td>
 
             <td class="d-block d-md-none">
               <!-- <button class="btn-primary" @click="getView(resume.applicationId)">View</button> -->
 
               <!-- Button trigger modal -->
-              <button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                View {{ resume.applicationId}}
+              <button @click="getView(resume.applicationId)" type="button" class="btn btn-primary btn-view" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                View
                 <p></p>
               </button>
             </td>
@@ -128,11 +128,11 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              Are you sure you want to accept ?
+              Are you sure you want to accept {{ views.jobseekerName}}?
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-success" data-bs-dismiss="modal">Yes, accept</button>
-              <button type="button" class="btn btn-outline-danger">No, Reject</button>
+              <button type="button" class="btn btn-success" data-bs-dismiss="modal" v-on:click="accepted(views.applicationId)">Yes, accept</button>
+              <button type="button" class="btn btn-outline-danger" v-on:click="rejected(views.applicationId)">No, Reject</button>
             </div>
           </div>
         </div>
@@ -279,6 +279,17 @@
 
           })
       },
+
+      async accepted(id) {
+        await axios.post(`http://54.255.4.75:9091/api/v1/application/status/accepted/?applicationId=${id}`)
+        // createToast(`Accepted`, { type: "success" });
+        location.reload(true)
+      },
+      async rejected(id) {
+        await axios.post(`http://54.255.4.75:9091/api/v1/application/status/rejected/?applicationId=${id}`)
+        //  createToast(`Reject`, { type: "danger" });
+        location.reload(true)
+      },
       test() {
         console.log('test')
         this.$toast.error('Profile saved.', {
@@ -353,14 +364,14 @@
     overflow: auto;
   }
 
-  .btn-primary {
+  .btn-view {
     border-radius: 10px;
     border-style: none;
     padding: 5px;
-    width: 100%;
+    /* width: 100%; */
   }
 
-  .btn-primary:hover {
+  .btn-view:hover {
     background: blue;
     box-shadow: 6px 10px 15px -3px rgba(0, 0, 0, 0.1);
   }
@@ -542,6 +553,7 @@
       width: 52.5%;
       background: rgb(249, 249, 249)
     }
+
   }
 
   /* tablet */

@@ -162,22 +162,22 @@
                   </ul>
                 </div>
                 <div class="col-12 col-lg-3 footer-column">
-                  <ul class="navbar-nav mr-auto p-2">
+                  <ul class="navbar-nav mr-lg-auto ">
                     <h2>Social media</h2>
                     <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="#"><i class="bi bi-facebook"></i>
-                        Cariinkerja</a>
+                      <a class="nav-link active" aria-current="page" href="#"><font-awesome-icon icon="fa-brands fa-facebook" />
+                       Cariinkerja</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#"><i class="bi bi-instagram"></i> Cariinkerjaa</a>
+                      <a class="nav-link" href="#"><font-awesome-icon icon="fa-brands fa-instagram" /> Cariinkerjaa</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#"><i class="bi bi-linkedin"></i> @Cariinkerja</a>
+                      <a class="nav-link" href="#"><font-awesome-icon icon="fa-brands fa-linkedin" /> @Cariinkerja</a>
                     </li>
                   </ul>
                 </div>
                 <div class="col-12 col-lg-3 footer-column">
-                  <ul class="navbar-nav mr-auto p-2">
+                  <ul class="navbar-nav ">
                     <h2>Lets Join Us!!</h2>
                     <li class="nav-item">
                       <a href="/login" class="btn btn-primary btn-footer fw-bold rounded-pill">Login</a>
