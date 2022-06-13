@@ -17,7 +17,7 @@
     <div class="col-md-5 section-right animate__animated animate__fadeInDown">
       <h1>Start Building Your Top Company!</h1>
       <div class="form-login">
-        <form action="" @submit.prevent="signUp" class="row">
+        <div action="" class="row">
           <div class="col-12">
             <label for="email" class="form-label mt-4">Email</label>
             <input type="email" v-model="recruiterEmail" class="form-control" id="email" aria-describedby="emailHelp"
@@ -50,7 +50,7 @@
           <input type="text" v-model="recruiterCompany" class="form-control" id="company"
             placeholder="Your Company Name"
             v-bind:class="{'form-control':true, 'is-invalid' : !validrecruiterCompany(recruiterCompany) && recruiterCompanyBlured}"
-            v-on:blur="recruiterCompanyBlured = true" />
+              v-on:blur="recruiterCompanyBlured = true" />
           <div class="invalid-feedback">Please fill blank form</div>
 
           <!-- Industry field -->
@@ -65,13 +65,12 @@
             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             Loading...
           </button>
-          <button v-else type="submit" class="btn btn-primary btn-signup" :disabled="searchDisabled">Create
-            Account</button>
+          <input v-else type="submit" v-on:click="submit" class="btn btn-primary btn-signup" :disabled="searchDisabled">
           <!-- <input type="submit" class="btn btn-primary btn-signup" :disabled="searchDisabled" value="Create Account"> -->
           <p class="sign-up mt-4">Already have an account?
             <router-link class="btn-login" to="/login">Log In</router-link>
           </p>
-        </form>
+        </div>
       </div>
     </div>
   </div>
@@ -129,7 +128,7 @@
         }
       },
       validrecruiterCompany: function(recruiterCompany) {
-        if (recruiterCompany.length > 0) {
+        if (recruiterCompany.length > 5) {
           return true;
         }
       },
