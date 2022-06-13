@@ -3,7 +3,7 @@
     <nav class="row navbar navbar-expand-lg navbar-light bg-white">
             <div >
             <!-- <div class="navbar-nav ms-auto me-auto ms-sm-auto ms-lg-0 ms-md-auto"> -->
-            <ul class="navbar-nav ms-auto me-auto d-none d-lg-block ">
+            <ul class="navbar-nav ms-auto me-auto  d-lg-block ">
                 <!-- <div class="collapse navbar-collapse" id="navbarNavDropdown"> -->
                     
                         <li class="nav-item d-flex justify-content-center">
@@ -94,9 +94,14 @@ export default {
 
             } catch (err) {
               console.log(err.response.data.message)
+              this.$toast.error(err.response.data.message)
             }
             if(response.status === 200){
-              window.alert("Password Changed");
+              // window.alert("Password Changed");
+              this.$toast.success('Password Changed', {
+          // optional options Object
+          
+      })
               this.$router.push('/login')
             }
         },
@@ -182,6 +187,18 @@ export default {
 
     .logo{
         margin-top: -20px;
+    }
+
+    /* BREAKPOINTS */
+    /* MOBILE */
+    @media only screen and (max-width: 576px){
+      .section-form{
+        width: 80vw;
+      }
+
+      h1{
+        margin-top: 5%;
+      }
     }
 
 

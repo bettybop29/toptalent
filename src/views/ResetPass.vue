@@ -1,13 +1,13 @@
 <template>
-    <div class="container m-5">
+    <div class="container ">
         <!-- <div class="back">
             <router-link class="back-link">
                 <i class="bi bi-arrow-left-circle"></i> Back
             </router-link>
         </div> -->
-        <div class="row align-items-start">
-            <div class="col-md-6 content1">
-                <div class="card">
+        <div class="row m-5">
+            <div class="col-md-6 content1 ">
+                <div class="card card-reset" >
                 <h1>Reset Password</h1>
                 <span class="label text-muted">
                     The verification email will be sent into mailbox<br>Please check it
@@ -20,7 +20,7 @@
                         <label for="floatingInput">Email Address</label>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary" :disabled="searchDisabled">Reset</button>
+                    <button type="submit" class="btn btn-primary btn-reset" :disabled="searchDisabled">Reset</button>
                 </form>
                 </div>
             </div>
@@ -84,6 +84,8 @@ export default {
 *{
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
+    margin: 0;
+    padding: 0;
 }
 
 h1{
@@ -92,10 +94,9 @@ h1{
 }
     
 .card{
-    /* background: #fff; */
     padding: 20px;
     border-radius: 20px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;    
 }
 
 .content2{
@@ -110,6 +111,10 @@ img{
     width: 80%;
 }
 
+.btn-reset{
+    padding: 10px;
+}
+
 /* breakpoints */
 /* mobile */
 @media only screen and (max-width: 576px){
@@ -117,7 +122,17 @@ img{
         margin-top: 30px;
     }
 
-   
+    .content2{
+        text-align: center;
+    }
+
+    img{
+        width: 70%;
+    }
+    
+    .card-reset{
+        width: 80vw;
+    }
     
 }
 </style>

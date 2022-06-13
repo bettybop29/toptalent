@@ -40,7 +40,7 @@
             <div class="modal-body">
               <form>
                 <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Job Name:</label>
+                  <label for="recipient-name" class="col-form-label">Job Name tes:</label>
                   <input type="text" class="form-control" id="" v-model="edit.jobName">
                 </div>
                 <div class="mb-3">

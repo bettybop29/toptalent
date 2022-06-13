@@ -9,7 +9,7 @@
                      <h1 class="mb-4">Create job</h1>
                         <div class="col-md-10 mb-4">
                             <label for="recipient-name" class="col-form-label">Job Name:</label>
-                             <input type="text" class="form-control" id="recipient-name" v-model="jobName" required/>
+                             <input type="text" class="form-control" id="recipient-name" v-model="jobName" maxlength="10" required/>
                         </div>
                         <div class="col-md-10 mb-4">
                            <label for="recipient-name" class="col-form-label">Job Salary:</label>
@@ -28,7 +28,7 @@
                         </div>
                         <div class="col-md-10 mb-4">
                             <label for="recipient-name" class="col-form-label">Job Requirement:</label>
-                            <ckeditor :editor="editor" tag-name="textarea" v-model="jobRequirement" :config="editorConfig"></ckeditor>
+                            <ckeditor :editor="editor" tag-name="textarea" v-model="jobRequirement" :config="editorConfig" maxlength="100"></ckeditor>
                         </div>
                         <div class="col-md-10 mb-4">
                             <label for="message-text" class="col-form-label">Job Desc:</label>

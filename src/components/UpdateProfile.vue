@@ -1,7 +1,8 @@
 <template>
 <div>
 <sidebarcomponent/>
-<div class="bg-color">
+<nav-mobile></nav-mobile>
+<div class="bg-color content">
   <button class="btn btn-primary new" onclick="history.back()"><i class="bi bi-chevron-left"></i>Go Back</button>
 
   <div class="container section-first">
@@ -109,14 +110,14 @@ import 'intl-tel-input/build/css/intlTelInput.css';
 import 'intl-tel-input/build/js/intlTelInput.js';     
 import intlTelInput from 'intl-tel-input';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import NavMobile from '@/components/NavMobile.vue'
 
 export default {
     props:['id'],
     
     components:{
       sidebarcomponent,
-      
-
+      NavMobile,
      
       // VuePhoneNumberInput
     },
@@ -257,6 +258,25 @@ export default {
   }
   .content-2{
     padding-bottom: 40px;
+  }
+
+  /* BREAKPOINTS */
+  /* MOBILE */
+  @media only screen and (max-width: 576px){
+    .content{
+      margin-top: 60px;
+    }
+
+    .container{
+      width: 80vw;
+      margin-left: 10%;
+    }
+
+    form{
+    margin-left: 0;
+    padding: 10px 10px 10px 0;
+  }
+  
   }
 
    
