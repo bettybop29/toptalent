@@ -376,6 +376,10 @@
       padding: 10px;
       font-size: 16px;
     }
+
+    .footer-column{
+      margin-bottom: 20px;
+    }
   }
 
   /* tablet */
