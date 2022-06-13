@@ -4,14 +4,14 @@
       <NavBasic></NavBasic>
       <div class="section-2 my-6">
         <div class="main" style="background-image: linear-gradient(#ffffff 50%, #006eff); padding-top: 50px;">
-          <div class="container-fluid pt-5 mt-5">
+          <div class="container-fluid pt-md-5 mt-md-5">
             <div class="row g-0">
               <div class="col-md-6 p-5">
                 <h1 class="display-2 pt-3 animate__animated animate__backInLeft">
                   Top Company<br />need a Toptalent.
                 </h1>
-                <img class="line animate__animated animate__rollIn animate__delay-1s" src="../assets/line-main.png"
-                  alt="" />
+                <img class="line d-none d-md-block animate__animated animate__rollIn animate__delay-1s"
+                  src="../assets/line-main.png" alt="" />
                 <p class="main-text animate__animated animate__fadeInLeft">
                   The most important asset to a company is not the<br />
                   product they sell or processes they've<br />implemented, it's
@@ -134,51 +134,57 @@
         </div>
       </div>
 
-      <footer class="pt-5">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-3">
-              <ul class="navbar-nav mr-auto p-2">
-                <h2>CariinKerja</h2>
-                <span>Jl. Sudirman<br />
-                  Jakarta Pusat</span>
-              </ul>
-            </div>
-            <div class="col-md-3">
-              <ul class="navbar-nav mr-auto p-2">
-                <h2>Contact Us</h2>
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">cariinkerja@gmail.com</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">+62 855-9199-0622</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">@cariikerja</a>
-                </li>
-              </ul>
-            </div>
-            <div class="col-md-3">
-              <ul class="navbar-nav mr-auto p-2">
-                <h2>Social media</h2>
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#"><i class="bi bi-facebook"></i> Cariinkerja</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#"><i class="bi bi-instagram"></i> Cariinkerjaa</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#"><i class="bi bi-linkedin"></i> @Cariinkerja</a>
-                </li>
-              </ul>
-            </div>
-            <div class="col-md-3">
-              <ul class="navbar-nav mr-auto p-2">
-                <h2>Lets Join Us!!</h2>
-                <li class="nav-item">
-                  <a href="#/login" class="btn btn-primary fw-bold rounded-pill">Login</a>
-                </li>
-              </ul>
+      <footer class="section-footer pt-5">
+        <div class="container pb-5">
+          <div class="row d-flex justify-content-center">
+            <div class="col-12">
+              <div class="row">
+
+                <div class="col-12 col-lg-3 footer-column">
+                  <ul class="navbar-nav mr-lg-auto p-lg-2">
+                    <h2>CariinKerja</h2>
+                    <span>Jl. Sudirman<br />
+                      Jakarta Pusat</span>
+                  </ul>
+                </div>
+                <div class="col-12 col-lg-3 footer-column">
+                  <ul class="navbar-nav mr-lg-auto p-lg-2">
+                    <h2>Contact Us</h2>
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="#">cariinkerja@gmail.com</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">+62 855-9199-0622</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">@cariikerja</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-12 col-lg-3 footer-column">
+                  <ul class="navbar-nav mr-auto p-2">
+                    <h2>Social media</h2>
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="#"><i class="bi bi-facebook"></i>
+                        Cariinkerja</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#"><i class="bi bi-instagram"></i> Cariinkerjaa</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#"><i class="bi bi-linkedin"></i> @Cariinkerja</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-12 col-lg-3 footer-column">
+                  <ul class="navbar-nav mr-auto p-2">
+                    <h2>Lets Join Us!!</h2>
+                    <li class="nav-item">
+                      <a href="/login" class="btn btn-primary btn-footer fw-bold rounded-pill">Login</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -225,29 +231,24 @@
     width: 290px;
   }
 
-
-  @media (max-width: 575.98px) {
-    .line {
-      margin-left: 0px;
-    }
+  .line {
+    margin-left: 250px;
+    width: 290px;
   }
 
-.line{
-  margin-left:250px;
-  width: 290px;
-}
-.pop{
-  background: #006EFF;
-  color: white;
-  border-radius: 36px;
-  width: 154px;
-  padding: 12px;
-  margin-top: 20px;
-}
-.pop:hover{
-  background: #0164e6;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;  
-}
+  .pop {
+    background: #006EFF;
+    color: white;
+    border-radius: 36px;
+    width: 154px;
+    padding: 12px;
+    margin-top: 20px;
+  }
+
+  .pop:hover {
+    background: #0164e6;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  }
 
 
   .pop {
@@ -345,17 +346,51 @@
     padding-right: 5px;
   }
 
-  .btn-primary {
-    width: 100%;
-    padding: 20px;
+  .btn-footer {
+    width: 80%;
+    padding: 10px;
     font-size: 24px;
   }
 
-  .btn-primary:hover {
+  .btn-footer:hover {
     background: rgb(0, 0, 177);
   }
 
   .img-fluid {
     /* margin-left: 121px; */
+  }
+
+  /* BREAKPOINTS */
+  /* mobile */
+  @media only screen and (max-width: 575.98px) {
+    .line {
+      margin-left: 0px;
+    }
+
+    h1 {
+      font-size: 32px !important
+    }
+
+    .btn-footer {
+      width: 50%;
+      padding: 10px;
+      font-size: 16px;
+    }
+  }
+
+  /* tablet */
+  @media only screen and (min-width:641px) {
+    .btn-footer {
+      width: 30%;
+      font-size: 16px;
+    }
+
+  }
+
+  /* low-res desktop */
+  @media only screen and (min-width:961px) {
+    .btn-footer {
+      width: 80%;
+    }
   }
 </style>
