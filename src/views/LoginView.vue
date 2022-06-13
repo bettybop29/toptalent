@@ -16,9 +16,9 @@
       </div>
 
       <!-- right panel -->
-      <div class="col-md-5 p-5">
-        <h1 class="animate_animated animate_fadeInDown">Welcome Back!</h1>
-        <div class="form-login animate_animated animate_fadeInDown">
+      <div class="col-md-5 p-5 animate__animated animate__fadeInDown">
+        <h1 class="">Welcome Back!</h1>
+        <div class="form-login">
           <div action="">
             <label for="email" class="form-label mt-4">Email</label>
             <input type="email" v-model="email" class="form-control" id="email" aria-describedby="emailHelp"
