@@ -116,84 +116,136 @@
 </template>
 
 <script>
-import axios from 'axios';
-import 'animate.css';
+  import axios from 'axios';
+  import 'animate.css';
 
 
-export default {
-    name:'SignUpView',
-    
-    data(){
-      return{
+  export default {
+    name: 'SignUpView',
+
+    data() {
+      return {
         recruiterEmail: "",
+        recruiterEmailBlured: false,
         recruiterPassword: "",
+        recruiterPasswordBlured: false,
         recruiterCompany: "",
+        recruiterCompanyBlured: false,
         recruiterIndustry: "",
-        searchDisabled:false,
-        err:"",
-        ress:"",
-        visibility: 'password'
+        recruiterIndustryBlured: false,
+        searchDisabled: false,
+        err: "",
+        ress: "",
+        valid: false,
+        submitted: false,
+       visibility: 'password'
       }
     },
-    methods:{
+    methods: {
       showPassword(){
         this.visibility = 'text';
       },
       hidePassword(){
         this.visibility = 'password';
       },
-      async signUp() {
-    
-      let response = '';
-      try {
-        
-        this.searchDisabled = true;
-        // const passwordCheck = this.recruiterPassword.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*)(+=._-]{8,}$/)
-        // if (passwordCheck != null){
-       
-        response = await axios.post(
-          `http://54.255.4.75:9091/api/v1/auth/recruiter/register?recruiterEmail=${this.recruiterEmail}&recruiterPassword=${this.recruiterPassword}&recruiterCompany=${this.recruiterCompany}&recruiterIndustry=${this.recruiterIndustry}`);
-           
-          
-        // }else {
-        //    createToast("Password must contain at least one number, one capital letter and one special character", {type: "danger"} )
-        //  }
-            
-      } catch (err) {
-        this.err = err.response.data.message
-        this.searchDisabled = false;
-        // console.log(this.searchDisabled)
-        // console.log(err.response.data.errorCode)
-        // createToast(`${err.response.data.message}`, { type: "danger" });
-        this.$toast.error(`${err.response.data.message}`, {
-          // optional options Object
-           position: 'top-right',
-           pauseOnHover: true
-      })
+      validate() {
+        this.recruiterEmailBlured = true;
+        this.recruiterPasswordBlured = true;
+        this.recruiterCompanyBlured = true;
+        this.recruiterIndustryBlured = true;
+        if (this.validrecruiterEmail(this.recruiterEmail) &&
+          this.validrecruiterPassword(this.recruiterPassword) &&
+          this.validrecruiterCompany(this.recruiterCompany) &&
+          this.validrecruiterIndustry(this.recruiterIndustry)) {
+          this.valid = true;
+        }
+      },
 
-      }
-      if(response.status == 200){
-        // this.searchDisabled = true;
-        // console.log(this.searchDisabled)
-        this.ress = response.status
-        console.log(this.ress)
-        // createToast(`Signup Sukses`, { type: "success" });
-        this.$toast.success('Sign Up Successful', {
-          // optional options Object
-           position: 'top-right',
-           pauseOnHover: true
-      })
-        localStorage.setItem("sign-info", JSON.stringify(response.data));
-        this.$router.push('/activation')
-      }
+      validrecruiterEmail: function (recruiterEmail) {
+        var re = /(.+)@(.+){2,}\.(.+){2,}/;
+        if (re.test(recruiterEmail.toLowerCase())) {
+          return true;
+        }
+      },
+      validrecruiterPassword: function(recruiterPassword) {
+        var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*)(+=._-]{8,}$/;
+        if (re.test(recruiterPassword)) {
+          return true;
+        }
+      },
+      validrecruiterCompany: function(recruiterCompany) {
+        if (recruiterCompany.length > 0) {
+          return true;
+        }
+      },
+      validrecruiterIndustry: function(recruiterIndustry) {
+        if (recruiterIndustry.length > 0) {
+          return true;
+        }
+      },
+
+
+      submit() {
+        this.validate();
+        if (this.valid) {
+          this.submitted = true;
+          this.signUp()
+        } else {
+          this.submitted === false;
+        }
+      },
+      async signUp() {
+
+        let response = '';
+        try {
+
+          this.searchDisabled = true;
+          // const passwordCheck = this.recruiterPassword.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*)(+=._-]{8,}$/)
+          // if (passwordCheck != null){
+
+          response = await axios.post(
+            `http://54.255.4.75:9091/api/v1/auth/recruiter/register?recruiterEmail=${this.recruiterEmail}&recruiterPassword=${this.recruiterPassword}&recruiterCompany=${this.recruiterCompany}&recruiterIndustry=${this.recruiterIndustry}`
+          );
+
+
+          // }else {
+          //    createToast("Password must contain at least one number, one capital letter and one special character", {type: "danger"} )
+          //  }
+
+        } catch (err) {
+          this.err = err.response.data.message
+          this.searchDisabled = false;
+          // console.log(this.searchDisabled)
+          // console.log(err.response.data.errorCode)
+          // createToast(`${err.response.data.message}`, { type: "danger" });
+          this.$toast.error(`${err.response.data.message}`, {
+            // optional options Object
+            position: 'top-right',
+            pauseOnHover: true
+          })
+
+        }
+        if (response.status == 200) {
+          // this.searchDisabled = true;
+          // console.log(this.searchDisabled)
+          this.ress = response.status
+          console.log(this.ress)
+          // createToast(`Signup Sukses`, { type: "success" });
+          this.$toast.success('Sign Up Successful', {
+            // optional options Object
+            position: 'top-right',
+            pauseOnHover: true
+          })
+          localStorage.setItem("sign-info", JSON.stringify(response.data));
+          this.$router.push('/activation')
+        }
+      },
     },
-    },
-    
-}
+
+  }
 </script>
 
 <style scoped>
-
 *{
     /* padding-left: 0;
     padding-right: 0; */
@@ -203,16 +255,16 @@ export default {
     font-weight: 500;
     /* max-width: 100%; */
 }
+  .section-right {
+    padding: 50px;
+  }
 
-.section-right{
-  padding: 50px;
-}
-
-.image-login{
+  .image-login {
     height: 1024px;
     max-width: 100%;
-}
-.form-control{
+  }
+
+  .form-control {
     padding: 10px;
     background: #EFF0F2;
     color: #838383;
@@ -225,25 +277,24 @@ export default {
 
 .sign-up{
     text-align: center;
-}
+  }
 
-h1{
+  h1 {
     font-size: 32px;
     font-weight: 900;
     margin-top: 50px;
     margin-left: -10px;
-}
+  }
 
-.card-testimony{
-  box-sizing: border-box;
-  padding: 30px;
+  .card-testimony {
+    box-sizing: border-box;
+    padding: 30px;
 
-  /* position: absolute; */
-  width: 550px;
-  max-height: 402px;
-  /* left: 46px;
+    /* position: absolute; */
+    width: 550px;
+    max-height: 402px;
+    /* left: 46px;
   top: 590px; */
-
   margin-top: -800px;
   margin-left: 100px;
 
@@ -322,32 +373,77 @@ font-size: 20px;
     width: 100%;
   }
 
-  .card-testimony{
-    box-sizing: border-box;
-    padding: 30px;
-    width: 300px;
-    max-height: 402px;
-    box-shadow: 5px 10px 4px rgba(0, 0, 0, 0.15);
-    margin-top: -500px;
-    margin-left: 50px;
-    
+  .text-testimony {
+    color: rgb(88, 88, 88);
   }
 
-  .card-testimony p{
-    font-size: 16px;
-    line-height: 24px;
+  .text-testimony p {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 32px;
   }
 
-
-  .text-testimony h5{
-    margin-top: -5px;
+  .text-testimony h5 {
+    margin-top: 80px;
     font-weight: 900;
-    font-size: 18px;
-    text-align: right;
+    font-size: 20px;
+  }
+
+  .text-testimony h6 {
+    font-weight: 700;
+    line-height: 28px;
+  }
+
+  .password-required p {
+    font-size: 16px;
+    color: #3300FF;
+    margin-top: 12px;
+  }
+
+  .password-required ul {
+    margin-left: 20px;
+    margin-top: -10px;
+    list-style: none;
+    color: #828282;
+    font-size: 16px;
+  }
+
+  .password-required ul li::before {
+    content: "\2022";
+    color: #42FF32;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+  }
+
+  .btn-login {
+    text-decoration: none;
+  }
+
+  .btn-login:hover {
+    text-decoration: underline;
+  }
+
+
+  /* breakpoints */
+  /* for mobile */
+  @media only screen and (max-width: 576px) {
+
+    .image-login {
+      height: 80vh;
+      width: 100%;
     }
 
-    .text-testimony h6{
-      text-align: right;
+    .card-testimony {
+      box-sizing: border-box;
+      padding: 30px;
+      width: 300px;
+      max-height: 402px;
+      box-shadow: 5px 10px 4px rgba(0, 0, 0, 0.15);
+      margin-top: -500px;
+      margin-left: 50px;
+
     }
 
     h1{
@@ -361,5 +457,8 @@ font-size: 20px;
       height: 100%;
     }
 }
-
+    h1 {
+      margin-top: 80px;
+    }
+  }
 </style>

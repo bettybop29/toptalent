@@ -3,7 +3,6 @@
   <div>
     <sidebar-component />
     <sidebar-right v-if="this.sidepop == true" :view="views"></sidebar-right>
-
     <sidebar-right-review v-if="this.sidepop == false & this.err == '200'"></sidebar-right-review>
     <sidebar-right-empty v-if="this.err =='400'"></sidebar-right-empty>
 
@@ -67,7 +66,6 @@
     </div>
 
     <div>
-
     </div>
 
     <div class="table-wrapper">
@@ -140,26 +138,55 @@
     </div>
 
   </div>
-
 </template>
 
 <script>
-  import axios from 'axios'
-  import SidebarComponent from '@/components/SidebarComponent.vue'
-  import SidebarRight from '@/components/SidebarRight.vue'
-  import SidebarRightEmpty from '@/components/SidebarRightEmpty.vue'
-  import SidebarRightReview from '@/components/SidebarRightReview.vue'
-  import RadialProgressBar from 'vue-radial-progress'
-  import NavMobile from '../components/NavMobile.vue'
+import axios from 'axios'
+import SidebarComponent from '@/components/SidebarComponent.vue'
+import SidebarRight from '@/components/SidebarRight.vue'
+import SidebarRightEmpty from '@/components/SidebarRightEmpty.vue'
+import SidebarRightReview from '@/components/SidebarRightReview.vue'
+import RadialProgressBar from 'vue-radial-progress'
+import NavMobile from '../components/NavMobile.vue'
 
-  export default {
-    components: {
-      SidebarComponent,
-      SidebarRightEmpty,
-      SidebarRightReview,
-      SidebarRight,
-      RadialProgressBar,
-      NavMobile
+
+
+export default {
+  components: { SidebarComponent, 
+                // SidebarRightEmpty, 
+                SidebarRightReview,
+                SidebarRight,
+                SidebarRightEmpty,
+                RadialProgressBar,
+                NavMobile
+              },
+  name:'DashboardView',
+  data(){
+    return{
+      path: 'http://54.255.4.75:9091',
+      recruiters:[],
+      accept:"",
+      reject: "",
+      list:[],
+      total:"",
+      edit:"",
+      views:"",
+      sidepop:'',
+      dashboardEmpty:'', 
+      startColor:'#F39201',
+      stopColor:'#F39201',
+      innerStrokeColor:'#C4C4C4',
+      percent:'',
+      percentt:'',
+      index:'1'
+    }
+  },
+  methods : {
+    async percenttCount(){
+      const accept = JSON.parse(localStorage.getItem("countaccept-info"))
+      const total = JSON.parse(localStorage.getItem("counttotal-info"))
+      const result = Math.round(( accept / total) * 100)
+      this.percentt = result
     },
     name: 'DashboardView',
     data() {
@@ -309,9 +336,24 @@
         this.getView(),
         this.percentCount(),
         this.percenttCount()
-
-
-
+    async countRejc(){
+   const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
+     await axios.get(`http://54.255.4.75:9091/api/v1/application/count-rejected/${recruiterId}`)
+     .then((data)=>{
+      this.reject=data.data
+      localStorage.setItem("countreject-info", JSON.stringify(data.data.data));
+      })
+    },
+    async getView(applicationId){ 
+       await axios.get(`http://54.255.4.75:9091/api/v1/application/applicant?applicationId=${applicationId}`)
+      .then((data)=>{
+        this.views=data.data.data
+        this.sidepop = true
+        
+        console.log(this.sidepop)
+        // console.log(data)
+              
+      })
     },
   };
 </script>

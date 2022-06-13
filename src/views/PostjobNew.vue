@@ -4,7 +4,8 @@
     <nav-mobile></nav-mobile>
 
     <div class="main">
-      <nav class="navbar navbar-expand-lg navbar-light bg-white py-4 sticky-top" style="border-bottom: 5px solid whitesmoke;">
+      <nav class="navbar navbar-expand-lg navbar-light bg-white py-4 sticky-top"
+        style="border-bottom: 5px solid whitesmoke;">
         <div class="container-fluid">
           <a class="navbar-brand">{{userName}}</a>
           <form class="d-flex">
@@ -12,12 +13,12 @@
               data-bs-target="#jobModal" data-bs-whatever="@getbootstrap">
               <img class="import-icon" src="../assets/icon-postjob/add.svg" alt="">
               Create a new job
-            </button> 
+            </button>
           </form>
         </div>
       </nav>
 
-      <form @submit.prevent="addjob">
+      <form class="needs-validation">
         <div class="modal fade" id="jobModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -26,47 +27,75 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
+                <div class="form-data" v-if="!submitted">
 
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Job Name:</label>
-                  <input type="text" class="form-control" id="recipient-name" v-model="jobName" maxlength="100" required />
-                </div>
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Job salary:</label>
-                  <input type="number" class="form-control" id="recipient-name" v-model="jobSalary" required />
-                </div>
-                <div class="mb-3">
-                  <label for="inputState">Job position</label>
-                  <select class="form-control" id="inputState" v-model="jobPosition" required>
-                    <option>Choose..</option>
-                    <option>Internship</option>
-                    <option>Full time</option>
-                    <option>Part time</option>
-                    <option>Contractual</option>
-                    <option>Freelance</option>
-                  </select>
-                </div>
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Job requirement:</label>
-                  <ckeditor :editor="editor" tag-name="textarea" v-model="jobRequirement" :config="editorConfig">
-                  </ckeditor>
+                  <div class="forms-inputs mb-4"> <span>Job name:</span>
+                    <input type="text" v-model="jobName"
+                      v-bind:class="{'form-control':true, 'is-invalid' : !validjobName(jobName) && jobnameBlured}"
+                      v-on:blur="jobnameBlured = true">
+                    <div class="invalid-feedback">Please fill blank form</div>
+                  </div>
+                  <div class="forms-inputs mb-4"> <span>Job salary:</span>
+                    <input type="number" v-model="jobSalary"
+                      v-bind:class="{'form-control':true, 'is-invalid' : !validjobSalary(jobSalary) && jobsalaryBlured}"
+                      v-on:blur="jobsalaryBlured = true">
+                    <div class="invalid-feedback">Please fill blank form</div>
+                  </div>
+                  <div class="forms-inputs mb-4">
+                    <label for="inputState">Job position</label>
+                    <select class="form-control" id="inputState" v-model="jobPosition"
+                      v-bind:class="{'form-control':true, 'is-invalid' : !validJobPosition(jobPosition) && jobpositionBlured}"
+                      v-on:blur="jobpositionBlured = true">
+                      <option>Choose..</option>
+                      <option>Internship</option>
+                      <option>Full time</option>
+                      <option>Part time</option>
+                      <option>Contractual</option>
+                      <option>Freelance</option>
+                    </select>
+                    <div class="invalid-feedback">Please fill blank form</div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Job requirement:</label>
+                    <ckeditor :editor="editor" tag-name="textarea" v-model="jobRequirement" :config="editorConfig"
+                      v-bind:class="{'form-control':true, 'is-invalid' : !validJobRequirement(jobRequirement) && jobrequirementBlured}"
+                      v-on:blur="jobrequirementBlured = true" >
+                    </ckeditor>
+                    <div class="invalid-feedback">Please fill blank form <font-awesome-icon icon="fa-solid fa-circle-exclamation" /></div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="message-text" class="col-form-label">Job description:</label>
+                    <ckeditor :editor="editor" tag-name="textarea" id="jobDesc" :model-value="jobDesc" v-model="jobDesc"
+                      :config="editorConfig"
+                      v-bind:class="{'form-control':true, 'is-invalid' : !validJobDesc(jobDesc) && jobdescBlured}"
+                      v-on:blur="jobdescBlured = true"></ckeditor>
+                    <div class="invalid-feedback">Please fill blank form <font-awesome-icon icon="fa-solid fa-circle-exclamation" /></div>
+                    <!-- <textarea class="form-control" id="jobdescription" v-model="jobDesc"></textarea> -->
 
+                  </div>
+                  <div class="mb-3">
+                    <label for="message-text" class="col-form-label">Job address:</label>
+                    <textarea class="form-control" id="message-text" v-model="jobAddress" maxlength="100"
+                      v-bind:class="{'form-control':true, 'is-invalid' : !validJobAddress(jobAddress) && jobaddressBlured}"
+                      v-on:blur="jobaddressBlured = true">
+                      </textarea>
+                    <div class="invalid-feedback">Please fill blank form</div>
+                    <small>max.100 characters</small>
+                  </div>
+                  <div class="mb-3"> <button v-on:click.stop.prevent="submit"
+                      class="btn btn-primary w-100">Create</button> </div>
                 </div>
-                <div class="mb-3">
-                  <label for="message-text" class="col-form-label">Job description:</label>
-                  <ckeditor :editor="editor" tag-name="textarea" id="jobDesc" :model-value="jobDesc" v-model="jobDesc"
-                    :config="editorConfig"></ckeditor>
-                  <!-- <textarea class="form-control" id="jobdescription" v-model="jobDesc"></textarea> -->
-
+                <div class="success-data" v-else>
+                  <div class="text-center d-flex flex-column"> <i class='bx bxs-badge-check'></i> <span
+                      class="text-center fs-3">Are you sure want to post <br> this job?</span>
+                    <div class="col text-center fs-3">
+                      <button class="btn btn-primary valid-pop m-1" type="submit" v-on:click.prevent="addjob">Yes, post
+                        it!</button>
+                      <button class="btn btn-outline-danger valid-pop m-1" data-bs-dismiss="modal"
+                        aria-label="Close">Cancel</button>
+                    </div>
+                  </div>
                 </div>
-                <div class="mb-3">
-                  <label for="message-text" class="col-form-label">Job address:</label>
-                  <textarea class="form-control" id="message-text" v-model="jobAddress" maxlength="100"
-                    required></textarea>
-                  <small>max.100 characters</small>
-                </div>
-
-
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Back</button>
@@ -102,7 +131,7 @@
       <!-- <job-component class="job-component" :item="item"></job-component> -->
     </div>
   </div>
-  
+
 </template>
 <script>
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -115,6 +144,10 @@
   // import ParagraphPlugin from '@ckeditor/ckeditor5-paragraph/src/paragraph';
   import NavMobile from '../components/NavMobile.vue'
 
+
+
+
+
   export default {
     name: "PostJobNew",
     components: {
@@ -126,39 +159,112 @@
       NavMobile
       // CandidatejobComponent
     },
-    props:['edit'],
+    props: ['edit'],
     data() {
       return {
         editor: ClassicEditor,
         editorData: '',
         editorConfig: {
           // The configuration of the editor.
-                toolbar:{
-                  items:[
-                    'heading',
-                    '|',
-                    'bold',
-                    'italic',
-                    'bulletedList',
-                    'undo',
-                    'redo'
-                  ]
-                }
+          toolbar: {
+            items: [
+              'heading',
+              '|',
+              'bold',
+              'italic',
+              'bulletedList',
+              'undo',
+              'redo'
+            ]
+          }
         },
         jobName: "",
+        jobnameBlured: false,
         jobSalary: "",
+        jobsalaryBlured: false,
         jobPosition: "",
+        jobpositionBlured: false,
         jobRequirement: "",
+        jobrequirementBlured: false,
         jobDesc: "",
+        jobdescBlured: false,
         jobAddress: "",
+        jobaddressBlured: false,
         list: [],
         modalOpen: false,
-
         userName: "",
-        hide:''
+        hide: '',
+
+
+
+        valid: false,
+        submitted: false,
       };
     },
     methods: {
+      validate: function () {
+        this.jobnameBlured = true;
+        this.jobsalaryBlured = true;
+        this.jobpositionBlured = true;
+        this.jobaddressBlured = true;
+        this.jobdescBlured = true;
+        this.jobrequirementBlured = true;
+        if (this.validjobName(this.jobName) && this.validjobSalary(this.jobSalary) &&
+          this.validJobPosition(this.jobPosition) && this.validJobAddress(this.jobAddress) &&
+          this.validJobDesc(this.jobDesc) && this.validJobRequirement(this.jobRequirement)) {
+          this.valid = true;
+
+        }
+      },
+
+      validjobName: function (jobName) {
+        if (jobName.length > 0) {
+          return true;
+        }
+      },
+
+      validjobSalary: function (jobSalary) {
+        if (jobSalary.length > 0) {
+          return true;
+        }
+      },
+
+      validJobPosition: function (jobPosition) {
+
+        if (jobPosition.length > 0) {
+          return true;
+        }
+      },
+
+      validJobAddress: function (jobAddress) {
+        if (jobAddress.length > 0) {
+          return true;
+        }
+      },
+
+      validJobDesc: function (jobDesc) {
+        if (jobDesc.length > 0) {
+          return true;
+        }
+      },
+
+      validJobRequirement: function (jobRequirement) {
+        if (jobRequirement.length > 0) {
+          return true;
+        }
+      },
+
+      submit: function () {
+        this.validate();
+        if (this.valid) {
+          this.submitted = true;
+        }
+      },
+
+
+
+
+
       formatPrice(value) {
         let val = (value / 1).toFixed().replace('.', ',')
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
@@ -173,8 +279,10 @@
           // createToast("Job Successfully Created", {
           //   type: "success"
           // });
+          this.$toast.success("Job Successfully Created")
           this.modalOpen = true;
           location.reload(true)
+          // document.getElementsByClassName("active");
         } catch (error) {
           // createToast("please, fill blank form", {
           //   type: "danger"
@@ -223,6 +331,11 @@
       margin-left: 10px;
       margin-top: 60px;
     }
+  }
+  .valid-pop{
+    border-radius: 10px;
+    width: 195px;
+    padding: 9px;
   }
 </style>
 

@@ -22,12 +22,15 @@
           <form action="" @submit.prevent="login" >
             <label for="email" class="form-label mt-4">Email</label>
             <input type="email" v-model="email" class="form-control" id="email" aria-describedby="emailHelp"
-              placeholder="yourcompany@mail.com" required />
-
+              placeholder="yourcompany@mail.com" v-bind:class="{'form-control':true, 'is-invalid' : !validEmail(email) && emailBlured}"
+                v-on:blur="emailBlured = true" />
+            <div class="invalid-feedback">A valid email is required!</div>
             <label for="password" class="form-label mt-3">Password</label>
             <!-- addons -->
             <div class="input-group mb-3">
-              <input :type="visibility" v-model="password" id="password" class="form-control" placeholder="Password123@" aria-label="password" aria-describedby="button-addon2">
+              <input :type="visibility" v-model="password" id="password" class="form-control" placeholder="Password123@" aria-label="password" aria-describedby="button-addon2" v-bind:class="{'form-control':true, 'is-invalid' : !validPassword(password) && passwordBlured}"
+              v-on:blur="passwordBlured = true">
+              <div class="invalid-feedback">Password must be 8 character!</div>
               <button class="btn btn-outline-secondary" type="button" id="button-addon2" @click="showPassword()" v-if="visibility == 'password' ">
                 <font-awesome-icon icon="fa-solid fa-eye" width="22" height="22" icon-name="show password" />
               </button>
@@ -36,24 +39,24 @@
                 <font-awesome-icon icon="fa-solid fa-eye-slash" width="22" height="22" icon-name="hide password"/>
               </button>
             </div>
-            
             <p>
               <router-link class="btn-forgot" to="/resetpass">Forgot Password?</router-link>
             </p>
             <!-- <input class="form-control" type="tel" id="phone" v-model="phone" > -->
             <div class="d-grid gap-2">
-              <button v-if="searchDisabled == true"  class="btn btn-primary" type="button" disabled>
+              <button v-if="searchDisabled == true" class="btn btn-primary" type="button" disabled>
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 Loading...
               </button>
-               <input v-else type="submit" class="btn btn-primary" :disabled="searchDisabled" value="Login">
-               
+              <input v-else type="submit" v-on:click="submit" class="btn btn-primary" :disabled="searchDisabled"
+                value="Login">
+
             </div>
-           
+
             <p class="sign-up mt-4">Don't have any account?
               <router-link class="btn-signup" to="/signup">Sign Up For Free!</router-link>
             </p>
-          </form>
+          </div>
         </div>
       </div>
     </div>
@@ -74,10 +77,14 @@
     data() {
       return {
         email: "",
+        emailBlured: false,
         password: "",
+        passwordBlured: false,
         show: false,
-        searchDisabled:false,
+        searchDisabled: false,
         visibility: 'password'
+        valid: false,
+        submitted: false
       }
     },
     methods: {
@@ -87,16 +94,47 @@
       hidePassword(){
         this.visibility = 'password';
       },
+      validate: function () {
+        this.emailBlured = true;
+        this.passwordBlured = true;
+        if (this.validEmail(this.email) && this.validPassword(this.password)) {
+          this.valid = true;
+        }
+      },
+      validEmail(email) {
+        var re = /(.+)@(.+){2,}\.(.+){2,}/;
+        if (re.test(email.toLowerCase())) {
+          return true;
+        }
+      },
+
+      validPassword(password) {
+        if (password.length > 7) {
+          return true;
+        }
+      },
+
+      submit() {
+        this.validate();
+        if (this.valid) {
+          this.submitted = true;
+          this.login()
+        } else {
+          this.submitted === false;
+          
+        }
+      },
       showThis() {
         this.show = true
       },
+
       async login() {
         let response = '';
         try {
           this.searchDisabled = true
           response = await axios.post(
             `http://54.255.4.75:9091/api/v1/auth/recruiter/login?recruiterEmail=${this.email}&recruiterPassword=${this.password}`
-            )
+          )
         } catch (err) {
           this.searchDisabled = false
           this.err = err.response.data.message
@@ -109,9 +147,9 @@
           localStorage.setItem("user-info", JSON.stringify(response.data.data.registerDTO));
           this.$router.push('/dashboard')
           this.$toast.success(`Welcome back! ${response.data.data.registerDTO.recruiterCompany}`, {
-          // optional options Object
+            // optional options Object
 
-      })
+          })
           // createToast(`Welcome back!! ${response.data.data.registerDTO.recruiterCompany}`, { type: "success" });
         }
       }

@@ -1,14 +1,21 @@
 <template>
   <div class="row justify-content-between m-1 px-3">
     <div class="col-6 d-flex align-items-center">
-      <span class="fw-bold">{{item.jobName}}</span>
+      <router-link class="job-link" :to="{name: 'jobsdetail', params:{id:item.jobId}}">
+        <span class="fw-bold">{{item.jobName}}</span>
+      </router-link>
     </div>
     <div class="col-6 d-flex justify-content-end align-items-center">
-      <span v-if="item.jobPosition == 'Full time'" class="badge bg-light py-2 green" style="border-radius: 5px">{{item.jobPosition}}</span>
-      <span v-if="item.jobPosition == 'Freelance'" class="badge bg-light py-2 red" style="border-radius: 5px">{{item.jobPosition}}</span>
-      <span v-if="item.jobPosition == 'Internship'" class="badge bg-light py-2 orange" style="border-radius: 5px">{{item.jobPosition}}</span>
-      <span v-if="item.jobPosition == 'Contractual'" class="badge bg-light py-2 blue" style="border-radius: 5px">{{item.jobPosition}}</span>
-      <span v-if="item.jobPosition == 'Part time'" class="badge bg-light py-2 purple" style="border-radius: 5px">{{item.jobPosition}}</span>
+      <span v-if="item.jobPosition == 'Full time'" class="badge bg-light py-2 green"
+        style="border-radius: 5px">{{item.jobPosition}}</span>
+      <span v-if="item.jobPosition == 'Freelance'" class="badge bg-light py-2 red"
+        style="border-radius: 5px">{{item.jobPosition}}</span>
+      <span v-if="item.jobPosition == 'Internship'" class="badge bg-light py-2 orange"
+        style="border-radius: 5px">{{item.jobPosition}}</span>
+      <span v-if="item.jobPosition == 'Contractual'" class="badge bg-light py-2 blue"
+        style="border-radius: 5px">{{item.jobPosition}}</span>
+      <span v-if="item.jobPosition == 'Part time'" class="badge bg-light py-2 purple"
+        style="border-radius: 5px">{{item.jobPosition}}</span>
 
 
       <div class="dropdown">
@@ -30,83 +37,96 @@
       <small class="text-muted">Rp{{ formatPrice(item.jobSalary)}},-</small>
     </div>
     <div class="col-6 d-flex justify-content-end">
-      <!-- <small class="text-muted">3 day ago</small> -->{{time}}
-      <small><time-ago  :datetime="item.createdAt" refresh long></time-ago></small>
+      <!-- <small class="text-muted">3 day ago</small> -->
+      <!-- <small><time-ago  :datetime="item.createdAt" refresh long></time-ago></small> -->
+      <!-- <small>{{candidateDate()}}</small> -->
+      <small>{{moment(item.createdAt).format('DD MMM YYYY')}}</small>
+
     </div>
     <div class="col-6">
-      <router-link v-if="resp == '0'" :to="{name:'jobdetail', params:{id:item.jobId}}" class="text-muted text-title align-items-center primary text-decoration-none fs-6">{{resp}}
+      <router-link v-if="resp == '0'" :to="{name:'jobdetail', params:{id:item.jobId}}"
+        class="text-muted text-title align-items-center primary text-decoration-none fs-6">{{resp}}
         Applicant
         <img class="import-icon sml mx-1" src="../assets/icon-postjob/arrow-right.svg" alt="">
       </router-link>
-      <router-link v-else :to="{name:'jobdetail', params:{id:item.jobId}}" class="text-title align-items-center primary text-decoration-none fs-6">{{resp}}
+      <router-link v-else :to="{name:'jobdetail', params:{id:item.jobId}}"
+        class="text-title align-items-center primary text-decoration-none fs-6">{{resp}}
         Applicant
         <img class="import-icon sml mx-1" src="../assets/icon-postjob/arrow-right.svg" alt="">
       </router-link>
     </div>
     <div class="col-6 d-flex justify-content-end">
       <div class="ict-btn">
-        <button data-bs-toggle="modal" :data-bs-target="'#exampleModalToggle' + item.jobId" role="button" v-on:click="getDetail(item.jobId)" class="ict">
+        <button data-bs-toggle="modal" :data-bs-target="'#exampleModalToggle' + item.jobId" role="button"
+          v-on:click="getDetail(item.jobId)" class="ict">
           <img class="import-icon" src="../assets/icon-postjob/edit.svg" alt="">
         </button>
-          <!-- modal editorData -->
-              <div class="modal fade" :id="'exampleModalToggle' + item.jobId" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-            <div class="modal-dialog modal-xl">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalToggleLabel">Edit Jobs</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <form>
-                    <div class="mb-3">
-                      <label for="recipient-name" class="col-form-label">Job Name:</label>
-                      <input type="text" class="form-control" id="" v-model="edit.jobName">
-                    </div>
-                    <div class="mb-3">
-                      <label for="recipient-name" class="col-form-label">Job status edit: </label>
-                       <select class="form-control" id="inputState" v-model="edit.jobStatus" required>
-                        <option selected>Choose..</option>
-                        <option>hidden</option>
-                        <option>visible</option>
-                      </select>
-                    </div>
-                    <div class="mb-3">
-                      <label for="recipient-name" class="col-form-label">Job Position edit: </label>
-                       <select class="form-control" id="inputState" v-model="edit.jobPosition" required>
-                        <option selected>Choose..</option>
-                        <option>Internship</option>
-                        <option>Full time</option>
-                        <option>Part time</option>
-                        <option>Contractual</option>
-                        <option>Freelance</option>
-                      </select>
-                    </div>
-                    <div class="mb-3">
-                      <label for="recipient-name" class="col-form-label">Job Address: </label>
-                      <input type="text" class="form-control" id="recipient-name" v-model="edit.jobAddress">
-                    </div>
-                    <div class="mb-3">
-                      <label for="recipient-name" class="col-form-label">Job Requirement: </label>
-                      <!-- <input type="text" class="form-control" id="recipient-name" v-model="edit.jobRequirement"> -->
-                      <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="edit.jobRequirement" :config="editorConfig"></ckeditor>
-                    </div>
+        <!-- modal editorData -->
+        <div class="modal fade" :id="'exampleModalToggle' + item.jobId" aria-hidden="true"
+          aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalToggleLabel">Edit jobs</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Job name:</label>
+                    <input type="text" class="form-control" id="" v-model="edit.jobName">
+                  </div>
+                  <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Job status: </label>
+                    <select class="form-control" id="inputState" v-model="edit.jobStatus" required>
+                      <option selected>Choose..</option>
+                      <option>hidden</option>
+                      <option>visible</option>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Job salary:</label>
+                    <input type="number" class="form-control" id="" v-model="edit.jobSalary">
+                  </div>
+                  <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Job position: </label>
+                    <select class="form-control" id="inputState" v-model="edit.jobPosition" required>
+                      <option selected>Choose..</option>
+                      <option>Internship</option>
+                      <option>Full time</option>
+                      <option>Part time</option>
+                      <option>Contractual</option>
+                      <option>Freelance</option>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Job requirement: </label>
+                    <!-- <input type="text" class="form-control" id="recipient-name" v-model="edit.jobRequirement"> -->
+                    <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="edit.jobRequirement"
+                      :config="editorConfig"></ckeditor>
+                  </div>
 
-                    <div class="mb-3">
-                      <label for="message-text" class="col-form-label">Job Description:</label>
-                      <!-- <textarea class="form-control" id="message-text" v-model="edit.jobDesc" /> -->
-                      <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="edit.jobDesc" :config="editorConfig"></ckeditor>
-                    </div>
-                    <div class="modal-footer">
-                      <button class="btn btn-success" v-on:click="updateJobData(edit.jobId)">Update</button>
-                    </div>
-                  </form>
-                </div>
+                  <div class="mb-3">
+                    <label for="message-text" class="col-form-label">Job description:</label>
+                    <!-- <textarea class="form-control" id="message-text" v-model="edit.jobDesc" /> -->
+                    <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="edit.jobDesc"
+                      :config="editorConfig"></ckeditor>
+                  </div>
+                  <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Job address: </label>
+                    <input type="text" class="form-control" id="recipient-name" v-model="edit.jobAddress">
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn btn-success" v-on:click="updateJobData(edit.jobId)">Update</button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
-          <button v-on:click="deleteJob(item.jobId)" class="ict dgr">
-            <img class="import-icon" src="../assets/icon-postjob/delete.svg" alt="">
-          </button>
+        </div>
+        <button v-on:click="deleteJob(item.jobId)" class="ict dgr">
+          <img class="import-icon" src="../assets/icon-postjob/delete.svg" alt="">
+        </button>
       </div>
     </div>
     
@@ -119,12 +139,17 @@
 <script>
   import axios from 'axios'
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-  import { TimeAgo } from 'vue2-timeago'
-  
+  // import { TimeAgo } from 'vue2-timeago'
+  import moment from 'moment';
+  moment().format();
+
+
+
+
 
   export default {
-    components:{
-      TimeAgo
+    components: {
+      // TimeAgo
     },
     name: "JobComponent",
     props: ['item', 'id', ],
@@ -134,20 +159,58 @@
         editorData: '',
         editorConfig: {
           // The configuration of the editor.
+          toolbar: {
+            items: [
+              'heading',
+              '|',
+              'bold',
+              'italic',
+              'bulletedList',
+              'undo',
+              'redo'
+            ]
+          }
         },
         edit: [],
-        resp:'',
+        resp: '',
         // locale: "en"
       }
+
     },
     methods: {
-      
-      async countTotalAplicant(){
+      format(inputDate) {
+        let date, month, year;
+
+        date = inputDate.getDate();
+        month = inputDate.getMonth() + 1;
+        year = inputDate.getFullYear();
+
+        date = date
+          .toString()
+          .padStart(2, '0');
+
+        month = month
+          .toString()
+          .padStart(2, '0');
+
+        return `${date}/${month}/${year}`;
+      },
+
+      moment: function (date) {
+        return moment(date);
+      },
+      candidateDate() {
+        var a = moment([new Date()]);
+        var b = moment([this.item.createdAt]);
+        console.warn(a)
+        return a.diff(b, 'days').format("YYYY MM DD");
+      },
+      async countTotalAplicant() {
         await axios.get(`http://54.255.4.75:9091/api/v1/application/count-applicants/${this.item.jobId}`)
-        .then((data)=>{
-          this.resp = data.data.data
-          console.log(data.data.data)
-        })
+          .then((data) => {
+            this.resp = data.data.data
+            console.log(data.data.data)
+          })
       },
       formatPrice(value) {
         let val = (value / 1).toFixed().replace('.', ',')
@@ -185,7 +248,7 @@
             .then((data) => {
               // this.$emit.edit = data.data.data
               this.edit = data.data.data
-              console.log(this.edit)
+              console.warn(this.edit)
 
             })
         } catch {
@@ -217,6 +280,7 @@
     mounted() {
       this.getDetail();
       this.countTotalAplicant();
+
     }
 
   }
@@ -224,30 +288,41 @@
 
 <style scope>
   /* color for job position */
-  .green{
+  .job-link{
+    text-decoration: none;
+    color: black;
+  }
+  .green {
     color: #149E48;
   }
-  .blue{
+
+  .blue {
     color: #006EFF;
   }
-  .orange{
+
+  .orange {
     color: #FF7A00;
   }
-  .red{
+
+  .red {
     color: #c51313;
   }
-  .purple{
+
+  .purple {
     color: #7d21b3;
   }
+
   /* icon style */
-  .import-icon{
+  .import-icon {
     width: 24px;
     height: 24px;
   }
-  .sml{
+
+  .sml {
     width: 16px;
     width: 16px;
   }
+
   /* ==================================== */
 
   .bdge {
@@ -258,6 +333,7 @@
     padding: 3px;
     height: fit-content;
   }
+
   .text-title {
     display: flex;
     margin-top: 21px;
