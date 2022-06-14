@@ -41,13 +41,11 @@
                 <div class="p-3">
                   <div class="card card-service">
                     <div class="card-body ">
-                      <img class="card-image" src="../assets/icon/CREDIT.svg" alt="" />
-                      <h4 class="card-title">Credits</h4>
-                      <p class="card-text">
-                        Some quick example text to build on the card title and
-                        make up the bulk of the card's content. Lorem ipsum
-                        dolor sit amet consectetur, adipisicing elit. Assumenda
-                        aliquid numquam dignissimos.
+                      <img class="card-image mb-4" src="../assets/icon/POSTJOB.svg" alt="" />
+                      <h4 class="card-title ">Make your job branded!</h4>
+                      <p class="card-text mt-5">
+                        Candidates will find your job posting easily by making your
+                        job advertisement(s) appear directly to the suitable candidate.
                       </p>
                     </div>
                   </div>
@@ -57,13 +55,11 @@
                 <div class="p-3">
                   <div class="card card-service">
                     <div class="card-body ">
-                      <img class="card-image" src="../assets/icon/POSTJOB.svg" alt="" />
-                      <h4 class="card-title">Post Job</h4>
-                      <p class="card-text">
-                        Some quick example text to build on the card title and
-                        make up the bulk of the card's content. Lorem ipsum
-                        dolor sit amet consectetur, adipisicing elit. Assumenda
-                        aliquid numquam dignissimos.
+                      <img class="card-image mb-4" src="../assets/icon/STAR.svg" alt="" />
+                      <h4 class="card-title">Hire the high-quality candidate</h4>
+                      <p class="card-text mt-3">
+                        Sort the candidate by adding your standard
+                        recruitment qualifications on your job posting.
                       </p>
                     </div>
                   </div>
@@ -73,13 +69,11 @@
                 <div class="p-3">
                   <div class="card card-service">
                     <div class="card-body ">
-                      <img class="card-image" src="../assets/icon/INTERVIEW.svg" alt="" />
-                      <h4 class="card-title">Interview Schedule</h4>
-                      <p class="card-text">
-                        Some quick example text to build on the card title and
-                        make up the bulk of the card's content. Lorem ipsum
-                        dolor sit amet consectetur, adipisicing elit. Assumenda
-                        aliquid numquam dignissimos.
+                      <img class="card-image mb-4" src="../assets/icon/PEOPLE.svg" alt="" />
+                      <h4 class="card-title">Candidate Management</h4>
+                      <p class="card-text mt-5">
+                        As they apply, new candidates automatically
+                        show up on the hiring dashboard for efficient review and management.
                       </p>
                     </div>
                   </div>
@@ -89,8 +83,8 @@
           </div>
         </div>
       </transition>
-      <div class="main" style="background-color: #101419; padding: 90px">
-        <div class="d-flex justify-content-center" style="padding: 20px; color: white; text-align: center">
+      <div class="main section-partner" style="background-color: #101419;">
+        <div class="d-flex justify-content-center" style=" color: white; text-align: center">
           <h2>Our Satisfied Partner</h2>
         </div>
       </div>
@@ -134,7 +128,7 @@
         </div>
       </div>
 
-      <footer class="section-footer pt-5">
+      <footer class="section-footer pt-5" hidden>
         <div class="container pb-5">
           <div class="row d-flex justify-content-center">
             <div class="col-12">
@@ -165,14 +159,17 @@
                   <ul class="navbar-nav mr-lg-auto ">
                     <h2>Social media</h2>
                     <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="#"><font-awesome-icon icon="fa-brands fa-facebook" />
-                       Cariinkerja</a>
+                      <a class="nav-link active" aria-current="page" href="#">
+                        <font-awesome-icon icon="fa-brands fa-facebook" />
+                        Cariinkerja</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#"><font-awesome-icon icon="fa-brands fa-instagram" /> Cariinkerjaa</a>
+                      <a class="nav-link" href="#">
+                        <font-awesome-icon icon="fa-brands fa-instagram" /> Cariinkerjaa</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#"><font-awesome-icon icon="fa-brands fa-linkedin" /> @Cariinkerja</a>
+                      <a class="nav-link" href="#">
+                        <font-awesome-icon icon="fa-brands fa-linkedin" /> @Cariinkerja</a>
                     </li>
                   </ul>
                 </div>
@@ -192,7 +189,7 @@
 
       <div class="copyright">
         <hr style="border: none; height: 3px" />
-        <p class="text-muted">Copyright@2022</p>
+        <p class="text-muted">2022 Copyright toptalent. All Rights reserved</p>
       </div>
     </div>
   </div>
@@ -322,7 +319,7 @@
   .copyright {
     background: #101419;
     margin-bottom: 0;
-    padding-top: 10px;
+    padding-top: 100px;
     padding-bottom: 0;
   }
 
@@ -360,6 +357,14 @@
     /* margin-left: 121px; */
   }
 
+  .section-partner{
+    padding-top: 100px;
+    padding-bottom: 30px;
+  }
+
+  
+
+
   /* BREAKPOINTS */
   /* mobile */
   @media only screen and (max-width: 575.98px) {
@@ -377,22 +382,22 @@
       font-size: 16px;
     }
 
-    .footer-column{
+    .footer-column {
       margin-bottom: 20px;
     }
   }
 
   /* mobile s */
-  @media only screen and (max-width: 320px){
-    .card-service{
+  @media only screen and (max-width: 320px) {
+    .card-service {
       min-height: 350px;
-      
+
     }
   }
 
   /* tablet */
   @media only screen and (min-width:641px) {
-        .btn-footer {
+    .btn-footer {
       width: 30%;
       font-size: 16px;
     }

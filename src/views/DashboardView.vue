@@ -89,9 +89,7 @@
           </thead>
           <tbody>
             <tr v-for="(resume, index) in list" :key="resume.id">
-              <td scope="row">{{index + 1}}
-
-              </td>
+              <td scope="row">{{index + 1}}</td>
               <td>
                 <!-- {{resume.jobseekerName}} -->
                 <router-link class="jobseeker-name" :to="'/applicant-detail/'+ resume.jobseekerId">
@@ -108,8 +106,13 @@
                 <p v-if="resume.jobPosition != 'Internship'" class="position">{{resume.jobPosition}}</p>
                 <p v-else class="position2">{{resume.jobPosition}}</p>
               </td>
-              <td class="d-none d-md-block"><button class="btn-primary btn-view"
-                  @click="getView(resume.applicationId)">View</button></td>
+              <td class="d-none d-md-block">
+                <button class="btn btn-primary btn-view mb-3"
+                  @click="getView(resume.applicationId)">View
+                </button>
+                 
+              </td> 
+                
 
               <td class="d-block d-md-none">
                 <!-- <button class="btn-primary" @click="getView(resume.applicationId)">View</button> -->
@@ -441,8 +444,6 @@
   .btn-view {
     border-radius: 10px;
     border-style: none;
-    padding: 5px;
-    /* width: 100%; */
   }
 
   .btn-view:hover {
@@ -686,6 +687,13 @@
       margin-left: 20px;
       width: 52.5%;
       background: rgb(249, 249, 249)
+    }
+
+    .btn-view{
+      margin-top: 10px;
+      /* padding-top: 20px; */
+      padding-right: 10px;
+      padding-left: 10px;
     }
 
   }
