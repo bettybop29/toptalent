@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar-right">
+  <div class="sidebar-right d-none d-md-none d-lg-block">
     <div class="side-content">
       <ul>
           <li class="li-foto">

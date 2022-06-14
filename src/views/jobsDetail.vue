@@ -8,11 +8,11 @@
               <font-awesome-icon icon="fa-solid fa-chevron-left" />
               go back
           </button>
-          <div class="row justify-content-between sticky-top bg-white" style="border-bottom: 5px solid whitesmoke;">
+          <div class="row bg-white pb-3" style="border-bottom: 5px solid whitesmoke;">
               
-            <div class="col-md-1 mt-3">
-                <img v-if="detail.recruiterImage != null" :src="'http://54.255.4.75:9091/resources/'+ detail.recruiterImage"  alt="..." width="200px">
-                <img v-else src="http://54.255.4.75:9091/resources/r5jr7e3qf8f5uhr.png"  alt="..." width="200px">                
+            <div class="col-md-2 mt-3">
+                <img v-if="detail.recruiterImage != null" :src="'http://54.255.4.75:9091/resources/'+ detail.recruiterImage"  alt="..." width="100%">
+                <img class="img-fluid" v-else src="http://54.255.4.75:9091/resources/r5jr7e3qf8f5uhr.png"  alt="..." >                
             </div>
             <div class="col-md-6">
                 <h2 class="jobtitle">{{detail.jobName}} <span>({{detail.jobPosition}})</span></h2>
@@ -23,7 +23,7 @@
                       <!-- <small>{{moment(item.createdAt).format('DD MMM YYYY')}}</small> -->
 
             </div>
-            <div class="col-md-3 mt-5">
+            <div class="col-md-4 mt-5">
                 <button class="btn btn-outline-primary jobicn">
                     <img class="me-2" src="../assets/icon-postjob/pencil.svg" alt="">
                     Edit Job Post
@@ -123,6 +123,7 @@ export default {
 </script>
 
 <style scoped>
+
     .container{
         margin-left: 250px;
     }

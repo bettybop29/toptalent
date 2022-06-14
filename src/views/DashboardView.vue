@@ -82,12 +82,16 @@
             <th scope="col">Status</th>
             <th scope="col">Job Name</th>
             <th scope="col">Position</th>
-            <th class="d-none d-md-block" scope="col">Action</th>
+            <th scope="col">Action</th>
+
+
           </tr>
         </thead>
         <tbody>
           <tr v-for="(resume, index) in list" :key="resume.id">
-            <td scope="row">{{index + 1}}</td>
+            <td scope="row">{{index + 1}}
+              
+            </td>
             <td>{{resume.jobseekerName}}</td>
             <td>{{resume.jobseekerEmail}}</td>
             <td>
@@ -99,12 +103,41 @@
               <p v-if="resume.jobPosition != 'Internship'" class="position">{{resume.jobPosition}}</p>
               <p v-else class="position2">{{resume.jobPosition}}</p>
             </td>
-            <td class="d-none d-md-block"><button class="btn-primary"
+            <td class="d-none d-md-block"><button class="btn-primary btn-view"
                 @click="getView(resume.applicationId)">View</button></td>
+
+            <td class="d-block d-md-none">
+              <!-- <button class="btn-primary" @click="getView(resume.applicationId)">View</button> -->
+
+              <!-- Button trigger modal -->
+              <button @click="getView(resume.applicationId)" type="button" class="btn btn-primary btn-view" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                View
+                <p></p>
+              </button>
+            </td>
 
           </tr>
         </tbody>
       </table>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Accept Applicant</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Are you sure you want to accept {{ views.jobseekerName}}?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" data-bs-dismiss="modal" v-on:click="accepted(views.applicationId)">Yes, accept</button>
+              <button type="button" class="btn btn-outline-danger" v-on:click="rejected(views.applicationId)">No, Reject</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
   </div>
@@ -247,6 +280,17 @@
 
           })
       },
+
+      async accepted(id) {
+        await axios.post(`http://54.255.4.75:9091/api/v1/application/status/accepted/?applicationId=${id}`)
+        // createToast(`Accepted`, { type: "success" });
+        location.reload(true)
+      },
+      async rejected(id) {
+        await axios.post(`http://54.255.4.75:9091/api/v1/application/status/rejected/?applicationId=${id}`)
+        //  createToast(`Reject`, { type: "danger" });
+        location.reload(true)
+      },
       test() {
         console.log('test')
         this.$toast.error('Profile saved.', {
@@ -319,14 +363,14 @@
     overflow: auto;
   }
 
-  .btn-primary {
+  .btn-view {
     border-radius: 10px;
     border-style: none;
     padding: 5px;
-    width: 100%;
+    /* width: 100%; */
   }
 
-  .btn-primary:hover {
+  .btn-view:hover {
     background: blue;
     box-shadow: 6px 10px 15px -3px rgba(0, 0, 0, 0.1);
   }
@@ -439,7 +483,7 @@
 
   }
 
-  .btn {
+  /* .btn {
     font-size: 12px;
     padding: 8px;
     border-radius: 30px;
@@ -448,7 +492,7 @@
     margin-top: 30px;
     width: 190px;
 
-  }
+  } */
 
   .btn:hover {
     background: rgb(235, 153, 1);
@@ -508,6 +552,7 @@
       width: 52.5%;
       background: rgb(249, 249, 249)
     }
+
   }
 
   /* tablet */
