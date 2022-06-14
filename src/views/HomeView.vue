@@ -39,8 +39,8 @@
             <div class="row">
               <div class="col-md-4">
                 <div class="p-3">
-                  <div class="card">
-                    <div class="card-body">
+                  <div class="card card-service">
+                    <div class="card-body ">
                       <img class="card-image" src="../assets/icon/CREDIT.svg" alt="" />
                       <h4 class="card-title">Credits</h4>
                       <p class="card-text">
@@ -55,8 +55,8 @@
               </div>
               <div class="col-md-4">
                 <div class="p-3">
-                  <div class="card">
-                    <div class="card-body">
+                  <div class="card card-service">
+                    <div class="card-body ">
                       <img class="card-image" src="../assets/icon/POSTJOB.svg" alt="" />
                       <h4 class="card-title">Post Job</h4>
                       <p class="card-text">
@@ -71,8 +71,8 @@
               </div>
               <div class="col-md-4">
                 <div class="p-3">
-                  <div class="card">
-                    <div class="card-body">
+                  <div class="card card-service">
+                    <div class="card-body ">
                       <img class="card-image" src="../assets/icon/INTERVIEW.svg" alt="" />
                       <h4 class="card-title">Interview Schedule</h4>
                       <p class="card-text">
@@ -382,9 +382,17 @@
     }
   }
 
+  /* mobile s */
+  @media only screen and (max-width: 320px){
+    .card-service{
+      min-height: 350px;
+      
+    }
+  }
+
   /* tablet */
   @media only screen and (min-width:641px) {
-    .btn-footer {
+        .btn-footer {
       width: 30%;
       font-size: 16px;
     }
