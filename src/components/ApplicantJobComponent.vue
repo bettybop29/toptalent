@@ -39,7 +39,7 @@
           <button class="btn ict" v-on:click="getResume(item.jobseekerResume)">
             <font-awesome-icon class=" mt-1" icon="fa-solid fa-file-lines"/> Download CV
           </button>
-          <router-link class="btn ict" target="_blank" :to="'/pdfviewer/'+ item.jobseekerResume">View resume</router-link>
+          <!-- <router-link class="btn ict" target="_blank" :to="'/pdfviewer/'+ item.jobseekerResume">View resume</router-link> -->
          <!-- <pdf :src="'http://54.255.4.75:9091/resources/'+ item.jobseekerResume"></pdf> -->
         <PdfViewer></PdfViewer>
         <button class="btn ict" v-on:click="getLink(item.jobseekerPortfolio)">

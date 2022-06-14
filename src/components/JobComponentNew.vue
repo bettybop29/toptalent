@@ -71,26 +71,24 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <div v-if="!submitted">
+                <form @submit.prevent="updateJobData(edit.jobId)">
                   <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">Job name:</label>
-                    <input type="text" class="form-control" id="" v-model="jobName"
-                      v-bind:class="{'form-control':true, 'is-invalid' : !validjobName(jobName) && jobnameBlured}"
-                      v-on:blur="jobnameBlured = true">
-                        <div class="invalid-feedback">Please fill blank form</div>
+                    <input type="text" class="form-control" id="test" v-model="edit.jobName" required>
+                    <div class="invalid-feedback">Please fill blank form</div>
 
                   </div>
                   <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">Job status: </label>
                     <select class="form-control" id="inputState" v-model="edit.jobStatus" required>
-                      <option selected>Choose..</option>
+                      <option disabled selected>Choose..</option>
                       <option>hidden</option>
                       <option>visible</option>
                     </select>
                   </div>
                   <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">Job salary:</label>
-                    <input type="number" class="form-control" id="" v-model="edit.jobSalary">
+                    <input type="number" class="form-control" id="" v-model="edit.jobSalary" required>
                   </div>
                   <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">Job position: </label>
@@ -107,48 +105,40 @@
                     <label for="recipient-name" class="col-form-label">Job requirement: </label>
                     <!-- <input type="text" class="form-control" id="recipient-name" v-model="edit.jobRequirement"> -->
                     <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="edit.jobRequirement"
-                      :config="editorConfig"></ckeditor>
+                      :config="editorConfig">
+                    </ckeditor>
                   </div>
 
                   <div class="mb-3">
                     <label for="message-text" class="col-form-label">Job description:</label>
                     <!-- <textarea class="form-control" id="message-text" v-model="edit.jobDesc" /> -->
-                    <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="edit.jobDesc"
-                      :config="editorConfig"></ckeditor>
+                    <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="edit.jobDesc" :config="editorConfig">
+
+                    </ckeditor>
                   </div>
                   <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">Job address: </label>
-                    <input type="text" class="form-control" id="recipient-name" v-model="edit.jobAddress">
+                    <input type="text" class="form-control" id="recipient-name" v-model="edit.jobAddress" required>
                   </div>
                   <div class="modal-footer">
-                    <!-- <button class="btn btn-success" v-on:click="updateJobData(edit.jobId)">Update</button> -->
-                    <!-- <input type="submit" class="btn btn-success" v-on:click="submit"> -->
-                    <button class="btn btn-success" v-on:click.stop.prevent="submit">Update</button>
+                    <button class="btn btn-success" type="submit">Update</button>
+                    
+                    <!-- <button class="btn btn-success" v-on:click.stop.prevent="submit">Update</button> -->
 
                   </div>
-                </div>
-                <div class="success-data" v-else>
-                  <div class="text-center d-flex flex-column"> <i class='bx bxs-badge-check'></i> <span
-                      class="text-center fs-3">Are you sure want to post <br> this job?</span>
-                    <div class="col text-center fs-3">
-                      <button class="btn btn-primary valid-pop m-1" type="submit" v-on:click.prevent="addjob">Yes, post
-                        it!</button>
-                      <button class="btn btn-outline-danger valid-pop m-1" data-bs-dismiss="modal"
-                        aria-label="Close">Cancel</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              </form>
+
             </div>
           </div>
         </div>
-        <button v-on:click="deleteJob(item.jobId)" class="ict dgr">
-          <img class="import-icon" src="../assets/icon-postjob/delete.svg" alt="">
-        </button>
       </div>
+      <button v-on:click="deleteJob(item.jobId)" class="ict dgr">
+        <img class="import-icon" src="../assets/icon-postjob/delete.svg" alt="">
+      </button>
     </div>
+  </div>
 
-    <hr class="mt-4" />
+  <hr class="mt-4" />
   </div>
   <!-- hidden  -->
 
@@ -160,9 +150,6 @@
   // import { TimeAgo } from 'vue2-timeago'
   import moment from 'moment';
   moment().format();
-
-
-
 
 
   export default {
@@ -191,54 +178,13 @@
         },
         edit: [],
         resp: '',
-        jobName: "",
-        jobnameBlured: false,
-        jobSalary: "",
-        jobsalaryBlured: false,
-        jobPosition: "",
-        jobpositionBlured: false,
-        jobRequirement: "",
-        jobrequirementBlured: false,
-        jobDesc: "",
-        jobdescBlured: false,
-        jobAddress: "",
-        jobaddressBlured: false,
-        valid : false,
-        submitted : false,
+       
         // locale: "en"
       }
 
     },
     methods: {
-      validate: function () {
-        this.jobnameBlured = true;
-        this.jobsalaryBlured = true;
-        this.jobpositionBlured = true;
-        this.jobaddressBlured = true;
-        this.jobdescBlured = true;
-        this.jobrequirementBlured = true;
-        if (this.validjobName(this.edit.jobName) && this.validjobSalary(this.jobSalary) &&
-          this.validJobPosition(this.jobPosition) && this.validJobAddress(this.jobAddress) &&
-          this.validJobDesc(this.jobDesc) && this.validJobRequirement(this.jobRequirement)) {
-          this.valid = true;
-
-        }
-      },
-      validjobName: function (jobName) {
-        if (jobName.length > 0) {
-          return true;
-        }
-      },
-      submit : function(id){
-                this.validate();
-                if(this.valid){
-                    this.submitted = true;
-                    this.updateJobData(id)
-                } else {
-                    this.submitted == false
-                }
-                
-            },
+     
 
 
       format(inputDate) {

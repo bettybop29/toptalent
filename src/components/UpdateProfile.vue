@@ -11,7 +11,7 @@
       <h1 class="mb-5">Update Profile</h1>
       <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Email:</label>
-        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterEmail" >
+        <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterEmail" disabled>
       </div>
       <div class="col-md-10 mb-4">
         <label for="validationDefault03" class="form-label">Culture</label>
