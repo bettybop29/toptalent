@@ -97,7 +97,7 @@
                         <h3 v-else>About</h3>
                 
                 </div>
-                <div class="box-about">
+                <div class="box-about pb-5">
                     <p >
                         {{applicant.jobseekerAbout}}
                     </p>

@@ -359,7 +359,9 @@ export default {
       height: 40px;
       padding: 15px;
       font-weight: 500;
-    }.jobseeker-informations tr{
+    }
+    
+    .jobseeker-informations tr{
       font-weight: 500;
     }
 
