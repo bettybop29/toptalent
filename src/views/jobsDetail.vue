@@ -1,31 +1,3 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@rizkidani 
-bettybop29
-/
-toptalent
-Public
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-toptalent/src/views/jobsDetail.vue
-@fauziah21
-fauziah21 fixed layout
-Latest commit 141fc5a 3 days ago
- History
- 2 contributors
-@fauziah21@bettybop29
-152 lines (141 sloc)  5.18 KB
 
 
 <template>
@@ -49,13 +21,76 @@ Latest commit 141fc5a 3 days ago
                 <h3 class="jobmediumtitle">{{userName}}</h3>
                 <p class="jobtext text-muted">Rp.{{formatPrice(detail.jobSalary)}},-</p>
                 <p class="jobtext text-muted">{{detail.jobAddress}}</p>
-                <p class="jobtext text-muted">Post on {{detail.createdAt}}</p>
+                <p class="jobtext text-muted">Post on {{moment(detail.createdAt).format('DD MMM YYYY')}}</p>
+
             </div>
             <div class="col-md-4 mt-5">
-                <button class="btn btn-outline-primary jobicn">
-                    <img class="me-2" src="../assets/icon-postjob/pencil.svg" alt="">
+                <button class="btn btn-outline-primary jobicn" data-bs-toggle="modal" :data-bs-target="'#exampleModalToggle' + detail.jobId" role="button" v-on:click="getDetail(detail.jobId)" >
+                    <img class="me-2 pencil-icn" src="../assets/icon-postjob/pencil.svg" alt="">
                     Edit Job Post
                 </button> 
+
+        <!-- <button data-bs-toggle="modal" :data-bs-target="'#exampleModalToggle' + detail.jobId" role="button" v-on:click="getDetail(detail.jobId)" class="ict">
+          <img class="import-icon" src="../assets/icon-postjob/edit.svg" alt="">
+        </button> -->
+          <!-- modal editorData -->
+              <div class="modal fade" :id="'exampleModalToggle' + detail.jobId" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+            <div class="modal-dialog modal-xl">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalToggleLabel">Edit Jobs</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form @submit.prevent="updateJobData(detail.jobId)">
+                    <div class="mb-3">
+                      <label for="recipient-name" class="col-form-label">Job Name:</label>
+                      <input type="text" class="form-control" id="" v-model="detail.jobName" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="recipient-name" class="col-form-label">Job Salary:</label>
+                      <input type="text" class="form-control" id="" v-model="detail.jobSalary" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="recipient-name" class="col-form-label">Job Position edit: </label>
+                       <select class="form-control" id="inputState" v-model="detail.jobPosition" required>
+                        <option selected>Choose..</option>
+                        <option>Internship</option>
+                        <option>Full time</option>
+                        <option>Part Time</option>
+                        <option>Contractual</option>
+                        <option>Freelance</option>
+                      </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                      <label for="recipient-name" class="col-form-label">Job Requirement: </label>
+                      <!-- <input type="text" class="form-control" id="recipient-name" v-model="edit.jobRequirement"> -->
+                      <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="detail.jobRequirement" :config="editorConfig"></ckeditor>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="message-text" class="col-form-label">Job Description:</label>
+                      <!-- <textarea class="form-control" id="message-text" v-model="edit.jobDesc" /> -->
+                      <ckeditor :editor="editor" tag-name="textarea" :model-value="jobDesc" v-model="detail.jobDesc" :config="editorConfig"></ckeditor>
+                    </div>
+                    <div class="mb-3">
+                      <label for="recipient-name" class="col-form-label">Job Address: </label>
+                      <input type="text" class="form-control" id="recipient-name" v-model="detail.jobAddress">
+                    </div>
+                    <div class="modal-footer">
+                      <!-- <button class="btn btn-success" v-on:click="updateJobData(detail.jobId)">Update</button> -->
+                      <button class="btn btn-success" type="submit">Update</button>
+
+                    </div>
+                  </form>   
+                </div>
+              </div>
+            </div>
+        </div>
+
+
+
             </div>
           </div>
         <div class="row p-4" style="border-bottom: 5px solid whitesmoke;">
@@ -100,6 +135,10 @@ Latest commit 141fc5a 3 days ago
 import axios from 'axios'
 import sidebarcomponent from '@/components/SidebarComponent.vue'
 import NavMobile from '../components/NavMobile.vue'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import moment from 'moment';
+  moment().format();
+  
 export default {
     name:'jobsDetail',
     components:{
@@ -108,12 +147,32 @@ export default {
     },
     data(){
         return{
+            editor: ClassicEditor,
+        editorData: '',
+        editorConfig: {
+          // The configuration of the editor.
+          toolbar: {
+            items: [
+              'heading',
+              '|',
+              'bold',
+              'italic',
+              'bulletedList',
+              'undo',
+              'redo'
+            ]
+          },
+        },
+
             detail:[],
             userName:'',
             recruiter:[]
         }
     },
     methods:{
+       moment: function (date) {
+        return moment(date);
+      },
         formatPrice(value) {
         let val = (value / 1).toFixed().replace('.', ',')
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
@@ -132,7 +191,18 @@ export default {
                 this.recruiter = data.data
                 console.log(this.recruiter)
             })
+        },
+        async updateJobData(id) {
+        try {
+          await axios.patch(
+            `http://54.255.4.75:9091/api/v1/job/${id}?jobName=${this.detail.jobName}&jobStatus=active&jobSalary=${this.detail.jobSalary}&jobPosition=${this.detail.jobPosition}&jobAddress=${this.detail.jobAddress}&jobDesc=${this.detail.jobDesc}&jobRequirement=${this.detail.jobRequirement}`
+          )
+          this.$toast.success("Job edited !")
+          location.reload(true)
+        } catch {
+          // console.log(warn)
         }
+      },
     },
     mounted(){
         this.getRecruiter();
@@ -168,6 +238,9 @@ export default {
         border-radius: 50%;
         background: blue;
         color: inherit
+    }
+    .pencil-icn:hover{
+        color: white;
     }
     /* BREAKPOINTS */
     /* MOBILE */

@@ -71,10 +71,14 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <form>
+                <div v-if="!submitted">
                   <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">Job name:</label>
-                    <input type="text" class="form-control" id="" v-model="edit.jobName">
+                    <input type="text" class="form-control" id="" v-model="jobName"
+                      v-bind:class="{'form-control':true, 'is-invalid' : !validjobName(jobName) && jobnameBlured}"
+                      v-on:blur="jobnameBlured = true">
+                        <div class="invalid-feedback">Please fill blank form</div>
+
                   </div>
                   <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">Job status: </label>
@@ -117,9 +121,23 @@
                     <input type="text" class="form-control" id="recipient-name" v-model="edit.jobAddress">
                   </div>
                   <div class="modal-footer">
-                    <button class="btn btn-success" v-on:click="updateJobData(edit.jobId)">Update</button>
+                    <!-- <button class="btn btn-success" v-on:click="updateJobData(edit.jobId)">Update</button> -->
+                    <!-- <input type="submit" class="btn btn-success" v-on:click="submit"> -->
+                    <button class="btn btn-success" v-on:click.stop.prevent="submit">Update</button>
+
                   </div>
-                </form>
+                </div>
+                <div class="success-data" v-else>
+                  <div class="text-center d-flex flex-column"> <i class='bx bxs-badge-check'></i> <span
+                      class="text-center fs-3">Are you sure want to post <br> this job?</span>
+                    <div class="col text-center fs-3">
+                      <button class="btn btn-primary valid-pop m-1" type="submit" v-on:click.prevent="addjob">Yes, post
+                        it!</button>
+                      <button class="btn btn-outline-danger valid-pop m-1" data-bs-dismiss="modal"
+                        aria-label="Close">Cancel</button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -129,7 +147,7 @@
         </button>
       </div>
     </div>
-    
+
     <hr class="mt-4" />
   </div>
   <!-- hidden  -->
@@ -173,11 +191,56 @@
         },
         edit: [],
         resp: '',
+        jobName: "",
+        jobnameBlured: false,
+        jobSalary: "",
+        jobsalaryBlured: false,
+        jobPosition: "",
+        jobpositionBlured: false,
+        jobRequirement: "",
+        jobrequirementBlured: false,
+        jobDesc: "",
+        jobdescBlured: false,
+        jobAddress: "",
+        jobaddressBlured: false,
+        valid : false,
+        submitted : false,
         // locale: "en"
       }
 
     },
     methods: {
+      validate: function () {
+        this.jobnameBlured = true;
+        this.jobsalaryBlured = true;
+        this.jobpositionBlured = true;
+        this.jobaddressBlured = true;
+        this.jobdescBlured = true;
+        this.jobrequirementBlured = true;
+        if (this.validjobName(this.edit.jobName) && this.validjobSalary(this.jobSalary) &&
+          this.validJobPosition(this.jobPosition) && this.validJobAddress(this.jobAddress) &&
+          this.validJobDesc(this.jobDesc) && this.validJobRequirement(this.jobRequirement)) {
+          this.valid = true;
+
+        }
+      },
+      validjobName: function (jobName) {
+        if (jobName.length > 0) {
+          return true;
+        }
+      },
+      submit : function(id){
+                this.validate();
+                if(this.valid){
+                    this.submitted = true;
+                    this.updateJobData(id)
+                } else {
+                    this.submitted == false
+                }
+                
+            },
+
+
       format(inputDate) {
         let date, month, year;
 
@@ -288,10 +351,11 @@
 
 <style scope>
   /* color for job position */
-  .job-link{
+  .job-link {
     text-decoration: none;
     color: black;
   }
+
   .green {
     color: #149E48;
   }
