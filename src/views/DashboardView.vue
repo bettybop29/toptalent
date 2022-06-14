@@ -176,7 +176,7 @@
 
                 <!-- resume -->
                 <div class="mb-2">
-                  <button v-if="views.jobseekerResume == '' || views.jobseekerResume == null" class="btn btn-resume act lnk"
+                  <button v-if="views.jobseekerResume == '' || views.jobseekerResume == null" class="btn btn-no-resume act lnk"
                     disabled>No data resume
                   </button>
                   <a v-else v-bind:href="'http://54.255.4.75:9091/resources/' + views.jobseekerResume" target="_blank"
@@ -188,7 +188,7 @@
                 <!-- portofolio -->
                 <div class="mb-2">
                   <button v-if="views.jobseekerPortfolio == '' || views.jobseekerPortfolio == null"
-                    class="btn btn-resume act lnk" disabled>
+                    class="btn btn-no-resume act lnk" disabled>
                     No Portofolio
                     <font-awesome-icon :icon="['fas','link']" />
                   </button>
@@ -199,7 +199,7 @@
                   </a>
                 </div>
 
-                <p>
+                <p class="confirmation">
                   Are you sure you want to accept {{ views.jobseekerName}}?
                 </p>
 
@@ -624,6 +624,16 @@
     transition: box-shadow 0.5s;
   }
 
+  .btn-no-resume {
+    border: none;
+    padding: 15px;
+    border-radius: 20px;
+    background: #F6F6FF;
+    display: flex;
+    transition: box-shadow 0.5s;
+    width: 100%;
+  }
+
   .lnk {
     text-decoration: none;
     color: black;
@@ -655,6 +665,10 @@
     font-size: 14px;
     height: 40px;
     font-weight: 500;
+  }
+
+  .confirmation{
+    margin-top: 2rem;
   }
 
   /* =================================================================================================
