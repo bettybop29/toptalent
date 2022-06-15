@@ -152,10 +152,12 @@
           console.log(response)
           localStorage.setItem("user-info", JSON.stringify(response.data.data.registerDTO));
           this.$router.push('/dashboard')
+         
           this.$toast.success(`Welcome back! ${response.data.data.registerDTO.recruiterCompany}`, {
             // optional options Object
 
           })
+           location.reload(true)
           // createToast(`Welcome back!! ${response.data.data.registerDTO.recruiterCompany}`, { type: "success" });
         }
       }

@@ -61,6 +61,10 @@ export default {
         localStorage.removeItem("user-info")
         localStorage.removeItem("job-info")
         localStorage.removeItem("sign-info")
+        localStorage.removeItem("candidateReview-info")
+        localStorage.removeItem("counttotal-info")
+        localStorage.removeItem("countreject-info")
+        localStorage.removeItem("countaccept-info")
        
         this.$router.push("/login");
         // createToast("logout success!", { type: "success" });
