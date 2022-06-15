@@ -15,7 +15,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
 
-        <form class="d-flex flex-row align-items-center">
+        <form >
           <router-link class="btn btn-outline-primary fw-bold btn-login" to="/login" width>Login</router-link>
           <router-link class="btn btn-primary fw-bold btn-signup" to="/signup">Get started</router-link>
           <!-- <router-link class="btn btn-primary"  >user</router-link> -->
@@ -52,4 +52,20 @@
   .btn-login{
     text-decoration: none;
   }
+
+  /* BREAKPOINTS */
+  /* MOBILE S & M*/
+  @media only screen and (max-width: 375px){
+    .btn-login {
+      width: 145px;
+      padding: 12px;
+      height: auto;
+      border-radius: 30px;
+      margin-bottom: 20px;
+    }
+  }
+
+  
+
+
 </style>
