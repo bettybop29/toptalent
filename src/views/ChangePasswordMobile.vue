@@ -87,7 +87,7 @@
   import jwt_decode from "jwt-decode";
 
   export default {
-    name: "ChangePassword",
+    name: "ChangePasswordMobile",
     data() {
       return {
         password: "",
