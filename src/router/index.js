@@ -12,6 +12,7 @@ import ExpiredSignup from '@/views/ExpiredSignup.vue'
 import VerificationPassword from '@/views/VerificationPassword.vue'
 import ChangePassword from '@/views/ChangePassword.vue'
 import ChangePasswordMobile from '@/views/ChangePasswordMobile.vue'
+import ChangePassMobileSuccess from '@/views/ChangePassMobileSuccess.vue'
 
 import ResetPass from '@/views/ResetPass.vue'
 import UpdateProfile from '../components/UpdateProfile.vue'
@@ -108,6 +109,11 @@ const routes = [
     path: '/changepassmobile/:token',
     name: 'ChangePasswordMobile',
     component: ChangePasswordMobile, 
+  },
+  {
+    path: '/change-pass-success',
+    name: 'ChangePassMobileSuccess',
+    component: ChangePassMobileSuccess, 
   },
   {
     path: '/resetpass',
