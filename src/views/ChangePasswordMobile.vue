@@ -29,9 +29,9 @@
     <section class="section-form card">
       <form @submit.prevent="resetPass">
         <div class="mb-3">
-          <label for="exampleInputEmai2" class="form-label" hidden>Email</label>
+          <label for="exampleInputEmai2" class="form-label" >Email</label>
           <input type="text" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp"
-            v-model="decoded.email" required disabled hidden>
+            v-model="decoded.email" required disabled >
 
         </div>
         <div class="mb-1">
@@ -133,20 +133,27 @@
         let response = '';
         try {
           response = await axios.post(
-            `http://54.255.4.75:9091/api/v1/auth/change-password?email=${this.decoded.email}&newPassword=${this.password}&confirmPassword=${this.password_Confirm}`
+            // `http://54.255.4.75:9091/api/v1/jobseeker/change-password?email=${this.decoded.email}&newPassword=${this.password}&confirmPassword=${this.password_Confirm}`
+            `http://54.255.4.75:9091/api/v1/jobseeker/change-password?email=${this.decoded.email}&password=${this.password}&confirmPassword=${this.password_Confirm}`
           )
-
+        // console.log(this.decoded.email)
+        localStorage.setItem("mobile-email", JSON.stringify(this.decoded.email));
         } catch (err) {
           console.log(err.response.data.message)
           this.$toast.error(err.response.data.message)
         }
         if (response.status === 200) {
+          
+          console.log("tes")
+          // localStorage.setItem("mobile-email", JSON.stringify(this.decoded.email));
           // window.alert("Password Changed");
           this.$toast.success('Password Changed', {
             // optional options Object
 
           })
-          this.$router.push('/login')
+          this.$router.push('/change-pass-success')
+          
+
         }
       },
       myFunction1() {
