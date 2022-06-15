@@ -133,7 +133,17 @@
         editorData: '',
         editorConfig: {
           // The configuration of the editor.
-
+          toolbar: {
+            items: [
+              'heading',
+              '|',
+              'bold',
+              'italic',
+              'bulletedList',
+              'undo',
+              'redo'
+            ]
+          }
         },
         profile: [null],
         value: '',
