@@ -52,7 +52,7 @@
                             v-if="this.check == true && this.searchDisabled == false">
                             Save Changes
                           </button>
-                          <button v-if="searchDisabled == true" class="btn btn-primary" type="button" disabled>
+                          <button v-if="searchDisabled == true" class="btn valid custom-file-upload" type="button" disabled>
                             Loading...
                           </button>
                         </form>
@@ -315,7 +315,7 @@
     align-items: baseline;
   }
   .valid{
-    background: lightgreen;
+    background: rgb(15, 163, 15);
   }
 
   /* .custom-file-upload{
