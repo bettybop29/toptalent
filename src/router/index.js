@@ -11,6 +11,8 @@ import ActivationView from '@/views/ActivationView.vue'
 import ExpiredSignup from '@/views/ExpiredSignup.vue'
 import VerificationPassword from '@/views/VerificationPassword.vue'
 import ChangePassword from '@/views/ChangePassword.vue'
+import ChangePasswordMobile from '@/views/ChangePasswordMobile.vue'
+
 import ResetPass from '@/views/ResetPass.vue'
 import UpdateProfile from '../components/UpdateProfile.vue'
 import PostJobView from "@/views/PostjobView.vue"
@@ -103,6 +105,11 @@ const routes = [
     component: ChangePassword
   },
   {
+    path: '/changepassmobile/:token',
+    name: 'ChangePasswordMobile',
+    component: ChangePasswordMobile, 
+  },
+  {
     path: '/resetpass',
     name: 'ResetPass',
     component: ResetPass
@@ -137,6 +144,7 @@ const routes = [
     name: 'ApplicantJobComponent',
     component: ApplicantJobComponent, 
   },
+  
   
   
 ]

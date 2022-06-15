@@ -3,143 +3,222 @@
   <div>
     <sidebar-component />
     <sidebar-right v-if="this.sidepop == true" :view="views"></sidebar-right>
-    <sidebar-right-review v-if="this.sidepop == false & this.err == '200'"></sidebar-right-review>
-    <sidebar-right-empty v-if="this.err =='400'"></sidebar-right-empty>
-
-    <nav-mobile></nav-mobile>
-
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 ">
-          <div class="card greetings mb-4">
-            <h2 class="main-head">Hi, {{recruiters.recruiterCompany}}!</h2>
-            <div class="row">
-              <div class="col-lg-3 col-6">
-                <img class="animate__animated animate__tada" src="@/assets/saly.png" alt="">
-              </div>
-              <div class=" col-lg-9 col-6">
-
-                <div class="card-text">
-                  <h5 class="welcome">Welcome Back</h5>
-                  <h5 id="info">You have <span class="decor">{{edit.data}}</span> new
-                    resume(s)</h5>
-                </div>
-                <button class="btn" hidden>See all</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="card-monitor">
-
-            <div class="card-approve">
-              <!-- <img src="../assets/reject.png" alt=""> -->
-              <div class="card-title">
-                <radial-progress-bar :diameter="100" :stopColor="stopColor" :startColor="startColor"
-                  :innerStrokeColor="innerStrokeColor" v-bind:completed-steps="accept.data"
-                  v-bind:total-steps="total.data" :strokeWidth="6" :innerStrokeWidth="6" class="radial-custom">
-                  <p class="ellipse-title">{{percentt}}%</p>
-                </radial-progress-bar>
-                <h2 class="sum-title">Summary of approve</h2>
-
-                <h3 class="data-progress">{{accept.data}}<span> / {{total.data}}</span></h3>
-
-              </div>
-            </div>
-            <div class="card-reject">
-              <radial-progress-bar :diameter="100" :stopColor="stopColor" :startColor="startColor"
-                :innerStrokeColor="innerStrokeColor" v-bind:completed-steps="reject.data"
-                v-bind:total-steps="total.data" :strokeWidth="6" :innerStrokeWidth="6" class="radial-custom">
-                <p class="ellipse-title">{{percent}}%</p>
-              </radial-progress-bar>
-              <h2 class="sum-title">Summary of reject</h2>
-              <h3 class="data-progress">{{reject.data}}<span> / {{total.data}}</span></h3>
-
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-
     <div>
-    </div>
 
-    <div class="table-wrapper">
-      <table class="table">
-        <thead>
-          <h3>Resume</h3>
-          <tr>
-            <th scope="col">No.</th>
-            <th scope="col">Name</th>
-            <th scope="col">Contact</th>
-            <th scope="col">Status</th>
-            <th scope="col">Job Name</th>
-            <th scope="col">Position</th>
-            <th scope="col">Action</th>
+      <sidebar-right-review v-if="this.sidepop == false & this.err == '200'"></sidebar-right-review>
+      <sidebar-right-empty v-if="this.err =='400'"></sidebar-right-empty>
 
+      <nav-mobile></nav-mobile>
 
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(resume, index) in list" :key="resume.id">
-            <td scope="row">{{index + 1}}
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 ">
+            <div class="card greetings mb-4">
+              <h2 class="main-head">Hi, {{recruiters.recruiterCompany}}!</h2>
+              <div class="row">
+                <div class="col-lg-3 col-6">
+                  <img class="animate__animated animate__tada" src="@/assets/saly.png" alt="">
+                </div>
+                <div class=" col-lg-9 col-6">
 
-            </td>
-            <td>{{resume.jobseekerName}}</td>
-            <td>{{resume.jobseekerEmail}}</td>
-            <td>
-              <p v-if="resume.applicationStatus != 'sent'">{{resume.applicationStatus}}</p>
-              <p v-else>Reviewed</p>
-            </td>
-            <td>{{resume.jobName}}</td>
-            <td>
-              <p v-if="resume.jobPosition != 'Internship'" class="position">{{resume.jobPosition}}</p>
-              <p v-else class="position2">{{resume.jobPosition}}</p>
-            </td>
-            <td class="d-none d-md-block"><button class="btn-primary btn-view"
-                @click="getView(resume.applicationId)">View</button></td>
-
-            <td class="d-block d-md-none">
-              <!-- <button class="btn-primary" @click="getView(resume.applicationId)">View</button> -->
-
-              <!-- Button trigger modal -->
-              <button @click="getView(resume.applicationId)" type="button" class="btn btn-primary btn-view"
-                data-bs-toggle="modal" data-bs-target="#exampleModal">
-                View
-                <p></p>
-              </button>
-            </td>
-
-          </tr>
-        </tbody>
-      </table>
-
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Accept Applicant</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  <div class="card-text">
+                    <h5 class="welcome">Welcome Back</h5>
+                    <h5 id="info">You have <span class="decor">{{edit.data}}</span> new
+                      resume(s)</h5>
+                  </div>
+                  <button class="btn" hidden>See all</button>
+                </div>
+              </div>
             </div>
-            <div class="modal-body">
-              Are you sure you want to accept {{ views.jobseekerName}}?
+          </div>
+
+          <div class="col-md-6">
+            <div class="card-monitor">
+
+              <div class="card-approve">
+                <!-- <img src="../assets/reject.png" alt=""> -->
+                <div class="card-title">
+                  <radial-progress-bar :diameter="100" :stopColor="stopColor" :startColor="startColor"
+                    :innerStrokeColor="innerStrokeColor" v-bind:completed-steps="accept.data"
+                    v-bind:total-steps="total.data" :strokeWidth="6" :innerStrokeWidth="6" class="radial-custom">
+                    <p class="ellipse-title">{{percentt}}%</p>
+                  </radial-progress-bar>
+                  <h2 class="sum-title">Summary of approve</h2>
+
+                  <h3 class="data-progress">{{accept.data}}<span> / {{total.data}}</span></h3>
+
+                </div>
+              </div>
+              <div class="card-reject">
+                <radial-progress-bar :diameter="100" :stopColor="stopColor" :startColor="startColor"
+                  :innerStrokeColor="innerStrokeColor" v-bind:completed-steps="reject.data"
+                  v-bind:total-steps="total.data" :strokeWidth="6" :innerStrokeWidth="6" class="radial-custom">
+                  <p class="ellipse-title">{{percent}}%</p>
+                </radial-progress-bar>
+                <h2 class="sum-title">Summary of reject</h2>
+                <h3 class="data-progress">{{reject.data}}<span> / {{total.data}}</span></h3>
+
+              </div>
+
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-success" data-bs-dismiss="modal"
-                v-on:click="accepted(views.applicationId)">Yes, accept</button>
-              <button type="button" class="btn btn-outline-danger" v-on:click="rejected(views.applicationId)">No,
-                Reject</button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div>
+
+      </div>
+
+      <div class="table-wrapper">
+        <table class="table">
+          <thead>
+            <h3>Resume</h3>
+            <tr>
+              <th scope="col">No.</th>
+              <th scope="col">Name</th>
+              <th scope="col">Contact</th>
+              <th scope="col">Status</th>
+              <th scope="col">Job Name</th>
+              <th scope="col">Position</th>
+              <th scope="col">Action</th>
+
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(resume, index) in list" :key="resume.id">
+              <td scope="row">{{index + 1}}</td>
+              <td>
+                <!-- {{resume.jobseekerName}} -->
+                <router-link class="jobseeker-name" :to="'/applicant-detail/'+ resume.jobseekerId">
+                  {{resume.jobseekerName}}
+                </router-link>
+              </td>
+              <td>{{resume.jobseekerEmail}}</td>
+              <td>
+                <p v-if="resume.applicationStatus != 'sent'">{{resume.applicationStatus}}</p>
+                <p v-else>Reviewed</p>
+              </td>
+              <td>{{resume.jobName}}</td>
+              <td>
+                <p v-if="resume.jobPosition != 'Internship'" class="position">{{resume.jobPosition}}</p>
+                <p v-else class="position2">{{resume.jobPosition}}</p>
+              </td>
+              <td class="d-none d-md-block">
+                <button class="btn btn-primary btn-view mb-3"
+                  @click="getView(resume.applicationId)">View
+                </button>
+                 
+              </td> 
+                
+
+              <td class="d-block d-md-none">
+                <!-- <button class="btn-primary" @click="getView(resume.applicationId)">View</button> -->
+
+                <!-- Button trigger modal -->
+                <button @click="getView(resume.applicationId)" type="button" class="btn btn-primary btn-view"
+                  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  View
+                  <p></p>
+                </button>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Accept Applicant</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+
+                <div class="li-foto mb-4">
+                  <img v-if="views.jobseekerImage == null" src="http://54.255.4.75:9091/resources/pfekimaggdc7k9r.png"
+                    alt="">
+                  <img v-else :src="'http://54.255.4.75:9091/resources/'+ views.jobseekerImage" alt="">
+                </div>
+
+                <div>
+                  <p class="text-center"> {{views.jobseekerName}}</p>
+
+                  <p v-if="views.jobseekerProfession == null" class="text-center">---</p>
+                  <p v-else class="text-center">{{views.jobseekerProfession}}</p>
+
+                </div>
+
+                <p class="li-title">Basic Information</p>
+                <!-- tabel untuk data jobseeker -->
+                <table class="jobseeker-informations mb-4">
+                  <tbody>
+
+                    <tr>
+                      <th style="width: 25%;">Birthdate</th>
+                      <td v-if="views.jobseekerDateOfBirth == null" class="text-side text-muted">-</td>
+                      <td v-else class="text-side mt-4">{{views.jobseekerDateOfBirth}}</td>
+                    </tr>
+                    <tr>
+                      <th>Phone</th>
+                      <td v-if="views.jobseekerPhone == null" class="text-side text-muted">-</td>
+                      <td class="text-side mt-4">{{views.jobseekerPhone}}</td>
+                    </tr>
+                    <tr>
+                      <th>Email</th>
+                      <td v-if="views.jobseekerEmail == null" class="text-side text-muted">-</td>
+                      <td class="text-side mt-4 ">{{views.jobseekerEmail}}</td>
+                    </tr>
+
+                  </tbody>
+                </table>
+
+                <!-- resume -->
+                <div class="mb-2">
+                  <button v-if="views.jobseekerResume == '' || views.jobseekerResume == null" class="btn btn-no-resume act lnk"
+                    disabled>No data resume
+                  </button>
+                  <a v-else v-bind:href="'http://54.255.4.75:9091/resources/' + views.jobseekerResume" target="_blank"
+                    download class="btn btn-resume act lnk">Resume
+                    <font-awesome-icon :icon="['fas','download']" />
+                  </a>
+                </div>
+
+                <!-- portofolio -->
+                <div class="mb-2">
+                  <button v-if="views.jobseekerPortfolio == '' || views.jobseekerPortfolio == null"
+                    class="btn btn-no-resume act lnk" disabled>
+                    No Portofolio
+                    <font-awesome-icon :icon="['fas','link']" />
+                  </button>
+
+                  <a v-else v-bind:href="views.jobseekerPortfolio" target="_blank" class=" btn-resume act lnk">
+                    Portofolio
+                    <font-awesome-icon :icon="['fas','link']" />
+                  </a>
+                </div>
+
+                <p class="confirmation">
+                  Are you sure you want to accept {{ views.jobseekerName}}?
+                </p>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                  v-on:click="accepted(views.applicationId)">Yes, accept</button>
+                <button type="button" class="btn btn-outline-danger" v-on:click="rejected(views.applicationId)">No,
+                  Reject</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
+    </div>
   </div>
 </template>
 
@@ -152,15 +231,12 @@
   import RadialProgressBar from 'vue-radial-progress'
   import NavMobile from '../components/NavMobile.vue'
 
-
-
   export default {
     components: {
       SidebarComponent,
-      // SidebarRightEmpty, 
+      SidebarRightEmpty,
       SidebarRightReview,
       SidebarRight,
-      SidebarRightEmpty,
       RadialProgressBar,
       NavMobile
     },
@@ -184,6 +260,10 @@
         percentt: ''
       }
     },
+
+
+
+
     methods: {
       async percenttCount() {
         const accept = JSON.parse(localStorage.getItem("countaccept-info"))
@@ -309,7 +389,8 @@
         this.percentCount(),
         this.percenttCount()
     },
-    };
+
+  };
 </script>
 
 <style scoped>
@@ -363,8 +444,6 @@
   .btn-view {
     border-radius: 10px;
     border-style: none;
-    padding: 5px;
-    /* width: 100%; */
   }
 
   .btn-view:hover {
@@ -480,22 +559,6 @@
 
   }
 
-  /* .btn {
-    font-size: 12px;
-    padding: 8px;
-    border-radius: 30px;
-    background: orange;
-    color: white;
-    margin-top: 30px;
-    width: 190px;
-
-  } */
-
-  .btn:hover {
-    background: rgb(235, 153, 1);
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-  }
-
   .table {
     margin-left: 310px;
     width: 52.5%;
@@ -535,7 +598,83 @@
     padding-right: 40px;
   }
 
-  /* breakpoints */
+  .jobseeker-name {
+    color: #000;
+    text-decoration: none;
+  }
+
+  .jobseeker-name:hover {
+    text-decoration: underline;
+  }
+
+  .li-foto img {
+    width: 100px;
+    height: 100px;
+    margin-left: 55%;
+    margin-top: -20px;
+    border-radius: 50%;
+    border: 3px solid #f3f3f3;
+  }
+
+  .btn-resume {
+    border: none;
+    padding: 15px;
+    border-radius: 20px;
+    background: #F6F6FF;
+    display: flex;
+    transition: box-shadow 0.5s;
+  }
+
+  .btn-no-resume {
+    border: none;
+    padding: 15px;
+    border-radius: 20px;
+    background: #F6F6FF;
+    display: flex;
+    transition: box-shadow 0.5s;
+    width: 100%;
+  }
+
+  .lnk {
+    text-decoration: none;
+    color: black;
+  }
+
+  .act {
+    justify-content: space-between;
+  }
+
+  .li-title {
+    padding: 0;
+    font-weight: bold;
+    text-align: center;
+    color: #006EFF;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .jobseeker-informations td {
+    font-size: 14px;
+    height: 40px;
+    margin-left: 5px;
+    text-align: right;
+  }
+
+  .jobseeker-informations th {
+    font-size: 14px;
+    height: 40px;
+    font-weight: 500;
+  }
+
+  .confirmation{
+    margin-top: 2rem;
+  }
+
+  /* =================================================================================================
+  BREAKPOINTS
+  ================================================================================================= */
   /* for mobile */
   @media only screen and (max-width: 576px) {
     .container {
@@ -548,6 +687,13 @@
       margin-left: 20px;
       width: 52.5%;
       background: rgb(249, 249, 249)
+    }
+
+    .btn-view{
+      margin-top: 10px;
+      /* padding-top: 20px; */
+      padding-right: 10px;
+      padding-left: 10px;
     }
 
   }

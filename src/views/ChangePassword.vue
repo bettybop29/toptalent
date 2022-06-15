@@ -74,7 +74,7 @@
             <li>1 symbol/special character</li>
           </ul>
         </div>
-        <input type="submit" v-on:click="submit" class="btn btn-primary" value="Submit">
+        <input type="submit" v-on:click="submit" class="btn btn-primary w-100" value="Submit">
       </form>
     </section>
     <!-- </div> -->

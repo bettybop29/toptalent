@@ -28,7 +28,7 @@
                             Loading...
                         </button>
 
-                        <button v-else type="submit" class="btn btn-primary btn-reset"
+                        <button v-else type="submit" class="btn btn-primary btn-reset w-100"
                             :disabled="searchDisabled">Reset</button>
                     </form>
                 </div>

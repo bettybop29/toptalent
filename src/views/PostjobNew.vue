@@ -59,9 +59,11 @@
                     <label for="recipient-name" class="col-form-label">Job requirement:</label>
                     <ckeditor :editor="editor" tag-name="textarea" v-model="jobRequirement" :config="editorConfig"
                       v-bind:class="{'form-control':true, 'is-invalid' : !validJobRequirement(jobRequirement) && jobrequirementBlured}"
-                      v-on:blur="jobrequirementBlured = true" >
+                      v-on:blur="jobrequirementBlured = true">
                     </ckeditor>
-                    <div class="invalid-feedback">Please fill blank form <font-awesome-icon icon="fa-solid fa-circle-exclamation" /></div>
+                    <div class="invalid-feedback">Please fill blank form
+                      <font-awesome-icon icon="fa-solid fa-circle-exclamation" />
+                    </div>
                   </div>
                   <div class="mb-3">
                     <label for="message-text" class="col-form-label">Job description:</label>
@@ -69,9 +71,10 @@
                       :config="editorConfig"
                       v-bind:class="{'form-control':true, 'is-invalid' : !validJobDesc(jobDesc) && jobdescBlured}"
                       v-on:blur="jobdescBlured = true"></ckeditor>
-                    <div class="invalid-feedback">Please fill blank form <font-awesome-icon icon="fa-solid fa-circle-exclamation" /></div>
+                    <div class="invalid-feedback">Please fill blank form
+                      <font-awesome-icon icon="fa-solid fa-circle-exclamation" />
+                    </div>
                     <!-- <textarea class="form-control" id="jobdescription" v-model="jobDesc"></textarea> -->
-
                   </div>
                   <div class="mb-3">
                     <label for="message-text" class="col-form-label">Job address:</label>
@@ -321,13 +324,14 @@
 
   /* BREAKPOINTS */
   /* MOBILE */
-  @media only screen and (max-width: 576px){
-    .main{
+  @media only screen and (max-width: 576px) {
+    .main {
       margin-left: 10px;
       margin-top: 60px;
     }
   }
-  .valid-pop{
+
+  .valid-pop {
     border-radius: 10px;
     width: 195px;
     padding: 9px;
