@@ -27,7 +27,6 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-<<<<<<< HEAD
                 <div class="form-data" v-if="!submitted">
 
                   <div class="forms-inputs mb-4"> <span>Job name:</span>
@@ -43,19 +42,6 @@
                     <div class="invalid-feedback">Please fill blank form</div>
                   </div>
                   <div class="forms-inputs mb-4">
-=======
-              <div class="form-data" >
-                  
-                    <div class="forms-inputs mb-4"> <span>Job name:</span> 
-                    <input type="text" v-model="jobName" v-bind:class="{'form-control':true, 'is-invalid' : !validjobName(jobName) && jobnameBlured}" v-on:blur="jobnameBlured = true" required> 
-                        <div class="invalid-feedback">Please fill blank form</div>
-                    </div>
-                    <div class="forms-inputs mb-4"> <span>Job salary:</span> 
-                    <input type="number" v-model="jobSalary" v-bind:class="{'form-control':true, 'is-invalid' : !validjobSalary(jobSalary) && jobsalaryBlured}" v-on:blur="jobsalaryBlured = true" required>
-                        <div class="invalid-feedback">Please fill blank form</div>
-                    </div>
-                    <div class="forms-inputs mb-4">
->>>>>>> 6dfde8b78b5897893784fe15e823a6ee7f69ff89
                     <label for="inputState">Job position</label>
                     <select class="form-control" id="inputState" v-model="jobPosition"
                       v-bind:class="{'form-control':true, 'is-invalid' : !validJobPosition(jobPosition) && jobpositionBlured}"
@@ -73,9 +59,11 @@
                     <label for="recipient-name" class="col-form-label">Job requirement:</label>
                     <ckeditor :editor="editor" tag-name="textarea" v-model="jobRequirement" :config="editorConfig"
                       v-bind:class="{'form-control':true, 'is-invalid' : !validJobRequirement(jobRequirement) && jobrequirementBlured}"
-                      v-on:blur="jobrequirementBlured = true" >
+                      v-on:blur="jobrequirementBlured = true">
                     </ckeditor>
-                    <div class="invalid-feedback">Please fill blank form <font-awesome-icon icon="fa-solid fa-circle-exclamation" /></div>
+                    <div class="invalid-feedback">Please fill blank form
+                      <font-awesome-icon icon="fa-solid fa-circle-exclamation" />
+                    </div>
                   </div>
                   <div class="mb-3">
                     <label for="message-text" class="col-form-label">Job description:</label>
@@ -83,12 +71,10 @@
                       :config="editorConfig"
                       v-bind:class="{'form-control':true, 'is-invalid' : !validJobDesc(jobDesc) && jobdescBlured}"
                       v-on:blur="jobdescBlured = true"></ckeditor>
-                    <div class="invalid-feedback">Please fill blank form <font-awesome-icon icon="fa-solid fa-circle-exclamation" /></div>
+                    <div class="invalid-feedback">Please fill blank form
+                      <font-awesome-icon icon="fa-solid fa-circle-exclamation" />
+                    </div>
                     <!-- <textarea class="form-control" id="jobdescription" v-model="jobDesc"></textarea> -->
-<<<<<<< HEAD
-
-=======
->>>>>>> 6dfde8b78b5897893784fe15e823a6ee7f69ff89
                   </div>
                   <div class="mb-3">
                     <label for="message-text" class="col-form-label">Job address:</label>
@@ -113,7 +99,6 @@
                     </div>
                   </div>
                 </div>
-<<<<<<< HEAD
               </div>
             </div>
           </div>
@@ -133,9 +118,6 @@
                   post it!</button>
               </div>
             </div>
-=======
-           </div>
->>>>>>> 6dfde8b78b5897893784fe15e823a6ee7f69ff89
           </div>
         </div>
       </form>
@@ -342,13 +324,14 @@
 
   /* BREAKPOINTS */
   /* MOBILE */
-  @media only screen and (max-width: 576px){
-    .main{
+  @media only screen and (max-width: 576px) {
+    .main {
       margin-left: 10px;
       margin-top: 60px;
     }
   }
-  .valid-pop{
+
+  .valid-pop {
     border-radius: 10px;
     width: 195px;
     padding: 9px;

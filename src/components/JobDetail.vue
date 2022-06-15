@@ -74,11 +74,7 @@
               </div>
               <div class="col-12">
                 <!-- <small class="text-muted">Created on {{job.createdAt}}</small> -->
-<<<<<<< HEAD
-                <small class="text-muted">Created <time-ago :datetime="job.createdAt" refresh long></time-ago></small>
-=======
                 <small class="text-muted">Created on {{moment(job.createdAt).format('DD MMM YYYY')}}</small>
->>>>>>> 6dfde8b78b5897893784fe15e823a6ee7f69ff89
               </div>
             </div>
 
@@ -128,24 +124,15 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import axios from 'axios'
 import sidebarcomponent from '@/components/SidebarComponent.vue'
 import applicantjobcomponent from '@/components/ApplicantJobComponent.vue'
-<<<<<<< HEAD
-import { TimeAgo } from 'vue2-timeago'
-import NavMobile from '@/components/NavMobile.vue'
-=======
 import NavMobile from '@/components/NavMobile.vue'
 import moment from 'moment';
 moment().format();
->>>>>>> 6dfde8b78b5897893784fe15e823a6ee7f69ff89
 
 export default {
   props:['item'],
   components:{
     sidebarcomponent,
     applicantjobcomponent,
-<<<<<<< HEAD
-    TimeAgo,
-=======
->>>>>>> 6dfde8b78b5897893784fe15e823a6ee7f69ff89
     NavMobile,
   },
   data(){

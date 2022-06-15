@@ -13,10 +13,7 @@
             <h5>Jane Doe</h5>
             <h6>Founder, PT Karya Bangsa Nasional</h6>
           </div>
-<<<<<<< HEAD
         </div>
-=======
->>>>>>> 6dfde8b78b5897893784fe15e823a6ee7f69ff89
       </div>
       <div class="col-md-5 section-right">
         <h1 class="animate__animated animate__fadeInDown">Start Building Your Top Company!</h1>
@@ -26,7 +23,6 @@
               <label for="email" class="form-label mt-4">Email</label>
               <input type="email" v-model="recruiterEmail" class="form-control" id="email" aria-describedby="emailHelp"
                 placeholder="yourcompany@mail.com"
-<<<<<<< HEAD
                 v-bind:class="{'form-control':true, 'is-invalid' : !validrecruiterEmail(recruiterEmail) && recruiterEmailBlured}"
                 v-on:blur="recruiterEmailBlured = true" />
               <div class="invalid-feedback">A valid email is required!</div>
@@ -39,28 +35,6 @@
 
 
             <label for="password" class="form-label mt-3">Password</label>
-=======
-                required
-              />
-          </div>
-          <div v-if="this.err == 'User already exists'">
-            <b-badge variant="danger">{{err}}</b-badge>
-          </div>
-          
-          <!-- <label for="password" class="form-label mt-3">Password</label>
-          <div>
-            <input
-              type="password"
-              v-model="recruiterPassword"
-              class="form-control"
-              id="password"
-              placeholder="Password123@"
-              required
-            />
-          </div> -->
-
-          <label for="password" class="form-label mt-3">Password</label>
->>>>>>> 6dfde8b78b5897893784fe15e823a6ee7f69ff89
             <!-- addons -->
             <div class="input-group mb-3">
               <input :type="visibility" v-model="recruiterPassword" id="password" class="form-control"
