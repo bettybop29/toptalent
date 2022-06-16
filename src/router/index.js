@@ -83,14 +83,7 @@ const routes = [
     path: '/login',
     name: 'login',
     component: LoginView,
-    beforeEnter:(to,from, next)=>{
-      if(to.name !== 'login' && !isAuthenticated) next({ name:'login' });
-      if(to.name === 'login' && isAuthenticated) next({ name:'login' });
-      else next()
-
-
- 
-    }
+    
     
   },  
   {
@@ -180,15 +173,15 @@ const router = new VueRouter({
 });
 // const Authenticated = false
 
-const isAuthenticated = false;
-// router.beforeEach((to,from,next) =>{
-//   if(to.name !== 'login' && !isAuthenticated) next({ name:'login' }); 
-//   if(to.name === 'login' && isAuthenticated) next({ next:'login' })
+const isAuthenticated = true;
+router.beforeEach((to,from,next) =>{
+  if(to.name !== 'login' && !isAuthenticated) next({ name:'login' }); 
+  // if(to.name === 'login' && isAuthenticated) next({ next:'login' })
   
 
 
-//   else next()
-// })
+  else next()
+})
 
 
 export default router

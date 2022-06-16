@@ -10,7 +10,7 @@
           <a class="navbar-brand">{{userName}}</a>
           <form class="d-flex">
             <div>
-              <button v-if="this.profile == ''" type="button" class="btn btn-primary" data-bs-toggle="modal"
+              <button v-if="this.profile == '' || this.profile == null" type="button" class="btn btn-primary" data-bs-toggle="modal"
                 data-bs-target="#exampleModal">
                 <img class="import-icon" src="../assets/icon-postjob/add.svg" alt="">
                 Create a new job
@@ -41,7 +41,8 @@
               You must update profile to postjob
             </div>
             <div class="modal-footer">
-              <router-link :to="{name: 'updateprofile', params:{id:idRecruiter}}" type="button" class="btn btn-primary">Update Profile</router-link>
+              <a :to="{name: 'updateprofile', params:{id:idRecruiter}}" type="button" class="btn btn-primary">
+                Update Profile</a>
               <!-- <a href="/about" type="button" class="btn btn-primary">Update Profile</a> -->
               <!-- <a href="/about">link</a> -->
               <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
@@ -225,7 +226,7 @@
         userName: "",
         hide: '',
         profile: '',
-        idRecruiter:'',
+        idRecruiter: '',
 
 
         valid: false,
