@@ -41,7 +41,8 @@
                   <radial-progress-bar :diameter="100" :stopColor="stopColor" :startColor="startColor"
                     :innerStrokeColor="innerStrokeColor" v-bind:completed-steps="accept.data"
                     v-bind:total-steps="total.data" :strokeWidth="6" :innerStrokeWidth="6" class="radial-custom">
-                    <p class="ellipse-title">{{percentt}}%</p>
+                    <p v-if="this.accept.data != '0'" class="ellipse-title">{{percentt}}%</p>
+                    <p v-else class="ellipse-title">0%</p>
                   </radial-progress-bar>
                   <h2 class="sum-title">Summary of approve</h2>
 
@@ -53,7 +54,10 @@
                 <radial-progress-bar :diameter="100" :stopColor="stopColor" :startColor="startColor"
                   :innerStrokeColor="innerStrokeColor" v-bind:completed-steps="reject.data"
                   v-bind:total-steps="total.data" :strokeWidth="6" :innerStrokeWidth="6" class="radial-custom">
-                  <p class="ellipse-title">{{percent}}%</p>
+                  <div>
+                    <p v-if="this.reject.data = '0'" class="ellipse-title">0%</p>
+                    <p v-else class="ellipse-title">{{percent}}%</p>  
+                  </div>
                 </radial-progress-bar>
                 <h2 class="sum-title">Summary of reject</h2>
                 <h3 class="data-progress">{{reject.data}}<span> / {{total.data}}</span></h3>
@@ -107,12 +111,11 @@
                 <p v-else class="position2">{{resume.jobPosition}}</p>
               </td>
               <td class="d-none d-md-block">
-                <button class="btn btn-primary btn-view mb-3"
-                  @click="getView(resume.applicationId)">View
+                <button class="btn btn-primary btn-view mb-3" @click="getView(resume.applicationId)">View
                 </button>
-                 
-              </td> 
-                
+
+              </td>
+
 
               <td class="d-block d-md-none">
                 <!-- <button class="btn-primary" @click="getView(resume.applicationId)">View</button> -->
@@ -179,8 +182,8 @@
 
                 <!-- resume -->
                 <div class="mb-2">
-                  <button v-if="views.jobseekerResume == '' || views.jobseekerResume == null" class="btn btn-no-resume act lnk"
-                    disabled>No data resume
+                  <button v-if="views.jobseekerResume == '' || views.jobseekerResume == null"
+                    class="btn btn-no-resume act lnk" disabled>No data resume
                   </button>
                   <a v-else v-bind:href="'http://54.255.4.75:9091/resources/' + views.jobseekerResume" target="_blank"
                     download class="btn btn-resume act lnk">Resume
@@ -270,6 +273,7 @@
         const total = JSON.parse(localStorage.getItem("counttotal-info"))
         const result = Math.round((accept / total) * 100)
         this.percentt = result
+      //  console.warn(accept)
 
       },
       async percentCount() {
@@ -277,6 +281,7 @@
         const total = JSON.parse(localStorage.getItem("counttotal-info"))
         const result = Math.round((reject / total) * 100)
         this.percent = result
+        // console.warn(this.percent)
       },
       async totalnewAplicant() {
         const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
@@ -329,7 +334,7 @@
         await axios.get(`http://54.255.4.75:9091/api/v1/auth/recruiter/${recruiterId}`)
           .then((data) => {
             this.recruiters = data.data
-
+            localStorage.setItem("user-profile", JSON.stringify(data.data.recruiterDesc))
           })
       },
       async countAcc() {
@@ -668,7 +673,7 @@
     font-weight: 500;
   }
 
-  .confirmation{
+  .confirmation {
     margin-top: 2rem;
   }
 
@@ -689,7 +694,7 @@
       background: rgb(249, 249, 249)
     }
 
-    .btn-view{
+    .btn-view {
       margin-top: 10px;
       /* padding-top: 20px; */
       padding-right: 10px;

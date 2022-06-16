@@ -151,6 +151,7 @@
         if (response.status == 200) {
           console.log(response)
           localStorage.setItem("user-info", JSON.stringify(response.data.data.registerDTO));
+          localStorage.setItem("Authenticated", true)
           this.$router.push('/dashboard')
          
           this.$toast.success(`Welcome back! ${response.data.data.registerDTO.recruiterCompany}`, {
@@ -163,6 +164,7 @@
       }
     },
     mounted() {
+      
       // const input = document.querySelector("#phone");
       // intlTelInput(input,{
       //       customPlaceholder: function(selectedCountryPlaceholder, selectedCountryData) {

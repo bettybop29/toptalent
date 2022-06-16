@@ -29,6 +29,10 @@ import TestView from '@/views/TestView.vue'
 
 Vue.use(VueRouter)
 
+// const Authenticated = JSON.parse(localStorage.getItem(Authenticated)).value
+// const Auth = JSON.parse(localStorage.getItem("Authenticated"))
+
+
 const routes = [
   {
     path: '/',
@@ -48,7 +52,12 @@ const routes = [
   {
     path: '/dashboard',
     name: 'dashboard',
-    component: DasboardView
+    component: DasboardView,
+    // meta: { adminOnly: Auth }
+    // beforeEnter:(to, from, next) =>{
+    //   if(to.name !== '/dashboard' && !Authenticated) from({ name: "/dashboard" })
+    //   else next({ name:"/login" })
+    // }
   },
   {
     path: '/updateprofile/:id',
@@ -73,8 +82,17 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    component: LoginView
-  },
+    component: LoginView,
+    beforeEnter:(to,from, next)=>{
+      if(to.name !== 'login' && !isAuthenticated) next({ name:'login' });
+      if(to.name === 'login' && isAuthenticated) next({ name:'login' });
+      else next()
+
+
+ 
+    }
+    
+  },  
   {
     path: '/postjobnew',
     name: 'postjobnew',
@@ -159,6 +177,18 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
-})
+});
+// const Authenticated = false
+
+const isAuthenticated = false;
+// router.beforeEach((to,from,next) =>{
+//   if(to.name !== 'login' && !isAuthenticated) next({ name:'login' }); 
+//   if(to.name === 'login' && isAuthenticated) next({ next:'login' })
+  
+
+
+//   else next()
+// })
+
 
 export default router
