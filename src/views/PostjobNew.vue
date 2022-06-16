@@ -9,11 +9,14 @@
         <div class="container-fluid">
           <a class="navbar-brand">{{userName}}</a>
           <form class="d-flex">
-            <button to="/addnewjob" type="button" class="btn btn-primary act px-3 py-2" data-bs-toggle="modal"
+            <!-- cek apakah sudah melengkapi company profile -->
+            <div>
+              <button to="/addnewjob" type="button" class="btn btn-primary act px-3 py-2" data-bs-toggle="modal"
               data-bs-target="#jobModal" data-bs-whatever="@getbootstrap">
-              <img class="import-icon" src="../assets/icon-postjob/add.svg" alt="">
-              Create a new job
+                <img class="import-icon" src="../assets/icon-postjob/add.svg" alt="">
+                Create a new job
             </button>
+            </div>
           </form>
         </div>
       </nav>
