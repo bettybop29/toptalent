@@ -9,17 +9,46 @@
         <div class="container-fluid">
           <a class="navbar-brand">{{userName}}</a>
           <form class="d-flex">
-            <!-- cek apakah sudah melengkapi company profile -->
             <div>
-              <button to="/addnewjob" type="button" class="btn btn-primary act px-3 py-2" data-bs-toggle="modal"
-              data-bs-target="#jobModal" data-bs-whatever="@getbootstrap">
+              <button v-if="this.profile == ''" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">
                 <img class="import-icon" src="../assets/icon-postjob/add.svg" alt="">
                 Create a new job
-            </button>
+              </button>
+              <button v-else to="/addnewjob" type="button" class="btn btn-primary act px-3 py-2" data-bs-toggle="modal"
+                data-bs-target="#jobModal" data-bs-whatever="@getbootstrap">
+                <img class="import-icon" src="../assets/icon-postjob/add.svg" alt="">
+                Create a new job
+              </button>
+
+              <!-- Button trigger modal -->
+
             </div>
           </form>
         </div>
       </nav>
+
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              You must update profile to postjob
+            </div>
+            <div class="modal-footer">
+              <router-link :to="{name: 'updateprofile', params:{id:idRecruiter}}" type="button" class="btn btn-primary">Update Profile</router-link>
+              <!-- <a href="/about" type="button" class="btn btn-primary">Update Profile</a> -->
+              <!-- <a href="/about">link</a> -->
+              <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <form class="needs-validation">
         <div class="modal fade" id="jobModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -195,7 +224,8 @@
         modalOpen: false,
         userName: "",
         hide: '',
-
+        profile: '',
+        idRecruiter:'',
 
 
         valid: false,
@@ -316,6 +346,14 @@
       const user = JSON.parse(localStorage.getItem("user-info")).recruiterCompany
       this.userName = user
       console.log(this.userName)
+
+      const profile = JSON.parse(localStorage.getItem("user-profile"))
+      this.profile = profile
+      console.warn(this.profile)
+
+      const idRecruiter = JSON.parse(localStorage.getItem("user-info")).recruiterId
+      this.idRecruiter = idRecruiter
+      console.warn(this.idRecruiter)
     },
   };
 </script>

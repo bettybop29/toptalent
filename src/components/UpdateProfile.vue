@@ -3,11 +3,12 @@
     <sidebarcomponent />
     <nav-mobile></nav-mobile>
     <div class="bg-color content">
+      <form action="" @submit.prevent="updateProfile">
       <button class="btn btn-primary new" onclick="history.back()"><i class="bi bi-chevron-left"></i>Go Back</button>
 
       <div class="container section-first">
-
-        <form class="row" @submit.prevent="updateProfile" type="multipart">
+        
+        <div class="row"  type="multipart">
           <h1 class="mb-5">Update Profile</h1>
           <div class="col-md-10 mb-4">
             <label for="validationDefault03" class="form-label">Email:</label>
@@ -54,8 +55,8 @@
           </div>
           <div class="col-md-10 mb-4">
             <label for="validationDefault03" class="form-label">Description</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-              v-model="profile.recruiterDesc"></textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="profile.recruiterDesc"
+              required></textarea>
           </div>
           <div class="col-md-10 mb-4">
             <label for="validationDefault03" class="form-label">Address</label>
@@ -65,12 +66,12 @@
           </div>
 
 
-        </form>
+        </div>
       </div>
       <div class="content-2">
         <div class="container bottom">
           <h1 class="mb-5" style="margin-left:90px;">Contact</h1>
-          <form class="row" @submit.prevent="updateProfile">
+          <div class="row" >
             <div class="col-md-10 mb-4">
 
               <label for="validationDefault03" class="form-label">Phone</label>
@@ -100,10 +101,12 @@
                 required>
             </div>
             <button class="btn btn-success" type="submit">Update</button>
-          </form>
+          </div>
         </div>
       </div>
+      </form>
     </div>
+    
   </div>
 </template>
 
@@ -133,7 +136,17 @@
         editorData: '',
         editorConfig: {
           // The configuration of the editor.
-
+          toolbar: {
+            items: [
+              'heading',
+              '|',
+              'bold',
+              'italic',
+              'bulletedList',
+              'undo',
+              'redo'
+            ]
+          }
         },
         profile: [null],
         value: '',
@@ -170,7 +183,7 @@
           const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
           await axios.put(
             `http://54.255.4.75:9091/api/v1/auth/recruiter/${recruiterId}?recruiterEmail=${this.profile.recruiterEmail}&recruiterCompany=${this.profile.recruiterCompany}&recruiterIndustry=${this.profile.recruiterIndustry}&recruiterPhone=${this.profile.recruiterPhone}&recruiterStaff=${this.profile.recruiterStaff}&recruiterDesc=${this.profile.recruiterDesc}&recruiterAddress=${this.profile.recruiterAddress}&recruiterBenefit=${this.profile.recruiterBenefit}&recruiterFb=${this.profile.recruiterFb}&recruiterIg=${this.profile.recruiterIg}&recruiterLinkedin=${this.profile.recruiterLinkedin}&recruiterCulture=${this.profile.recruiterCulture}&recruiterWebsite=${this.profile.recruiterWebsite}`
-            );
+          );
           this.$router.push('/about')
           // createToast("Profile updated", {type: 'success'});
           this.$toast.success(`Profile updated`, {
