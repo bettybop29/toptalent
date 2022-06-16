@@ -8,37 +8,37 @@
 
       <div class="container section-first">
         
-        <div class="row"  type="multipart">
+        <div type="multipart">
           <h1 class="mb-5">Update Profile</h1>
-          <div class="col-md-10 mb-4">
+          <div class=" mb-4">
             <label for="validationDefault03" class="form-label">Email:</label>
             <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterEmail" disabled>
           </div>
-          <div class="col-md-10 mb-4">
+          <div class="mb-4">
             <label for="validationDefault03" class="form-label">Culture</label>
             <!-- <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterCulture" required> -->
             <ckeditor :editor="editor" tag-name="textarea" :model-value="recruiterCulture"
               v-model="profile.recruiterCulture" :config="editorConfig"></ckeditor>
           </div>
-          <div class="col-md-10 mb-4">
+          <div class="mb-4">
             <label for="validationDefault03" class="form-label">Industry</label>
             <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterIndustry"
               required maxlength="30">
           </div>
-          <div class="col-md-10 mb-4">
+          <div class="mb-4">
             <label for="validationDefault03" class="form-label">Benefit</label>
             <!-- <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterBenefit"  required> -->
             <ckeditor :editor="editor" tag-name="textarea" :model-value="recruiterBenefit"
               v-model="profile.recruiterBenefit" :config="editorConfig"></ckeditor>
           </div>
 
-          <div class="col-md-10 mb-4">
+          <div class="mb-4">
             <label for="validationDefault03" class="form-label">Company</label>
             <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterCompany" required
               maxlength="30">
           </div>
 
-          <div class="col-md-10 mb-4">
+          <div class="mb-4">
             <label for="inputState" class="form-label">Staff</label>
             <!-- <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterStaff" required> -->
             <select class="form-control" id="inputState" v-model="profile.recruiterStaff" required>
@@ -53,12 +53,12 @@
               <option>10000+</option>
             </select>
           </div>
-          <div class="col-md-10 mb-4">
+          <div class="mb-4">
             <label for="validationDefault03" class="form-label">Description</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="profile.recruiterDesc"
               required></textarea>
           </div>
-          <div class="col-md-10 mb-4">
+          <div class="mb-4">
             <label for="validationDefault03" class="form-label">Address</label>
             <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterAddress" required
               maxlength="200">
@@ -71,8 +71,7 @@
       <div class="content-2">
         <div class="container bottom">
           <h1 class="mb-5" style="margin-left:90px;">Contact</h1>
-          <div class="row" >
-            <div class="col-md-10 mb-4">
+            <div class="mb-4">
 
               <label for="validationDefault03" class="form-label">Phone</label>
               <!-- <input v-model="profile.recruiterPhone" type="text" @input="acceptNumber"> -->
@@ -81,27 +80,26 @@
               <input type="tel" class="form-control" @input="acceptNumber" id="telephone"
                 v-model="profile.recruiterPhone">
               <!-- <vue-tel-input v-model="profile.recruiterPhone" mode="international"></vue-tel-input>  -->
-              <small>Format: 0888-1111-2222</small>
+              <small> Format: 0888-1111-2222</small>
             </div>
-            <div class="col-md-10 mb-4">
+            <div class="mb-4">
               <label for="validationDefault03" class="form-label">Facebook</label>
               <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterFb">
             </div>
-            <div class="col-md-10 mb-4">
+            <div class="mb-4">
               <label for="validationDefault03" class="form-label">Instagram</label>
               <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterIg">
             </div>
-            <div class="col-md-10 mb-4">
+            <div class="mb-4">
               <label for="validationDefault03" class="form-label">Linkedin</label>
               <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterLinkedin">
             </div>
-            <div class="col-md-10 mb-4">
+            <div class="mb-4">
               <label for="validationDefault03" class="form-label">Website</label>
               <input class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="profile.recruiterWebsite"
                 required>
             </div>
-            <button class="btn btn-success" type="submit">Update</button>
-          </div>
+            <button class="btn btn-success btn-update" type="submit">Update</button>
         </div>
       </div>
       </form>
@@ -235,12 +233,11 @@
 
   .container {
     background: white;
-    padding: 20px;
+    /* padding: 20px; */
     border-radius: 20px;
     /* position: absolute; */
     margin: 1.5%;
     width: 60%;
-    padding-right: 0;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     margin-left: 20%;
 
@@ -273,7 +270,7 @@
   }
 
   .bottom {
-
+    padding: 40px;
     margin-top: 2%;
     margin-bottom: 10px;
     padding-bottom: 30px;
@@ -285,6 +282,15 @@
 
   .content-2 {
     padding-bottom: 40px;
+  }
+
+  .section-first{
+    padding: 40px;
+  }
+
+  .btn-update{
+    width: 100%;
+    margin-left: 0;
   }
 
   /* BREAKPOINTS */
