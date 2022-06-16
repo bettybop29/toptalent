@@ -37,4 +37,14 @@ main .section-verify .forgot {
   width: 400px;
   height: 400px;
 }
+
+/* ======================================================================
+BREAKPOINT
+====================================================================== */
+@media only screen and (max-width: 576px) {
+  main .section-verify .forgot {
+    width: 80vw;
+    height: 50vh;
+  }
+}
 /*# sourceMappingURL=email.css.map */

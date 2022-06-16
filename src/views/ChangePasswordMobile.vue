@@ -133,7 +133,6 @@
         let response = '';
         try {
           response = await axios.post(
-            // `http://54.255.4.75:9091/api/v1/jobseeker/change-password?email=${this.decoded.email}&newPassword=${this.password}&confirmPassword=${this.password_Confirm}`
             `http://54.255.4.75:9091/api/v1/jobseeker/change-password?email=${this.decoded.email}&password=${this.password}&confirmPassword=${this.password_Confirm}`
           )
         // console.log(this.decoded.email)

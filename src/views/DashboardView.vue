@@ -22,7 +22,7 @@
                 <div class=" col-lg-9 col-6">
 
                   <div class="card-text">
-                    <h5 class="welcome">Welcome Back</h5>
+                    <h5 class="welcome">Welcome</h5>
                     <h5 id="info">You have <span class="decor">{{edit.data}}</span> new
                       resume(s)</h5>
                   </div>

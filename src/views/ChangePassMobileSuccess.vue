@@ -24,7 +24,7 @@
 
     
     <main>
-        <section class="section-verify d-flex align-items-center">
+        <section class="section-change-pass-mobile d-flex align-items-center">
             <div class="col text-center">
                 <img class="forgot" src="frontend/images/mail.jpg" alt="">
                 <h1>You have successfully changed your password. <br>
@@ -56,15 +56,42 @@ export default {
     background-color: #fff;
 }
 
+h1 {
+        font-weight: 600;
+        font-size: 26px;
+        color: #1f1d52;
+    }
+
 .text-logo{
     /* margin-left: -400px; */
     margin-top: 10px;
 }
 
 .forgot{
-    width: 500px !important;
-    height: 300px !important;
+    margin-top: 10%;
+    width: 500px ;
+    height: 300px ;
 }
+
+/* ======================================================================
+BREAKPOINT
+====================================================================== */
+/* mobile s and m */
+@media only screen and (max-width: 576px){
+    .forgot{
+                width: 80vw;
+                height: 30vh;
+                margin-top: 40%;
+            }
+
+            h1 {
+        font-weight: 600;
+        font-size: 16px;
+    }
+    
+}
+
+
 
 
 </style>
