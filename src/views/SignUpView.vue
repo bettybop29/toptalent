@@ -53,13 +53,7 @@
               <div class="invalid-feedback">A valid password is required!</div>
             </div>
 
-            <div v-if="this.err == 'Password must be at least 8 characters'">
-              <span class="badge bg-danger">{{err}}</span>
-            </div>
-            <div
-              v-if="this.err == 'Password must contain at least one number, one capital letter and one special character'">
-              <span class="badge bg-danger">{{err}}</span>
-            </div>
+            
             <div class="password-required">
               <p>Password required:</p>
               <ul>

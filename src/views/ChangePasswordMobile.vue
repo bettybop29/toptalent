@@ -29,9 +29,9 @@
     <section class="section-form card">
       <form @submit.prevent="resetPass">
         <div class="mb-3">
-          <label for="exampleInputEmai2" class="form-label" >Email</label>
+          <label for="exampleInputEmai2" class="form-label" hidden>Email</label>
           <input type="text" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp"
-            v-model="decoded.email" required disabled >
+            v-model="decoded.email" required disabled hidden>
 
         </div>
         <div class="mb-1">
@@ -133,7 +133,6 @@
         let response = '';
         try {
           response = await axios.post(
-            // `http://54.255.4.75:9091/api/v1/jobseeker/change-password?email=${this.decoded.email}&newPassword=${this.password}&confirmPassword=${this.password_Confirm}`
             `http://54.255.4.75:9091/api/v1/jobseeker/change-password?email=${this.decoded.email}&password=${this.password}&confirmPassword=${this.password_Confirm}`
           )
         // console.log(this.decoded.email)
