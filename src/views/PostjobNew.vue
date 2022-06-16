@@ -44,10 +44,10 @@
               You must update profile to postjob
             </div>
             <div class="modal-footer">
-              <a :to="{name: 'updateprofile', params:{id:idRecruiter}}" type="button" class="btn btn-primary">
-                Update Profile</a>
+              <!-- <a :to="{name: 'updateprofile', params:{id:idRecruiter}}" type="button" class="btn btn-primary">
+                Update Profile</a> -->
               <!-- <a href="/about" type="button" class="btn btn-primary">Update Profile</a> -->
-              <!-- <a href="/about">link</a> -->
+              <a class="btn btn-primary" v-bind:href="'/updateprofile/'+ idRecruiter">link</a>
               <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
             </div>
           </div>
