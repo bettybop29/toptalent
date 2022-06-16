@@ -7,7 +7,8 @@
           <img src="http://54.255.4.75:9091/resources/mb3.png" alt=""></li>  
         <li>
           <p>There is no<br>candidate to be reviewed</p>
-          <router-link to="/postjobNew" class="btn btn-primary">Post a new job</router-link>
+          <!-- <router-link to="/postjobNew" class="btn btn-primary">Post a new job</router-link> -->
+          <a href="/postjobNew" class="btn btn-primary">Post a new job</a>
         </li>
 
       </ul>
