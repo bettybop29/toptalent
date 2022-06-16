@@ -29,9 +29,9 @@
     <section class="section-form card">
       <form @submit.prevent="resetPass">
         <div class="mb-3">
-          <label for="exampleInputEmai2" class="form-label" >Email</label>
+          <label for="exampleInputEmai2" class="form-label" hidden>Email</label>
           <input type="text" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp"
-            v-model="decoded.email" required disabled >
+            v-model="decoded.email" required disabled hidden>
 
         </div>
         <div class="mb-1">
