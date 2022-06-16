@@ -35,20 +35,21 @@
       <!-- Modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <div class="modal-content">
+          <div class="modal-content" style="border-radius:20px;">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-              You must update profile to postjob
+            <div class="modal-body content2">
+              <h4>You must update profile to postjob</h4>
+              
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer justify-content-center">
               <!-- <a :to="{name: 'updateprofile', params:{id:idRecruiter}}" type="button" class="btn btn-primary">
                 Update Profile</a> -->
               <!-- <a href="/about" type="button" class="btn btn-primary">Update Profile</a> -->
-              <a class="btn btn-primary" v-bind:href="'/updateprofile/'+ idRecruiter">link</a>
-              <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+              <a class="btn btn-primary " v-bind:href="'/updateprofile/'+ idRecruiter">Update Profile</a>
+              <button type="button" class="btn btn-outline-danger" style="width:139px;" data-bs-dismiss="modal">Cancel</button>
             </div>
           </div>
         </div>
@@ -368,6 +369,9 @@
 <style scoped>
   .main {
     margin-left: 250px;
+  }
+  .content2{
+    text-align: center;
   }
 
   /* BREAKPOINTS */
