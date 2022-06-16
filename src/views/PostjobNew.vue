@@ -1,5 +1,8 @@
 <template>
   <div>
+    <page-loader/>
+  <div>
+    
     <sidebar-component></sidebar-component>
     <nav-mobile></nav-mobile>
 
@@ -162,7 +165,7 @@
       <!-- <job-component class="job-component" :item="item"></job-component> -->
     </div>
   </div>
-
+</div>
 </template>
 <script>
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -174,6 +177,7 @@
   // import CandidatejobComponent from '@/components/CandidatejobComponent.vue';
   // import ParagraphPlugin from '@ckeditor/ckeditor5-paragraph/src/paragraph';
   import NavMobile from '../components/NavMobile.vue'
+    import PageLoader from '@/components/PageLoader.vue'
 
 
 
@@ -187,7 +191,9 @@
       // jobcomponentnew,
       // applicantjobcomponent,
       listjobcomponent,
-      NavMobile
+      NavMobile,
+      PageLoader
+
       // CandidatejobComponent
     },
     props: ['edit'],
