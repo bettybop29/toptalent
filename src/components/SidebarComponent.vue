@@ -14,7 +14,9 @@
                     <router-link class="" to="/dashboard"><font-awesome-icon icon="fa-solid fa-house" class="icn" />Dashboard</router-link>
                 </li>
                 <li>
-                   <router-link class="" to="/postjobNew"><font-awesome-icon icon="fa-solid fa-list" class="icn"/>Post Job</router-link>
+                   <!-- <router-link class="" to="/postjobNew"><font-awesome-icon icon="fa-solid fa-list" class="icn"/>Post Job</router-link> -->
+                   <!-- <a :href="$router.resolve({name: '/postjobnew'}).href"><font-awesome-icon icon="fa-solid fa-list" class="icn"/>Post Job</a> -->
+                   <a href="/postjobnew"><font-awesome-icon icon="fa-solid fa-list" class="icn"/>Post Job</a>
                 </li>
                 <li>
                    <router-link class="" to="/about"><font-awesome-icon icon="fa-solid fa-user" class="icn"/>Company Profile</router-link>
