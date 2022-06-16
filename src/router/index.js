@@ -53,11 +53,9 @@ const routes = [
     path: '/dashboard',
     name: 'dashboard',
     component: DasboardView,
-    // meta: { adminOnly: Auth }
-    // beforeEnter:(to, from, next) =>{
-    //   if(to.name !== '/dashboard' && !Authenticated) from({ name: "/dashboard" })
-    //   else next({ name:"/login" })
-    // }
+    meta: {
+      auth: true,
+    },
   },
   {
     path: '/updateprofile/:id',
@@ -83,7 +81,9 @@ const routes = [
     path: '/login',
     name: 'login',
     component: LoginView,
-    
+    meta: {
+      auth: false,
+    },
     
   },  
   {
@@ -173,15 +173,36 @@ const router = new VueRouter({
 });
 // const Authenticated = false
 
-const isAuthenticated = true;
-router.beforeEach((to,from,next) =>{
-  if(to.name !== 'login' && !isAuthenticated) next({ name:'login' }); 
-  // if(to.name === 'login' && isAuthenticated) next({ next:'login' })
-  
+router.beforeEach(async (to, from, next) => {
+
+  if (to.matched.some(record => record.meta.auth)) {
+    
+    // const isLoggedIn = await store.dispatch('user/isUserLoggon');
+    const Auth = JSON.parse(localStorage.getItem("Authenticated"))
+    if (!Auth) {
+      next('/login');
+    } else {
+      next();
+    }
+  } else if (to.matched.some(record => !record.meta.auth)) {
+    if (Object.keys(to.meta).length > 0) {
+      const Auth = JSON.parse(localStorage.getItem("Authenticated"))
+      // const isLoggedIn = await store.dispatch('user/isUserLoggon');
+
+      if (Auth) {
+        next('/dashboard');
+      } else {
+        next();
+      }
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+});
 
 
-  else next()
-})
 
 
 export default router
