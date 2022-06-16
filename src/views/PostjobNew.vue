@@ -38,7 +38,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              You must update profile to postjob
+              You must update profile to post job
             </div>
             <div class="modal-footer">
               <router-link :to="{name: 'updateprofile', params:{id:idRecruiter}}" type="button" class="btn btn-primary">Update Profile</router-link>
