@@ -187,33 +187,12 @@
      
 
 
-      format(inputDate) {
-        let date, month, year;
-
-        date = inputDate.getDate();
-        month = inputDate.getMonth() + 1;
-        year = inputDate.getFullYear();
-
-        date = date
-          .toString()
-          .padStart(2, '0');
-
-        month = month
-          .toString()
-          .padStart(2, '0');
-
-        return `${date}/${month}/${year}`;
-      },
+     
 
       moment: function (date) {
         return moment(date);
       },
-      candidateDate() {
-        var a = moment([new Date()]);
-        var b = moment([this.item.createdAt]);
-        console.warn(a)
-        return a.diff(b, 'days').format("YYYY MM DD");
-      },
+      
       async countTotalAplicant() {
         await axios.get(`http://54.255.4.75:9091/api/v1/application/count-applicants/${this.item.jobId}`)
           .then((data) => {

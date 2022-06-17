@@ -233,6 +233,7 @@
   import SidebarRightReview from '@/components/SidebarRightReview.vue'
   import RadialProgressBar from 'vue-radial-progress'
   import NavMobile from '../components/NavMobile.vue'
+  
 
   export default {
     components: {
@@ -273,6 +274,7 @@
         const total = JSON.parse(localStorage.getItem("counttotal-info"))
         const result = Math.round((accept / total) * 100)
         this.percentt = result
+        
       //  console.warn(accept)
 
       },
@@ -289,13 +291,16 @@
           .then((data) => {
             this.edit = data.data
             console.log(data.data)
+            if(data.data != 0){
             this.$toast.info(`You have ${data.data.data} new apllicant`, {
               // optional options Object
               position: 'top-right',
               pauseOnHover: true,
               queue: 'true'
             })
+            }
           })
+          
 
       },
       async w3_open() {

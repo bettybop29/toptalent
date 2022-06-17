@@ -70,7 +70,7 @@
       </div>
       <div class="content-2">
         <div class="container bottom">
-          <h1 class="mb-5" style="margin-left:90px;">Contact</h1>
+          <h1 class="mb-5">Contact</h1>
             <div class="mb-4">
 
               <label for="validationDefault03" class="form-label">Phone</label>
@@ -78,9 +78,10 @@
               <!-- <input type="tel" class="form-control" @input="acceptNumber" id="validationDefault03" v-model="profile.recruiterPhone"  
         placeholder="Ex: 0855-1111-2222" min="10" max="12" required> -->
               <input type="tel" class="form-control" @input="acceptNumber" id="telephone"
-                v-model="profile.recruiterPhone">
+                v-model="profile.recruiterPhone" style="width:784px;">
               <!-- <vue-tel-input v-model="profile.recruiterPhone" mode="international"></vue-tel-input>  -->
-              <small> Format: 0888-1111-2222</small>
+              <!-- <small> Format: 0888-1111-2222</small> -->
+              <!-- {{profile.recruiterPhone}} -->
             </div>
             <div class="mb-4">
               <label for="validationDefault03" class="form-label">Facebook</label>

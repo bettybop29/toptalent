@@ -102,27 +102,27 @@
                   <font-awesome-icon icon="fa-solid fa-envelope" class="icn" /> {{profile.recruiterEmail}}</a>
               </div>
               <div>
-                <a class="card-text" v-if="profile.recruiterFb == ''"></a>
+                <a class="card-text" v-if="profile.recruiterFb == ''|| profile.recruiterFb == null"></a>
                 <a class="card-text" v-else>
                   <font-awesome-icon icon="fa-brands fa-facebook" class="icn" /> {{profile.recruiterFb}}</a>
               </div>
               <div>
-                <a class="card-text" v-if="profile.recruiterIg == ''"></a>
+                <a class="card-text" v-if="profile.recruiterIg == '' || profile.recruiterIg == null"></a>
                 <a class="card-text" v-else>
                   <font-awesome-icon icon="fa-brands fa-instagram" class="icn" /> {{profile.recruiterIg}}</a>
               </div>
               <div>
-                <a class="card-text" v-if="profile.recruiterLinkedin == ''"></a>
+                <a class="card-text" v-if="profile.recruiterLinkedin == '' || profile.recruiterLinkedin == null"></a>
                 <a class="card-text" v-else>
                   <font-awesome-icon icon="fa-brands fa-linkedin" class="icn" /> {{profile.recruiterLinkedin}}</a>
               </div>
               <div>
-                <a class="card-text" v-if="profile.recruiterPhone == ''"></a>
+                <a class="card-text" v-if="profile.recruiterPhone == '' || profile.recruiterPhone == null"></a>
                 <a class="card-text" v-else>
                   <font-awesome-icon icon="fa-solid fa-phone" class="icn" /> {{profile.recruiterPhone}}</a>
               </div>
               <div>
-                <a class="card-text" v-if="profile.recruiterWebsite == ''"></a>
+                <a class="card-text" v-if="profile.recruiterWebsite == ''|| profile.recruiterWebsite == null"></a>
                 <a class="card-text" v-else>
                   <font-awesome-icon icon="fa-solid fa-globe" class="icn" /> {{profile.recruiterWebsite}}</a>
               </div>

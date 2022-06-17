@@ -16,17 +16,17 @@
     </div>
     <div class="col-md-3">
 
-      <button v-if="item.applicationStatus != 'sent'" class="btn" v-on:click="revApplicant(item.applicationId)">
+      <button v-if="item.applicationStatus != 'sent'" class="btn" v-on:click="revApplicant(item.applicationId)" onClick="refresh">
         <img class="pt-4" src="../assets/icon-postjob/view-applicant.svg" alt="">
       </button>
-       <button v-else class="btn" v-on:click="accApplicant(item.applicationId)">
+       <button v-else class="btn" v-on:click="accApplicant(item.applicationId)" onClick="refresh">
         <img class="pt-4" src="../assets/icon-postjob/acc-applicant.svg" alt="">
       </button>
       
-      <button v-if="item.applicationStatus != 'sent'" class="btn">  
+      <button v-if="item.applicationStatus != 'sent'" class="btn" onClick="refresh">  
         <img class="pt-4 ms-5" src="../assets/icon-postjob/cancel-applicant.svg" alt="" v-on:click="rejApplicant(item.applicationId)">
       </button>
-      <button v-else class="btn">  
+      <button v-else class="btn" onClick="refresh">  
         <img class="pt-4 ms-5" src="../assets/icon-postjob/cancel-applicant.svg" alt="" v-on:click="rejApplicant(item.applicationId)">
       </button>
       
@@ -94,17 +94,17 @@
       async revApplicant(applicationId){
         await axios.post(`http://54.255.4.75:9091/api/v1/application/status/sent/?applicationId=${applicationId}`)
         this.$toast.success(`Job updated !`)
-        location.reload(true)
+         window.location.reload();
       },
       async rejApplicant(applicationId){
         await axios.post(`http://54.255.4.75:9091/api/v1/application/status/rejected/?applicationId=${applicationId}`)
         this.$toast.success(`Job updated !`)
-        location.reload(true)
+        window.location.reload();
       },
       async accApplicant(applicationId){
        await axios.post(`http://54.255.4.75:9091/api/v1/application/status/accepted/?applicationId=${applicationId}`)
        this.$toast.success(`Job updated !`)
-       location.reload(true)
+        window.location.reload();
       },
       async getLink(jobseekerPortofolio) {
         window.open(`https://${jobseekerPortofolio}`);

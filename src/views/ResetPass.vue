@@ -5,9 +5,16 @@
                 <i class="bi bi-arrow-left-circle"></i> Back
             </router-link>
         </div> -->
+
         <div class="row m-5">
+
             <div class="col-md-6 content1 ">
+                <button class="btn back" onclick="javascript:window.history.back();">
+                    <font-awesome-icon icon="fa-solid fa-chevron-left" />
+                    go back
+                </button>
                 <div class="card card-reset">
+
                     <h1>Reset Password</h1>
                     <span class="label text-muted">
                         The verification email will be sent into mailbox<br>Please check it
@@ -30,6 +37,7 @@
 
                         <button v-else type="submit" class="btn btn-primary btn-reset w-100"
                             :disabled="searchDisabled">Reset</button>
+
                     </form>
                 </div>
             </div>
@@ -136,6 +144,15 @@
 
     .btn-reset {
         padding: 10px;
+    }
+    .back{
+        margin: 10px;
+        padding: 5px;
+        border-radius: 15px;
+    }
+    .back:hover{
+        background: rgba(227, 44, 44, 0.692);
+        border-radius: 15px;
     }
 
     /* breakpoints */
