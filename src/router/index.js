@@ -43,7 +43,10 @@ const routes = [
   {
     path: '/about',
     name: 'about',
-    component: AboutView
+    component: AboutView,
+    meta: {
+      auth: true,
+    },
   },
   {
     path: '/dashboard',
@@ -56,22 +59,34 @@ const routes = [
   {
     path: '/updateprofile/:id',
     name: 'updateprofile',
-    component: UpdateProfile, 
+    component: UpdateProfile,
+    meta: {
+      auth: true,
+    },
   },
   {
     path: '/aplicantdetail/:id',
     name: 'aplicantdetail',
-    component: AplicantDetail, 
+    component: AplicantDetail,
+    meta: {
+      auth: true,
+    },
   },
   {
     path: '/jobsdetail/:id',
     name: 'jobsdetail',
-    component: jobsDetail, 
+    component: jobsDetail,
+    meta: {
+      auth: true,
+    },
   },
   {
     path: '/pdfviewer/:id',
     name: 'PdfViewer',
-    component: PdfViewer, 
+    component: PdfViewer,
+    meta: {
+      auth: true,
+    },
   },
   {
     path: '/login',
@@ -85,7 +100,10 @@ const routes = [
   {
     path: '/postjobnew',
     name: 'postjobnew',
-    component: PostjobNew
+    component: PostjobNew,
+    meta: {
+      auth: true,
+    },
   },
   {
     path: '/signup',
@@ -130,17 +148,26 @@ const routes = [
   {
     path: '/postjobview',
     name: 'postjobview',
-    component: PostJobView
+    component: PostJobView,
+    meta: {
+      auth: true,
+    },
   },
   {
     path: '/addjobview',
     name: 'addjobview',
-    component: AddjobView
+    component: AddjobView,
+    meta: {
+      auth: true,
+    },
   },
   {
     path: '/jobdetail/:id',
     name: 'jobdetail',
-    component: JobDetail, 
+    component: JobDetail,
+    meta: {
+      auth: true,
+    },
   },
   {
     path: '/expiredforgot',
@@ -151,11 +178,17 @@ const routes = [
     path: '/applicant-detail/:id',
     name: 'ApplicantDetailView',
     component: ApplicantDetailView, 
+    meta: {
+      auth: true,
+    },
   },
   {
     path: '/applicant-job',
     name: 'ApplicantJobComponent',
     component: ApplicantJobComponent, 
+    meta: {
+      auth: true,
+    },
   },
   
   

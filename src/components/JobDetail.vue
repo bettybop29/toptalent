@@ -72,7 +72,7 @@
                 </div>
               </div>
 
-              <button class="ict dgr icon-delete" v-on:click="deleteJob(item.jobId)">
+              <button class="ict dgr icon-delete" v-on:click="deleteJob(job.jobId)">{{job.jobId}}
                 <img class="import-icon" src="../assets/icon-postjob/delete.svg" alt="">
               </button>
             </div>
@@ -144,7 +144,17 @@
         editorData: '',
         editorConfig: {
           // The configuration of the editor.
-
+          toolbar: {
+            items: [
+              'heading',
+              '|',
+              'bold',
+              'italic',
+              'bulletedList',
+              'undo',
+              'redo'
+            ]
+          }
         },
         job: [],
         list: [],
@@ -172,12 +182,14 @@
             console.log(this.list)
           })
       },
-      async deleteJob(id) {
+      async deleteJob(jobId) {
         try {
-          let result = await axios.put(`https://toptalentapp.com:9091/api/v1/job/delete/` + id);
+          let result = await axios.put(`https://toptalentapp.com:9091/api/v1/job/delete/` + jobId);
           console.warn(result)
           //  createToast("Job Deleted!", { type: "danger" });
+          this.$toast.success('Job deleted')
           location.reload(true)
+          window.location = "/postjobnew";
         } catch {
           console.warn
         }

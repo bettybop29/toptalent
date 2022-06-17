@@ -53,8 +53,9 @@
               <a v-else v-bind:href="'https://toptalentapp.com:9091/resources/' + item.jobseekerResume"  target="_blank" download class="btn-resume act lnk">Resume <font-awesome-icon :icon="['fas','download']"/></a>
             </li>
           <li>
-            <button v-if="item.jobseekerPortfolio == ''" class="btn-portofolio act text-muted" v-on:click="Toast">No Portofolio<font-awesome-icon :icon="['fas','link']"/></button>
-            <button v-else class="btn-portofolio act" v-on:click="getLink(item.jobseekerPortfolio)">Portofolio <font-awesome-icon :icon="['fas','link']"/></button>
+            <button v-on:click="test">test</button>
+            <!-- <button v-if="item.jobseekerPortfolio == ''" class="btn-portofolio act text-muted" v-on:click="Toast">No Portofolio<font-awesome-icon :icon="['fas','link']"/>w</button>
+            <button v-else class="btn-portofolio act" v-on:click="getLink(item.jobseekerPortfolio)">Portofolio <font-awesome-icon :icon="['fas','link']"/></button> -->
           </li>
 
           <li>
@@ -150,6 +151,18 @@ export default {
         this.openTab = true;
         console.warn(this.openTab)
       },
+       async accepted(id) {
+        await axios.post(`https://toptalentapp.com:9091/api/v1/application/status/accepted/?applicationId=${id}`)
+        // createToast(`Accepted`, { type: "success" });
+        this.$toast.success('Accepted')
+        location.reload()
+      },
+      async rejected(id) {
+        await axios.post(`https://toptalentapp.com:9091/api/v1/application/status/rejected/?applicationId=${id}`)
+        //  createToast(`Reject`, { type: "danger" });
+        this.$toast.success('Rejected')
+        location.reload()
+      },
 
       async countAcc(){
       const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
@@ -163,7 +176,7 @@ export default {
         })
       }
     },
-    Toast(){
+    test(){
         console.warn('test')
         this.$toast.error(`The applicant doesn't have any portfolio`, {
           // optional options Object
@@ -173,6 +186,7 @@ export default {
       },
     mounted(){
       this.countAcc();
+      this.test();
       // this.openSidebar();
     }
 }   
@@ -181,26 +195,25 @@ export default {
 
 <style scoped>
 
-.hide{
-  padding-top: 80px;
+.form-popup-title{
+  width: 235px;
+  text-align: center;
 }
-ul{
-  
+.lnk{
+  text-decoration: none;
+  color: black;
+}
+.fw-normal{
   font-weight: 500;
 }
-    img{
-      width: 180px;
-      height: 180px;
-      margin-left: 29px;
-    }
-    
-    .hide{
-      position: fixed;
-      justify-content: center;
-
-    }
-    
+.icn{
+  width: 20px;
+}
+.act{
+  justify-content: space-between;
+}
     .sidebar-right{
+        
         float: right;
         display: flex;
         margin-top: 20px;
@@ -216,6 +229,7 @@ ul{
         text-decoration: none;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         height: 97vh;
+        /* width: 100%; */
         transition: ease-in-out 1s;
         /* padding-right: 250px; */
 
@@ -226,7 +240,7 @@ ul{
       margin-left: 0px;
       margin-right: 30px;
       padding-right: 0px;
-      text-align: center;
+      text-align: left;
       
       display: flex;
       flex-direction: column;
@@ -237,8 +251,7 @@ ul{
       padding: 0;
       font-weight: bold;
       margin-left: -5px !important;
-      color: #6476c8;
-      
+      color: #006EFF;
       
     }
     .action button{
@@ -258,24 +271,20 @@ ul{
        font-size: 30px;
        font-weight: bolder;
      }
-     .act{
-       justify-content: space-between;
-       text-decoration: none;
-       color: black;
-     }
     .acc{
       width: 44%;
-      background: #6779CD;
+      background: #149E48;
     }
     .acc:hover{
-      background: #6476c8;
+      background: #3dca73;
     }
     .rej{
       width: 44%;
-      background: #E79AA2;
+      background: #FF3232;
     }
-    .rej{
-      background: #d79097;
+    .rej:hover{
+      width: 44%;
+      background: #f55959;
     }
     .btn-resume{
       border: none;
@@ -328,11 +337,14 @@ ul{
       border: 3px solid #f3f3f3;
     }
     .pop{
-     
-     
-      
       text-align: center;
       margin: 0;
+    }
+    .pop1{
+      background: blue;
+    }
+    .pop2{
+      background: red;
     }
     .select-button{
       display: flex;
@@ -341,24 +353,35 @@ ul{
     }
     .modal-body{
       text-align: center;
+      width:410px; 
+      padding: 32px;
     }
     .modal-content{
       border-radius:20px;  
       margin:auto; 
-      width:300px; 
+      
       margin-top:200px; 
       padding-bottom:20px;
+      
     }
     .jobseeker-informations{
       margin-left: -20px;
     }
     .jobseeker-informations td{
+      font-size: 14px;
       height: 40px;
       padding: 15px;
+      right: 0;
     }
     .jobseeker-informations th{
+      font-size: 14px;
       height: 40px;
       padding: 15px;
+      font-weight: 500;
+    }
+    
+    .jobseeker-informations tr{
+      font-weight: 500;
     }
 
     /* ---------------------------------------------------

@@ -41,7 +41,7 @@
                   <radial-progress-bar :diameter="100" :stopColor="stopColor" :startColor="startColor"
                     :innerStrokeColor="innerStrokeColor" v-bind:completed-steps="accept.data"
                     v-bind:total-steps="total.data" :strokeWidth="6" :innerStrokeWidth="6" class="radial-custom">
-                    <p v-if="this.accept.data != '0'" class="ellipse-title">{{percentt}}%</p>
+                    <p v-if="this.accept.data !== 0" class="ellipse-title">{{percentt}}%</p>
                     <p v-else class="ellipse-title">0%</p>
                   </radial-progress-bar>
                   <h2 class="sum-title">Summary of approve</h2>
@@ -55,7 +55,7 @@
                   :innerStrokeColor="innerStrokeColor" v-bind:completed-steps="reject.data"
                   v-bind:total-steps="total.data" :strokeWidth="6" :innerStrokeWidth="6" class="radial-custom">
                   <div>
-                    <p v-if="this.reject.data = '0'" class="ellipse-title">0%</p>
+                    <p v-if="this.reject.data == 0" class="ellipse-title">0%</p>
                     <p v-else class="ellipse-title">{{percent}}%</p>  
                   </div>
                 </radial-progress-bar>
@@ -283,7 +283,7 @@
         const total = JSON.parse(localStorage.getItem("counttotal-info"))
         const result = Math.round((reject / total) * 100)
         this.percent = result
-        // console.warn(this.percent)
+        console.warn(result)
       },
       async totalnewAplicant() {
         const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
@@ -531,7 +531,9 @@
   }
 
   .card-approve {
-    background-image: url("../assets/approve.png");
+    /* background-image: url("../assets/approve.png"); */
+      background-color: #4158D0;
+background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
     border-radius: 20px;
     height: 133px;
     width: 373px;
@@ -542,7 +544,9 @@
 
   .card-reject {
     padding: 20px;
-    background-image: url("../assets/reject.png");
+    /* background-image: url("../assets/reject.png"); */
+background-color: #FBDA61;
+background-image: linear-gradient(45deg, #FBDA61 0%, #FF5ACD 100%);
     border-radius: 20px;
     height: 133px;
     width: 373px;
@@ -734,10 +738,12 @@
 
     .card-reject {
       padding: 20px;
-      background-image: url("../assets/reject.png");
+      /* background-image: url("../assets/reject.png"); */
+      background: rgb(254,0,0);
+      background: linear-gradient(138deg, rgba(254,0,0,1) 0%, rgba(224,128,73,1) 54%, rgba(237,255,0,1) 100%);
       border-radius: 20px;
       height: 133px;
-      width: 373px;
+      width: 80vw;
       margin-top: 9px;
       /* box-shadow: 6px 10px 15px -3px rgba(0,0,0,0.1); */
     }
