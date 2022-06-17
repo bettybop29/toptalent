@@ -26,7 +26,7 @@
     <main>
         <section class="section-verify d-flex align-items-center">
             <div class="col text-center">
-                <img class="forgot" src="http://54.255.4.75:9091/resources/r8jfpc0fx95da5w.png" alt="" style="width:500px;">
+                <img class="forgot" src="https://toptalentapp.com:9091/resources/r8jfpc0fx95da5w.png" alt="" style="width:500px;">
                 <h1>Your link is expired</h1>
                 <p>If you need help, please contact our support</p>
                 

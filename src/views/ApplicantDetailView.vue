@@ -7,8 +7,8 @@
             <section class="section-profile">
                 <div class="row">
                     <div class="col-md-2">
-                        <img v-if="applicant.jobseekerImage != null" :src="'http://54.255.4.75:9091/resources/'+ applicant.jobseekerImage" alt="profile picture" height="200">
-                        <img v-else src="http://54.255.4.75:9091/resources/r5jr7e3qf8f5uhr.png" alt="profile picture" height="200" width="200">
+                        <img v-if="applicant.jobseekerImage != null" :src="'https://toptalentapp.com:9091/resources/'+ applicant.jobseekerImage" alt="profile picture" height="200">
+                        <img v-else src="https://toptalentapp.com:9091/resources/r5jr7e3qf8f5uhr.png" alt="profile picture" height="200" width="200">
                     </div>
                     <div class="col-md-7 middle-item">
                         <h1>{{applicant.jobseekerName}}</h1>
@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <a target="_blank" v-bind:href="'http://54.255.4.75:9091/resources/' + applicant.jobseekerResume"
+                        <a target="_blank" v-bind:href="'https://toptalentapp.com:9091/resources/' + applicant.jobseekerResume"
                         type="application/octet-stream" 
                         download=""
                         class="btn btn-primary btn-resume">
@@ -138,7 +138,7 @@ export default{
         // get data form api
          async fetchData(){
             try{
-                await axios.get(`http://54.255.4.75:9091/api/v1/jobseeker/user/ ` + this.$route.params.id)
+                await axios.get(`https://toptalentapp.com:9091/api/v1/jobseeker/user/ ` + this.$route.params.id)
                 // createToast("Job Updated", { type: "success" });
                 .then((data) => {
                     this.applicant = data.data.data
@@ -151,7 +151,7 @@ export default{
          },
          async getStringSkill(){
             try{
-                await axios.get(`http://54.255.4.75:9091/api/v1/jobseeker/user/ ` + this.$route.params.id)
+                await axios.get(`https://toptalentapp.com:9091/api/v1/jobseeker/user/ ` + this.$route.params.id)
                 .then((data) => {
                     this.skill = data.data.data.skills.map(({skillName}) => skillName)
                     // this.name = this.skill.map(({skillName}) => skillName)
