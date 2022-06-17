@@ -41,7 +41,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body content2">
-              <h4>You must update profile to postjob</h4>
+              <h4>You must complete your profile to post a job.</h4>
               
             </div>
             <div class="modal-footer justify-content-center">
