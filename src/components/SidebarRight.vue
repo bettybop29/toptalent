@@ -3,8 +3,8 @@
     <div class="side-content">
       <ul>
           <li class="li-foto">
-            <img v-if="view.jobseekerImage == null" src="http://54.255.4.75:9091/resources/pfekimaggdc7k9r.png" alt="">
-            <img v-else :src="'http://54.255.4.75:9091/resources/'+ view.jobseekerImage" alt="">
+            <img v-if="view.jobseekerImage == null" src="https://toptalentapp.com:9091/resources/pfekimaggdc7k9r.png" alt="">
+            <img v-else :src="'https://toptalentapp.com:9091/resources/'+ view.jobseekerImage" alt="">
           </li>
           <li class="li-header fw-bold fw-normal">
             <p v-if="view.jobseekerName == null">---</p>
@@ -40,7 +40,7 @@
           <!-- <li><button class="btn-resume act" v-on:click="getResume(view.jobseekerResume)">Resume <font-awesome-icon :icon="['fas','download']"/></button></li> -->
             <li>
               <button v-if="view.jobseekerResume == ''" v-on:click="ToastResume" class="btn-resume act lnk text-muted">No data resume <font-awesome-icon :icon="['fas','download']"/></button>
-              <a v-else v-bind:href="'http://54.255.4.75:9091/resources/' + view.jobseekerResume"  target="_blank" download class="btn-resume act lnk">Resume <font-awesome-icon :icon="['fas','download']"/></a>
+              <a v-else v-bind:href="'https://toptalentapp.com:9091/resources/' + view.jobseekerResume"  target="_blank" download class="btn-resume act lnk">Resume <font-awesome-icon :icon="['fas','download']"/></a>
             </li>
           <li>
             <button v-if="view.jobseekerPortfolio == ''" class="btn-portofolio act text-muted" v-on:click="Toast">No Portofolio<font-awesome-icon :icon="['fas','link']"/></button>
@@ -126,13 +126,13 @@ export default {
     methods:{
       
       async accepted(id) {
-        await axios.post(`http://54.255.4.75:9091/api/v1/application/status/accepted/?applicationId=${id}`)
+        await axios.post(`https://toptalentapp.com:9091/api/v1/application/status/accepted/?applicationId=${id}`)
         // createToast(`Accepted`, { type: "success" });
         this.$toast.success('Accepted')
         location.reload()
       },
       async rejected(id) {
-        await axios.post(`http://54.255.4.75:9091/api/v1/application/status/rejected/?applicationId=${id}`)
+        await axios.post(`https://toptalentapp.com:9091/api/v1/application/status/rejected/?applicationId=${id}`)
         //  createToast(`Reject`, { type: "danger" });
         this.$toast.success('Rejected')
         location.reload()
@@ -141,10 +141,10 @@ export default {
         window.open(`https://${jobseekerPortofolio}`);
       },
      async getResume(jobseekerResume){
-        window.open(`http://54.255.4.75:9091/resources/${jobseekerResume}`, '_blank');
+        window.open(`https://toptalentapp.com:9091/resources/${jobseekerResume}`, '_blank');
 
         //  await axios({
-        //   url: `http://54.255.4.75:9091/resources/${jobseekerResume}`,
+        //   url: `https://toptalentapp.com:9091/resources/${jobseekerResume}`,
         //   methods: 'GET',
         //   responseType: 'blob',
         // }).then((res) => {
@@ -159,6 +159,7 @@ export default {
       },
       
       Toast(){
+        console.warn('test')
         this.$toast.error(`The applicant doesn't have any portfolio`, {
           // optional options Object
            position: 'top-right',

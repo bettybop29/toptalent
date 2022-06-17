@@ -163,6 +163,14 @@ export default {
         })
       }
     },
+    Toast(){
+        console.warn('test')
+        this.$toast.error(`The applicant doesn't have any portfolio`, {
+          // optional options Object
+           position: 'top-right',
+           pauseOnHover: true
+        })
+      },
     mounted(){
       this.countAcc();
       // this.openSidebar();

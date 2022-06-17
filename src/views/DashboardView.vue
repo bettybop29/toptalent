@@ -143,9 +143,9 @@
               <div class="modal-body">
 
                 <div class="li-foto mb-4">
-                  <img v-if="views.jobseekerImage == null" src="http://54.255.4.75:9091/resources/pfekimaggdc7k9r.png"
+                  <img v-if="views.jobseekerImage == null" src="https://toptalentapp.com:9091/resources/pfekimaggdc7k9r.png"
                     alt="">
-                  <img v-else :src="'http://54.255.4.75:9091/resources/'+ views.jobseekerImage" alt="">
+                  <img v-else :src="'https://toptalentapp.com:9091/resources/'+ views.jobseekerImage" alt="">
                 </div>
 
                 <div>
@@ -185,7 +185,7 @@
                   <button v-if="views.jobseekerResume == '' || views.jobseekerResume == null"
                     class="btn btn-no-resume act lnk" disabled>No data resume
                   </button>
-                  <a v-else v-bind:href="'http://54.255.4.75:9091/resources/' + views.jobseekerResume" target="_blank"
+                  <a v-else v-bind:href="'https://toptalentapp.com:9091/resources/' + views.jobseekerResume" target="_blank"
                     download class="btn btn-resume act lnk">Resume
                     <font-awesome-icon :icon="['fas','download']" />
                   </a>
@@ -247,7 +247,7 @@
     name: 'DashboardView',
     data() {
       return {
-        path: 'http://54.255.4.75:9091',
+        // path: 'https://toptalentapp.com:9091',
         recruiters: [],
         accept: "",
         reject: "",
@@ -287,7 +287,7 @@
       },
       async totalnewAplicant() {
         const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
-        await axios.get(`http://54.255.4.75:9091/api/v1/application/new-resume/${recruiterId}`)
+        await axios.get(`https://toptalentapp.com:9091/api/v1/application/new-resume/${recruiterId}`)
           .then((data) => {
             this.edit = data.data
             console.log(data.data)
@@ -308,7 +308,7 @@
       },
       async totalAplicant() {
         const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
-        await axios.get(`http://54.255.4.75:9091/api/v1/application/applications/${recruiterId}`)
+        await axios.get(`https://toptalentapp.com:9091/api/v1/application/applications/${recruiterId}`)
           .then((data) => {
             this.total = data.data
             localStorage.setItem("counttotal-info", JSON.stringify(data.data.data));
@@ -318,7 +318,7 @@
         let response = '';
         const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
         try {
-          response = await axios.get(`http://54.255.4.75:9091/api/v1/application/dashboard/${recruiterId}`)
+          response = await axios.get(`https://toptalentapp.com:9091/api/v1/application/dashboard/${recruiterId}`)
             .then((resp) => {
               this.list = resp.data.data
               console.log(resp.data.code)
@@ -336,7 +336,7 @@
       },
       async recruiter() {
         const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
-        await axios.get(`http://54.255.4.75:9091/api/v1/auth/recruiter/${recruiterId}`)
+        await axios.get(`https://toptalentapp.com:9091/api/v1/auth/recruiter/${recruiterId}`)
           .then((data) => {
             this.recruiters = data.data
             localStorage.setItem("user-profile", JSON.stringify(data.data.recruiterDesc))
@@ -344,7 +344,7 @@
       },
       async countAcc() {
         const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
-        await axios.get(`http://54.255.4.75:9091/api/v1/application/count-accepted/${recruiterId}`)
+        await axios.get(`https://toptalentapp.com:9091/api/v1/application/count-accepted/${recruiterId}`)
           .then((data) => {
             this.accept = data.data
             localStorage.setItem("countaccept-info", JSON.stringify(data.data.data));
@@ -352,14 +352,14 @@
       },
       async countRejc() {
         const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
-        await axios.get(`http://54.255.4.75:9091/api/v1/application/count-rejected/${recruiterId}`)
+        await axios.get(`https://toptalentapp.com:9091/api/v1/application/count-rejected/${recruiterId}`)
           .then((data) => {
             this.reject = data.data
             localStorage.setItem("countreject-info", JSON.stringify(data.data.data));
           })
       },
       async getView(applicationId) {
-        await axios.get(`http://54.255.4.75:9091/api/v1/application/applicant?applicationId=${applicationId}`)
+        await axios.get(`https://toptalentapp.com:9091/api/v1/application/applicant?applicationId=${applicationId}`)
           .then((data) => {
             this.views = data.data.data
             this.sidepop = true
@@ -370,12 +370,12 @@
       },
 
       async accepted(id) {
-        await axios.post(`http://54.255.4.75:9091/api/v1/application/status/accepted/?applicationId=${id}`)
+        await axios.post(`https://toptalentapp.com:9091/api/v1/application/status/accepted/?applicationId=${id}`)
         // createToast(`Accepted`, { type: "success" });
         location.reload(true)
       },
       async rejected(id) {
-        await axios.post(`http://54.255.4.75:9091/api/v1/application/status/rejected/?applicationId=${id}`)
+        await axios.post(`https://toptalentapp.com:9091/api/v1/application/status/rejected/?applicationId=${id}`)
         //  createToast(`Reject`, { type: "danger" });
         location.reload(true)
       },
