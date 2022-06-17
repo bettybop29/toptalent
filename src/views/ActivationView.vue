@@ -2,7 +2,7 @@
 <div class="container d-flex justify-content-center">
     
         <div class="card " style="width: 30rem;">
-            <img src="http://54.255.4.75:9091/resources/0be0zx99d5y9ewd.jpeg" class="card-img-top" alt="..." >
+            <img src="https://toptalentapp.com:9091/resources/0be0zx99d5y9ewd.jpeg" class="card-img-top" alt="..." >
             <div class="card-body">
                 <h5 class="card-title">Check Your Email For Activation</h5>
                 <p class="card-text">Email has been sent to {{this.email}}</p>

@@ -30,6 +30,7 @@
     "portal-vue": "^2.1.7",
     "pspdfkit": "^2022.2.3",
     "vue-axios": "^3.4.1",
+    "vue-loading-overlay": "^5.0.3",
     "vue-pdf": "^4.3.0",
     "vue-radial-progress": "^0.3.2",
     "vue-router": "^3.5.1",

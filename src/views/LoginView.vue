@@ -139,7 +139,7 @@
         try {
           this.searchDisabled = true
           response = await axios.post(
-            `http://54.255.4.75:9091/api/v1/auth/recruiter/login?recruiterEmail=${this.email}&recruiterPassword=${this.password}`
+            `https://toptalentapp.com:9091/api/v1/auth/recruiter/login?recruiterEmail=${this.email}&recruiterPassword=${this.password}`
           )
         } catch (err) {
           this.searchDisabled = false

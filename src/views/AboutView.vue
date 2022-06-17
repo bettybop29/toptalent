@@ -4,7 +4,7 @@
     <sidebar-component></sidebar-component>
     <nav-mobile></nav-mobile>
 
-    <div class="container" style="padding: 2rem;">
+    <div class="container" >
       <p class="head-title">Company Profile</p>
       <div class="row">
         <div class="col-md-6">
@@ -22,6 +22,7 @@
                     src="http://54.255.4.75:9091/resources/r5jr7e3qf8f5uhr.png" alt=""
                     style="width: 125px; height:120px;">
 
+                </div>
                 </div>
 
                 <!-- Button trigger modal -->
@@ -66,7 +67,7 @@
                   </div>
                 </div>
 
-              </div>
+              
 
               <span class="mb-4 badge bg-info text-dark category">{{profile.recruiterIndustry}}</span>
               <p class="card-span">Staff: </p>

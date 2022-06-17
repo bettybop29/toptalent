@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="col-md-6 content2">
-                <img src="http://54.255.4.75:9091/resources/kurtb4zq5unn0md.gif" alt="">
+                <img src="https://toptalentapp.com:9091/resources/kurtb4zq5unn0md.gif" alt="">
             </div>
         </div>
 
@@ -77,7 +77,7 @@
                 try {
                     this.searchDisabled = true;
                     await axios.post(
-                        `http://54.255.4.75:9091/api/v1/auth/reset?recruiterEmail=${this.recruiterEmail}`)
+                        `https://toptalentapp.com:9091/api/v1/auth/reset?recruiterEmail=${this.recruiterEmail}`)
                     // window.alert("E-mail has been sent");
                     this.$toast.success('E-mail has been sent', {
                         position: 'top-right',
