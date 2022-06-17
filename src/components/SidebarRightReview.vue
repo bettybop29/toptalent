@@ -3,7 +3,7 @@
     <div class="side-content" v-if="this.openTab == false">
       <ul class="hide">
         <li class="li-title mt-5">
-          <img src="http://54.255.4.75:9091/resources/mb3.png" alt=""></li>  
+          <img src="https://toptalentapp.com:9091/resources/mb3.png" alt=""></li>  
         <li>
           <p>Some candidates<br>need to be reviewed!</p>
           <button  class="btn btn-primary" v-on:click="openSidebar">Review Now</button>
@@ -14,8 +14,8 @@
     <div class="side-content" v-else>
       <ul v-for="item in list" :key="item.id">
         <li class="li-foto">
-            <img v-if="item.jobseekerImage == null" src="http://54.255.4.75:9091/resources/pfekimaggdc7k9r.png" alt="">
-            <img v-else :src="'http://54.255.4.75:9091/resources/'+ item.jobseekerImage" alt="">
+            <img v-if="item.jobseekerImage == null" src="https://toptalentapp.com:9091/resources/pfekimaggdc7k9r.png" alt="">
+            <img v-else :src="'https://toptalentapp.com:9091/resources/'+ item.jobseekerImage" alt="">
           </li>
           <li class="li-header fw-bold fw-normal">
             <p v-if="item.jobseekerImage == null">---</p>
@@ -50,7 +50,7 @@
           <!-- <li><button class="btn-resume act" v-on:click="getResume(item.jobseekerResume)">Resume <font-awesome-icon :icon="['fas','download']"/></button></li> -->
             <li>
               <button v-if="item.jobseekerResume == ''" v-on:click="ToastResume" class="btn-resume act lnk text-muted">No data resume <font-awesome-icon :icon="['fas','download']"/></button>
-              <a v-else v-bind:href="'http://54.255.4.75:9091/resources/' + item.jobseekerResume"  target="_blank" download class="btn-resume act lnk">Resume <font-awesome-icon :icon="['fas','download']"/></a>
+              <a v-else v-bind:href="'https://toptalentapp.com:9091/resources/' + item.jobseekerResume"  target="_blank" download class="btn-resume act lnk">Resume <font-awesome-icon :icon="['fas','download']"/></a>
             </li>
           <li>
             <button v-if="item.jobseekerPortfolio == ''" class="btn-portofolio act text-muted" v-on:click="Toast">No Portofolio<font-awesome-icon :icon="['fas','link']"/></button>
@@ -153,8 +153,8 @@ export default {
 
       async countAcc(){
       const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
-      await axios.get(`http://54.255.4.75:9091/api/v1/application/right-sidebar/${recruiterId}`)
-      // await axios.get(`http://54.255.4.75:9091/api/v1/auth/recruiter/${recruiterId}`)
+      await axios.get(`https://toptalentapp.com:9091/api/v1/application/right-sidebar/${recruiterId}`)
+      // await axios.get(`https://toptalentapp.com:9091/api/v1/auth/recruiter/${recruiterId}`)
 
       
         .then((resp)=>{

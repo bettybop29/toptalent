@@ -14,7 +14,7 @@
 
         </div>
         <div class="p-2 bd-highlight left">
-            <img class="img-thumbnail" :src="'http://54.255.4.75:9091/resources/'+aplicant.jobseekerImage" alt="">
+            <img class="img-thumbnail" :src="'https://toptalentapp.com:9091/resources/'+aplicant.jobseekerImage" alt="">
         </div>
 
     </div>
@@ -83,8 +83,8 @@
         methods: {
 
             async aplicantDetail() {
-                // await axios.get(`http://54.255.4.75:9091/api/v1/application/applicant/` + this.$route.params.id)
-                await axios.get(`http://54.255.4.75:9091/api/v1/application/applicant?applicationId=` + this.$route.params.id)
+                // await axios.get(`https://toptalentapp.com:9091/api/v1/application/applicant/` + this.$route.params.id)
+                await axios.get(`https://toptalentapp.com:9091/api/v1/application/applicant?applicationId=` + this.$route.params.id)
                     .then((data) => {
                         this.aplicant = data.data.data
                         console.log(data)

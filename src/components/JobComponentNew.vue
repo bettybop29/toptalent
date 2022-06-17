@@ -194,7 +194,7 @@
       },
       
       async countTotalAplicant() {
-        await axios.get(`http://54.255.4.75:9091/api/v1/application/count-applicants/${this.item.jobId}`)
+        await axios.get(`https://toptalentapp.com:9091/api/v1/application/count-applicants/${this.item.jobId}`)
           .then((data) => {
             this.resp = data.data.data
             console.log(data.data.data)
@@ -214,7 +214,7 @@
       },
       async active(id) {
         try {
-          await axios.patch(`http://54.255.4.75:9091/api/v1/job/status/${id}?jobStatus=hidden`)
+          await axios.patch(`https://toptalentapp.com:9091/api/v1/job/status/${id}?jobStatus=hidden`)
           // createToast("Job Updated", { type: "success" });
           location.reload(true)
         } catch {
@@ -223,7 +223,7 @@
       },
       async visible(id) {
         try {
-          await axios.patch(`http://54.255.4.75:9091/api/v1/job/status/${id}?jobStatus=visible`)
+          await axios.patch(`https://toptalentapp.com:9091/api/v1/job/status/${id}?jobStatus=visible`)
           // createToast("Job Updated", { type: "success" });
           location.reload(true)
         } catch {
@@ -232,7 +232,7 @@
       },
       async getDetail(jobId) {
         try {
-          await axios.get(`http://54.255.4.75:9091/api/v1/job/${jobId}`)
+          await axios.get(`https://toptalentapp.com:9091/api/v1/job/${jobId}`)
             .then((data) => {
               // this.$emit.edit = data.data.data
               this.edit = data.data.data
@@ -246,7 +246,7 @@
       async updateJobData(id) {
         try {
           await axios.patch(
-            `http://54.255.4.75:9091/api/v1/job/${id}?jobName=${this.edit.jobName}&jobStatus=${this.edit.jobStatus}&jobSalary=${this.edit.jobSalary}&jobPosition=${this.edit.jobPosition}&jobAddress=${this.edit.jobAddress}&jobDesc=${this.edit.jobDesc}&jobRequirement=${this.edit.jobRequirement}`
+            `https://toptalentapp.com:9091/api/v1/job/${id}?jobName=${this.edit.jobName}&jobStatus=${this.edit.jobStatus}&jobSalary=${this.edit.jobSalary}&jobPosition=${this.edit.jobPosition}&jobAddress=${this.edit.jobAddress}&jobDesc=${this.edit.jobDesc}&jobRequirement=${this.edit.jobRequirement}`
           )
           this.$toast.success("Job edited !")
           location.reload(true)
@@ -256,7 +256,7 @@
       },
       async deleteJob(id) {
         try {
-          let result = await axios.put(`http://54.255.4.75:9091/api/v1/job/delete/` + id);
+          let result = await axios.put(`https://toptalentapp.com:9091/api/v1/job/delete/` + id);
           console.warn(result)
           this.$toast.success("Job deleted !")
           location.reload(true)

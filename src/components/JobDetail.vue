@@ -157,7 +157,7 @@
         return moment(date);
       },
       async getJobDetail() {
-        await axios.get(`http://54.255.4.75:9091/api/v1/job/` + this.$route.params.id)
+        await axios.get(`https://toptalentapp.com:9091/api/v1/job/` + this.$route.params.id)
           .then((data) => {
             this.job = data.data.data
             console.log('jobdetail')
@@ -165,7 +165,7 @@
           })
       },
       async getCandidate() {
-        await axios.get(`http://54.255.4.75:9091/api/v1/application/applicants/` + this.$route.params.id)
+        await axios.get(`https://toptalentapp.com:9091/api/v1/application/applicants/` + this.$route.params.id)
           .then((data) => {
             this.list = data.data
             console.log('candidate')
@@ -174,7 +174,7 @@
       },
       async deleteJob(id) {
         try {
-          let result = await axios.put(`http://54.255.4.75:9091/api/v1/job/delete/` + id);
+          let result = await axios.put(`https://toptalentapp.com:9091/api/v1/job/delete/` + id);
           console.warn(result)
           //  createToast("Job Deleted!", { type: "danger" });
           location.reload(true)
@@ -185,7 +185,7 @@
       async updateJobData(id) {
         try {
           await axios.patch(
-            `http://54.255.4.75:9091/api/v1/job/${id}?jobName=${this.edit.jobName}&jobStatus=active&jobSalary=${this.edit.jobSalary}&jobPosition=${this.edit.jobPosition}&jobAddress=${this.edit.jobAddress}&jobDesc=${this.edit.jobDesc}&jobRequirement=${this.edit.jobRequirement}`
+            `https://toptalentapp.com:9091/api/v1/job/${id}?jobName=${this.edit.jobName}&jobStatus=active&jobSalary=${this.edit.jobSalary}&jobPosition=${this.edit.jobPosition}&jobAddress=${this.edit.jobAddress}&jobDesc=${this.edit.jobDesc}&jobRequirement=${this.edit.jobRequirement}`
           )
           // createToast("Job Updated", { type: "success" });
           location.reload(true)
@@ -196,7 +196,7 @@
       async getDetail(id) {
         try {
           console.log(id)
-          await axios.get(`http://54.255.4.75:9091/api/v1/job/${id}`)
+          await axios.get(`https://toptalentapp.com:9091/api/v1/job/${id}`)
             .then((data) => {
               this.edit = data.data.data
               console.log(data.data)

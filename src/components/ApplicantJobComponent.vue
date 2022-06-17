@@ -2,9 +2,9 @@
 
   <div class="row m-1 pt-4 px-3 animate__animated animate__fadeIn">
     <div class="col-md-2">
-      <img v-if="item.jobseekerImage != null" :src="'http://54.255.4.75:9091/resources/'+ item.jobseekerImage"
+      <img v-if="item.jobseekerImage != null" :src="'https://toptalentapp.com:9091/resources/'+ item.jobseekerImage"
         class="img-thumbnail" alt="..." width="100px" style="width:150px; height:150px;">
-      <img v-else src="http://54.255.4.75:9091/resources/r5jr7e3qf8f5uhr.png" class="img-thumbnail" alt="..."
+      <img v-else src="https://toptalentapp.com:9091/resources/r5jr7e3qf8f5uhr.png" class="img-thumbnail" alt="..."
         width="100px" style="width:150px; height:150px;">
     </div>
     <div class="col-md-7">
@@ -40,7 +40,7 @@
             <font-awesome-icon class=" mt-1" icon="fa-solid fa-file-lines"/> Download CV
           </button>
           <!-- <router-link class="btn ict" target="_blank" :to="'/pdfviewer/'+ item.jobseekerResume">View resume</router-link> -->
-         <!-- <pdf :src="'http://54.255.4.75:9091/resources/'+ item.jobseekerResume"></pdf> -->
+         <!-- <pdf :src="'https://toptalentapp.com:9091/resources/'+ item.jobseekerResume"></pdf> -->
         <PdfViewer></PdfViewer>
         <button class="btn ict" v-on:click="getLink(item.jobseekerPortfolio)">
           <font-awesome-icon class="ms-3 me-2 mt-1" icon="fa-solid fa-link" /> Portofolio
@@ -88,21 +88,21 @@
     methods: {
       async testResume(){
         // this.resumeView = true
-        window.open(`http://54.255.4.75:9091/resources/Putri-20220603-aly.pdf`)
+        window.open(`https://toptalentapp.com:9091/resources/Putri-20220603-aly.pdf`)
         console.warn(this.resumeView)
       },
       async revApplicant(applicationId){
-        await axios.post(`http://54.255.4.75:9091/api/v1/application/status/sent/?applicationId=${applicationId}`)
+        await axios.post(`https://toptalentapp.com:9091/api/v1/application/status/sent/?applicationId=${applicationId}`)
         this.$toast.success(`Job updated !`)
          window.location.reload();
       },
       async rejApplicant(applicationId){
-        await axios.post(`http://54.255.4.75:9091/api/v1/application/status/rejected/?applicationId=${applicationId}`)
+        await axios.post(`https://toptalentapp.com:9091/api/v1/application/status/rejected/?applicationId=${applicationId}`)
         this.$toast.success(`Job updated !`)
         window.location.reload();
       },
       async accApplicant(applicationId){
-       await axios.post(`http://54.255.4.75:9091/api/v1/application/status/accepted/?applicationId=${applicationId}`)
+       await axios.post(`https://toptalentapp.com:9091/api/v1/application/status/accepted/?applicationId=${applicationId}`)
        this.$toast.success(`Job updated !`)
         window.location.reload();
       },
@@ -110,10 +110,10 @@
         window.open(`https://${jobseekerPortofolio}`);
       },
       async getResume(jobseekerResume) {
-        window.open(`http://54.255.4.75:9091/resources/${jobseekerResume}`, '_blank');
+        window.open(`https://toptalentapp.com:9091/resources/${jobseekerResume}`, '_blank');
 
         //  await axios({
-        //   url: `http://54.255.4.75:9091/resources/${jobseekerResume}`,
+        //   url: `https://toptalentapp.com:9091/resources/${jobseekerResume}`,
         //   methods: 'GET',
         //   responseType: 'blob',
         // }).then((res) => {
@@ -140,7 +140,7 @@
       },
       async active(id) {
         try {
-          await axios.patch(`http://54.255.4.75:9091/api/v1/job/status/${id}?jobStatus=hidden`)
+          await axios.patch(`https://toptalentapp.com:9091/api/v1/job/status/${id}?jobStatus=hidden`)
           // createToast("Job Updated", { type: "success" });
           location.reload(true)
         } catch {
@@ -149,7 +149,7 @@
       },
       async visible(id) {
         try {
-          await axios.patch(`http://54.255.4.75:9091/api/v1/job/status/${id}?jobStatus=visible`)
+          await axios.patch(`https://toptalentapp.com:9091/api/v1/job/status/${id}?jobStatus=visible`)
           // createToast("Job Updated", { type: "success" });
           location.reload(true)
         } catch {
@@ -159,7 +159,7 @@
       async getDetail(id) {
         try {
           console.log(id)
-          await axios.get(`http://54.255.4.75:9091/api/v1/job/${id}`)
+          await axios.get(`https://toptalentapp.com:9091/api/v1/job/${id}`)
             .then((data) => {
               this.edit = data.data.data
               console.log(data.data)
@@ -171,7 +171,7 @@
       async updateJobData(id) {
         try {
           await axios.patch(
-            `http://54.255.4.75:9091/api/v1/job/${id}?jobName=${this.edit.jobName}&jobStatus=active&jobSalary=${this.edit.jobSalary}&jobPosition=${this.edit.jobPosition}&jobAddress=${this.edit.jobAddress}&jobDesc=${this.edit.jobDesc}&jobRequirement=${this.edit.jobRequirement}`
+            `https://toptalentapp.com:9091/api/v1/job/${id}?jobName=${this.edit.jobName}&jobStatus=active&jobSalary=${this.edit.jobSalary}&jobPosition=${this.edit.jobPosition}&jobAddress=${this.edit.jobAddress}&jobDesc=${this.edit.jobDesc}&jobRequirement=${this.edit.jobRequirement}`
           )
           // createToast("Job Updated", { type: "success" });
           location.reload(true)
@@ -181,7 +181,7 @@
       },
       async deleteJob(id) {
         try {
-          let result = await axios.put(`http://54.255.4.75:9091/api/v1/job/delete/` + id);
+          let result = await axios.put(`https://toptalentapp.com:9091/api/v1/job/delete/` + id);
           console.warn(result)
           //  createToast("Job Deleted!", { type: "danger" });
           location.reload(true)

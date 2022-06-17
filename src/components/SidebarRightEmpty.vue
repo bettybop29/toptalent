@@ -4,7 +4,7 @@
     <div class="side-content">
       <ul>
         <li class="li-title mt-5">
-          <img src="http://54.255.4.75:9091/resources/mb3.png" alt=""></li>  
+          <img src="https://toptalentapp.com:9091/resources/mb3.png" alt=""></li>  
         <li>
           <p>There is no<br>candidate to be reviewed</p>
           <!-- <router-link to="/postjobNew" class="btn btn-primary">Post a new job</router-link> -->

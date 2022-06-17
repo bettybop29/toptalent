@@ -15,8 +15,8 @@
       </ul>
     </div>
   <div class="card-body dark" v-if="item.jobStatus !='visible'">
-    <img v-if="item.recruiterImage != null" :src="'http://54.255.4.75:9091/resources/'+item.recruiterImage" class="card-img-top dark" style="filter: grayscale(100%)"  alt="...">
-    <img v-else src="http://54.255.4.75:9091/resources/meta.png" class="card-img-top dark" alt="...">
+    <img v-if="item.recruiterImage != null" :src="'https://toptalentapp.com:9091/resources/'+item.recruiterImage" class="card-img-top dark" style="filter: grayscale(100%)"  alt="...">
+    <img v-else src="https://toptalentapp.com:9091/resources/meta.png" class="card-img-top dark" alt="...">
 
     
     <!-- html for hidden job component -->
@@ -74,8 +74,8 @@
     </div>
     
     <div class="card-body" v-else> 
-      <img v-if="item.recruiterImage != null" :src="'http://54.255.4.75:9091/resources/'+item.recruiterImage" class="card-img-top dark"  alt="...">
-    <img v-else src="http://54.255.4.75:9091/resources/meta.png" class="card-img-top dark" alt="..."> 
+      <img v-if="item.recruiterImage != null" :src="'https://toptalentapp.com:9091/resources/'+item.recruiterImage" class="card-img-top dark"  alt="...">
+    <img v-else src="https://toptalentapp.com:9091/resources/meta.png" class="card-img-top dark" alt="..."> 
       <h5 class="card-title">{{item.jobName}}</h5>
       <span class="badge bg-primary">{{item.jobStatus}}</span>
       <p class="card-text"><i class="bi-clock"></i> {{ item.jobPosition }}</p>
@@ -172,7 +172,7 @@ export default {
     },
        async active(id){
         try{
-        await axios.patch(`http://54.255.4.75:9091/api/v1/job/status/${id}?jobStatus=hidden`)
+        await axios.patch(`https://toptalentapp.com:9091/api/v1/job/status/${id}?jobStatus=hidden`)
         // createToast("Job Updated", { type: "success" });
         location.reload(true)
         } catch {
@@ -182,7 +182,7 @@ export default {
       
       async visible(id){
         try{
-        await axios.patch(`http://54.255.4.75:9091/api/v1/job/status/${id}?jobStatus=visible`)
+        await axios.patch(`https://toptalentapp.com:9091/api/v1/job/status/${id}?jobStatus=visible`)
         // createToast("Job Updated", { type: "success" });
         location.reload(true)
         } catch {
@@ -193,7 +193,7 @@ export default {
         async getDetail(id){
         try{
         console.log(id)
-        await axios.get(`http://54.255.4.75:9091/api/v1/job/${id}`)
+        await axios.get(`https://toptalentapp.com:9091/api/v1/job/${id}`)
         .then((data)=>{
           this.edit=data.data.data
           console.log(data.data)
@@ -205,7 +205,7 @@ export default {
      async updateJobData(id){
         try{
           
-          await axios.patch(`http://54.255.4.75:9091/api/v1/job/${id}?jobName=${this.edit.jobName}&jobStatus=active&jobSalary=${this.edit.jobSalary}&jobPosition=${this.edit.jobPosition}&jobAddress=${this.edit.jobAddress}&jobDesc=${this.edit.jobDesc}&jobRequirement=${this.edit.jobRequirement}`)
+          await axios.patch(`https://toptalentapp.com:9091/api/v1/job/${id}?jobName=${this.edit.jobName}&jobStatus=active&jobSalary=${this.edit.jobSalary}&jobPosition=${this.edit.jobPosition}&jobAddress=${this.edit.jobAddress}&jobDesc=${this.edit.jobDesc}&jobRequirement=${this.edit.jobRequirement}`)
           // createToast("Job Updated", { type: "success" });
           location.reload(true)
         } catch {
@@ -214,7 +214,7 @@ export default {
        },
       async deleteJob(id){
       try {
-       let result = await axios.put(`http://54.255.4.75:9091/api/v1/job/delete/`+id);
+       let result = await axios.put(`https://toptalentapp.com:9091/api/v1/job/delete/`+id);
         console.warn(result)
         
           //  createToast("Job Deleted!", { type: "danger" });

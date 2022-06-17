@@ -67,7 +67,7 @@
       totalHidden() {
         console.log('agssri')
         const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
-        axios.get(`http://54.255.4.75:9091/api/v1/job/hidden/${recruiterId}`)
+        axios.get(`https://toptalentapp.com:9091/api/v1/job/hidden/${recruiterId}`)
           .then((resp) => {
             this.hide = resp.data.data
             console.log(this.hide)
@@ -76,7 +76,7 @@
       totalVisibility() {
         console.log('agssri')
         const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
-        axios.get(`http://54.255.4.75:9091/api/v1/job/visible/${recruiterId}`)
+        axios.get(`https://toptalentapp.com:9091/api/v1/job/visible/${recruiterId}`)
           .then((resp) => {
             this.visible = resp.data.data
             console.log(this.visible)
@@ -85,7 +85,7 @@
       getJobs() {
         console.log('agroasd')
         const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
-        axios.get(`http://54.255.4.75:9091/api/v1/jobs/${recruiterId}`)
+        axios.get(`https://toptalentapp.com:9091/api/v1/jobs/${recruiterId}`)
           .then((resp) => {
             this.list = resp.data
             console.log(this.list)
