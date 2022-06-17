@@ -128,12 +128,14 @@ export default {
       async accepted(id) {
         await axios.post(`http://54.255.4.75:9091/api/v1/application/status/accepted/?applicationId=${id}`)
         // createToast(`Accepted`, { type: "success" });
-        location.reload(true)
+        this.$toast.success('Accepted')
+        location.reload()
       },
       async rejected(id) {
         await axios.post(`http://54.255.4.75:9091/api/v1/application/status/rejected/?applicationId=${id}`)
         //  createToast(`Reject`, { type: "danger" });
-        location.reload(true)
+        this.$toast.success('Rejected')
+        location.reload()
       },
       async getLink(jobseekerPortofolio) {
         window.open(`https://${jobseekerPortofolio}`);

@@ -18,7 +18,7 @@ import ResetPass from '@/views/ResetPass.vue'
 import UpdateProfile from '../components/UpdateProfile.vue'
 import PostJobView from "@/views/PostjobView.vue"
 import PostjobNew from '@/views/PostjobNew.vue'
-import JobDetail from '@/components/JobDetail.vue'
+import JobDetail from '../components/JobDetail.vue'
 import AplicantDetail from '@/components/AplicantDetail.vue'
 import ExpiredForgot from '@/views/ExpiredForgotView.vue'
 import ApplicantDetailView from '@/views/ApplicantDetailView.vue'
@@ -170,6 +170,15 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
+  scrollBehavior (to) {
+    window.scrollTo(0,0);
+    if (to.hash) {
+      return {
+        selector: to.hash,
+        behavior: 'smooth',
+      }
+    }
+  }
 });
 // const Authenticated = false
 
