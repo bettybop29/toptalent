@@ -133,7 +133,7 @@
         let response = '';
         try {
           response = await axios.post(
-            `http://54.255.4.75:9091/api/v1/auth/change-password?email=${this.decoded.email}&newPassword=${this.password}&confirmPassword=${this.password_Confirm}`
+            `https://toptalentapp.com:9091/api/v1/auth/change-password?email=${this.decoded.email}&newPassword=${this.password}&confirmPassword=${this.password_Confirm}`
           )
 
         } catch (err) {

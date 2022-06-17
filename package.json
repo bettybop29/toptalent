@@ -30,9 +30,12 @@
     "portal-vue": "^2.1.7",
     "pspdfkit": "^2022.2.3",
     "vue-axios": "^3.4.1",
+    "vue-loading-overlay": "^5.0.3",
+    "vue-loading-skeleton": "^1.1.9",
     "vue-pdf": "^4.3.0",
     "vue-radial-progress": "^0.3.2",
     "vue-router": "^3.5.1",
+    "vue-tel-input": "^5.11.0",
     "vue-toast-notification": "^0.6.2",
     "vue2-animate": "^2.1.4",
     "vue2-timeago": "^2.0.0-beta.5"

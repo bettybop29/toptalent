@@ -1,5 +1,8 @@
 <template>
   <div>
+    <page-loader/>
+  <div>
+    
     <sidebar-component></sidebar-component>
     <nav-mobile></nav-mobile>
 
@@ -10,7 +13,7 @@
           <a class="navbar-brand">{{userName}}</a>
           <form class="d-flex">
             <div>
-              <button v-if="this.profile == ''" type="button" class="btn btn-primary" data-bs-toggle="modal"
+              <button v-if="this.profile == '' || this.profile == null" type="button" class="btn btn-primary" data-bs-toggle="modal"
                 data-bs-target="#exampleModal">
                 <img class="import-icon" src="../assets/icon-postjob/add.svg" alt="">
                 Create a new job
@@ -32,19 +35,21 @@
       <!-- Modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <div class="modal-content">
+          <div class="modal-content" style="border-radius:20px;">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-              You must update profile to postjob
+            <div class="modal-body content2">
+              <h4>You must complete your profile to post a job.</h4>
+              
             </div>
-            <div class="modal-footer">
-              <router-link :to="{name: 'updateprofile', params:{id:idRecruiter}}" type="button" class="btn btn-primary">Update Profile</router-link>
+            <div class="modal-footer justify-content-center">
+              <!-- <a :to="{name: 'updateprofile', params:{id:idRecruiter}}" type="button" class="btn btn-primary">
+                Update Profile</a> -->
               <!-- <a href="/about" type="button" class="btn btn-primary">Update Profile</a> -->
-              <!-- <a href="/about">link</a> -->
-              <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+              <a class="btn btn-primary " v-bind:href="'/updateprofile/'+ idRecruiter">Update Profile</a>
+              <button type="button" class="btn btn-outline-danger" style="width:139px;" data-bs-dismiss="modal">Cancel</button>
             </div>
           </div>
         </div>
@@ -161,7 +166,7 @@
       <!-- <job-component class="job-component" :item="item"></job-component> -->
     </div>
   </div>
-
+</div>
 </template>
 <script>
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -173,6 +178,7 @@
   // import CandidatejobComponent from '@/components/CandidatejobComponent.vue';
   // import ParagraphPlugin from '@ckeditor/ckeditor5-paragraph/src/paragraph';
   import NavMobile from '../components/NavMobile.vue'
+    import PageLoader from '@/components/PageLoader.vue'
 
 
 
@@ -186,7 +192,9 @@
       // jobcomponentnew,
       // applicantjobcomponent,
       listjobcomponent,
-      NavMobile
+      NavMobile,
+      PageLoader
+
       // CandidatejobComponent
     },
     props: ['edit'],
@@ -225,7 +233,7 @@
         userName: "",
         hide: '',
         profile: '',
-        idRecruiter:'',
+        idRecruiter: '',
 
 
         valid: false,
@@ -305,7 +313,7 @@
         try {
           const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
           await axios.post(
-            `http://54.255.4.75:9091/api/v1/job/create?jobName=${this.jobName}&recruiterId=${recruiterId}&jobSalary=${this.jobSalary}&jobPosition=${this.jobPosition}&jobAddress=${this.jobAddress}&jobDesc=${this.jobDesc}&jobRequirement=${this.jobRequirement}`
+            `https://toptalentapp.com:9091/api/v1/job/create?jobName=${this.jobName}&recruiterId=${recruiterId}&jobSalary=${this.jobSalary}&jobPosition=${this.jobPosition}&jobAddress=${this.jobAddress}&jobDesc=${this.jobDesc}&jobRequirement=${this.jobRequirement}`
           );
           // createToast("Job Successfully Created", {
           //   type: "success"
@@ -337,7 +345,7 @@
     //monted render
     mounted() {
       const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
-      axios.get(`http://54.255.4.75:9091/api/v1/jobs/${recruiterId}`)
+      axios.get(`https://toptalentapp.com:9091/api/v1/jobs/${recruiterId}`)
         .then((resp) => {
           this.list = resp.data
           localStorage.setItem("job-info", JSON.stringify(resp.data));
@@ -361,6 +369,9 @@
 <style scoped>
   .main {
     margin-left: 250px;
+  }
+  .content2{
+    text-align: center;
   }
 
   /* BREAKPOINTS */

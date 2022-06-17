@@ -133,7 +133,7 @@
         let response = '';
         try {
           response = await axios.post(
-            `http://54.255.4.75:9091/api/v1/jobseeker/change-password?email=${this.decoded.email}&password=${this.password}&confirmPassword=${this.password_Confirm}`
+            `https://toptalentapp.com:9091/api/v1/jobseeker/change-password?email=${this.decoded.email}&password=${this.password}&confirmPassword=${this.password_Confirm}`
           )
         // console.log(this.decoded.email)
         localStorage.setItem("mobile-email", JSON.stringify(this.decoded.email));

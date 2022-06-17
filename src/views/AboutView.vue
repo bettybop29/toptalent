@@ -4,7 +4,7 @@
     <sidebar-component></sidebar-component>
     <nav-mobile></nav-mobile>
 
-    <div class="container" style="padding: 2rem;">
+    <div class="container" >
       <p class="head-title">Company Profile</p>
       <div class="row">
         <div class="col-md-6">
@@ -22,6 +22,7 @@
                     src="http://54.255.4.75:9091/resources/r5jr7e3qf8f5uhr.png" alt=""
                     style="width: 125px; height:120px;">
 
+                </div>
                 </div>
 
                 <!-- Button trigger modal -->
@@ -66,7 +67,7 @@
                   </div>
                 </div>
 
-              </div>
+              
 
               <span class="mb-4 badge bg-info text-dark category">{{profile.recruiterIndustry}}</span>
               <p class="card-span">Staff: </p>
@@ -101,27 +102,27 @@
                   <font-awesome-icon icon="fa-solid fa-envelope" class="icn" /> {{profile.recruiterEmail}}</a>
               </div>
               <div>
-                <a class="card-text" v-if="profile.recruiterFb == ''"></a>
+                <a class="card-text" v-if="profile.recruiterFb == ''|| profile.recruiterFb == null"></a>
                 <a class="card-text" v-else>
                   <font-awesome-icon icon="fa-brands fa-facebook" class="icn" /> {{profile.recruiterFb}}</a>
               </div>
               <div>
-                <a class="card-text" v-if="profile.recruiterIg == ''"></a>
+                <a class="card-text" v-if="profile.recruiterIg == '' || profile.recruiterIg == null"></a>
                 <a class="card-text" v-else>
                   <font-awesome-icon icon="fa-brands fa-instagram" class="icn" /> {{profile.recruiterIg}}</a>
               </div>
               <div>
-                <a class="card-text" v-if="profile.recruiterLinkedin == ''"></a>
+                <a class="card-text" v-if="profile.recruiterLinkedin == '' || profile.recruiterLinkedin == null"></a>
                 <a class="card-text" v-else>
                   <font-awesome-icon icon="fa-brands fa-linkedin" class="icn" /> {{profile.recruiterLinkedin}}</a>
               </div>
               <div>
-                <a class="card-text" v-if="profile.recruiterPhone == ''"></a>
+                <a class="card-text" v-if="profile.recruiterPhone == '' || profile.recruiterPhone == null"></a>
                 <a class="card-text" v-else>
                   <font-awesome-icon icon="fa-solid fa-phone" class="icn" /> {{profile.recruiterPhone}}</a>
               </div>
               <div>
-                <a class="card-text" v-if="profile.recruiterWebsite == ''"></a>
+                <a class="card-text" v-if="profile.recruiterWebsite == ''|| profile.recruiterWebsite == null"></a>
                 <a class="card-text" v-else>
                   <font-awesome-icon icon="fa-solid fa-globe" class="icn" /> {{profile.recruiterWebsite}}</a>
               </div>

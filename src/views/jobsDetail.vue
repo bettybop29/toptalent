@@ -13,8 +13,8 @@
           <div class="row bg-white pb-3" style="border-bottom: 5px solid whitesmoke;">
               
             <div class="col-md-2 mt-3">
-                <img v-if="detail.recruiterImage != null" :src="'http://54.255.4.75:9091/resources/'+ detail.recruiterImage"  alt="..." width="100%">
-                <img class="img-fluid" v-else src="http://54.255.4.75:9091/resources/r5jr7e3qf8f5uhr.png"  alt="..." >                
+                <img v-if="detail.recruiterImage != null" :src="'https://toptalentapp.com:9091/resources/'+ detail.recruiterImage"  alt="..." width="100%">
+                <img class="img-fluid" v-else src="https://toptalentapp.com:9091/resources/r5jr7e3qf8f5uhr.png"  alt="..." >                
             </div>
             <div class="col-md-6">
                 <h2 class="jobtitle">{{detail.jobName}} <span>({{detail.jobPosition}})</span></h2>
@@ -178,7 +178,7 @@ export default {
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
       },
         async getDetailJob(){
-            await axios.get(`http://54.255.4.75:9091/api/v1/job/` +  this.$route.params.id)
+            await axios.get(`https://toptalentapp.com:9091/api/v1/job/` +  this.$route.params.id)
             .then((data)=>{
                 this.detail = data.data.data
                 console.log(this.detail)
@@ -186,7 +186,7 @@ export default {
         },
         async getRecruiter(){
              const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
-            await axios.get(`http://54.255.4.75:9091/api/v1/auth/recruiter/${recruiterId}`)
+            await axios.get(`https://toptalentapp.com:9091/api/v1/auth/recruiter/${recruiterId}`)
             .then((data)=>{
                 this.recruiter = data.data
                 console.log(this.recruiter)
@@ -195,7 +195,7 @@ export default {
         async updateJobData(id) {
         try {
           await axios.patch(
-            `http://54.255.4.75:9091/api/v1/job/${id}?jobName=${this.detail.jobName}&jobStatus=active&jobSalary=${this.detail.jobSalary}&jobPosition=${this.detail.jobPosition}&jobAddress=${this.detail.jobAddress}&jobDesc=${this.detail.jobDesc}&jobRequirement=${this.detail.jobRequirement}`
+            `https://toptalentapp.com:9091/api/v1/job/${id}?jobName=${this.detail.jobName}&jobStatus=active&jobSalary=${this.detail.jobSalary}&jobPosition=${this.detail.jobPosition}&jobAddress=${this.detail.jobAddress}&jobDesc=${this.detail.jobDesc}&jobRequirement=${this.detail.jobRequirement}`
           )
           this.$toast.success("Job edited !")
           location.reload(true)

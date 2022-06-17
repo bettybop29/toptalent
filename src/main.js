@@ -20,10 +20,11 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { far } from '@fortawesome/free-regular-svg-icons'
+//vue loading skeleton
+import Skeleton from 'vue-loading-skeleton';
 
 library.add(fas,fab,far)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
-
 
 
 Vue.use(VueToast, {
@@ -35,13 +36,13 @@ Vue.use(VueToast, {
 Vue.use( CKEditor );
 Vue.config.productionTip = false
 
-
-
+Vue.use(Skeleton);
 
 new Vue({
   router,
   axios,
   VueAxios,
+  
   
   
 
