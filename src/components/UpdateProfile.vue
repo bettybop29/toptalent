@@ -80,7 +80,8 @@
               <input type="tel" class="form-control" @input="acceptNumber" id="telephone"
                 v-model="profile.recruiterPhone" style="width:784px;">
               <!-- <vue-tel-input v-model="profile.recruiterPhone" mode="international"></vue-tel-input>  -->
-              <small> Format: 0888-1111-2222</small>
+              <!-- <small> Format: 0888-1111-2222</small> -->
+              <!-- {{profile.recruiterPhone}} -->
             </div>
             <div class="mb-4">
               <label for="validationDefault03" class="form-label">Facebook</label>

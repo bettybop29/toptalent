@@ -7,9 +7,9 @@
             <img v-else :src="'http://54.255.4.75:9091/resources/'+ view.jobseekerImage" alt="">
           </li>
           <li class="li-header fw-bold fw-normal">
-            <p v-if="view.jobseekerImage == null">---</p>
+            <p v-if="view.jobseekerName == null">---</p>
             <p v-else>{{view.jobseekerName}}</p>
-            <p v-if="view.jobseekerImage == null" class="fw-normal">---</p>
+            <p v-if="view.jobseekerProfession == null" class="fw-normal">---</p>
             <p v-else class="fw-normal">{{view.jobseekerProfession}}</p>
           </li>
           
