@@ -4,7 +4,7 @@
       <ul class="hide">
         <li class="li-title mt-5">
           <img src="https://toptalentapp.com:9091/resources/mb3.png" alt=""></li>  
-        <li>
+        <li style="text-align:center;">
           <p>Some candidates<br>need to be reviewed!</p>
           <button  class="btn btn-primary" v-on:click="openSidebar">Review Now</button>
         </li>
@@ -53,9 +53,9 @@
               <a v-else v-bind:href="'https://toptalentapp.com:9091/resources/' + item.jobseekerResume"  target="_blank" download class="btn-resume act lnk">Resume <font-awesome-icon :icon="['fas','download']"/></a>
             </li>
           <li>
-            <button v-on:click="test">test</button>
-            <!-- <button v-if="item.jobseekerPortfolio == ''" class="btn-portofolio act text-muted" v-on:click="Toast">No Portofolio<font-awesome-icon :icon="['fas','link']"/>w</button>
-            <button v-else class="btn-portofolio act" v-on:click="getLink(item.jobseekerPortfolio)">Portofolio <font-awesome-icon :icon="['fas','link']"/></button> -->
+            <!-- <button v-on:click="test">test</button> -->
+            <button v-if="item.jobseekerPortfolio == '' || item.jobseekerPortfolio == null" class="btn-portofolio act text-muted" v-on:click="Toast" disabled>No Portofolio<font-awesome-icon :icon="['fas','link']"/></button>
+            <button v-else class="btn-portofolio act" v-on:click="getLink(item.jobseekerPortfolio)">Portofolio <font-awesome-icon :icon="['fas','link']"/></button>
           </li>
 
           <li>

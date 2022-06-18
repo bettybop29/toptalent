@@ -3,6 +3,10 @@
         <sidebar-component></sidebar-component>
         <nav-mobile/>
         <div class="page">
+            <button class="btn mt-3 back" onclick="javascript:window.history.back();">
+          <font-awesome-icon icon="fa-solid fa-chevron-left" />
+          Go back
+        </button>
             <!-- section profile atas -->
             <section class="section-profile">
                 <div class="row">

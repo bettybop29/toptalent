@@ -1,8 +1,7 @@
 <template>
 <div style="width:400px; margin:50px;">
 
-  <vue-tel-input v-model="value"></vue-tel-input>
-  <p>{{value}}</p>
+  <vue-tel-input v-model="phone"></vue-tel-input>
   </div>
 </template>
 <script>

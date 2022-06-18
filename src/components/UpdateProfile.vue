@@ -77,8 +77,9 @@
               <!-- <input v-model="profile.recruiterPhone" type="text" @input="acceptNumber"> -->
               <!-- <input type="tel" class="form-control" @input="acceptNumber" id="validationDefault03" v-model="profile.recruiterPhone"  
         placeholder="Ex: 0855-1111-2222" min="10" max="12" required> -->
-              <input type="tel" class="form-control" @input="acceptNumber" id="telephone"
-                v-model="profile.recruiterPhone" style="width:784px;">
+              <!-- <input type="tel" class="form-control" @input="acceptNumber" id="telephone"
+                v-model="profile.recruiterPhone" style="width:784px;"> -->
+                <vue-tel-input v-model="profile.recruiterPhone" v-bind="bindProps"></vue-tel-input>
               <!-- <vue-tel-input v-model="profile.recruiterPhone" mode="international"></vue-tel-input>  -->
               <!-- <small> Format: 0888-1111-2222</small> -->
               <!-- {{profile.recruiterPhone}} -->
@@ -119,6 +120,7 @@
   import intlTelInput from 'intl-tel-input';
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
   import NavMobile from '@/components/NavMobile.vue'
+  import { VueTelInput } from 'vue-tel-input'
 
   export default {
     props: ['id'],
@@ -126,6 +128,7 @@
     components: {
       sidebarcomponent,
       NavMobile,
+      VueTelInput
 
       // VuePhoneNumberInput
     },
@@ -149,6 +152,26 @@
         },
         profile: [null],
         value: '',
+
+        bindProps:{
+          mode: "international",
+        defaultCountry: "ID",
+        disabledFetchingCountry: false,
+        disabled: false,
+        disabledFormatting: false,
+        placeholder: "Ex.(0888-1111-2222)",
+        required: true,
+        enabledCountryCode: false,
+        enabledFlags: true,
+        preferredCountries: ["ID"],
+        onlyCountries: [],
+        ignoredCountries: [],
+        autocomplete: "off",
+        name: "telephone",
+        maxLen: 13,
+        wrapperClasses: "",
+        inputClasses: "",
+        }
       }
     },
     methods: {

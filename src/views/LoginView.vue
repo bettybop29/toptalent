@@ -149,16 +149,16 @@
           // createToast(`${err.response.data.message}`, { type: "danger" });
         }
         if (response.status == 200) {
-          console.log(response)
+          // location.reload(true)
           localStorage.setItem("user-info", JSON.stringify(response.data.data.registerDTO));
           localStorage.setItem("Authenticated", true)
           this.$router.push('/dashboard')
-         
+          
           this.$toast.success(`Welcome ${response.data.data.registerDTO.recruiterCompany}!`, {
             // optional options Object
-
+            
           })
-           location.reload(true)
+          
           // createToast(`Welcome back!! ${response.data.data.registerDTO.recruiterCompany}`, { type: "success" });
         }
       }

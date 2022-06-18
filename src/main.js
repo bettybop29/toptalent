@@ -21,7 +21,10 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { far } from '@fortawesome/free-regular-svg-icons'
 //vue loading skeleton
+import VueTelInput from 'vue-tel-input';
+import 'vue-tel-input/dist/vue-tel-input.css';
 
+Vue.use(VueTelInput);
 
 library.add(fas,fab,far)
 Vue.component('font-awesome-icon', FontAwesomeIcon)

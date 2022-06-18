@@ -1,6 +1,7 @@
 <template>
 
   <div>
+    <!-- <PageLoader/> -->
     <sidebar-component />
     <sidebar-right v-if="this.sidepop == true" :view="views"></sidebar-right>
     <div>
@@ -36,13 +37,16 @@
             <div class="card-monitor">
 
               <div class="card-approve">
-                <!-- <img src="../assets/reject.png" alt=""> -->
+                
                 <div class="card-title">
                   <radial-progress-bar :diameter="100" :stopColor="stopColor" :startColor="startColor"
                     :innerStrokeColor="innerStrokeColor" v-bind:completed-steps="accept.data"
                     v-bind:total-steps="total.data" :strokeWidth="6" :innerStrokeWidth="6" class="radial-custom">
-                    <p v-if="this.accept.data !== 0" class="ellipse-title">{{percentt}}%</p>
-                    <p v-else class="ellipse-title">0%</p>
+                    <div class="animate__animated animate__fadeIn">
+                      <p v-if="this.accept.data !== 0" class="ellipse-title">{{percentt}}%</p>
+                    
+                      <p v-else class="ellipse-title">0%</p>
+                    </div>
                   </radial-progress-bar>
                   <h2 class="sum-title">Summary of approve</h2>
 
@@ -54,9 +58,10 @@
                 <radial-progress-bar :diameter="100" :stopColor="stopColor" :startColor="startColor"
                   :innerStrokeColor="innerStrokeColor" v-bind:completed-steps="reject.data"
                   v-bind:total-steps="total.data" :strokeWidth="6" :innerStrokeWidth="6" class="radial-custom">
-                  <div>
+                  <div class="animate__animated animate__fadeIn">
                     <p v-if="this.reject.data == 0" class="ellipse-title">0%</p>
-                    <p v-else class="ellipse-title">{{percent}}%</p>  
+                    
+                    <p v-else class="ellipse-title">{{percent}}%</p>
                   </div>
                 </radial-progress-bar>
                 <h2 class="sum-title">Summary of reject</h2>
@@ -143,8 +148,8 @@
               <div class="modal-body">
 
                 <div class="li-foto mb-4">
-                  <img v-if="views.jobseekerImage == null" src="https://toptalentapp.com:9091/resources/pfekimaggdc7k9r.png"
-                    alt="">
+                  <img v-if="views.jobseekerImage == null"
+                    src="https://toptalentapp.com:9091/resources/pfekimaggdc7k9r.png" alt="">
                   <img v-else :src="'https://toptalentapp.com:9091/resources/'+ views.jobseekerImage" alt="">
                 </div>
 
@@ -185,8 +190,8 @@
                   <button v-if="views.jobseekerResume == '' || views.jobseekerResume == null"
                     class="btn btn-no-resume act lnk" disabled>No data resume
                   </button>
-                  <a v-else v-bind:href="'https://toptalentapp.com:9091/resources/' + views.jobseekerResume" target="_blank"
-                    download class="btn btn-resume act lnk">Resume
+                  <a v-else v-bind:href="'https://toptalentapp.com:9091/resources/' + views.jobseekerResume"
+                    target="_blank" download class="btn btn-resume act lnk">Resume
                     <font-awesome-icon :icon="['fas','download']" />
                   </a>
                 </div>
@@ -233,7 +238,8 @@
   import SidebarRightReview from '@/components/SidebarRightReview.vue'
   import RadialProgressBar from 'vue-radial-progress'
   import NavMobile from '../components/NavMobile.vue'
-  
+  // import PageLoader from '@/components/PageLoader.vue'
+
 
   export default {
     components: {
@@ -242,7 +248,8 @@
       SidebarRightReview,
       SidebarRight,
       RadialProgressBar,
-      NavMobile
+      NavMobile,
+      // PageLoader
     },
     name: 'DashboardView',
     data() {
@@ -274,8 +281,14 @@
         const total = JSON.parse(localStorage.getItem("counttotal-info"))
         const result = Math.round((accept / total) * 100)
         this.percentt = result
-        
-      //  console.warn(accept)
+        // if (localStorage.getItem("Authenticated") == true){
+        //   location.reload()
+        // }
+
+        if(isNaN(this.percentt)) this.percentt = '0';
+
+
+        //  console.warn(accept)
 
       },
       async percentCount() {
@@ -283,7 +296,9 @@
         const total = JSON.parse(localStorage.getItem("counttotal-info"))
         const result = Math.round((reject / total) * 100)
         this.percent = result
-        console.warn(result)
+        // console.warn(result)
+        if(isNaN(this.percent)) this.percent = '0';
+
       },
       async totalnewAplicant() {
         const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
@@ -291,16 +306,16 @@
           .then((data) => {
             this.edit = data.data
             console.log(data.data)
-            if(data.data != 0){
-            this.$toast.info(`You have ${data.data.data} new apllicant`, {
-              // optional options Object
-              position: 'top-right',
-              pauseOnHover: true,
-              queue: 'true'
-            })
+            if (data.data != 0) {
+              this.$toast.info(`You have ${data.data.data} new apllicant`, {
+                // optional options Object
+                position: 'top-right',
+                pauseOnHover: true,
+                queue: 'true'
+              })
             }
           })
-          
+
 
       },
       async w3_open() {
@@ -532,8 +547,8 @@
 
   .card-approve {
     /* background-image: url("../assets/approve.png"); */
-      background-color: #4158D0;
-background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+    background-color: #4158D0;
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
     border-radius: 20px;
     height: 133px;
     width: 373px;
@@ -545,8 +560,8 @@ background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
   .card-reject {
     padding: 20px;
     /* background-image: url("../assets/reject.png"); */
-background-color: #FBDA61;
-background-image: linear-gradient(45deg, #FBDA61 0%, #FF5ACD 100%);
+    background-color: #FBDA61;
+    background-image: linear-gradient(45deg, #FBDA61 0%, #FF5ACD 100%);
     border-radius: 20px;
     height: 133px;
     width: 373px;
@@ -739,8 +754,8 @@ background-image: linear-gradient(45deg, #FBDA61 0%, #FF5ACD 100%);
     .card-reject {
       padding: 20px;
       /* background-image: url("../assets/reject.png"); */
-      background: rgb(254,0,0);
-      background: linear-gradient(138deg, rgba(254,0,0,1) 0%, rgba(224,128,73,1) 54%, rgba(237,255,0,1) 100%);
+      background: rgb(254, 0, 0);
+      background: linear-gradient(138deg, rgba(254, 0, 0, 1) 0%, rgba(224, 128, 73, 1) 54%, rgba(237, 255, 0, 1) 100%);
       border-radius: 20px;
       height: 133px;
       width: 80vw;

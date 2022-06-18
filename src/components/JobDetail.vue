@@ -4,10 +4,7 @@
     <nav-mobile />
     <div class="main">
       <div class="col-md-11">
-        <button class="btn mt-3 back" onclick="javascript:window.history.back();">
-          <font-awesome-icon icon="fa-solid fa-chevron-left" />
-          Go back
-        </button>
+        
         <div class="candidates p-4 mb-4">
 
           <h5 class="fw-bold">Candidate</h5>
@@ -72,7 +69,7 @@
                 </div>
               </div>
 
-              <button class="ict dgr icon-delete" v-on:click="deleteJob(job.jobId)">{{job.jobId}}
+              <button class="ict dgr icon-delete" v-on:click="deleteJob(job.jobId)">
                 <img class="import-icon" src="../assets/icon-postjob/delete.svg" alt="">
               </button>
             </div>

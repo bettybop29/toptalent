@@ -1,6 +1,7 @@
 <template>
 
   <div class="row m-1 pt-4 px-3 animate__animated animate__fadeIn">
+    
     <div class="col-md-2">
       <img v-if="item.jobseekerImage != null" :src="'https://toptalentapp.com:9091/resources/'+ item.jobseekerImage"
         class="img-thumbnail" alt="..." width="100px" style="width:150px; height:150px;">
