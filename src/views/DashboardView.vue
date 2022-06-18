@@ -416,6 +416,18 @@
     },
 
   };
+
+window.onbeforeunload = function() {
+   localStorage.removeItem("user-info")
+        localStorage.removeItem("user-profile")
+        localStorage.removeItem("job-info")
+        localStorage.removeItem("sign-info")
+        localStorage.removeItem("candidateReview-info")
+        localStorage.removeItem("counttotal-info")
+        localStorage.removeItem("countreject-info")
+        localStorage.removeItem("countaccept-info")
+        localStorage.setItem("Authenticated", false)
+};
 </script>
 
 <style scoped>
