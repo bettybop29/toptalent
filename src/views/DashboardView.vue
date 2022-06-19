@@ -413,21 +413,21 @@
         this.getView(),
         this.percentCount(),
         this.percenttCount()
-    },
-
+          //     if (localStorage.getItem('counttotal-info')) {
+          //     // The page was just reloaded. Clear the value from local storage
+          //     // so that it will reload the next time this page is visited.
+          //     localStorage.removeItem('counttotal-info');
+          // } else {
+          //     // Set a flag so that we know not to reload the page twice.
+          //     localStorage.setItem('counttotal-info', '1');
+          //     location.reload();
+          // }
+      }
+    
+    
   };
 
-window.onbeforeunload = function() {
-   localStorage.removeItem("user-info")
-        localStorage.removeItem("user-profile")
-        localStorage.removeItem("job-info")
-        localStorage.removeItem("sign-info")
-        localStorage.removeItem("candidateReview-info")
-        localStorage.removeItem("counttotal-info")
-        localStorage.removeItem("countreject-info")
-        localStorage.removeItem("countaccept-info")
-        localStorage.setItem("Authenticated", false)
-};
+
 </script>
 
 <style scoped>

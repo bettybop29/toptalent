@@ -215,7 +215,7 @@ router.beforeEach(async (to, from, next) => {
 
   if (to.matched.some(record => record.meta.auth)) {
   
-    const Auth = JSON.parse(localStorage.getItem("Authenticated"))
+    const Auth = JSON.parse(sessionStorage.getItem("Authenticated"))
     if (!Auth) {
       next('/login');
     } else {
@@ -223,7 +223,7 @@ router.beforeEach(async (to, from, next) => {
     }
   } else if (to.matched.some(record => !record.meta.auth)) {
     if (Object.keys(to.meta).length > 0) {
-      const Auth = JSON.parse(localStorage.getItem("Authenticated"))
+      const Auth = JSON.parse(sessionStorage.getItem("Authenticated"))
    
       if (Auth) {
         next('/dashboard');
