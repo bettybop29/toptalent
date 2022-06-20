@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <PSPDFKitContainer :pdfFile="'http://54.255.4.75:9091/resources/'+ this.$route.params.id" @loaded="handleLoaded" />
+    <PSPDFKitContainer :pdfFile="'https://toptalentapp.com:9091/resources/'+ this.$route.params.id" @loaded="handleLoaded" />
   </div>
 </template>
 
