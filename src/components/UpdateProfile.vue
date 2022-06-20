@@ -82,7 +82,7 @@
                 <vue-tel-input v-model="profile.recruiterPhone" v-bind="bindProps"></vue-tel-input>
               <!-- <vue-tel-input v-model="profile.recruiterPhone" mode="international"></vue-tel-input>  -->
               <!-- <small> Format: 0888-1111-2222</small> -->
-              <!-- {{profile.recruiterPhone}} -->
+              {{profile.recruiterPhone}}
             </div>
             <div class="mb-4">
               <label for="validationDefault03" class="form-label">Facebook</label>
@@ -115,9 +115,9 @@
   // import "mosha-vue-toastify"
   // import { createToast } from "mosha-vue-toastify"
   import sidebarcomponent from '@/components/SidebarComponent.vue'
-  import 'intl-tel-input/build/css/intlTelInput.css';
-  import 'intl-tel-input/build/js/intlTelInput.js';
-  import intlTelInput from 'intl-tel-input';
+  // import 'intl-tel-input/build/css/intlTelInput.css';
+  // import 'intl-tel-input/build/js/intlTelInput.js';
+  // import intlTelInput from 'intl-tel-input';
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
   import NavMobile from '@/components/NavMobile.vue'
   import { VueTelInput } from 'vue-tel-input'
@@ -168,7 +168,7 @@
         ignoredCountries: [],
         autocomplete: "off",
         name: "telephone",
-        maxLen: 13,
+        maxLen: 12,
         wrapperClasses: "",
         inputClasses: "",
         }
@@ -221,22 +221,6 @@
     //render func
     mounted() {
       this.fetchData();
-
-
-      const input = document.querySelector("#telephone");
-      intlTelInput(input, {
-        // any initialisation options go here
-        nationalMode: true,
-        hiddenInput: "full_phone",
-        preferredCountries: ["id"],
-        placeholderNumberType: "MOBILE",
-        autoPlaceholder: "polite",
-        utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.3/build/js/utils.js",
-
-
-      });
-
-
     }
   }
 </script>
