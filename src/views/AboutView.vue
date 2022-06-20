@@ -120,6 +120,7 @@
                 <a class="card-text" v-if="profile.recruiterPhone == '' || profile.recruiterPhone == null"></a>
                 <a class="card-text" v-else>
                   <font-awesome-icon icon="fa-solid fa-phone" class="icn" /> {{profile.recruiterPhone}}</a>
+                  
               </div>
               <div>
                 <a class="card-text" v-if="profile.recruiterWebsite == ''|| profile.recruiterWebsite == null"></a>
@@ -138,6 +139,8 @@
   import axios from 'axios'
   import sidebarcomponent from '../components/SidebarComponent.vue'
   import NavMobile from '../components/NavMobile.vue'
+  
+
   export default {
     props: ['id'],
     components: {

@@ -68,7 +68,7 @@ export default {
         localStorage.removeItem("counttotal-info")
         localStorage.removeItem("countreject-info")
         localStorage.removeItem("countaccept-info")
-        localStorage.setItem("Authenticated", false)
+        sessionStorage.setItem("Authenticated", false)
         this.$router.push("/login");
         // createToast("logout success!", { type: "success" });
         }

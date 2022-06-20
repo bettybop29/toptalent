@@ -151,7 +151,7 @@
         if (response.status == 200) {
           // location.reload(true)
           localStorage.setItem("user-info", JSON.stringify(response.data.data.registerDTO));
-          localStorage.setItem("Authenticated", true)
+          sessionStorage.setItem("Authenticated", true)
           this.$router.push('/dashboard')
           
           this.$toast.success(`Welcome ${response.data.data.registerDTO.recruiterCompany}!`, {
