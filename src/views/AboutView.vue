@@ -119,7 +119,7 @@
               <div>
                 <a class="card-text" v-if="profile.recruiterPhone == '' || profile.recruiterPhone == null"></a>
                 <a class="card-text" v-else>
-                  <font-awesome-icon icon="fa-solid fa-phone" class="icn" /> {{profile.recruiterPhone}}</a>
+                  <font-awesome-icon icon="fa-solid fa-phone" class="icn" /> +{{profile.recruiterPhone}}</a>
                   
               </div>
               <div>

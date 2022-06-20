@@ -94,36 +94,26 @@
       <div class="section-5 my-0 pb-5" style="background-color: #101419">
         <div class="container px-5">
           <div class="row gx-4 m-0 justify-content-center">
-            <div class="col-md-2">
+            <div class="col-md-3">
               <div class="p">
-                <img src="../assets/sponsor/BNI.png" alt="" />
+                <img src="../assets/sponsor/adis-grey.png" alt="" />
               </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
               <div class="p">
-                <img src="../assets/sponsor/KAO.png" alt="" />
+                <img src="../assets/sponsor/carefast-grey.png" alt="" />
               </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
               <div class="p">
-                <img src="../assets/sponsor/TIX.png" alt="" />
+                <img src="../assets/sponsor/jaya_real_property-grey.png" alt="" />
               </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
               <div class="p">
-                <img src="../assets/sponsor/DENTSU.png" alt="" />
+                <img src="../assets/sponsor/Mandiri-grey.png" alt="" />
               </div>
-            </div>
-            <div class="col-md-2">
-              <div class="p">
-                <img src="../assets/sponsor/SHARP.png" alt="" />
-              </div>
-            </div>
-            <div class="col-md-2">
-              <div class="p">
-                <img src="../assets/sponsor/ANA.png" alt="" />
-              </div>
-            </div>
+            </div>            
           </div>
         </div>
       </div>
@@ -362,9 +352,10 @@
     padding-bottom: 30px;
   }
 
-  
-
-
+  .section-5 img{
+    max-width: 160px;
+    height: 87px;
+  }
   /* BREAKPOINTS */
   /* mobile */
   @media only screen and (max-width: 575.98px) {

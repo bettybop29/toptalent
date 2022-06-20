@@ -77,8 +77,8 @@
                         </div>
                         
                         <div>
-                            <a href="#" v-if="applicant.jobseekerPortfolio == null || applicant.jobseekerPortfolio == '' "></a>
-                            <a v-bind:href="applicant.jobseekerPortfolio" target="_blank" v-else><font-awesome-icon icon="fa-solid fa-file" class="icon-background"/> Portofolio</a>
+                            <button v-if="applicant.jobseekerPortfolio == '' || applicant.jobseekerPortfolio == null" hidden></button>
+                            <button class="btn-porto" v-else v-on:click="getLink(applicant.jobseekerPortfolio)"><font-awesome-icon icon="fa-solid fa-file" class="icon-background"/> Portofolio</button>
                         </div>
 
                         <div>
@@ -166,7 +166,10 @@ export default{
                 console.log(Error);
                 }
              
-         },     
+         },
+         async getLink(jobseekerPortofolio) {
+        window.open(`https://${jobseekerPortofolio}`);
+      },     
     },
     mounted(){
        
@@ -271,6 +274,17 @@ h3{
 
 .jobseeker-company{
     font-size: 12px !important;
+}
+
+.btn-porto{
+    border: none;
+    background-color: transparent;
+    margin-bottom: 20px;
+}
+
+.btn-porto:hover{
+    text-decoration: underline;
+    color: #006EFF;
 }
 
 /*css3 design scrollbar*/
