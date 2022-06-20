@@ -16,10 +16,10 @@
                 </div>
                 <div class="col-md-6">
                   <img v-if="profile.recruiterImage != null" class="img-thumbnail position-absolute top-0 end-0 m-3"
-                    :src="'http://54.255.4.75:9091/resources/'+ profile.recruiterImage" alt=""
+                    :src="'https://toptalentapp.com:9091/resources/'+ profile.recruiterImage" alt=""
                     style="width: 125px; height:120px;">
                   <img v-else class="img-thumbnail position-absolute top-0 end-0 m-3"
-                    src="http://54.255.4.75:9091/resources/r5jr7e3qf8f5uhr.png" alt=""
+                    src="https://toptalentapp.com:9091/resources/r5jr7e3qf8f5uhr.png" alt=""
                     style="width: 125px; height:120px;">
 
                 </div>
@@ -170,7 +170,7 @@
         fd.append('file', this.selectedFile, this.selectedFile.name)
         const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
         fd.append('recruiterId', recruiterId)
-        axios.post(`http://54.255.4.75:9091/api/v1/file/recruiter/photo`, fd)
+        axios.post(`https://toptalentapp.com:9091/api/v1/file/recruiter/photo`, fd)
           .then(res => {
             console.log(res)
             location.reload(true)
@@ -178,7 +178,7 @@
 
         //  const fd = new FormData();
         //  fd.append('image', this.selectedFile,  this.selectedFile.name)
-        //  await axios.post(`http://54.255.4.75:9091/api/v1/file/recruiter/photo`,fd)
+        //  await axios.post(`https://toptalentapp.com:9091/api/v1/file/recruiter/photo`,fd)
         //  .then(res =>{
         //    console.log(res)
         //  })
@@ -193,7 +193,7 @@
       },
       fetchData() {
         const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
-        axios.get(`http://54.255.4.75:9091/api/v1/auth/recruiter/${recruiterId}`)
+        axios.get(`https://toptalentapp.com:9091/api/v1/auth/recruiter/${recruiterId}`)
 
           .then((profile) => {
             this.profile = profile.data
