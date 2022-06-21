@@ -71,12 +71,11 @@
 
 <script>
   import axios from 'axios'
-  // import intlTelInput from 'intl-tel-input';
   import 'intl-tel-input/build/css/intlTelInput.css';
   import 'intl-tel-input/build/js/intlTelInput.js';
-  // import "mosha-vue-toastify/dist/style.css";
-  // import { createToast } from "mosha-vue-toastify";
-
+  import { useStore } from 'vuex'
+  import { ref } from 'vue'
+ 
   export default {
     name: 'LoginView',
 
@@ -135,6 +134,8 @@
       },
 
       async login() {
+        const store = useStore();
+        const email = ref('')
         let response = '';
         try {
           this.searchDisabled = true
@@ -153,7 +154,7 @@
           localStorage.setItem("user-info", JSON.stringify(response.data.data.registerDTO));
           sessionStorage.setItem("Authenticated", true)
           this.$router.push('/dashboard')
-          
+          store.commit("setEmail", email.value);
           this.$toast.success(`Welcome ${response.data.data.registerDTO.recruiterCompany}!`, {
             // optional options Object
             

@@ -20,6 +20,7 @@
             <ckeditor :editor="editor" tag-name="textarea" :model-value="recruiterCulture"
               v-model="profile.recruiterCulture" :config="editorConfig"></ckeditor>
           </div>
+         <p>{{profile.recruiterCulture}}ss</p> 
           <div class="mb-4">
             <label for="validationDefault03" class="form-label">Industry</label>
             <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterIndustry"
@@ -74,12 +75,7 @@
             <div class="mb-4">
 
               <label for="validationDefault03" class="form-label">Phone</label>
-              <!-- <input v-model="profile.recruiterPhone" type="text" @input="acceptNumber"> -->
-              <!-- <input type="tel" class="form-control" @input="acceptNumber" id="validationDefault03" v-model="profile.recruiterPhone"  
-        placeholder="Ex: 0855-1111-2222" min="10" max="12" required> -->
-              <!-- <input type="tel" class="form-control" @input="acceptNumber" id="telephone"
-                v-model="profile.recruiterPhone" style="width:784px;"> -->
-                <vue-tel-input v-model="profile.recruiterPhone" v-bind="bindProps"></vue-tel-input>
+                <vue-tel-input  v-model="profile.recruiterPhone" v-bind="bindProps"></vue-tel-input>
               <!-- <vue-tel-input v-model="profile.recruiterPhone" mode="international"></vue-tel-input>  -->
               <!-- <small> Format: 0888-1111-2222</small> -->
               <!-- {{profile.recruiterPhone}} -->
@@ -112,12 +108,7 @@
 
 <script>
   import axios from 'axios'
-  // import "mosha-vue-toastify"
-  // import { createToast } from "mosha-vue-toastify"
   import sidebarcomponent from '@/components/SidebarComponent.vue'
-  // import 'intl-tel-input/build/css/intlTelInput.css';
-  // import 'intl-tel-input/build/js/intlTelInput.js';
-  // import intlTelInput from 'intl-tel-input';
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
   import NavMobile from '@/components/NavMobile.vue'
   import { VueTelInput } from 'vue-tel-input'
@@ -138,6 +129,7 @@
         editorData: '',
         editorConfig: {
           // The configuration of the editor.
+          // CKEDITOR.config.basicEntities = true;
           toolbar: {
             items: [
               'heading',
@@ -146,8 +138,11 @@
               'italic',
               'bulletedList',
               'undo',
-              'redo'
-            ]
+              'redo',
+            ],
+            // config.basicEntities = false;
+             extraPlugins: 'basicEntites'
+            //  config.fillEmptyBlocks = false;
           }
         },
         profile: [null],
@@ -169,6 +164,7 @@
         autocomplete: "off",
         name: "telephone",
         maxLen: 12,
+        validCharactersOnly: true,
         wrapperClasses: "",
         inputClasses: "",
         }

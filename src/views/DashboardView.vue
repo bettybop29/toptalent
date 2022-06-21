@@ -238,6 +238,9 @@
   import SidebarRightReview from '@/components/SidebarRightReview.vue'
   import RadialProgressBar from 'vue-radial-progress'
   import NavMobile from '../components/NavMobile.vue'
+  // import { ref, onMounted } from 'vue';
+  // import { useStore } from "vuex";
+
   // import PageLoader from '@/components/PageLoader.vue'
 
 
@@ -273,9 +276,15 @@
     },
 
 
-
+    
+    
 
     methods: {
+      
+      // setup(){
+      //   const store = useStore();
+      //   const email = ref('')
+      // },
       async percenttCount() {
         const accept = JSON.parse(localStorage.getItem("countaccept-info"))
         const total = JSON.parse(localStorage.getItem("counttotal-info"))
@@ -401,7 +410,8 @@
           position: 'top-right',
           pauseOnHover: true
         })
-      }
+      },
+      
     },
     mounted() {
       this.recruiter(),
@@ -413,16 +423,11 @@
         this.getView(),
         this.percentCount(),
         this.percenttCount()
-          //     if (localStorage.getItem('counttotal-info')) {
-          //     // The page was just reloaded. Clear the value from local storage
-          //     // so that it will reload the next time this page is visited.
-          //     localStorage.removeItem('counttotal-info');
-          // } else {
-          //     // Set a flag so that we know not to reload the page twice.
-          //     localStorage.setItem('counttotal-info', '1');
-          //     location.reload();
-          // }
-      }
+        
+        
+        
+      },
+      
     
     
   };
