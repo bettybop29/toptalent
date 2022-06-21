@@ -22,9 +22,9 @@
                         </div>
 
                         <div class="mt-2">
-                            <p v-if="applicant.workEndYear == 0 || applicant.workStartYear == 0 || applicant.jobsekerCompany == null"></p>
+                            <p v-if="applicant.workEndYear == 0 || applicant.workStartYear == 0 || applicant.jobseekerCompany == null"></p>
                             
-                            <p v-else class="jobseeker-company">{{applicant.jobsekerCompany}} ({{applicant.workStartYear}} - {{applicant.workEndYear}})</p>
+                            <p v-else class="jobseeker-company">{{applicant.jobseekerCompany}} ({{applicant.workStartYear}} - {{applicant.workEndYear}})</p>
                         </div>
                         <div class="detail-profile">
                             <div class="row">
