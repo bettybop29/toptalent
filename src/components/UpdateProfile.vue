@@ -5,83 +5,84 @@
     <div class="bg-color content">
       <button class="btn btn-primary new" onclick="history.back()"><i class="bi bi-chevron-left"></i>Go Back</button>
       <form action="" @submit.prevent="updateProfile">
-      
-
-      <div class="container section-first">
-        
-        <div type="multipart">
-          <h1 class="mb-5">Update Profile</h1>
-          <div class=" mb-4">
-            <label for="validationDefault03" class="form-label">Email:</label>
-            <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterEmail" disabled>
-          </div>
-          <div class="mb-4">
-            <label for="validationDefault03" class="form-label">Culture</label>
-            <!-- <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterCulture" required> -->
-            <ckeditor :editor="editor" tag-name="textarea" :model-value="recruiterCulture"
-              v-model="profile.recruiterCulture" :config="editorConfig"></ckeditor>
-          <vue-editor ></vue-editor>
-
-          </div>
-         <p>{{profile.recruiterCulture}}</p>
-         <p>{{removeNBSP(profile.recruiterCulture)}}</p>
 
 
-          <div class="mb-4">
-            <label for="validationDefault03" class="form-label">Industry</label>
-            <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterIndustry"
-              required maxlength="30">
-          </div>
-          <div class="mb-4">
-            <label for="validationDefault03" class="form-label">Benefit</label>
-            <!-- <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterBenefit"  required> -->
-            <ckeditor :editor="editor" tag-name="textarea" :model-value="recruiterBenefit"
-              v-model="profile.recruiterBenefit" :config="editorConfig"></ckeditor>
-          </div>
+        <div class="container section-first">
 
-          <div class="mb-4">
-            <label for="validationDefault03" class="form-label">Company</label>
-            <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterCompany" required
-              maxlength="30">
-          </div>
+          <div type="multipart">
+            <h1 class="mb-5">Update Profile</h1>
+            <div class=" mb-4">
+              <label for="validationDefault03" class="form-label">Email:</label>
+              <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterEmail"
+                disabled>
+            </div>
+            <div class="mb-4">
+              <label for="validationDefault03" class="form-label">Culture</label>
+              <!-- <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterCulture" required> -->
+              <ckeditor :editor="editor" tag-name="textarea" v-model="profile.recruiterCulture" :config="editorConfig">
+              </ckeditor>
+              <!-- <vue-editor ></vue-editor> -->
 
-          <div class="mb-4">
-            <label for="inputState" class="form-label">Staff</label>
-            <!-- <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterStaff" required> -->
-            <select class="form-control" id="inputState" v-model="profile.recruiterStaff" required>
-              <option disabled selected>Choose..</option>
-              <option>1</option>
-              <option>2-10</option>
-              <option>11-50</option>
-              <option>51-200</option>
-              <option>201-500</option>
-              <option>501-1000</option>
-              <option>1001-1000</option>
-              <option>10000+</option>
-            </select>
-          </div>
-          <div class="mb-4">
-            <label for="validationDefault03" class="form-label">Description</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="profile.recruiterDesc"
-              required></textarea>
-          </div>
-          <div class="mb-4">
-            <label for="validationDefault03" class="form-label">Address</label>
-            <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterAddress" required
-              maxlength="200">
-            <!-- <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" v-model="profile.recruiterAddress"></textarea> -->
-          </div>
+            </div>
+            <!-- <p>{{profile.recruiterCulture}}</p>
+         <p>{{removeNBSP(profile.recruiterCulture)}}</p> -->
 
 
+            <div class="mb-4">
+              <label for="validationDefault03" class="form-label">Industry</label>
+              <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterIndustry"
+                required maxlength="30">
+            </div>
+            <div class="mb-4">
+              <label for="validationDefault03" class="form-label">Benefit</label>
+              <!-- <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterBenefit"  required> -->
+              <ckeditor :editor="editor" tag-name="textarea" :model-value="recruiterBenefit"
+                v-model="profile.recruiterBenefit" :config="editorConfig"></ckeditor>
+            </div>
+
+            <div class="mb-4">
+              <label for="validationDefault03" class="form-label">Company</label>
+              <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterCompany"
+                required maxlength="30">
+            </div>
+
+            <div class="mb-4">
+              <label for="inputState" class="form-label">Staff</label>
+              <!-- <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterStaff" required> -->
+              <select class="form-control" id="inputState" v-model="profile.recruiterStaff" required>
+                <option disabled selected>Choose..</option>
+                <option>1</option>
+                <option>2-10</option>
+                <option>11-50</option>
+                <option>51-200</option>
+                <option>201-500</option>
+                <option>501-1000</option>
+                <option>1001-1000</option>
+                <option>10000+</option>
+              </select>
+            </div>
+            <div class="mb-4">
+              <label for="validationDefault03" class="form-label">Description</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="profile.recruiterDesc"
+                required></textarea>
+            </div>
+            <div class="mb-4">
+              <label for="validationDefault03" class="form-label">Address</label>
+              <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterAddress"
+                required maxlength="200">
+              <!-- <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" v-model="profile.recruiterAddress"></textarea> -->
+            </div>
+
+
+          </div>
         </div>
-      </div>
-      <div class="content-2">
-        <div class="container bottom">
-          <h1 class="mb-5">Contact</h1>
+        <div class="content-2">
+          <div class="container bottom">
+            <h1 class="mb-5">Contact</h1>
             <div class="mb-4">
 
               <label for="validationDefault03" class="form-label">Phone</label>
-                <vue-tel-input  v-model="profile.recruiterPhone" v-bind="bindProps"></vue-tel-input>
+              <vue-tel-input v-model="profile.recruiterPhone" v-bind="bindProps"></vue-tel-input>
               <!-- <vue-tel-input v-model="profile.recruiterPhone" mode="international"></vue-tel-input>  -->
               <!-- <small> Format: 0888-1111-2222</small> -->
               <!-- {{profile.recruiterPhone}} -->
@@ -104,11 +105,11 @@
                 required>
             </div>
             <button class="btn btn-success btn-update" type="submit">Update</button>
+          </div>
         </div>
-      </div>
       </form>
     </div>
-    
+
   </div>
 </template>
 
@@ -117,10 +118,12 @@
   import sidebarcomponent from '@/components/SidebarComponent.vue'
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
   import NavMobile from '@/components/NavMobile.vue'
-  import { VueTelInput } from 'vue-tel-input'
-  import { VueEditor } from "vue2-editor";
+  import {
+    VueTelInput
+  } from 'vue-tel-input'
+  // import { VueEditor } from "vue2-editor";
 
-  
+
 
 
   export default {
@@ -130,18 +133,18 @@
       sidebarcomponent,
       NavMobile,
       VueTelInput,
-      VueEditor
+      // VueEditor
 
       // VuePhoneNumberInput
     },
     data() {
       return {
-        
-        customToolbar: [
-           ["bold", "italic", "underline"],
-        [{ list: "ordered" }, { list: "bullet" }],
-        ["image", "code-block"]
-        ],
+
+        // customToolbar: [
+        //    ["bold", "italic", "underline"],
+        // [{ list: "ordered" }, { list: "bullet" }],
+        // ["image", "code-block"]
+        // ],
 
         editor: ClassicEditor,
         editorData: '',
@@ -158,35 +161,35 @@
               'undo',
               'redo',
             ],
-            
+
             // config.basicEntities = false;
-             extraPlugins: 'basicEntites'
+            extraPlugins: 'basicEntites'
             //  config.fillEmptyBlocks = false;
           }
-          
+
         },
         profile: [null],
         value: '',
 
-        bindProps:{
+        bindProps: {
           mode: "international",
-        defaultCountry: "ID",
-        disabledFetchingCountry: false,
-        disabled: false,
-        disabledFormatting: false,
-        placeholder: "Ex.(0888-1111-2222)",
-        required: true,
-        enabledCountryCode: false,
-        enabledFlags: true,
-        preferredCountries: ["ID"],
-        onlyCountries: [],
-        ignoredCountries: [],
-        autocomplete: "off",
-        name: "telephone",
-        maxLen: 12,
-        validCharactersOnly: true,
-        wrapperClasses: "",
-        inputClasses: "",
+          defaultCountry: "ID",
+          disabledFetchingCountry: false,
+          disabled: false,
+          disabledFormatting: false,
+          placeholder: "Ex.(0888-1111-2222)",
+          required: true,
+          enabledCountryCode: false,
+          enabledFlags: true,
+          preferredCountries: ["ID"],
+          onlyCountries: [],
+          ignoredCountries: [],
+          autocomplete: "off",
+          name: "telephone",
+          maxLen: 12,
+          validCharactersOnly: true,
+          wrapperClasses: "",
+          inputClasses: "",
         }
       }
     },
@@ -215,17 +218,21 @@
             this.profile = data.data
           })
       },
+
       removeNBSP(text) {
-          return text.replace(/&nbsp;/g, " ")
-        },
+        return text.replace(/&nbsp;/g, " ")
+      },
       // func edit profile
       async updateProfile() {
-        
+
         try {
+
+
           const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
           await axios.put(
-            `https://toptalentapp.com:9091/api/v1/auth/recruiter/${recruiterId}?recruiterEmail=${this.profile.recruiterEmail}&recruiterCompany=${this.profile.recruiterCompany}&recruiterIndustry=${this.profile.recruiterIndustry}&recruiterPhone=${this.profile.recruiterPhone}&recruiterStaff=${this.profile.recruiterStaff}&recruiterDesc=${this.profile.recruiterDesc}&recruiterAddress=${this.profile.recruiterAddress}&recruiterBenefit=${this.profile.recruiterBenefit}&recruiterFb=${this.profile.recruiterFb}&recruiterIg=${this.profile.recruiterIg}&recruiterLinkedin=${this.profile.recruiterLinkedin}&recruiterCulture=${this.profile.recruiterCulture}&recruiterWebsite=${this.profile.recruiterWebsite}`
+            `https://toptalentapp.com:9091/api/v1/auth/recruiter/${recruiterId}?recruiterEmail=${this.profile.recruiterEmail}&recruiterCompany=${this.profile.recruiterCompany}&recruiterIndustry=${this.profile.recruiterIndustry}&recruiterPhone=${this.profile.recruiterPhone}&recruiterStaff=${this.profile.recruiterStaff}&recruiterDesc=${this.profile.recruiterDesc.replace(/&nbsp;/g, " ")}&recruiterAddress=${this.profile.recruiterAddress}&recruiterBenefit=${this.profile.recruiterBenefit.replace(/&nbsp;/g, " ")}&recruiterFb=${this.profile.recruiterFb}&recruiterIg=${this.profile.recruiterIg}&recruiterLinkedin=${this.profile.recruiterLinkedin}&recruiterCulture=${this.profile.recruiterCulture.replace(/&nbsp;/g, " ")}&recruiterWebsite=${this.profile.recruiterWebsite}`
           );
+
           this.$router.push('/about')
           // createToast("Profile updated", {type: 'success'});
           this.$toast.success(`Profile updated`, {
@@ -242,9 +249,8 @@
     mounted() {
       this.fetchData();
     }
-    
+
   }
-  
 </script>
 
 <style scoped>
@@ -314,11 +320,11 @@
     padding-bottom: 40px;
   }
 
-  .section-first{
+  .section-first {
     padding: 40px;
   }
 
-  .btn-update{
+  .btn-update {
     width: 100%;
     margin-left: 0;
   }

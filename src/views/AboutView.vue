@@ -92,7 +92,7 @@
 
         </div>
         <div class="col-md-6">
-          <div class="card m-1">
+          <div class="card m-1 ctnt">
             <div class="card-body section-contact panel-2">
               <h5 class="card-title">Contact</h5>
               <hr>
@@ -337,6 +337,7 @@
     .container {
       margin-left: 0;
     }
+   
 
   }
 </style>
