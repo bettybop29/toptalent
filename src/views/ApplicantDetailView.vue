@@ -39,8 +39,8 @@
                                 </div>
                                 <div class="col-md-5 right-items">
                                     <div>
-                                        <p v-if="applicant.jobseekerProfession == null || applicant.jobseekerProfession == ''"><font-awesome-icon icon="fa-regular fa-circle" class="detail-profile-icon"/> -</p>
-                                        <p v-else><font-awesome-icon icon="fa-regular fa-circle" class="detail-profile-icon"/> {{applicant.jobseekerProfession}}</p>
+                                        <p v-if="applicant.jobseekerProfession == null || applicant.jobseekerProfession == ''"><font-awesome-icon icon="fa-solid fa-briefcase" class="detail-profile-icon"/> -</p>
+                                        <p v-else><font-awesome-icon icon="fa-solid fa-briefcase" class="detail-profile-icon"/> {{applicant.jobseekerProfession}}</p>
                                     </div>
 
                                     <div>
@@ -52,13 +52,14 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <a target="_blank" v-bind:href="'https://toptalentapp.com:9091/resources/' + applicant.jobseekerResume"
+                        <a v-if="applicant.jobseekerResume != null" target="_blank" v-bind:href="'https://toptalentapp.com:9091/resources/' + applicant.jobseekerResume"
                         type="application/octet-stream" 
                         download=""
                         class="btn btn-primary btn-resume">
                         <font-awesome-icon icon="fa-solid fa-cloud-arrow-down" /> 
                         Resume
                         </a>
+                        <a v-else href="#" class="btn btn-primary btn-resume disabled">No Resume</a>
                     </div>
                 </div>
             </section>
