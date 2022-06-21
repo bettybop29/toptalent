@@ -3,8 +3,9 @@
     <sidebarcomponent />
     <nav-mobile></nav-mobile>
     <div class="bg-color content">
-      <form action="" @submit.prevent="updateProfile">
       <button class="btn btn-primary new" onclick="history.back()"><i class="bi bi-chevron-left"></i>Go Back</button>
+      <form action="" @submit.prevent="updateProfile">
+      
 
       <div class="container section-first">
         
@@ -20,7 +21,7 @@
             <ckeditor :editor="editor" tag-name="textarea" :model-value="recruiterCulture"
               v-model="profile.recruiterCulture" :config="editorConfig"></ckeditor>
           </div>
-         <p>{{profile.recruiterCulture}}ss</p> 
+         <!-- <p>{{profile.recruiterCulture}}ss</p>  -->
           <div class="mb-4">
             <label for="validationDefault03" class="form-label">Industry</label>
             <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterIndustry"
