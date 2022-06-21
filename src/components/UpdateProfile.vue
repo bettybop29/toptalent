@@ -20,8 +20,13 @@
             <!-- <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterCulture" required> -->
             <ckeditor :editor="editor" tag-name="textarea" :model-value="recruiterCulture"
               v-model="profile.recruiterCulture" :config="editorConfig"></ckeditor>
+          <vue-editor ></vue-editor>
+
           </div>
-         <!-- <p>{{profile.recruiterCulture}}ss</p>  -->
+         <p>{{profile.recruiterCulture}}</p>
+         <p>{{removeNBSP(profile.recruiterCulture)}}</p>
+
+
           <div class="mb-4">
             <label for="validationDefault03" class="form-label">Industry</label>
             <input type="text" class="form-control" id="validationDefault03" v-model="profile.recruiterIndustry"
@@ -113,6 +118,10 @@
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
   import NavMobile from '@/components/NavMobile.vue'
   import { VueTelInput } from 'vue-tel-input'
+  import { VueEditor } from "vue2-editor";
+
+  
+
 
   export default {
     props: ['id'],
@@ -120,17 +129,25 @@
     components: {
       sidebarcomponent,
       NavMobile,
-      VueTelInput
+      VueTelInput,
+      VueEditor
 
       // VuePhoneNumberInput
     },
     data() {
       return {
+        
+        customToolbar: [
+           ["bold", "italic", "underline"],
+        [{ list: "ordered" }, { list: "bullet" }],
+        ["image", "code-block"]
+        ],
+
         editor: ClassicEditor,
         editorData: '',
         editorConfig: {
           // The configuration of the editor.
-          // CKEDITOR.config.basicEntities = true;
+          // basicEntities: true,
           toolbar: {
             items: [
               'heading',
@@ -141,10 +158,12 @@
               'undo',
               'redo',
             ],
+            
             // config.basicEntities = false;
              extraPlugins: 'basicEntites'
             //  config.fillEmptyBlocks = false;
           }
+          
         },
         profile: [null],
         value: '',
@@ -196,8 +215,12 @@
             this.profile = data.data
           })
       },
+      removeNBSP(text) {
+          return text.replace(/&nbsp;/g, " ")
+        },
       // func edit profile
       async updateProfile() {
+        
         try {
           const recruiterId = JSON.parse(localStorage.getItem("user-info")).recruiterId
           await axios.put(
@@ -219,7 +242,9 @@
     mounted() {
       this.fetchData();
     }
+    
   }
+  
 </script>
 
 <style scoped>

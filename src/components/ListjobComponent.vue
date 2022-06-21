@@ -15,6 +15,7 @@
 
       </ul>
 
+
       <div class="tab-content">
         <div class="tab-pane" id="home" role="tabpanel" aria-labelledby="home-tab">
           <div class="mx-3 mb-4 pt-4 px-3">
@@ -22,23 +23,39 @@
               <PuSkeleton circle height="50px">
                 {{visible}} Jobs is Visible
               </PuSkeleton>
-              
-              </h5>
+
+            </h5>
+
           </div>
           <!-- list job -->
           <div v-for="item in list" v-bind:key="item.id">
             <jobcomponentnew :item="item" v-if="item.jobStatus == 'visible'"></jobcomponentnew>
           </div>
+          <div class="d-flex justify-content-center" v-if="visible == '0'">
+            <div class="row nav-item text-center" style="margin-top:90px;">
+              <h2 class="fw-bold">No Visible Job</h2>
+              <p class="mb-5">You don’t have any visible job.</p>
+              <p>Go to side Hidden and make your job visible</p>
+            </div>
+          </div>
+
         </div>
 
         <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
           <div class="mx-3 mb-4 pt-4 px-3">
             <h5 class="fw-bold">{{hide}} Jobs is Hidden</h5>
           </div>
-            <!-- <page-loader/> -->
+          <!-- <page-loader/> -->
 
           <div v-for="item in list" v-bind:key="item.id">
             <jobcomponentnew :item="item" v-if="item.jobStatus == 'hidden'"></jobcomponentnew>
+          </div>
+          <div class="d-flex justify-content-center" v-if="hide == '0'">
+            <div class="row nav-item text-center" style="margin-top:90px;">
+              <h2 class="fw-bold">No Hidden Job</h2>
+              <p class="mb-5">You don’t have any visible job.</p>
+              <p>Go to side Visible and make your job hidden</p>
+            </div>
           </div>
         </div>
 

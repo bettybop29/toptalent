@@ -44,10 +44,11 @@
 
     </div>
     <div class="col-6">
-      <router-link v-if="resp == '0'" :to="{name:'jobdetail', params:{id:item.jobId}}"
-        class="text-muted text-title align-items-center primary text-decoration-none fs-6">{{resp}}
+      <router-link v-if="resp == '0'" :event="whateverActivatesThisLink ? 'click' : ''"
+      to=""
+        class="text-muted text-title align-items-center primary text-decoration-none fs-6" :disabled="!whateverActivatesThisLink" >{{resp}}
         Applicant
-        <img class="import-icon sml mx-1" src="../assets/icon-postjob/arrow-right.svg" alt="">
+        <!-- <img class="import-icon sml mx-1" src="../assets/icon-postjob/arrow-right.svg" alt=""> -->
       </router-link>
       <router-link v-else :to="{name:'jobdetail', params:{id:item.jobId}}"
         class="text-title align-items-center primary text-decoration-none fs-6">{{resp}}
