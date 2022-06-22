@@ -6,7 +6,7 @@
       <nav-mobile/>
 
       <div class="container p-4">
-          <button class="btn" onclick="javascript:window.history.back();">
+          <button class="btn" onclick="javascript:window.history.back()">
               <font-awesome-icon icon="fa-solid fa-chevron-left" />
               go back
           </button>

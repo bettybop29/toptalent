@@ -98,7 +98,7 @@
               <hr>
               <div>
                 <a class="card-text" v-if="profile.recruiterEmail == ''"></a>
-                <a class="card-text" v-else>
+                <a class="card-text" v-else :href="'https://mail.google.com/mail/' + profile.recruiterEmail" target="_blank">
                   <font-awesome-icon icon="fa-solid fa-envelope" class="icn" /> {{profile.recruiterEmail}}</a>
               </div>
               <div>
@@ -118,13 +118,13 @@
               </div>
               <div>
                 <a class="card-text" v-if="profile.recruiterPhone == '' || profile.recruiterPhone == null"></a>
-                <a class="card-text" v-else>
+                <a class="card-text" v-else :href="'tel:'+ profile.recruiterPhone">
                   <font-awesome-icon icon="fa-solid fa-phone" class="icn" /> +{{profile.recruiterPhone}}</a>
                   
               </div>
               <div>
                 <a class="card-text" v-if="profile.recruiterWebsite == ''|| profile.recruiterWebsite == null"></a>
-                <a class="card-text" v-else>
+                <a class="card-text" v-else :href="profile.recruiterWebsite" target="_blank">
                   <font-awesome-icon icon="fa-solid fa-globe" class="icn" /> {{profile.recruiterWebsite}}</a>
               </div>
             </div>
