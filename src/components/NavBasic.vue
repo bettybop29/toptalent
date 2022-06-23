@@ -15,7 +15,8 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
 
         <form >
-          <router-link class="btn btn-outline-primary fw-bold btn-login" to="/login" width>Login</router-link>
+          <router-link v-if="Auth == ture" class="btn btn-outline-primary fw-bold btn-login" to="/login" width>back</router-link>
+          <router-link v-else class="btn btn-outline-primary fw-bold btn-login" to="/login" width>Login</router-link>
           <router-link class="btn btn-primary fw-bold btn-signup" to="/signup">Get started</router-link>
           <!-- <router-link class="btn btn-primary"  >user</router-link> -->
           <!-- <a class="btn btn-primary" href="login.html" role="button">Login</a> -->
@@ -28,6 +29,16 @@
 <script>
   export default {
     name: "NavBasic",
+    data(){
+      return{
+        Auth:''
+      }
+    },
+    mounted(){
+      const Auth = sessionStorage.getItem('Authenticated')
+      this.Auth = Auth.value
+    }
+
   };
 </script>
 
